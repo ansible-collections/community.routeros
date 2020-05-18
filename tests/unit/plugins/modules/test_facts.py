@@ -92,7 +92,7 @@ class TestRouterosFactsModule(TestRouterosModule):
         set_module_args(dict(gather_subset='interfaces'))
         result = self.execute_module()
         self.assertIn(
-            result['ansible_facts']['ansible_net_all_ipv4_addresses'][0], ['10.37.129.3', '10.37.0.0']
+            result['ansible_facts']['ansible_net_all_ipv4_addresses'][0], ['10.37.129.3', '10.37.0.0', '192.168.88.1']
         )
         self.assertEqual(
             result['ansible_facts']['ansible_net_all_ipv6_addresses'], ['fe80::21c:42ff:fe36:5290']
@@ -105,7 +105,7 @@ class TestRouterosFactsModule(TestRouterosModule):
             len(result['ansible_facts']['ansible_net_interfaces'].keys()), 11
         )
         self.assertEqual(
-            len(result['ansible_facts']['ansible_net_neighbors'].keys()), 4
+            len(result['ansible_facts']['ansible_net_neighbors']), 4
         )
 
     def test_facts_interfaces_no_ipv6(self):
@@ -113,7 +113,7 @@ class TestRouterosFactsModule(TestRouterosModule):
             'facts/ipv6_address_print_detail_without-paging_no-ipv6'
         )
         interfaces = self.module.Interfaces(module=self.module)
-        addresses = interfaces.parse_addresses(data=fixture)
-        result = interfaces.populate_ipv6_interfaces(data=addresses)
+        addresses = interfaces.parse_detail(data=fixture)
+        result = interfaces.populate_addresses(data=addresses, family='ipv6')
 
         self.assertEqual(result, None)
