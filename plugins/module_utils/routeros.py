@@ -26,7 +26,7 @@
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 import json
-from ansible.module_utils._text import to_text
+from ansible.module_utils._text import to_text, to_native
 from ansible.module_utils.basic import env_fallback
 from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.utils import to_list, ComplexList
 from ansible.module_utils.connection import Connection, ConnectionError
@@ -66,9 +66,12 @@ def get_capabilities(module):
     if hasattr(module, '_routeros_capabilities'):
         return module._routeros_capabilities
 
-    capabilities = Connection(module._socket_path).get_capabilities()
-    module._routeros_capabilities = json.loads(capabilities)
-    return module._routeros_capabilities
+    try:
+        capabilities = Connection(module._socket_path).get_capabilities()
+        module._routeros_capabilities = json.loads(capabilities)
+        return module._routeros_capabilities
+    except ConnectionError as exc:
+        module.fail_json(msg=to_native(exc, errors='surrogate_then_replace'))
 
 
 def get_defaults_flag(module):
