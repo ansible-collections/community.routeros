@@ -64,6 +64,12 @@ class TestRouterosFactsModule(TestRouterosModule):
         self.assertEqual(
             result['ansible_facts']['ansible_net_serialnum'], '1234567890'
         )
+        self.assertEqual(
+            result['ansible_facts']['ansible_net_arch'], 'x86'
+        )
+        self.assertEqual(
+            result['ansible_facts']['ansible_net_uptime'], '3h28m52s'
+        )
 
     def test_facts_hardware(self):
         set_module_args(dict(gather_subset='hardware'))
@@ -117,3 +123,220 @@ class TestRouterosFactsModule(TestRouterosModule):
         result = interfaces.populate_addresses(data=addresses, family='ipv6')
 
         self.assertEqual(result, None)
+
+    def test_facts_routing(self):
+        set_module_args(dict(gather_subset='routing'))
+        result = self.execute_module()
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['name'], ['iBGP_BRAS.TYRMA']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['instance'], ['MAIN_AS_STARKDV']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['remote-address'], ['10.10.100.1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['remote-as'], ['64520']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['nexthop-choice'], ['default']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['multihop'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['route-reflect'], ['yes']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['hold-time'], ['3m']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['ttl'], ['default']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['address-families'], ['ip']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['update-source'], ['LAN_KHV']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['default-originate'], ['never']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['remove-private-as'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['as-override'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['passive'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['use-bfd'], ['yes']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['route-distinguisher'], ['64520:666']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['dst-address'], ['10.10.66.8/30']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['gateway'], ['10.10.100.1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['interface'], ['GRE_TYRMA']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['in-label'], ['6136']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['out-label'], ['6136']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['bgp-local-pref'], ['100']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['bgp-origin'], ['incomplete']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_vpnv4_route']['GRE_TYRMA']['bgp-ext-communities'], ['RT:64520:666']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['name'], ['default']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['as'], ['65530']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['router-id'], ['0.0.0.0']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['redistribute-connected'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['redistribute-static'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['redistribute-rip'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['redistribute-ospf'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['redistribute-other-bgp'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['client-to-client-reflection'], ['yes']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_bgp_instance']['default']['ignore-as-path-len'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_route']['altegro']['dst-address'], ['10.10.66.0/30']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_route']['altegro']['pref-src'], ['10.10.66.1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_route']['altegro']['gateway'], ['bridge1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_route']['altegro']['gateway-status'], ['bridge1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_route']['altegro']['distance'], ['0']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_route']['altegro']['scope'], ['10']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_route']['altegro']['routing-mark'], ['altegro']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['name'], ['default']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['router-id'], ['10.10.50.1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['distribute-default'], ['never']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['redistribute-connected'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['redistribute-static'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['redistribute-rip'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['redistribute-bgp'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['redistribute-other-ospf'], ['no']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['metric-default'], ['1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['metric-connected'], ['20']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['metric-static'], ['20']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['metric-rip'], ['20']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['metric-bgp'], ['auto']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['metric-other-ospf'], ['auto']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['in-filter'], ['ospf-in']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_instance']['default']['out-filter'], ['ospf-out']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['instance'], ['default']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['router-id'], ['10.10.100.1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['address'], ['10.10.1.2']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['interface'], ['GRE_TYRMA']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['priority'], ['1']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['dr-address'], ['0.0.0.0']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['backup-dr-address'], ['0.0.0.0']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['state'], ['Full']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['state-changes'], ['15']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['ls-retransmits'], ['0']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['ls-requests'], ['0']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['db-summaries'], ['0']
+        )
+        self.assertIn(
+            result['ansible_facts']['ansible_net_ospf_neighbor']['default']['adjacency'], ['6h8m46s']
+        )

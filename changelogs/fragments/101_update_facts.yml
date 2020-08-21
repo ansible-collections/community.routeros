@@ -1,0 +1,2 @@
+minor_changes:
+  - facts - now also collecting data about BGP and OSPF (https://github.com/ansible-collections/community.network/pull/101).

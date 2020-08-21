@@ -1,0 +1,19 @@
+Flags: X - disabled, A - active, D - dynamic,
+C - connect, S - static, r - rip, b - bgp, o - ospf, m - mme,
+B - blackhole, U - unreachable, P - prohibit
+ 0 ADC  dst-address=10.10.66.0/30 pref-src=10.10.66.1 gateway=bridge1
+        gateway-status=bridge1 reachable distance=0 scope=10
+        routing-mark=altegro
+
+ 2 A S  dst-address=0.0.0.0/0 gateway=85.15.75.109
+        gateway-status=85.15.75.109 reachable via  Internet-VTK distance=1
+        scope=30 target-scope=10
+
+ 3 ADC  dst-address=10.10.1.0/30 pref-src=10.10.1.1 gateway=GRE_TYRMA
+        gateway-status=GRE_TYRMA reachable distance=0 scope=10
+
+ 4  DC  dst-address=10.10.1.4/30 pref-src=10.10.1.5 gateway=RB2011
+        gateway-status=RB2011 unreachable distance=255 scope=10
+
+ 5 ADC  dst-address=10.10.2.0/30 pref-src=10.10.2.1 gateway=VLAN_SAT.ROUTER
+        gateway-status=VLAN_SAT.ROUTER reachable distance=0 scope=10

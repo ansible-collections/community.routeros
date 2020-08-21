@@ -1,0 +1,10 @@
+Flags: * - default, X - disabled
+ 0 *X name="default" as=65530 router-id=0.0.0.0 redistribute-connected=no
+      redistribute-static=no redistribute-rip=no redistribute-ospf=no
+      redistribute-other-bgp=no out-filter="" client-to-client-reflection=yes
+      ignore-as-path-len=no routing-table=""
+
+ 1    name="MAIN_AS_STARKDV" as=64520 router-id=10.10.50.1
+      redistribute-connected=no redistribute-static=no redistribute-rip=no
+      redistribute-ospf=no redistribute-other-bgp=no out-filter=""
+      client-to-client-reflection=yes ignore-as-path-len=no routing-table=""

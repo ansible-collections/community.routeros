@@ -1,0 +1,10 @@
+Flags: X - disabled, * - default
+ 0  * name="default" router-id=10.10.50.1 distribute-default=never redistribute-connected=no
+      redistribute-static=no redistribute-rip=no redistribute-bgp=no redistribute-other-ospf=no
+      metric-default=1 metric-connected=20 metric-static=20 metric-rip=20 metric-bgp=auto
+      metric-other-ospf=auto in-filter=ospf-in out-filter=ospf-out
+
+ 1    name="OSPF_ALTEGRO" router-id=10.10.66.1 distribute-default=never redistribute-connected=no
+      redistribute-static=no redistribute-rip=no redistribute-bgp=no redistribute-other-ospf=no
+      metric-default=1 metric-connected=20 metric-static=20 metric-rip=20 metric-bgp=auto
+      metric-other-ospf=auto in-filter=ospf-in out-filter=ospf-out routing-table=altegro

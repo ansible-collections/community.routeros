@@ -1,0 +1,7 @@
+Flags: L - label-present
+ 0 L route-distinguisher=64520:666 dst-address=10.10.66.8/30 gateway=10.10.100.1
+     interface=GRE_TYRMA in-label=6136 out-label=6136 bgp-local-pref=100
+     bgp-origin=incomplete bgp-ext-communities="RT:64520:666"
+
+ 1 L route-distinguisher=64520:666 dst-address=10.10.66.0/30 interface=bridge1
+     in-label=1790 bgp-ext-communities="RT:64520:666"

@@ -1,0 +1,13 @@
+Flags: X - disabled, E - established
+ 0 E name="iBGP_BRAS.TYRMA" instance=MAIN_AS_STARKDV remote-address=10.10.100.1
+     remote-as=64520 tcp-md5-key="" nexthop-choice=default multihop=no
+     route-reflect=yes hold-time=3m ttl=default in-filter="" out-filter=""
+     address-families=ip,l2vpn,vpnv4 update-source=LAN_KHV
+     default-originate=never remove-private-as=no as-override=no passive=no
+     use-bfd=yes
+
+ 1 E name="iBGP_BRAS_SAT" instance=MAIN_AS_STARKDV remote-address=10.10.50.230
+     remote-as=64520 tcp-md5-key="" nexthop-choice=default multihop=no
+     route-reflect=yes hold-time=3m ttl=default in-filter="" out-filter=""
+     address-families=ip default-originate=never remove-private-as=no
+     as-override=no passive=no use-bfd=yes
