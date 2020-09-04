@@ -284,7 +284,7 @@ class Hardware(FactsBase):
 
 class Config(FactsBase):
 
-    COMMANDS = ['/export']
+    COMMANDS = ['/export verbose']
 
     def populate(self):
         super(Config, self).populate()
