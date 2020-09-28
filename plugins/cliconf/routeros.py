@@ -21,6 +21,7 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
 ---
+author: "Egor Zaitsev (@heuels)"
 cliconf: routeros
 short_description: Use routeros cliconf to run command on MikroTik RouterOS platform
 description:
