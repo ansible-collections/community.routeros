@@ -46,117 +46,122 @@ EXAMPLES = """
 """
 
 RETURN = """
-ansible_net_gather_subset:
-  description: The list of fact subsets collected from the device
+ansible_facts:
+  description: "Dictionary of ip geolocation facts for a host's IP address"
   returned: always
-  type: list
+  type: dict
+  contains:
+    ansible_net_gather_subset:
+      description: The list of fact subsets collected from the device
+      returned: always
+      type: list
 
-# default
-ansible_net_model:
-  description: The model name returned from the device
-  returned: always
-  type: str
-ansible_net_serialnum:
-  description: The serial number of the remote device
-  returned: always
-  type: str
-ansible_net_version:
-  description: The operating system version running on the remote device
-  returned: always
-  type: str
-ansible_net_hostname:
-  description: The configured hostname of the device
-  returned: always
-  type: str
-ansible_net_arch:
-  description: The CPU architecture of the device
-  returned: always
-  type: str
-  version_added: 1.2.0
-ansible_net_uptime:
-  description: The uptime of the device
-  returned: always
-  type: str
-  version_added: 1.2.0
-ansible_net_cpu_load:
-  description: Current CPU load
-  returned: always
-  type: str
-  version_added: 1.2.0
+    # default
+    ansible_net_model:
+      description: The model name returned from the device
+      returned: always
+      type: str
+    ansible_net_serialnum:
+      description: The serial number of the remote device
+      returned: always
+      type: str
+    ansible_net_version:
+      description: The operating system version running on the remote device
+      returned: always
+      type: str
+    ansible_net_hostname:
+      description: The configured hostname of the device
+      returned: always
+      type: str
+    ansible_net_arch:
+      description: The CPU architecture of the device
+      returned: always
+      type: str
+      version_added: 1.2.0
+    ansible_net_uptime:
+      description: The uptime of the device
+      returned: always
+      type: str
+      version_added: 1.2.0
+    ansible_net_cpu_load:
+      description: Current CPU load
+      returned: always
+      type: str
+      version_added: 1.2.0
 
-# hardware
-ansible_net_spacefree_mb:
-  description: The available disk space on the remote device in MiB
-  returned: when hardware is configured
-  type: dict
-ansible_net_spacetotal_mb:
-  description: The total disk space on the remote device in MiB
-  returned: when hardware is configured
-  type: dict
-ansible_net_memfree_mb:
-  description: The available free memory on the remote device in MiB
-  returned: when hardware is configured
-  type: int
-ansible_net_memtotal_mb:
-  description: The total memory on the remote device in MiB
-  returned: when hardware is configured
-  type: int
+    # hardware
+    ansible_net_spacefree_mb:
+      description: The available disk space on the remote device in MiB
+      returned: when hardware is configured
+      type: dict
+    ansible_net_spacetotal_mb:
+      description: The total disk space on the remote device in MiB
+      returned: when hardware is configured
+      type: dict
+    ansible_net_memfree_mb:
+      description: The available free memory on the remote device in MiB
+      returned: when hardware is configured
+      type: int
+    ansible_net_memtotal_mb:
+      description: The total memory on the remote device in MiB
+      returned: when hardware is configured
+      type: int
 
-# config
-ansible_net_config:
-  description: The current active config from the device
-  returned: when config is configured
-  type: str
+    # config
+    ansible_net_config:
+      description: The current active config from the device
+      returned: when config is configured
+      type: str
 
-# interfaces
-ansible_net_all_ipv4_addresses:
-  description: All IPv4 addresses configured on the device
-  returned: when interfaces is configured
-  type: list
-ansible_net_all_ipv6_addresses:
-  description: All IPv6 addresses configured on the device
-  returned: when interfaces is configured
-  type: list
-ansible_net_interfaces:
-  description: A hash of all interfaces running on the system
-  returned: when interfaces is configured
-  type: dict
-ansible_net_neighbors:
-  description: The list of neighbors from the remote device
-  returned: when interfaces is configured
-  type: dict
+    # interfaces
+    ansible_net_all_ipv4_addresses:
+      description: All IPv4 addresses configured on the device
+      returned: when interfaces is configured
+      type: list
+    ansible_net_all_ipv6_addresses:
+      description: All IPv6 addresses configured on the device
+      returned: when interfaces is configured
+      type: list
+    ansible_net_interfaces:
+      description: A hash of all interfaces running on the system
+      returned: when interfaces is configured
+      type: dict
+    ansible_net_neighbors:
+      description: The list of neighbors from the remote device
+      returned: when interfaces is configured
+      type: dict
 
-# routing
-ansible_net_bgp_peer:
-  description: The dict bgp peer
-  returned: peer information
-  type: dict
-  version_added: 1.2.0
-ansible_net_bgp_vpnv4_route:
-  description: The dict bgp vpnv4 route
-  returned: vpnv4 route information
-  type: dict
-  version_added: 1.2.0
-ansible_net_bgp_instance:
-  description: The dict bgp instance
-  returned: bgp instance information
-  type: dict
-  version_added: 1.2.0
-ansible_net_route:
-  description: The dict routes in all routing table
-  returned: routes information in all routing table
-  type: dict
-  version_added: 1.2.0
-ansible_net_ospf_instance:
-  description: The dict ospf instance
-  returned: ospf instance information
-  type: dict
-  version_added: 1.2.0
-ansible_net_ospf_neighbor:
-  description: The dict ospf neighbor
-  returned: ospf neighbor information
-  type: dict
-  version_added: 1.2.0
+    # routing
+    ansible_net_bgp_peer:
+      description: The dict bgp peer
+      returned: peer information
+      type: dict
+      version_added: 1.2.0
+    ansible_net_bgp_vpnv4_route:
+      description: The dict bgp vpnv4 route
+      returned: vpnv4 route information
+      type: dict
+      version_added: 1.2.0
+    ansible_net_bgp_instance:
+      description: The dict bgp instance
+      returned: bgp instance information
+      type: dict
+      version_added: 1.2.0
+    ansible_net_route:
+      description: The dict routes in all routing table
+      returned: routes information in all routing table
+      type: dict
+      version_added: 1.2.0
+    ansible_net_ospf_instance:
+      description: The dict ospf instance
+      returned: ospf instance information
+      type: dict
+      version_added: 1.2.0
+    ansible_net_ospf_neighbor:
+      description: The dict ospf neighbor
+      returned: ospf neighbor information
+      type: dict
+      version_added: 1.2.0
 """
 import re
 
