@@ -12,13 +12,14 @@ Tested with both the current Ansible 2.9 and 2.10 releases and the current devel
 The exact requirements for every module are listed in the module documentation. 
 
 ### Supported connections
-<!-- Optional. If your collection supports only specific connection types (such as HTTPAPI, netconf, or others), list them here. -->
+
+The collection supports the `network_cli` connection.
 
 ## Included content
 
-- community.routeros.api
-- community.routeros.command
-- community.routeros.facts
+- `community.routeros.api`
+- `community.routeros.command`
+- `community.routeros.facts`
 
 ## Using this collection
 
