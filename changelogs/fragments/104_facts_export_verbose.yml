@@ -1,2 +1,0 @@
-minor_changes:
- - facts - set configuration export on to verbose, for full configuration export (https://github.com/ansible-collections/community.network/pull/104).
