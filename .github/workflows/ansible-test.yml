@@ -63,7 +63,7 @@ jobs:
 
   units:
     runs-on: ubuntu-latest
-    name: Units (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+    name: Units (Ⓐ${{ matrix.ansible }})
     strategy:
       # As soon as the first unit test fails, cancel the others to free up the CI queue
       fail-fast: true
@@ -72,17 +72,6 @@ jobs:
           - stable-2.9
           - stable-2.10
           - devel
-        python:
-          - 2.6
-          - 2.7
-          - 3.5
-          - 3.6
-          - 3.7
-          - 3.8
-          - 3.9
-        exclude:
-          - ansible: stable-2.9
-            python: 3.9
 
     steps:
       - name: Check out code
@@ -102,8 +91,8 @@ jobs:
         run: ansible-galaxy collection install ansible.netcommon -p .
 
       # Run the unit tests
-      - name: Run unit test
-        run: ansible-test units -v --color --python ${{ matrix.python }} --docker --coverage
+      - name: Run unit tests for all Python versions
+        run: ansible-test units -v --color --docker --coverage
         working-directory: ./ansible_collections/community/routeros
 
         # ansible-test support producing code coverage date
