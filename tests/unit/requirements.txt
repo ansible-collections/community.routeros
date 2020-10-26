@@ -1,0 +1,4 @@
+unittest2 ; python_version <= '2.6'
+
+# requirements for api module
+librouteros ; python_version >= '3.6'
