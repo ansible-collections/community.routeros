@@ -23,7 +23,43 @@ The collection supports the `network_cli` connection.
 
 ## Using this collection
 
-See [Ansible Using collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html) for more details.
+See [Ansible Using collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html) for general detail on using collections.
+
+Example inventory `hosts` file:
+
+```.ini
+[routers]
+router ansible_host=192.168.1.1
+
+[routers:vars]
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=community.routeros.routeros
+ansible_user=admin
+ansible_ssh_pass=test1234
+```
+
+Example playbook:
+
+```.yaml
+---
+- name: RouterOS test
+  hosts: routers
+  gather_facts: false
+  tasks:
+
+  # Run a command and print its output
+  - community.routeros.command:
+      commands:
+        - /system resource print
+    register: system_resource_print
+  - debug:
+      var: system_resource_print.stdout_lines
+
+  # Retrieve facts
+  - community.routeros.facts:
+  - debug:
+      msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
+```
 
 ## Contributing to this collection
 
