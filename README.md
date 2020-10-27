@@ -25,6 +25,10 @@ The collection supports the `network_cli` connection.
 
 See [Ansible Using collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html) for general detail on using collections.
 
+There are two approaches for using this collection. The `command` and `facts` modules use the `network_cli` connection and connect with SSH. The `api` module connects with the HTTP/HTTPS API.
+
+### Connecting with `network_cli`
+
 Example inventory `hosts` file:
 
 ```.ini
@@ -42,7 +46,7 @@ Example playbook:
 
 ```.yaml
 ---
-- name: RouterOS test
+- name: RouterOS test with network_cli connection
   hosts: routers
   gather_facts: false
   tasks:
@@ -59,6 +63,30 @@ Example playbook:
   - community.routeros.facts:
   - debug:
       msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
+```
+
+### Connecting with HTTP/HTTPS API
+
+Example playbook:
+
+```.yaml
+---
+- name: RouterOS test with API
+  hosts: localhost
+  gather_facts: no
+  vars:
+    hostname: 192.168.1.1
+    username: admin
+    password: test1234
+  tasks:
+    - name: Get "ip address print"
+      community.routeros.api:
+        hostname: "{{ hostname }}"
+        password: "{{ password }}"
+        username: "{{ username }}"
+        path: "ip address"
+        ssl: true
+      register: print_path
 ```
 
 ## Contributing to this collection
