@@ -60,22 +60,22 @@ options:
 EXAMPLES = """
 tasks:
   - name: Run command on remote devices
-    community.network.command:
+    community.routeros.command:
       commands: /system routerboard print
 
   - name: Run command and check to see if output contains routeros
-    community.network.command:
+    community.routeros.command:
       commands: /system resource print
       wait_for: result[0] contains MikroTik
 
   - name: Run multiple commands on remote nodes
-    community.network.command:
+    community.routeros.command:
       commands:
         - /system routerboard print
         - /system identity print
 
   - name: Run multiple commands and evaluate the output
-    community.network.command:
+    community.routeros.command:
       commands:
         - /system routerboard print
         - /interface ethernet print

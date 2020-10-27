@@ -113,7 +113,7 @@ EXAMPLES = '''
 
   tasks:
     - name: Get "{{ path }} print"
-      community.network.api:
+      community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
@@ -125,7 +125,7 @@ EXAMPLES = '''
         msg: '{{ print_path }}'
 
     - name: Add ip address "{{ ip1 }}" and "{{ ip2 }}"
-      community.network.api:
+      community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
@@ -141,7 +141,7 @@ EXAMPLES = '''
         msg: '{{ addout }}'
 
     - name: Query for ".id" in "{{ path }} WHERE address == {{ ip2 }}"
-      community.network.api:
+      community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
