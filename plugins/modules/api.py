@@ -437,15 +437,15 @@ class ROS_api_module:
         self.result['message'].append("%s" % e)
         self.return_result(False, False)
 
-    def ros_api_connect(self, username, password, host, port, ssl):
+    def ros_api_connect(self, username, password, host, port, use_ssl):
         # connect to routeros api
         conn_status = {"connection": {"username": username,
                                       "hostname": host,
                                       "port": port,
-                                      "ssl": ssl,
+                                      "ssl": use_ssl,
                                       "status": "Connected"}}
         try:
-            if ssl is True:
+            if use_ssl is True:
                 if not port:
                     port = 8729
                     conn_status["connection"]["port"] = port
