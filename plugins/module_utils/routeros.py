@@ -30,7 +30,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 import json
-from ansible.module_utils._text import to_text, to_native
+from ansible.module_utils._text import to_native
 from ansible.module_utils.basic import env_fallback
 from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.utils import to_list, ComplexList
 from ansible.module_utils.connection import Connection, ConnectionError
@@ -84,9 +84,9 @@ def get_defaults_flag(module):
     try:
         out = connection.get('/system default-configuration print')
     except ConnectionError as exc:
-        module.fail_json(msg=to_text(exc, errors='surrogate_then_replace'))
+        module.fail_json(msg=to_native(exc, errors='surrogate_then_replace'))
 
-    out = to_text(out, errors='surrogate_then_replace')
+    out = to_native(out, errors='surrogate_then_replace')
 
     commands = set()
     for line in out.splitlines():
@@ -110,9 +110,9 @@ def get_config(module, flags=None):
         try:
             out = connection.get_config(flags=flags)
         except ConnectionError as exc:
-            module.fail_json(msg=to_text(exc, errors='surrogate_then_replace'))
+            module.fail_json(msg=to_native(exc, errors='surrogate_then_replace'))
 
-        cfg = to_text(out, errors='surrogate_then_replace').strip()
+        cfg = to_native(out, errors='surrogate_then_replace').strip()
         _DEVICE_CONFIGS[flag_str] = cfg
         return cfg
 
@@ -144,13 +144,13 @@ def run_commands(module, commands, check_rc=True):
         try:
             out = connection.get(command, prompt, answer)
         except ConnectionError as exc:
-            module.fail_json(msg=to_text(exc, errors='surrogate_then_replace'))
+            module.fail_json(msg=to_native(exc, errors='surrogate_then_replace'))
 
         try:
-            out = to_text(out, errors='surrogate_or_strict')
+            out = to_native(out, errors='surrogate_or_strict')
         except UnicodeError:
             module.fail_json(
-                msg=u'Failed to decode output from %s: %s' % (cmd, to_text(out)))
+                msg=u'Failed to decode output from %s: %s' % (cmd, to_native(out)))
 
         responses.append(out)
 
