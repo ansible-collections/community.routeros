@@ -96,7 +96,7 @@ options:
 
 EXAMPLES = '''
 ---
-- name: Test api
+- name: Use RouterOS API
   hosts: localhost
   gather_facts: no
   vars:
@@ -153,11 +153,12 @@ EXAMPLES = '''
       ansible.builtin.debug:
         msg: '{{ queryout }}'
 
-    - ansible.builtin.set_fact:
-        query_id : "{{ queryout['msg'][0]['.id'] }}"
+    - name: Store query_id for later usage
+      ansible.builtin.set_fact:
+        query_id: "{{ queryout['msg'][0]['.id'] }}"
 
     - name: Update ".id = {{ query_id }}" taken with custom fact "fquery_id"
-      api:
+      community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
@@ -170,7 +171,7 @@ EXAMPLES = '''
         msg: '{{ updateout }}'
 
     - name: Remove ips - stage 1 - query ".id" for "{{ ip2 }}" and "{{ ip3 }}"
-      api:
+      community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
@@ -181,7 +182,7 @@ EXAMPLES = '''
         - "{{ ip2 }}"
         - "{{ ip3 }}"
 
-    - name: set fact for ".id" from "Remove ips - stage 1 - query"
+    - name: Set fact for ".id" from "Remove ips - stage 1 - query"
       ansible.builtin.set_fact:
         to_be_remove: "{{ to_be_remove |default([]) + [item['msg'][0]['.id']] }}"
       loop: "{{ id_to_remove.results }}"
@@ -192,7 +193,7 @@ EXAMPLES = '''
 
     # Remove "{{ rmips }}" with ".id" by "to_be_remove" from query
     - name: Remove ips - stage 2 - remove "{{ ip2 }}" and "{{ ip3 }}" by '.id'
-      api:
+      community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
@@ -206,7 +207,7 @@ EXAMPLES = '''
         msg: '{{ remove }}'
 
     - name: Arbitrary command example "/system identity print"
-      api:
+      community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
