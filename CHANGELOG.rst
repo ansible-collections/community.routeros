@@ -5,6 +5,19 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v0.1.1
+======
+
+Release Summary
+---------------
+
+Small improvements and bugfixes over the initial release.
+
+Bugfixes
+--------
+
+- api - fix crash when the ``ssl`` parameter is used (https://github.com/ansible-collections/community.routeros/pull/3).
+
 v0.1.0
 ======
 

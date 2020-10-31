@@ -1,2 +1,0 @@
-bugfixes:
-- "api - fix crash when the ``ssl`` parameter is used (https://github.com/ansible-collections/community.routeros/pull/3)."

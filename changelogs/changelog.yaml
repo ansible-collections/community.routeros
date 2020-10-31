@@ -16,3 +16,12 @@ releases:
     - 101_update_facts.yml
     - 104_facts_export_verbose.yml
     release_date: '2020-10-26'
+  0.1.1:
+    changes:
+      bugfixes:
+      - api - fix crash when the ``ssl`` parameter is used (https://github.com/ansible-collections/community.routeros/pull/3).
+      release_summary: Small improvements and bugfixes over the initial release.
+    fragments:
+    - 0.1.1.yml
+    - 3-api-ssl.yml
+    release_date: '2020-10-31'
