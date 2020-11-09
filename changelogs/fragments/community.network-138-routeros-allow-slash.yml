@@ -1,0 +1,2 @@
+bugfixes:
+- "routeros terminal plugin - allow slashes in hostnames for terminal detection. Without this, slashes in hostnames will result in connection timeouts (https://github.com/ansible-collections/community.network/pull/138)."
