@@ -25,3 +25,15 @@ releases:
     - 0.1.1.yml
     - 3-api-ssl.yml
     release_date: '2020-10-31'
+  1.0.0:
+    changes:
+      bugfixes:
+      - routeros terminal plugin - allow slashes in hostnames for terminal detection.
+        Without this, slashes in hostnames will result in connection timeouts (https://github.com/ansible-collections/community.network/pull/138).
+      release_summary: 'This is the first production (non-prerelease) release of ``community.routeros``.
+
+        '
+    fragments:
+    - 1.0.0.yml
+    - community.network-138-routeros-allow-slash.yml
+    release_date: '2020-11-17'

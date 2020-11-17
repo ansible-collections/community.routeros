@@ -5,6 +5,20 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v1.0.0
+======
+
+Release Summary
+---------------
+
+This is the first production (non-prerelease) release of ``community.routeros``.
+
+
+Bugfixes
+--------
+
+- routeros terminal plugin - allow slashes in hostnames for terminal detection. Without this, slashes in hostnames will result in connection timeouts (https://github.com/ansible-collections/community.network/pull/138).
+
 v0.1.1
 ======
 
