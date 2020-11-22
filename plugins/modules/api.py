@@ -42,6 +42,7 @@ options:
       - If is set TLS will be used for RouterOS API connection.
     required: false
     type: bool
+    default: false
   port:
     description:
       - RouterOS api port. If ssl is set, port will apply to ssl connection.
