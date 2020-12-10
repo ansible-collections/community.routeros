@@ -324,8 +324,6 @@ class ROS_api_module:
             if '=' not in p:
                 self.errors("missing '=' after '%s'" % p)
             p = p.split('=')
-            if p[0] == 'id':
-                self.errors("'%s' must be '.id'" % p[0])
             if p[1]:
                 dict[p[0]] = p[1]
         return dict
