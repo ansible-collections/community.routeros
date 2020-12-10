@@ -1,0 +1,2 @@
+bugfixes:
+- api - remove ``id to .id`` as default requirement which conflict with routeros ``id`` configuration parameter.  
