@@ -37,3 +37,13 @@ releases:
     - 1.0.0.yml
     - community.network-138-routeros-allow-slash.yml
     release_date: '2020-11-17'
+  1.0.1:
+    changes:
+      bugfixes:
+      - api - remove ``id to .id`` as default requirement which conflicts with RouterOS
+        ``id`` configuration parameter (https://github.com/ansible-collections/community.routeros/pull/15).
+      release_summary: Maintenance release with a bugfix for ``api``.
+    fragments:
+    - 1.0.1.yml
+    - 13-remove-id-restriction-for-api.yaml
+    release_date: '2020-12-11'

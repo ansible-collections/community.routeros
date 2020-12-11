@@ -5,6 +5,19 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v1.0.1
+======
+
+Release Summary
+---------------
+
+Maintenance release with a bugfix for ``api``.
+
+Bugfixes
+--------
+
+- api - remove ``id to .id`` as default requirement which conflicts with RouterOS ``id`` configuration parameter (https://github.com/ansible-collections/community.routeros/pull/15).
+
 v1.0.0
 ======
 
