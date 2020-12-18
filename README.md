@@ -31,6 +31,17 @@ See [Ansible Using collections](https://docs.ansible.com/ansible/latest/user_gui
 
 There are two approaches for using this collection. The `command` and `facts` modules use the `network_cli` connection and connect with SSH. The `api` module connects with the HTTP/HTTPS API.
 
+### Prerequisites
+
+The terminal-based modules in this collection (`community.routeros.command` and `community.routeros.facts`) do not support arbitrary symbols in router's identity. If you are having trouble connecting to your device, please make sure that your MikroTik's identity contains only alphanumeric characters and dashes. Also, the `community.routeros.command` module does not support nesting commands and expects every command to start with a forward slash (`/`). Running the following command will produce an error.
+
+```yaml
+- community.routeros.command:
+    commands:
+      - /ip
+      - print
+```
+
 ### Connecting with `network_cli`
 
 Example inventory `hosts` file:
