@@ -1,3 +1,0 @@
-minor_changes:
-  - command - added support for a dash (``-``) in username (https://github.com/ansible-collections/community.routeros/pull/18).
-  - facts - added support for a dash (``-``) in username (https://github.com/ansible-collections/community.routeros/pull/18).

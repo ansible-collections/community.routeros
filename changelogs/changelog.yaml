@@ -47,3 +47,13 @@ releases:
     - 1.0.1.yml
     - 13-remove-id-restriction-for-api.yaml
     release_date: '2020-12-11'
+  1.1.0:
+    changes:
+      minor_changes:
+      - command - added support for a dash (``-``) in username (https://github.com/ansible-collections/community.routeros/pull/18).
+      - facts - added support for a dash (``-``) in username (https://github.com/ansible-collections/community.routeros/pull/18).
+      release_summary: This release allow dashes in usernames for SSH-based modules.
+    fragments:
+    - 1.1.0.yml
+    - 18-support-dashes-in-username.yml
+    release_date: '2021-01-04'

@@ -5,6 +5,20 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v1.1.0
+======
+
+Release Summary
+---------------
+
+This release allow dashes in usernames for SSH-based modules.
+
+Minor Changes
+-------------
+
+- command - added support for a dash (``-``) in username (https://github.com/ansible-collections/community.routeros/pull/18).
+- facts - added support for a dash (``-``) in username (https://github.com/ansible-collections/community.routeros/pull/18).
+
 v1.0.1
 ======
 
