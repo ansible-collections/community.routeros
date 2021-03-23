@@ -285,6 +285,11 @@ class Config(FactsBase):
     def populate(self):
         super(Config, self).populate()
         data = self.responses[0]
+
+        # remove datetime
+        data = re.sub(
+            r'^# [a-z0-9/][a-z0-9/]* [0-9:]* by RouterOS', r'# RouterOS', data
+        )
         if data:
             self.facts['config'] = data
 
