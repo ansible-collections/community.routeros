@@ -291,23 +291,21 @@ class Hardware(FactsBase):
 
 class Config(FactsBase):
 
-    COMMANDS = [ '/export verbose' ]
-    COMMANDS_NO_VERBOSE = [ '/export' ]
+    COMMANDS = ['/export verbose']
+    COMMANDS_NO_VERBOSE = ['/export']
 
     RM_DATE_RE = re.compile(r'^# [a-z0-9/][a-z0-9/]* [0-9:]* by RouterOS')
-    def __init__(self, module):
-        self._module = module
-
-        if self._module.params['verbose_config'] == False :
-            self.COMMANDS = self.COMMANDS_NO_VERBOSE
 
     def populate(self):
+        if not self.module.params['verbose_config']:
+            self.COMMANDS = self.COMMANDS_NO_VERBOSE
+
         super(Config, self).populate()
         data = self.responses[0]
 
-        if self._module.params['verbose_config'] == False :        
+        if not self.module.params['verbose_config']:
             # remove datetime
-            data = re.sub(RM_DATE_RE, r'# RouterOS', data)
+            data = re.sub(self.RM_DATE_RE, r'# RouterOS', data)
 
         if data:
             self.facts['config'] = data
@@ -585,7 +583,7 @@ def main():
     """main entry point for module execution
     """
     argument_spec = dict(
-        gather_subset=dict(default=['!config'], type='list')
+        gather_subset=dict(default=['!config'], type='list'),
         verbose_config=dict(default=True, type='bool')
     )
 
