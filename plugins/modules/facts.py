@@ -27,6 +27,11 @@ options:
         not be collected.
     required: false
     default: '!config'
+  verbose_config:
+    description:
+      - When set C(false), config data will contain nonverbose config
+    required: false
+    default: true
 '''
 
 EXAMPLES = """
@@ -43,6 +48,12 @@ EXAMPLES = """
   community.routeros.facts:
     gather_subset:
       - "!hardware"
+
+- name: Collect only the minimal config and default facts
+  community.routeros.facts:
+    gather_subset:
+      - config
+    verbose_config: false
 """
 
 RETURN = """
@@ -280,11 +291,24 @@ class Hardware(FactsBase):
 
 class Config(FactsBase):
 
-    COMMANDS = ['/export verbose']
+    COMMANDS = [ '/export verbose' ]
+    COMMANDS_NO_VERBOSE = [ '/export' ]
+
+    RM_DATE_RE = re.compile(r'^# [a-z0-9/][a-z0-9/]* [0-9:]* by RouterOS')
+    def __init__(self, module):
+        self._module = module
+
+        if self._module.params['verbose_config'] == False :
+            self.COMMANDS = self.COMMANDS_NO_VERBOSE
 
     def populate(self):
         super(Config, self).populate()
         data = self.responses[0]
+
+        if self._module.params['verbose_config'] == False :        
+            # remove datetime
+            data = re.sub(RM_DATE_RE, r'# RouterOS', data)
+
         if data:
             self.facts['config'] = data
 
@@ -562,6 +586,7 @@ def main():
     """
     argument_spec = dict(
         gather_subset=dict(default=['!config'], type='list')
+        verbose_config=dict(default=True, type='bool')
     )
 
     argument_spec.update(routeros_argument_spec)
@@ -570,6 +595,7 @@ def main():
                            supports_check_mode=True)
 
     gather_subset = module.params['gather_subset']
+    verbose_config = module.params['verbose_config']
 
     runable_subsets = set()
     exclude_subsets = set()
