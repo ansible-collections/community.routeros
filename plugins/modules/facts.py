@@ -43,12 +43,6 @@ EXAMPLES = """
   community.routeros.facts:
     gather_subset:
       - "!hardware"
-
-- name: Collect only the minimal config and default facts
-  community.routeros.facts:
-    gather_subset:
-      - config
-    verbose_config: false
 """
 
 RETURN = """
@@ -304,7 +298,7 @@ class Config(FactsBase):
         if data:
             # remove datetime
             data = re.sub(self.RM_DATE_RE, r'# RouterOS', data)
-            self.facts['ansible_net_config_nonverbose'] = data
+            self.facts['config_nonverbose'] = data
 
 
 class Interfaces(FactsBase):
