@@ -588,7 +588,7 @@ def main():
     )
 
     argument_spec.update(routeros_argument_spec)
-    
+
     module = AnsibleModule(argument_spec=argument_spec,
                            supports_check_mode=True)
 
