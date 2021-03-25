@@ -1,0 +1,2 @@
+minor_changes:
+  - fact - add option _verbose_config_ to subset _config_ to turn off config verbosity (https://github.com/ansible-collections/community.routeros/pull/22)
