@@ -27,11 +27,6 @@ options:
         not be collected.
     required: false
     default: '!config'
-  verbose_config:
-    description:
-      - When set C(false), config data will contain nonverbose config
-    required: false
-    default: true
 '''
 
 EXAMPLES = """
@@ -291,24 +286,25 @@ class Hardware(FactsBase):
 
 class Config(FactsBase):
 
-    COMMANDS = ['/export verbose']
-    COMMANDS_NO_VERBOSE = ['/export']
+    COMMANDS = [
+        '/export verbose',
+        '/export'
+    ]
 
     RM_DATE_RE = re.compile(r'^# [a-z0-9/][a-z0-9/]* [0-9:]* by RouterOS')
 
     def populate(self):
-        if not self.module.params['verbose_config']:
-            self.COMMANDS = self.COMMANDS_NO_VERBOSE
-
         super(Config, self).populate()
+
         data = self.responses[0]
-
-        if not self.module.params['verbose_config']:
-            # remove datetime
-            data = re.sub(self.RM_DATE_RE, r'# RouterOS', data)
-
         if data:
             self.facts['config'] = data
+
+        data = self.responses[1]
+        if data:
+            # remove datetime
+            data = re.sub(self.RM_DATE_RE, r'# RouterOS', data)
+            self.facts['ansible_net_config_nonverbose'] = data
 
 
 class Interfaces(FactsBase):
@@ -583,8 +579,7 @@ def main():
     """main entry point for module execution
     """
     argument_spec = dict(
-        gather_subset=dict(default=['!config'], type='list'),
-        verbose_config=dict(default=True, type='bool')
+        gather_subset=dict(default=['!config'], type='list')
     )
 
     argument_spec.update(routeros_argument_spec)
@@ -593,7 +588,6 @@ def main():
                            supports_check_mode=True)
 
     gather_subset = module.params['gather_subset']
-    verbose_config = module.params['verbose_config']
 
     runable_subsets = set()
     exclude_subsets = set()

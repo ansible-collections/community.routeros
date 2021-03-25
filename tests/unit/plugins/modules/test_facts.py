@@ -44,6 +44,7 @@ class TestRouterosFactsModule(TestRouterosModule):
 
             for command in commands:
                 filename = str(command).split(' | ')[0].replace(' ', '_')
+                print(filename)
                 output.append(load_fixture('facts%s' % filename))
             return output
 
@@ -90,8 +91,13 @@ class TestRouterosFactsModule(TestRouterosModule):
     def test_facts_config(self):
         set_module_args(dict(gather_subset='config'))
         result = self.execute_module()
+        print(result['ansible_facts'])
         self.assertIsInstance(
             result['ansible_facts']['ansible_net_config'], str
+        )
+
+        self.assertIsInstance(
+            result['ansible_facts']['ansible_net_config_nonverbose'], str
         )
 
     def test_facts_interfaces(self):
