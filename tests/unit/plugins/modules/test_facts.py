@@ -44,7 +44,6 @@ class TestRouterosFactsModule(TestRouterosModule):
 
             for command in commands:
                 filename = str(command).split(' | ')[0].replace(' ', '_')
-                print(filename)
                 output.append(load_fixture('facts%s' % filename))
             return output
 
