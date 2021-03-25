@@ -94,6 +94,13 @@ class TestRouterosFactsModule(TestRouterosModule):
             result['ansible_facts']['ansible_net_config'], str
         )
 
+    def test_facts_config_nonverbose(self):
+        set_module_args(dict(gather_subset='config', verbose_config=False))
+        result = self.execute_module()
+        self.assertIsInstance(
+            result['ansible_facts']['ansible_net_config'], str
+        )
+
     def test_facts_interfaces(self):
         set_module_args(dict(gather_subset='interfaces'))
         result = self.execute_module()
