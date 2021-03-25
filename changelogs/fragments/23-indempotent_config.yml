@@ -1,0 +1,2 @@
+minor_changes:
+  - fact - add fact _ansible_net_config_nonverbose_ to get indempotent config (no date, no verbose) 
