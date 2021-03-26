@@ -1,2 +1,2 @@
 minor_changes:
-  - fact - add fact _ansible_net_config_nonverbose_ to get indempotent config (no date, no verbose) 
+  - fact - add fact ``ansible_net_config_nonverbose`` to get indempotent config (no date, no verbose) (https://github.com/ansible-collections/community.routeros/pull/23).
