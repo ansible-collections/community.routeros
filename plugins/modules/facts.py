@@ -29,9 +29,10 @@ options:
     default: '!config'
   verbose_config:
     description:
-      - When set C(false), config data will contain nonverbose config
+      - When set C(false), config data will contain nonverbose config.
     required: false
     default: true
+    version_added: 1.2.0
 '''
 
 EXAMPLES = """
@@ -584,7 +585,7 @@ def main():
     """
     argument_spec = dict(
         gather_subset=dict(default=['!config'], type='list'),
-        verbose_config=dict(default=True, type='bool')
+        verbose_config=dict(default=True, type='bool'),
     )
 
     argument_spec.update(routeros_argument_spec)
