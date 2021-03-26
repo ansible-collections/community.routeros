@@ -90,7 +90,6 @@ class TestRouterosFactsModule(TestRouterosModule):
     def test_facts_config(self):
         set_module_args(dict(gather_subset='config'))
         result = self.execute_module()
-        print(result['ansible_facts'])
         self.assertIsInstance(
             result['ansible_facts']['ansible_net_config'], str
         )
