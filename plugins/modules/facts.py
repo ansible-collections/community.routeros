@@ -110,6 +110,11 @@ ansible_facts:
       returned: when config is configured
       type: str
 
+    ansible_net_config_nonverbose:
+      description: The current active config from the device in minimal form
+      returned: when config is configured
+      type: str
+
     # interfaces
     ansible_net_all_ipv4_addresses:
       description: All IPv4 addresses configured on the device
@@ -282,7 +287,7 @@ class Config(FactsBase):
 
     COMMANDS = [
         '/export verbose',
-        '/export'
+        '/export',
     ]
 
     RM_DATE_RE = re.compile(r'^# [a-z0-9/][a-z0-9/]* [0-9:]* by RouterOS')
