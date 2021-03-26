@@ -47,7 +47,9 @@ jobs:
         run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 
       - name: Install collection dependencies
-        run: ansible-galaxy collection install ansible.netcommon -p .
+        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon
+        # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
+        # run: ansible-galaxy collection install ansible.netcommon -p .
 
       # run ansible-test sanity inside of Docker.
       # The docker container has all the pinned dependencies that are required
@@ -88,7 +90,9 @@ jobs:
         run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 
       - name: Install collection dependencies
-        run: ansible-galaxy collection install ansible.netcommon -p .
+        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon
+        # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
+        # run: ansible-galaxy collection install ansible.netcommon -p .
 
       # Run the unit tests
       - name: Run unit tests for all Python versions
@@ -152,7 +156,9 @@ jobs:
 #        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 #
 #      - name: Install collection dependencies
-#        run: ansible-galaxy collection install ansible.netcommon -p .
+#        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon
+#        # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
+#        # run: ansible-galaxy collection install ansible.netcommon -p .
 #
 #      # Run the integration tests
 #      - name: Run integration test
