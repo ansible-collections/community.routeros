@@ -111,9 +111,14 @@ ansible_facts:
       type: str
 
     ansible_net_config_nonverbose:
-      description: The current active config from the device in minimal form
+      description:
+        - The current active config from the device in minimal form.
+        - This value is idempotent in the sense that if the facts module is run twice and the device's config
+          was not changed between the runs, the value is identical. This is achieved by running C(/export)
+          and stripping the timestamp from the comment in the first line.
       returned: when config is configured
       type: str
+      version_added: 1.2.0
 
     # interfaces
     ansible_net_all_ipv4_addresses:
