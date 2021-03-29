@@ -1,0 +1,2 @@
+minor_changes:
+  - fact - add fact ``ansible_net_config_nonverbose`` to get idempotent config (no date, no verbose) (https://github.com/ansible-collections/community.routeros/pull/23).

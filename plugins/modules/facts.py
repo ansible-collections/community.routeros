@@ -110,6 +110,16 @@ ansible_facts:
       returned: when config is configured
       type: str
 
+    ansible_net_config_nonverbose:
+      description:
+        - The current active config from the device in minimal form.
+        - This value is idempotent in the sense that if the facts module is run twice and the device's config
+          was not changed between the runs, the value is identical. This is achieved by running C(/export)
+          and stripping the timestamp from the comment in the first line.
+      returned: when config is configured
+      type: str
+      version_added: 1.2.0
+
     # interfaces
     ansible_net_all_ipv4_addresses:
       description: All IPv4 addresses configured on the device
@@ -280,13 +290,25 @@ class Hardware(FactsBase):
 
 class Config(FactsBase):
 
-    COMMANDS = ['/export verbose']
+    COMMANDS = [
+        '/export verbose',
+        '/export',
+    ]
+
+    RM_DATE_RE = re.compile(r'^# [a-z0-9/][a-z0-9/]* [0-9:]* by RouterOS')
 
     def populate(self):
         super(Config, self).populate()
+
         data = self.responses[0]
         if data:
             self.facts['config'] = data
+
+        data = self.responses[1]
+        if data:
+            # remove datetime
+            data = re.sub(self.RM_DATE_RE, r'# RouterOS', data)
+            self.facts['config_nonverbose'] = data
 
 
 class Interfaces(FactsBase):
