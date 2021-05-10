@@ -5,8 +5,6 @@ Provides modules for [Ansible](https://www.ansible.com/community) to manage [Mik
 
 You can find [documentation for the modules and plugins in this collection here](https://ansible.fontein.de/collections/community/routeros/).
 
-Please note that this collection does **not** support Windows targets for the modules not using the `network_cli` connection.
-
 ## Tested with Ansible
 
 Tested with the current Ansible 2.9, ansible-base 2.10 and ansible-core 2.11 releases and the current development version of ansible-core. Ansible versions before 2.9.10 are not supported.
@@ -18,6 +16,10 @@ The exact requirements for every module are listed in the module documentation.
 ### Supported connections
 
 The collection supports the `network_cli` connection.
+
+### Edge cases
+
+Please note that `community.routeros.api` module does **not** support Windows jump hosts!
 
 ## Included content
 
