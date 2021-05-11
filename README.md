@@ -17,6 +17,10 @@ The exact requirements for every module are listed in the module documentation.
 
 The collection supports the `network_cli` connection.
 
+### Edge cases
+
+Please note that `community.routeros.api` module does **not** support Windows jump hosts!
+
 ## Included content
 
 - `community.routeros.api`
