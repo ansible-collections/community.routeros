@@ -451,7 +451,6 @@ class ROS_api_module:
                     conn_status["connection"]["port"] = port
                 ctx = ssl.create_default_context()
                 ctx.check_hostname = False
-                ctx.set_ciphers('ADH:@SECLEVEL=0')
                 api = connect(username=username,
                               password=password,
                               host=host,
