@@ -1,0 +1,40 @@
+name: CI
+on:
+  # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
+  push:
+  pull_request:
+  # Run CI once per day (at 06:00 UTC)
+  # This ensures that even if there haven't been commits that we are still testing against latest version of ansible-test for each ansible-base version
+  schedule:
+    - cron: '0 6 * * *'
+env:
+  NAMESPACE: community
+  COLLECTION_NAME: routeros
+
+jobs:
+  extra-sanity:
+    name: Extra Sanity
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install ansible-core
+        run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
+
+      - name: Install collection dependencies
+        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/community.internal_test_tools.git ./ansible_collections/community/internal_test_tools
+        # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
+        # run: ansible-galaxy collection install community.internal_test_tools -p .
+
+      - name: Run sanity tests
+        run: ../../community/internal_test_tools/tools/run.py --color
+        working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
