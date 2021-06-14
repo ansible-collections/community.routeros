@@ -1,0 +1,6 @@
+---
+sections:
+  - title: Guides
+    toctree:
+      - api-guide
+      - ssh-guide
