@@ -99,7 +99,10 @@ options:
     description:
       - Set to C(false) to skip validation of TLS certificates.
       - See also I(validate_cert_hostname). Only used when I(tls=true).
-      - B(Note:) instead of simply deactivating certificate validations to "make things work", please consider creating your own CA certificate and using it to sign certificates used for your router. You can tell the module about your CA certificate with the I(ca_path) option.
+      - B(Note:) instead of simply deactivating certificate validations to "make things work",
+        please consider creating your own CA certificate and using it to sign certificates used
+        for your router. You can tell the module about your CA certificate with the I(ca_path)
+        option.
     type: bool
     default: true
     version_added: 1.2.0
@@ -108,7 +111,7 @@ options:
       - Set to C(true) to validate hostnames in certificates.
       - See also I(validate_certs). Only used when I(tls=true) and I(validate_certs=true).
     type: bool
-    default: true
+    default: false
     version_added: 1.2.0
   ca_path:
     description:
