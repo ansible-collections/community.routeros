@@ -13,7 +13,7 @@ The modules need the :ref:`ansible.netcommon.network_cli connection plugin <ansi
 Important notes
 ---------------
 
-1. The SSH-based modules do not support arbitrary symbols in the router's identity. If you are having trouble connecting to your device, please make sure that your MikroTik's identity contains only alphanumeric characters and dashes.
+1. The SSH-based modules do not support arbitrary symbols in the router's identity. If you are having trouble connecting to your device, please make sure that your MikroTik's identity contains only alphanumeric characters and dashes. Also make sure that the identity string is not longer than 19 characters (`see issue for details <https://github.com/ansible-collections/community.routeros/issues/31>`_). Similar problems can happen for unsupported characters in your username.
 
 2. The :ref:`community.routeros.command module <ansible_collections.community.routeros.command_module>` does not support nesting commands and expects every command to start with a forward slash (``/``). Running the following command will produce an error:
 
@@ -24,7 +24,9 @@ Important notes
              - /ip
              - print
 
-3. Finally, the :ref:`ansible.netcommon.network_cli connection plugin <ansible_collections.ansible.netcommon.network_cli_connection>` uses `paramiko <https://pypi.org/project/paramiko/>`_ by default to connect to devices with SSH. You can set its ``ssh_type`` option to ``libssh`` to use `ansible-pylibssh <https://pypi.org/project/ansible-pylibssh/>`_ instead, which offers Python bindings to libssh. See its documentation for details.
+3. When using the :ref:`community.routeros.command module <ansible_collections.community.routeros.command_module>` module, make sure to not specify too long commands. Alternatively, add something like ``+cet512w`` to the username (replace ``admin`` with ``admin+cet512w``) to tell RouterOS to not wrap before 512 characters in a line (`see issue for details <https://github.com/ansible-collections/community.routeros/issues/6>`_).
+
+4. Finally, the :ref:`ansible.netcommon.network_cli connection plugin <ansible_collections.ansible.netcommon.network_cli_connection>` uses `paramiko <https://pypi.org/project/paramiko/>`_ by default to connect to devices with SSH. You can set its ``ssh_type`` option to ``libssh`` to use `ansible-pylibssh <https://pypi.org/project/ansible-pylibssh/>`_ instead, which offers Python bindings to libssh. See its documentation for details.
 
 Setting up an inventory
 -----------------------
