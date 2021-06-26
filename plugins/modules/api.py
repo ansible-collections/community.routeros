@@ -266,6 +266,7 @@ import traceback
 LIB_IMP_ERR = None
 try:
     from librouteros import connect
+    from librouteros.exceptions import LibRouterosError
     from librouteros.query import Key
     HAS_LIB = True
 except Exception as e:
@@ -373,7 +374,7 @@ class ROS_api_module:
             for i in self.api_path:
                 self.result['message'].append(i)
             self.return_result(False, True)
-        except Exception as e:
+        except LibRouterosError as e:
             self.errors(e)
 
     def api_add(self):
@@ -382,7 +383,7 @@ class ROS_api_module:
             self.result['message'].append("added: .id= %s"
                                           % self.api_path.add(**param))
             self.return_result(True)
-        except Exception as e:
+        except LibRouterosError as e:
             self.errors(e)
 
     def api_remove(self):
@@ -390,7 +391,7 @@ class ROS_api_module:
             self.api_path.remove(self.remove)
             self.result['message'].append("removed: .id= %s" % self.remove)
             self.return_result(True)
-        except Exception as e:
+        except LibRouterosError as e:
             self.errors(e)
 
     def api_update(self):
@@ -401,7 +402,7 @@ class ROS_api_module:
             self.api_path.update(**param)
             self.result['message'].append("updated: %s" % param)
             self.return_result(True)
-        except Exception as e:
+        except LibRouterosError as e:
             self.errors(e)
 
     def api_query(self):
@@ -440,7 +441,7 @@ class ROS_api_module:
                     msg = msg + ' WHERE %s' % ' '.join(self.where)
                 self.result['message'].append(msg)
             self.return_result(False)
-        except Exception as e:
+        except LibRouterosError as e:
             self.errors(e)
 
     def api_arbitrary(self):
@@ -454,7 +455,7 @@ class ROS_api_module:
             for i in arbitrary_result:
                 self.result['message'].append(i)
             self.return_result(False)
-        except Exception as e:
+        except LibRouterosError as e:
             self.errors(e)
 
     def return_result(self, ch_status=False, status=True):
