@@ -1,0 +1,2 @@
+bugfixes:
+- "api - due to a programming error, the module never failed on errors (https://github.com/ansible-collections/community.routeros/pull/39)."

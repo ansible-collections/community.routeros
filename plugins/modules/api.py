@@ -458,7 +458,7 @@ class ROS_api_module:
             self.errors(e)
 
     def return_result(self, ch_status=False, status=True):
-        if status == "False":
+        if not status:
             self.module.fail_json(msg=to_native(self.result['message']))
         else:
             self.module.exit_json(changed=ch_status,
