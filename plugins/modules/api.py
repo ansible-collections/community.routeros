@@ -484,15 +484,22 @@ class ROS_api_module:
                     port = 8729
                     conn_status["connection"]["port"] = port
                 ctx = ssl.create_default_context(cafile=ca_path)
+                wrap_context = ctx.wrap_socket
                 if not validate_certs:
                     ctx.check_hostname = False
                     ctx.verify_mode = ssl.CERT_NONE
                 elif not validate_cert_hostname:
                     ctx.check_hostname = False
+                else:
+                    # Since librouteros doesn't pass server_hostname,
+                    # we have to do this ourselves:
+                    def wrap_context(*args, **kwargs):
+                        kwargs.pop('server_hostname', None)
+                        return ctx.wrap_socket(*args, server_hostname=host, **kwargs)
                 api = connect(username=username,
                               password=password,
                               host=host,
-                              ssl_wrapper=ctx.wrap_socket,
+                              ssl_wrapper=wrap_context,
                               port=port)
             else:
                 if not port:
