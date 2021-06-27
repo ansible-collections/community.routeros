@@ -21,35 +21,23 @@ import json
 import pytest
 
 from ansible_collections.community.routeros.tests.unit.compat.mock import patch, MagicMock
-from ansible_collections.community.routeros.tests.unit.plugins.modules.utils import set_module_args, basic, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
+from ansible_collections.community.routeros.tests.unit.plugins.modules.utils import set_module_args, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
 from ansible_collections.community.routeros.plugins.modules import api
 
 
-class AnsibleExitJson(Exception):
-    """Exception class to be raised by module.exit_json and caught by the test case"""
-    pass
+class FakeLibRouterosError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super(FakeLibRouterosError, self).__init__(self.message)
 
 
-class AnsibleFailJson(Exception):
-    """Exception class to be raised by module.fail_json and caught by the test case"""
-    pass
-
-
-def exit_json(*args, **kwargs):
-    """function to patch over exit_json; package return data into an exception"""
-    if 'changed' not in kwargs:
-        kwargs['changed'] = False
-    raise AnsibleExitJson(kwargs)
-
-
-def fail_json(*args, **kwargs):
-    """function to patch over fail_json; package return data into an exception"""
-    kwargs['failed'] = True
-    raise AnsibleFailJson(kwargs)
+class TrapError(FakeLibRouterosError):
+    def __init__(self, message="failure: already have interface with such name"):
+        super(TrapError, self).__init__(message)
 
 
 # fixtures
-class fake_ros_api:
+class fake_ros_api(object):
     def __init__(self, api, path):
         pass
 
@@ -114,7 +102,7 @@ class fake_ros_api:
         return api_path
 
 
-class Where:
+class Where(object):
     def __init__(self):
         pass
 
@@ -125,13 +113,7 @@ class Where:
         return ["*A1"]
 
 
-class TrapError(Exception):
-    def __init__(self, message="failure: already have interface with such name"):
-        self.message = message
-        super().__init__(self.message)
-
-
-class Key:
+class Key(object):
     def __init__(self, name):
         self.name = name
         self.str_return()
@@ -143,20 +125,16 @@ class Key:
 class TestRouterosApiModule(ModuleTestCase):
 
     def setUp(self):
+        super(TestRouterosApiModule, self).setUp()
         librouteros = pytest.importorskip("librouteros")
         self.module = api
+        self.module.LibRouterosError = FakeLibRouterosError
         self.module.connect = MagicMock(new=fake_ros_api)
         self.module.Key = MagicMock(new=Key)
         self.config_module_args = {"username": "admin",
                                    "password": "pаss",
                                    "hostname": "127.0.0.1",
                                    "path": "interface bridge"}
-
-        self.mock_module_helper = patch.multiple(basic.AnsibleModule,
-                                                 exit_json=exit_json,
-                                                 fail_json=fail_json)
-        self.mock_module_helper.start()
-        self.addCleanup(self.mock_module_helper.stop)
 
     def test_module_fail_when_required_args_missing(self):
         with self.assertRaises(AnsibleFailJson):
@@ -166,10 +144,10 @@ class TestRouterosApiModule(ModuleTestCase):
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.path)
     def test_api_path(self):
         with self.assertRaises(AnsibleExitJson):
-            set_module_args(self.config_module_args)
+            set_module_args(self.config_module_args.copy())
             self.module.main()
 
-    @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.arbitrary)
+    @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_add(self):
         with self.assertRaises(AnsibleExitJson):
             module_args = self.config_module_args.copy()
@@ -261,6 +239,6 @@ class TestRouterosApiModule(ModuleTestCase):
     def test_api_query_and_WHERE_no_cond(self):
         with self.assertRaises(AnsibleExitJson):
             module_args = self.config_module_args.copy()
-            module_args['query'] = ".id name WHERE name =! dummy_bridge_A2"
+            module_args['query'] = ".id name WHERE name != dummy_bridge_A2"
             set_module_args(module_args)
             self.module.main()
