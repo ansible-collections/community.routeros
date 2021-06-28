@@ -37,15 +37,17 @@ options:
       - RouterOS user password.
     required: true
     type: str
-  ssl:
+  tls:
     description:
       - If is set TLS will be used for RouterOS API connection.
     required: false
     type: bool
     default: false
+    aliases:
+      - ssl
   port:
     description:
-      - RouterOS api port. If ssl is set, port will apply to ssl connection.
+      - RouterOS api port. If I(tls) is set, port will apply to TLS/SSL connection.
       - Defaults are C(8728) for the HTTP API, and C(8729) for the HTTPS API.
     type: int
   path:
@@ -93,6 +95,30 @@ options:
       - Example path C(system script) and cmd C(run .id=*03) is equivalent in RouterOS CLI C(/system script run number=0).
       - Example path C(ip address) and cmd C(print) is equivalent in RouterOS CLI C(/ip address print).
     type: str
+  validate_certs:
+    description:
+      - Set to C(false) to skip validation of TLS certificates.
+      - See also I(validate_cert_hostname). Only used when I(tls=true).
+      - B(Note:) instead of simply deactivating certificate validations to "make things work",
+        please consider creating your own CA certificate and using it to sign certificates used
+        for your router. You can tell the module about your CA certificate with the I(ca_path)
+        option.
+    type: bool
+    default: true
+    version_added: 1.2.0
+  validate_cert_hostname:
+    description:
+      - Set to C(true) to validate hostnames in certificates.
+      - See also I(validate_certs). Only used when I(tls=true) and I(validate_certs=true).
+    type: bool
+    default: false
+    version_added: 1.2.0
+  ca_path:
+    description:
+      - PEM formatted file that contains a CA certificate to be used for certificate validation.
+      - See also I(validate_cert_hostname). Only used when I(tls=true) and I(validate_certs=true).
+    type: path
+    version_added: 1.2.0
 '''
 
 EXAMPLES = '''
@@ -249,18 +275,22 @@ except Exception as e:
 
 class ROS_api_module:
     def __init__(self):
-        module_args = (dict(
+        module_args = dict(
             username=dict(type='str', required=True),
             password=dict(type='str', required=True, no_log=True),
             hostname=dict(type='str', required=True),
             port=dict(type='int'),
-            ssl=dict(type='bool', default=False),
+            tls=dict(type='bool', default=False, aliases=['ssl']),
             path=dict(type='str', required=True),
             add=dict(type='str'),
             remove=dict(type='str'),
             update=dict(type='str'),
             cmd=dict(type='str'),
-            query=dict(type='str')))
+            query=dict(type='str'),
+            validate_certs=dict(type='bool', default=True),
+            validate_cert_hostname=dict(type='bool', default=False),
+            ca_path=dict(type='path'),
+        )
 
         self.module = AnsibleModule(argument_spec=module_args,
                                     supports_check_mode=False,
@@ -275,7 +305,11 @@ class ROS_api_module:
                                         self.module.params['password'],
                                         self.module.params['hostname'],
                                         self.module.params['port'],
-                                        self.module.params['ssl'])
+                                        self.module.params['tls'],
+                                        self.module.params['validate_certs'],
+                                        self.module.params['validate_cert_hostname'],
+                                        self.module.params['ca_path'],
+                                        )
 
         self.path = self.list_remove_empty(self.module.params['path'].split(' '))
         self.add = self.module.params['add']
@@ -437,24 +471,35 @@ class ROS_api_module:
         self.result['message'].append("%s" % e)
         self.return_result(False, False)
 
-    def ros_api_connect(self, username, password, host, port, use_ssl):
+    def ros_api_connect(self, username, password, host, port, use_tls, validate_certs, validate_cert_hostname, ca_path):
         # connect to routeros api
         conn_status = {"connection": {"username": username,
                                       "hostname": host,
                                       "port": port,
-                                      "ssl": use_ssl,
+                                      "ssl": use_tls,
                                       "status": "Connected"}}
         try:
-            if use_ssl is True:
+            if use_tls:
                 if not port:
                     port = 8729
                     conn_status["connection"]["port"] = port
-                ctx = ssl.create_default_context()
-                ctx.check_hostname = False
+                ctx = ssl.create_default_context(cafile=ca_path)
+                wrap_context = ctx.wrap_socket
+                if not validate_certs:
+                    ctx.check_hostname = False
+                    ctx.verify_mode = ssl.CERT_NONE
+                elif not validate_cert_hostname:
+                    ctx.check_hostname = False
+                else:
+                    # Since librouteros doesn't pass server_hostname,
+                    # we have to do this ourselves:
+                    def wrap_context(*args, **kwargs):
+                        kwargs.pop('server_hostname', None)
+                        return ctx.wrap_socket(*args, server_hostname=host, **kwargs)
                 api = connect(username=username,
                               password=password,
                               host=host,
-                              ssl_wrapper=ctx.wrap_socket,
+                              ssl_wrapper=wrap_context,
                               port=port)
             else:
                 if not port:

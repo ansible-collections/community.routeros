@@ -104,7 +104,10 @@ Example playbook:
         password: "{{ password }}"
         username: "{{ username }}"
         path: "ip address"
-        ssl: true
+        tls: true
+        validate_certs: true
+        validate_cert_hostname: true
+        ca_path: /path/to/ca-certificate.pem
       register: print_path
 ```
 
