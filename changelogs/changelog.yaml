@@ -57,3 +57,27 @@ releases:
     - 1.1.0.yml
     - 18-support-dashes-in-username.yml
     release_date: '2021-01-04'
+  1.2.0:
+    changes:
+      bugfixes:
+      - api - when using TLS/SSL, remove explicit cipher configuration to insecure
+        values, which also makes it impossible to connect to newer RouterOS versions
+        (https://github.com/ansible-collections/community.routeros/pull/34).
+      minor_changes:
+      - Avoid internal ansible-core module_utils in favor of equivalent public API
+        available since at least Ansible 2.9 (https://github.com/ansible-collections/community.routeros/pull/38).
+      - api - add options ``validate_certs`` (default value ``true``), ``validate_cert_hostname``
+        (default value ``false``), and ``ca_path`` to control certificate validation
+        (https://github.com/ansible-collections/community.routeros/pull/37).
+      - api - rename option ``ssl`` to ``tls``, and keep the old name as an alias
+        (https://github.com/ansible-collections/community.routeros/pull/37).
+      - fact - add fact ``ansible_net_config_nonverbose`` to get idempotent config
+        (no date, no verbose) (https://github.com/ansible-collections/community.routeros/pull/23).
+      release_summary: Bugfix and feature release.
+    fragments:
+    - 1.2.0.yml
+    - 23-idempotent_config.yml
+    - 34-api-ciphers.yml
+    - 37-api-validate-cert-options.yml
+    - ansible-core-_text.yml
+    release_date: '2021-06-29'
