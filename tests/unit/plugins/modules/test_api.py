@@ -166,14 +166,15 @@ class TestRouterosApiModule(ModuleTestCase):
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_add_already_exist(self):
-        with self.assertRaises(AnsibleExitJson) as exc:
+        with self.assertRaises(AnsibleFailJson) as exc:
             module_args = self.config_module_args.copy()
             module_args['add'] = "name=unit_test_brige_exist"
             set_module_args(module_args)
             self.module.main()
 
         result = exc.exception.args[0]
-        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['failed'], True)
+        self.assertEqual(result['msg'][0], 'failure: already have interface with such name')
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_remove(self):
@@ -188,14 +189,15 @@ class TestRouterosApiModule(ModuleTestCase):
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_remove_no_id(self):
-        with self.assertRaises(AnsibleExitJson) as exc:
+        with self.assertRaises(AnsibleFailJson) as exc:
             module_args = self.config_module_args.copy()
             module_args['remove'] = "*A2"
             set_module_args(module_args)
             self.module.main()
 
         result = exc.exception.args[0]
-        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['failed'], True)
+        self.assertEqual(result['msg'][0], 'no such item (4)')
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.arbitrary)
     def test_api_cmd(self):
@@ -210,14 +212,15 @@ class TestRouterosApiModule(ModuleTestCase):
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.arbitrary)
     def test_api_cmd_none_existing_cmd(self):
-        with self.assertRaises(AnsibleExitJson) as exc:
+        with self.assertRaises(AnsibleFailJson) as exc:
             module_args = self.config_module_args.copy()
             module_args['cmd'] = "add NONE_EXIST=unit_test_brige_arbitrary"
             set_module_args(module_args)
             self.module.main()
 
         result = exc.exception.args[0]
-        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['failed'], True)
+        self.assertEqual(result['msg'][0], 'no such command')
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_update(self):
@@ -232,14 +235,15 @@ class TestRouterosApiModule(ModuleTestCase):
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_update_none_existing_id(self):
-        with self.assertRaises(AnsibleExitJson) as exc:
+        with self.assertRaises(AnsibleFailJson) as exc:
             module_args = self.config_module_args.copy()
             module_args['update'] = ".id=*A2 name=unit_test_brige"
             set_module_args(module_args)
             self.module.main()
 
         result = exc.exception.args[0]
-        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['failed'], True)
+        self.assertEqual(result['msg'][0], 'no such item (4)')
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_query(self):

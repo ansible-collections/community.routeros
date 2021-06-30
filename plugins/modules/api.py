@@ -460,7 +460,7 @@ class ROS_api_module:
 
     def return_result(self, ch_status=False, status=True):
         if not status:
-            self.module.fail_json(msg=to_native(self.result['message']))
+            self.module.fail_json(msg=self.result['message'])
         else:
             self.module.exit_json(changed=ch_status,
                                   msg=self.result['message'])
