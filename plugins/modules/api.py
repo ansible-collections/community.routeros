@@ -468,7 +468,7 @@ class ROS_api_module:
     def errors(self, e):
         if e.__class__.__name__ == 'TrapError':
             self.result['message'].append("%s" % e)
-            self.return_result(False, True)
+            self.return_result(False, False)
         self.result['message'].append("%s" % e)
         self.return_result(False, False)
 
