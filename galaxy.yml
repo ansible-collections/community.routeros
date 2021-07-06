@@ -16,8 +16,7 @@ tags:
 dependencies:
   ansible.netcommon: '>=1.0.0'
 repository: https://github.com/ansible-collections/community.routeros
-documentation: https://ansible.fontein.de/collections/community/routeros/
-#documentation: https://github.com/ansible-collection-migration/community.routeros/tree/main/docs
+documentation: https://docs.ansible.com/ansible/devel/collections/community/routeros/
 homepage: https://github.com/ansible-collections/community.routeros
 issues: https://github.com/ansible-collections/community.routeros/issues
 build_ignore:
