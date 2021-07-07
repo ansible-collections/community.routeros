@@ -3,7 +3,7 @@
 
 Provides modules for [Ansible](https://www.ansible.com/community) to manage [MikroTik RouterOS](http://www.mikrotik-routeros.net/routeros.aspx) instances.
 
-You can find [documentation for the modules and plugins in this collection here](https://ansible.fontein.de/collections/community/routeros/).
+You can find [documentation for the modules and plugins in this collection here](https://docs.ansible.com/ansible/devel/collections/community/routeros/).
 
 ## Tested with Ansible
 
@@ -27,7 +27,7 @@ Please note that `community.routeros.api` module does **not** support Windows ju
 - `community.routeros.command`
 - `community.routeros.facts`
 
-You can find [documentation for the modules and plugins in this collection here](https://ansible.fontein.de/collections/community/routeros/).
+You can find [documentation for the modules and plugins in this collection here](https://docs.ansible.com/ansible/devel/collections/community/routeros/).
 
 ## Using this collection
 
