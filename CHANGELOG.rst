@@ -5,6 +5,19 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v2.0.0-a1
+=========
+
+Release Summary
+---------------
+
+First prerelease for a new major release with a breaking change in the behavior of ``community.routeros.api``.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- api - due to a programming error, the module never failed on errors. This has now been fixed. If you are relying on the module not failing in case of idempotent commands (resulting in errors like ``failure: already have such address``), you need to adjust your roles/playbooks. We suggest to use ``failed_when`` to accept failure in specific circumstances, for example ``failed_when: "'failure: already have ' in result.msg[0]"`` (https://github.com/ansible-collections/community.routeros/pull/39).
+
 v1.2.0
 ======
 
