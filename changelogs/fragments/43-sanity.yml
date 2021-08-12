@@ -1,0 +1,2 @@
+bugfixes:
+- "routeros cliconf plugin - adjust function signature that was modified in Ansible after creation of this plugin (https://github.com/ansible-collections/community.routeros/pull/43)."

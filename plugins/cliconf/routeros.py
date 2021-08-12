@@ -65,7 +65,7 @@ class Cliconf(CliconfBase):
 
         return device_info
 
-    def get_config(self, source='running', format='text', flags=None):
+    def get_config(self, source='running', flags=None, format=None):
         return
 
     def edit_config(self, command):
