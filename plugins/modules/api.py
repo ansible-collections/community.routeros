@@ -260,8 +260,8 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.basic import missing_required_lib
 from ansible.module_utils.common.text.converters import to_native
 
-import re
 import ssl
+import shlex
 import traceback
 
 LIB_IMP_ERR = None
@@ -367,11 +367,9 @@ class ROS_api_module:
         return dict
 
     def split_params(self, params):
-        pattern = r'(?:[^"\s]*"(?:\\.|[^"])*"[^"\s]*)+|(?:[^\'\s]*\'(?:\\.|[^\'])*\'[^\'\s]*)+|[^\s]+'
-        return [
-            re.sub(r'("|\')', '', i)
-            for i in re.findall(pattern, params)
-        ]
+        if not isinstance(params, str):
+            self.errors('Parameters can only be a string, received %s' % type(params))
+        return shlex.split(params)
 
     def api_add_path(self, api, path):
         api_path = api.path()
