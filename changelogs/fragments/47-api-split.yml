@@ -1,0 +1,3 @@
+bugfixes:
+  - "api - improve splitting of ``WHERE`` queries (https://github.com/ansible-collections/community.routeros/pull/47)."
+  - "api - when converting result lists to dictionaries, no longer removes second ``=`` and text following that if present (https://github.com/ansible-collections/community.routeros/pull/47)."

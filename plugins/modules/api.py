@@ -321,12 +321,14 @@ class ROS_api_module:
         self.where = None
         self.query = self.module.params['query']
         if self.query:
-            if 'WHERE' in self.query:
-                split = self.query.split('WHERE')
-                self.query = self.list_remove_empty(split[0].split(' '))
-                self.where = self.list_remove_empty(split[1].split(' '))
-            else:
-                self.query = self.list_remove_empty(self.module.params['query'].split(' '))
+            self.query = self.list_remove_empty(self.query.split(' '))
+            try:
+                idx = self.query.index('WHERE')
+                self.where = self.query[idx + 1:]
+                self.query = self.query[:idx]
+            except ValueError:
+                # Raised when WHERE has not been found
+                pass
 
         self.result = dict(
             message=[])
@@ -358,7 +360,7 @@ class ROS_api_module:
         for p in ldict:
             if '=' not in p:
                 self.errors("missing '=' after '%s'" % p)
-            p = p.split('=')
+            p = p.split('=', 1)
             if p[1]:
                 dict[p[0]] = p[1]
         return dict
