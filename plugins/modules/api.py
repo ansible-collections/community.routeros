@@ -313,7 +313,7 @@ class ROS_api_module:
                                         self.module.params['ca_path'],
                                         )
 
-        self.path = self.list_remove_empty(shlex.split(self.module.params['path']))
+        self.path = self.list_remove_empty(self.split_params(self.module.params['path']))
         self.add = self.module.params['add']
         self.remove = self.module.params['remove']
         self.update = self.module.params['update']
@@ -322,7 +322,7 @@ class ROS_api_module:
         self.where = None
         self.query = self.module.params['query']
         if self.query:
-            self.query = self.list_remove_empty(shlex.split(self.query))
+            self.query = self.list_remove_empty(self.split_params(self.query))
             try:
                 idx = self.query.index('WHERE')
                 self.where = self.query[idx + 1:]
@@ -366,6 +366,11 @@ class ROS_api_module:
                 dict[p[0]] = p[1]
         return dict
 
+    def split_params(self, params):
+      if not isinstance(params, str):
+          self.errors('Parameters can only be a string, received %s' % type(params))
+      return shlex.split(params)
+
     def api_add_path(self, api, path):
         api_path = api.path()
         for p in path:
@@ -381,7 +386,7 @@ class ROS_api_module:
             self.errors(e)
 
     def api_add(self):
-        param = self.list_to_dic(shlex.split(self.add))
+        param = self.list_to_dic(self.split_params(self.add))
         try:
             self.result['message'].append("added: .id= %s"
                                           % self.api_path.add(**param))
@@ -398,7 +403,7 @@ class ROS_api_module:
             self.errors(e)
 
     def api_update(self):
-        param = self.list_to_dic(shlex.split(self.update))
+        param = self.list_to_dic(self.split_params(self.update))
         if '.id' not in param.keys():
             self.errors("missing '.id' for %s" % param)
         try:
@@ -449,7 +454,7 @@ class ROS_api_module:
 
     def api_arbitrary(self):
         param = {}
-        self.arbitrary = shlex.split(self.arbitrary)
+        self.arbitrary = self.split_params(self.arbitrary)
         arb_cmd = self.arbitrary[0]
         if len(self.arbitrary) > 1:
             param = self.list_to_dic(self.arbitrary[1:])
