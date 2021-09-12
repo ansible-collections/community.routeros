@@ -367,9 +367,9 @@ class ROS_api_module:
         return dict
 
     def split_params(self, params):
-      if not isinstance(params, str):
-          self.errors('Parameters can only be a string, received %s' % type(params))
-      return shlex.split(params)
+        if not isinstance(params, str):
+            self.errors('Parameters can only be a string, received %s' % type(params))
+        return shlex.split(params)
 
     def api_add_path(self, api, path):
         api_path = api.path()
