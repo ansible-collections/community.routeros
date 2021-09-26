@@ -456,7 +456,7 @@ class ROS_api_module:
 
     def split_params(self, params):
         if not isinstance(params, str):
-            self.errors('Parameters can only be a string, received %s' % type(params))
+            raise AssertionError('Parameters can only be a string, received %s' % type(params))
         try:
             return split_routeros(params)
         except ParseError as e:
