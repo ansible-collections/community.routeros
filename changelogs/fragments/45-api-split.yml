@@ -1,0 +1,2 @@
+breaking_changes:
+  - "api - splitting commands no longer uses a naive split by whitespace, but a more RouterOS CLI compatible splitting algorithm (https://github.com/ansible-collections/community.routeros/pull/45)."
