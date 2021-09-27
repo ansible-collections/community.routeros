@@ -401,7 +401,7 @@ class ROS_api_module:
                                         self.module.params['ca_path'],
                                         )
 
-        self.path = self.list_remove_empty(self.split_params(self.module.params['path']))
+        self.path = self.module.params['path'].split()
         self.add = self.module.params['add']
         self.remove = self.module.params['remove']
         self.update = self.module.params['update']
