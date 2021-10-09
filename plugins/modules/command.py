@@ -15,6 +15,9 @@ description:
     read from the device. This module includes an
     argument that will cause the module to wait for a specific condition
     before returning or timing out if the condition is not met.
+  - The module always indicates a (changed) status. You can use
+    R(the changed_when task property,override_the_changed_result) to determine
+    whether a command task actually resulted in a change or not.
 options:
   commands:
     description:
@@ -168,7 +171,7 @@ def main():
         module.fail_json(msg=msg, failed_conditions=failed_conditions)
 
     result.update({
-        'changed': False,
+        'changed': True,
         'stdout': responses,
         'stdout_lines': list(to_lines(responses))
     })
