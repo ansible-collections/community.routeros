@@ -18,7 +18,7 @@
   assert:
     that:
       - >-
-        result.msg == "'\"' must follow '='"
+        result.msg == "Unexpected end of string during escaped parameter"
 
 - name: "Test quote_argument filter"
   assert:
