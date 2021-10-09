@@ -14,10 +14,62 @@ from ansible_collections.community.routeros.plugins.module_utils.quoting import 
     ParseError,
     convert_list_to_dictionary,
     join_routeros_command,
+    parse_argument_value,
     quote_routeros_argument,
     quote_routeros_argument_value,
     split_routeros_command,
 )
+
+
+TEST_PARSE_ARGUMENT_VALUE = [
+    ('a', {}, ('a', 1)),
+    ('a   ', {'must_match_everything': False}, ('a', 1)),
+    (r'"a b"', {}, ('a b', 5)),
+    (r'"b\"f"', {}, ('b"f', 6)),
+    (r'"\FF"', {}, (to_native(b'\xff'), 5)),
+    (r'"\"e"', {}, ('"e', 5)),
+    (r'"b=c"', {}, ('b=c', 5)),
+    (r'""', {}, ('', 2)),
+    (r'"" ', {'must_match_everything': False}, ('', 2)),
+    ("'e", {'start_index': 1}, ('e', 2)),
+]
+
+
+@pytest.mark.parametrize("command, kwargs, result", TEST_PARSE_ARGUMENT_VALUE)
+def test_parse_argument_value(command, kwargs, result):
+    result_ = parse_argument_value(command, **kwargs)
+    print(result_, result)
+    assert result_ == result
+
+
+TEST_PARSE_ARGUMENT_VALUE_ERRORS = [
+    (r'"e', {}, 'Unexpected end of string during escaped parameter'),
+    ("'e", {}, '"\'" can only be used inside double quotes'),
+    (r'\FF', {}, 'Escape sequences can only be used inside double quotes'),
+    (r'\"e', {}, 'Escape sequences can only be used inside double quotes'),
+    ('e=f', {}, '"=" can only be used inside double quotes'),
+    ('e$', {}, '"$" can only be used inside double quotes'),
+    ('e(', {}, '"(" can only be used inside double quotes'),
+    ('e)', {}, '")" can only be used inside double quotes'),
+    ('e[', {}, '"[" can only be used inside double quotes'),
+    ('e{', {}, '"{" can only be used inside double quotes'),
+    ('e`', {}, '"`" can only be used inside double quotes'),
+    ('?', {}, '"?" can only be used in escaped form'),
+    (r'b"', {}, '\'"\' must not appear in an unquoted value'),
+    (r'""a', {}, "Ending '\"' must be followed by space or end of string"),
+    (r'"" ', {}, "Unexpected data at end of value"),
+    ('"\\', {}, r"'\' must not be at the end of the line"),
+    (r'"\Z', {}, r"Invalid escape sequence '\Z'"),
+    (r'"\Aa', {}, r"Invalid hex escape sequence '\Aa'"),
+]
+
+
+@pytest.mark.parametrize("command, kwargs, message", TEST_PARSE_ARGUMENT_VALUE_ERRORS)
+def test_parse_argument_value_errors(command, kwargs, message):
+    with pytest.raises(ParseError) as exc:
+        parse_argument_value(command, **kwargs)
+    print(exc.value.args[0], message)
+    assert exc.value.args[0] == message
 
 
 TEST_SPLIT_ROUTEROS_COMMAND = [
@@ -29,7 +81,6 @@ TEST_SPLIT_ROUTEROS_COMMAND = [
     (r'a="b\"f" c="\FF" d="\"e"', ['a=b"f', to_native(b'c=\xff'), 'd="e']),
     (r'a="b=c"', ['a=b=c']),
     (r'a=b ', ['a=b']),
-    (r'a=', ['a=']),
 ]
 
 
@@ -41,6 +92,7 @@ def test_split_routeros_command(command, result):
 
 
 TEST_SPLIT_ROUTEROS_COMMAND_ERRORS = [
+    (r'a=', 'Expected value, but found end of string'),
     (r'a="b\"f" d="e', 'Unexpected end of string during escaped parameter'),
     ('d=\'e', '"\'" can only be used inside double quotes'),
     (r'c\FF', 'Escape sequences can only be used inside double quotes'),
@@ -53,7 +105,7 @@ TEST_SPLIT_ROUTEROS_COMMAND_ERRORS = [
     ('d=e{', '"{" can only be used inside double quotes'),
     ('d=e`', '"`" can only be used inside double quotes'),
     ('d=?', '"?" can only be used in escaped form'),
-    (r'a=b"', '\'"\' must follow \'=\''),
+    (r'a=b"', '\'"\' must not appear in an unquoted value'),
     (r'a=""a', "Ending '\"' must be followed by space or end of string"),
     ('a="\\', r"'\' must not be at the end of the line"),
     (r'a="\Z', r"Invalid escape sequence '\Z'"),

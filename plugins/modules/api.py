@@ -263,9 +263,11 @@ from ansible.module_utils.common.text.converters import to_native
 from ansible_collections.community.routeros.plugins.module_utils.quoting import (
     ParseError,
     convert_list_to_dictionary,
+    parse_argument_value,
     split_routeros_command,
 )
 
+import re
 import ssl
 import traceback
 
@@ -327,7 +329,24 @@ class ROS_api_module:
         self.where = None
         self.query = self.module.params['query']
         if self.query:
-            self.query = self.list_remove_empty(self.split_params(self.query))
+            where_index = self.query.find(' WHERE ')
+            if where_index < 0:
+                self.query = self.split_params(self.query)
+            else:
+                where = self.query[where_index + len(' WHERE '):]
+                self.query = self.split_params(self.query[:where_index])
+                # where must be of the format '<attribute> <operator> <value>'
+                m = re.match(r'^\s*([^ ]+)\s+([^ ]+)\s+(.*)$', where)
+                if not m:
+                    self.errors("invalid syntax for 'WHERE %s'" % where)
+                try:
+                    self.where = [
+                        m.group(1),  # attribute
+                        m.group(2),  # operator
+                        parse_argument_value(m.group(3).rstrip())[0],  # value
+                    ]
+                except ParseError as exc:
+                    self.errors("invalid syntax for 'WHERE %s': %s" % (where, exc))
             try:
                 idx = self.query.index('WHERE')
                 self.where = self.query[idx + 1:]
@@ -355,11 +374,6 @@ class ROS_api_module:
             self.api_arbitrary()
         else:
             self.api_get_all()
-
-    def list_remove_empty(self, check_list):
-        while("" in check_list):
-            check_list.remove("")
-        return check_list
 
     def list_to_dic(self, ldict):
         return convert_list_to_dictionary(ldict, skip_empty_values=True, require_assignment=True)
@@ -422,11 +436,6 @@ class ROS_api_module:
             keys[k] = Key(k)
         try:
             if self.where:
-                if len(self.where) < 3:
-                    self.errors("invalid syntax for 'WHERE %s'"
-                                % ' '.join(self.where))
-
-                where = []
                 if self.where[1] == '==':
                     select = self.api_path.select(*keys).where(keys[self.where[0]] == self.where[2])
                 elif self.where[1] == '!=':
@@ -438,11 +447,10 @@ class ROS_api_module:
                 else:
                     self.errors("'%s' is not operator for 'where'"
                                 % self.where[1])
-                for row in select:
-                    self.result['message'].append(row)
             else:
-                for row in self.api_path.select(*keys):
-                    self.result['message'].append(row)
+                select = self.api_path.select(*keys)
+            for row in select:
+                self.result['message'].append(row)
             if len(self.result['message']) < 1:
                 msg = "no results for '%s 'query' %s" % (' '.join(self.path),
                                                          ' '.join(self.query))
