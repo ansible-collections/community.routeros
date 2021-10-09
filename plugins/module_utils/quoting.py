@@ -29,6 +29,8 @@ ESCAPE_SEQUENCES = {
     b'v': b'\v',
 }
 
+ESCAPE_SEQUENCE_REVERSED = dict([(v, k) for k, v in ESCAPE_SEQUENCES.items()])
+
 ESCAPE_DIGITS = b'0123456789ABCDEF'
 
 
@@ -97,6 +99,48 @@ def split_routeros_command(line):
     elif state == 3:
         raise ParseError('Unexpected end of string during escaped parameter')
     return [to_native(part) for part in result]
+
+
+def quote_routeros_argument_value(argument):
+    argument = to_bytes(argument)
+    result = []
+    quote = False
+    length = len(argument)
+    index = 0
+    while index < length:
+        letter = argument[index:index + 1]
+        index += 1
+        if letter in ESCAPE_SEQUENCE_REVERSED:
+            result.append(b'\\%s' % ESCAPE_SEQUENCE_REVERSED[letter])
+            quote = True
+            continue
+        elif letter in (b' ', b'=', b';', b"'"):
+            quote = True
+        result.append(letter)
+    argument = to_native(b''.join(result))
+    if quote or not argument:
+        argument = '"%s"' % argument
+    return argument
+
+
+def quote_routeros_argument(argument):
+    def check_attribute(attribute):
+        if ' ' in attribute:
+            raise ParseError('Attribute names must not contain spaces')
+        return attribute
+
+    if '=' not in argument:
+        check_attribute(argument)
+        return argument
+
+    attribute, value = argument.split('=', 1)
+    check_attribute(attribute)
+    value = quote_routeros_argument_value(value)
+    return '%s=%s' % (attribute, value)
+
+
+def join_routeros_command(arguments):
+    return ' '.join([quote_routeros_argument(argument) for argument in arguments])
 
 
 def convert_list_to_dictionary(string_list, require_assignment=True, skip_empty_values=False):

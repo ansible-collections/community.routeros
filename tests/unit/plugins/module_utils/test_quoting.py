@@ -11,6 +11,9 @@ import pytest
 from ansible_collections.community.routeros.plugins.module_utils.quoting import (
     ParseError,
     convert_list_to_dictionary,
+    join_routeros_command,
+    quote_routeros_argument,
+    quote_routeros_argument_value,
     split_routeros_command,
 )
 
@@ -66,8 +69,73 @@ TEST_CONVERT_LIST_TO_DICTIONARY_ERRORS = [
 
 
 @pytest.mark.parametrize("list, kwargs, message", TEST_CONVERT_LIST_TO_DICTIONARY_ERRORS)
-def test_convert_list_to_dictionary(list, kwargs, message):
+def test_convert_list_to_dictionary_errors(list, kwargs, message):
     with pytest.raises(ParseError) as exc:
         result = convert_list_to_dictionary(list, **kwargs)
     print(exc.value.args[0], message)
     assert exc.value.args[0] == message
+
+
+TEST_JOIN_ROUTEROS_COMMAND = [
+    (['a=b', 'c=d=e', 'e=', 'f', 'g=h i j', 'h="h"'], r'a=b c="d=e" e="" f g="h i j" h="\"h\""'),
+]
+
+
+@pytest.mark.parametrize("list, expected", TEST_JOIN_ROUTEROS_COMMAND)
+def test_join_routeros_command(list, expected):
+    result = join_routeros_command(list)
+    print(result, expected)
+    assert result == expected
+
+
+TEST_QUOTE_ROUTEROS_ARGUMENT = [
+    (r'', r''),
+    (r'a', r'a'),
+    (r'a=b', r'a=b'),
+    (r'a=b c', r'a="b c"'),
+    (r'a="b c"', r'a="\"b c\""'),
+    ("a='b", "a=\"'b\""),
+    ("a=b'", "a=\"b'\""),
+]
+
+
+@pytest.mark.parametrize("argument, expected", TEST_QUOTE_ROUTEROS_ARGUMENT)
+def test_quote_routeros_argument(argument, expected):
+    result = quote_routeros_argument(argument)
+    print(result, expected)
+    assert result == expected
+
+
+TEST_QUOTE_ROUTEROS_ARGUMENT_ERRORS = [
+    ('a b', 'Attribute names must not contain spaces'),
+    ('a b=c', 'Attribute names must not contain spaces'),
+]
+
+
+@pytest.mark.parametrize("argument, message", TEST_QUOTE_ROUTEROS_ARGUMENT_ERRORS)
+def test_quote_routeros_argument_errors(argument, message):
+    with pytest.raises(ParseError) as exc:
+        result = quote_routeros_argument(argument)
+    print(exc.value.args[0], message)
+    assert exc.value.args[0] == message
+
+
+TEST_QUOTE_ROUTEROS_ARGUMENT_VALUE = [
+    (r'', r'""'),
+    (r";", r'";"'),
+    (r" ", r'" "'),
+    (r"=", r'"="'),
+    (r'a', r'a'),
+    (r'a=b', r'"a=b"'),
+    (r'b c', r'"b c"'),
+    (r'"b c"', r'"\"b c\""'),
+    ("'b", "\"'b\""),
+    ("b'", "\"b'\""),
+]
+
+
+@pytest.mark.parametrize("argument, expected", TEST_QUOTE_ROUTEROS_ARGUMENT_VALUE)
+def test_quote_routeros_argument_value(argument, expected):
+    result = quote_routeros_argument_value(argument)
+    print(result, expected)
+    assert result == expected
