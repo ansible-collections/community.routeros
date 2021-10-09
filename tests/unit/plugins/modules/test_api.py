@@ -288,33 +288,3 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
-
-
-TEST_SPLIT_ROUTEROS = [
-    ('', []),
-    ('   ', []),
-    (r'a b c', ['a', 'b', 'c']),
-    (r'a=b c d=e', ['a=b', 'c', 'd=e']),
-    (r'a="b f" c d=e', ['a=b f', 'c', 'd=e']),
-    (r'a="b\"f" c\FF d=\"e', ['a=b"f', '\xff', 'c', 'd="e']),
-]
-
-
-@pytest.mark.parametrize("command, result", TEST_SPLIT_ROUTEROS)
-def test_split_routeros(command, result):
-    result_ = api.split_routeros(command)
-    print(result_, result)
-    assert result_ == result
-
-
-TEST_SPLIT_ROUTEROS_ERRORS = [
-    (r'a="b\"f" c\FF d="e', 'Unexpected end of string during escaped parameter'),
-]
-
-
-@pytest.mark.parametrize("command, message", TEST_SPLIT_ROUTEROS_ERRORS)
-def test_split_routeros_errors(command, message):
-    with pytest.raises(api.ParseError) as exc:
-        api.split_routeros(command)
-    print(exc.value.args[0], message)
-    assert exc.value.args[0] == message
