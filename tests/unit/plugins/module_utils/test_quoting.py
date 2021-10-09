@@ -94,8 +94,9 @@ TEST_QUOTE_ROUTEROS_ARGUMENT = [
     (r'a=b', r'a=b'),
     (r'a=b c', r'a="b c"'),
     (r'a="b c"', r'a="\"b c\""'),
-    ("a='b", "a=\"'b\""),
-    ("a=b'", "a=\"b'\""),
+    (r"a='b", "a=\"'b\""),
+    (r"a=b'", "a=\"b'\""),
+    (r'a=""', r'a="\"\""'),
 ]
 
 
