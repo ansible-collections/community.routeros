@@ -25,6 +25,8 @@ TEST_SPLIT_ROUTEROS_COMMAND = [
     (r'a=b c d=e', ['a=b', 'c', 'd=e']),
     (r'a="b f" c d=e', ['a=b f', 'c', 'd=e']),
     (r'a="b\"f" c\FF d=\"e', ['a=b"f', '\xff', 'c', 'd="e']),
+    (r'a=b ', ['a=b']),
+    (r'a=', ['a=']),
 ]
 
 
@@ -37,6 +39,11 @@ def test_split_routeros_command(command, result):
 
 TEST_SPLIT_ROUTEROS_COMMAND_ERRORS = [
     (r'a="b\"f" c\FF d="e', 'Unexpected end of string during escaped parameter'),
+    (r'a=b"', '\'"\' must follow \'=\''),
+    (r'a=""a', "Ending '\"' must be followed by space or end of string"),
+    ('a="\\', r"'\' must not be at the end of the line"),
+    (r'a="\Z', r"Invalid escape sequence '\Z'"),
+    (r'a="\Aa', r"Invalid hex escape sequence '\Aa'"),
 ]
 
 

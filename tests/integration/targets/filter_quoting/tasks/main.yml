@@ -7,9 +7,18 @@
       - >
         'foo bar="a b c"' | community.routeros.split == ['foo', 'bar=a b c']
 
-- debug:
-    msg: >
-      {{ 'a=""' | community.routeros.quote_argument }}
+- name: "Test split filter error handling"
+  set_fact:
+    test: >-
+      {{ 'a="' | community.routeros.split }}
+  ignore_errors: true
+  register: result
+
+- name: "Verify split filter error handling"
+  assert:
+    that:
+      - >-
+        result.msg == "'\"' must follow '='"
 
 - name: "Test quote_argument filter"
   assert:
