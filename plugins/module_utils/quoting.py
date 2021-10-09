@@ -117,39 +117,28 @@ def split_routeros_command(line):
     current = []
     index = 0
     length = len(line)
-    # States:
-    #   0 = outside param
-    #   1 = param before '='
-    state = 0
+    parsing_attribute_name = False
     while index < length:
         ch = line[index:index + 1]
         index += 1
-        if state == 0 and ch == b' ':
-            pass
-        elif state == 1 and ch == b' ':
-            state = 0
-            result.append(b''.join(current))
-            current = []
-        elif ch == b'=' and state == 1:
+        if ch == b' ':
+            if parsing_attribute_name:
+                parsing_attribute_name = False
+                result.append(b''.join(current))
+                current = []
+        elif ch == b'=' and parsing_attribute_name:
             current.append(ch)
             value, index = parse_argument_value(line, start_index=index, must_match_everything=False)
             current.append(to_bytes(value))
-            state = 0
+            parsing_attribute_name = False
             result.append(b''.join(current))
             current = []
-        elif ch == b'"':
-            raise ParseError('\'"\' must follow \'=\'')
-        elif ch == b'\\':
-            raise ParseError('Escape sequences can only be used inside double quotes')
+        elif ch in (b'"', b'\\', b"'", b'=', b'(', b')', b'$', b'[', b'{', b'`', b'?'):
+            raise ParseError('Found unexpected "{0}"'.format(to_native(ch)))
         else:
-            if ch in (b"'", b'=', b'(', b')', b'$', b'[', b'{', b'`'):
-                raise ParseError('"{0}" can only be used inside double quotes'.format(to_native(ch)))
-            if ch == b'?':
-                raise ParseError('"{0}" can only be used in escaped form'.format(to_native(ch)))
             current.append(ch)
-            if state == 0:
-                state = 1
-    if state == 1 and current:
+            parsing_attribute_name = True
+    if parsing_attribute_name and current:
         result.append(b''.join(current))
     return [to_native(part) for part in result]
 

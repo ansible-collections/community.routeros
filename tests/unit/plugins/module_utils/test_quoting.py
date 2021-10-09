@@ -59,8 +59,9 @@ TEST_PARSE_ARGUMENT_VALUE_ERRORS = [
     (r'""a', {}, "Ending '\"' must be followed by space or end of string"),
     (r'"" ', {}, "Unexpected data at end of value"),
     ('"\\', {}, r"'\' must not be at the end of the line"),
-    (r'"\Z', {}, r"Invalid escape sequence '\Z'"),
-    (r'"\Aa', {}, r"Invalid hex escape sequence '\Aa'"),
+    (r'"\A', {}, r'Hex escape sequence cut off at end of line'),
+    (r'"\Z"', {}, r"Invalid escape sequence '\Z'"),
+    (r'"\Aa"', {}, r"Invalid hex escape sequence '\Aa'"),
 ]
 
 
@@ -95,7 +96,7 @@ TEST_SPLIT_ROUTEROS_COMMAND_ERRORS = [
     (r'a=', 'Expected value, but found end of string'),
     (r'a="b\"f" d="e', 'Unexpected end of string during escaped parameter'),
     ('d=\'e', '"\'" can only be used inside double quotes'),
-    (r'c\FF', 'Escape sequences can only be used inside double quotes'),
+    (r'c\FF', r'Found unexpected "\"'),
     (r'd=\"e', 'Escape sequences can only be used inside double quotes'),
     ('d=e=f', '"=" can only be used inside double quotes'),
     ('d=e$', '"$" can only be used inside double quotes'),
