@@ -7,6 +7,8 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
+import sys
+
 from ansible.module_utils.common.text.converters import to_native, to_bytes
 
 
@@ -32,6 +34,13 @@ ESCAPE_SEQUENCES = {
 ESCAPE_SEQUENCE_REVERSED = dict([(v, k) for k, v in ESCAPE_SEQUENCES.items()])
 
 ESCAPE_DIGITS = b'0123456789ABCDEF'
+
+
+if sys.version_info[0] < 3:
+    _int_to_byte = chr
+else:
+    def _int_to_byte(value):
+        return bytes((value, ))
 
 
 def split_routeros_command(line):
@@ -71,6 +80,8 @@ def split_routeros_command(line):
             else:
                 raise ParseError('\'"\' must follow \'=\'')
         elif ch == b'\\':
+            if state != 3:
+                raise ParseError('Escape sequences can only be used inside double quotes')
             if index == length:
                 raise ParseError('\'\\\' must not be at the end of the line')
             ch = line[index:index + 1]
@@ -88,8 +99,12 @@ def split_routeros_command(line):
                 index += 1
                 if d2 < 0:
                     raise ParseError('Invalid hex escape sequence \'\\{0}\''.format(to_native(ch + ch2)))
-                result.append(chr(d1 * 16 + d2))
+                current.append(_int_to_byte(d1 * 16 + d2))
         else:
+            if state != 3 and ch in (b"'", b'=', b'(', b')', b'$', b'[', b'{', b'`'):
+                raise ParseError('"{0}" can only be used inside double quotes'.format(to_native(ch)))
+            if ch == b'?':
+                raise ParseError('"{0}" can only be used in escaped form'.format(to_native(ch)))
             current.append(ch)
             if state == 0:
                 state = 1
