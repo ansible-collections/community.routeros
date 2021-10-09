@@ -10,6 +10,7 @@ import pytest
 
 from ansible_collections.community.routeros.plugins.module_utils.quoting import (
     ParseError,
+    convert_list_to_dictionary,
     split_routeros_command,
 )
 
@@ -40,5 +41,33 @@ TEST_SPLIT_ROUTEROS_COMMAND_ERRORS = [
 def test_split_routeros_command_errors(command, message):
     with pytest.raises(ParseError) as exc:
         split_routeros_command(command)
+    print(exc.value.args[0], message)
+    assert exc.value.args[0] == message
+
+
+TEST_CONVERT_LIST_TO_DICTIONARY = [
+    (['a=b', 'c=d=e', 'e='], {}, {'a': 'b', 'c': 'd=e', 'e': ''}),
+    (['a=b', 'c=d=e', 'e='], {'skip_empty_values': False}, {'a': 'b', 'c': 'd=e', 'e': ''}),
+    (['a=b', 'c=d=e', 'e='], {'skip_empty_values': True}, {'a': 'b', 'c': 'd=e'}),
+    (['a=b', 'c=d=e', 'e=', 'f'], {'require_assignment': False}, {'a': 'b', 'c': 'd=e', 'e': '', 'f': None}),
+]
+
+
+@pytest.mark.parametrize("list, kwargs, expected_dict", TEST_CONVERT_LIST_TO_DICTIONARY)
+def test_convert_list_to_dictionary(list, kwargs, expected_dict):
+    result = convert_list_to_dictionary(list, **kwargs)
+    print(result, expected_dict)
+    assert result == expected_dict
+
+
+TEST_CONVERT_LIST_TO_DICTIONARY_ERRORS = [
+    (['a=b', 'c=d=e', 'e=', 'f'], {}, "missing '=' after 'f'"),
+]
+
+
+@pytest.mark.parametrize("list, kwargs, message", TEST_CONVERT_LIST_TO_DICTIONARY_ERRORS)
+def test_convert_list_to_dictionary(list, kwargs, message):
+    with pytest.raises(ParseError) as exc:
+        result = convert_list_to_dictionary(list, **kwargs)
     print(exc.value.args[0], message)
     assert exc.value.args[0] == message

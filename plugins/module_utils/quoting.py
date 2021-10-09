@@ -97,3 +97,17 @@ def split_routeros_command(line):
     elif state == 3:
         raise ParseError('Unexpected end of string during escaped parameter')
     return [to_native(part) for part in result]
+
+
+def convert_list_to_dictionary(string_list, require_assignment=True, skip_empty_values=False):
+    dictionary = {}
+    for p in string_list:
+        if '=' not in p:
+            if require_assignment:
+                raise ParseError("missing '=' after '%s'" % p)
+            dictionary[p] = None
+            continue
+        p = p.split('=', 1)
+        if not skip_empty_values or p[1]:
+            dictionary[p[0]] = p[1]
+    return dictionary

@@ -262,6 +262,7 @@ from ansible.module_utils.common.text.converters import to_native
 
 from ansible_collections.community.routeros.plugins.module_utils.quoting import (
     ParseError,
+    convert_list_to_dictionary,
     split_routeros_command,
 )
 
@@ -361,14 +362,7 @@ class ROS_api_module:
         return check_list
 
     def list_to_dic(self, ldict):
-        dict = {}
-        for p in ldict:
-            if '=' not in p:
-                self.errors("missing '=' after '%s'" % p)
-            p = p.split('=', 1)
-            if p[1]:
-                dict[p[0]] = p[1]
-        return dict
+        return convert_list_to_dictionary(ldict, skip_empty_values=True, require_assignment=True)
 
     def split_params(self, params):
         if not isinstance(params, str):
