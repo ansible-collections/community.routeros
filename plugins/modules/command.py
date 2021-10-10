@@ -58,6 +58,11 @@ options:
         conditions, the interval indicates how long to wait before
         trying the command again.
     default: 1
+seealso:
+  - ref: ansible_collections.community.routeros.docsite.ssh-guide
+    description: How to connect to RouterOS devices with SSH
+  - ref: ansible_collections.community.routeros.docsite.quoting
+    description: How to quote and unquote commands and arguments
 '''
 
 EXAMPLES = """

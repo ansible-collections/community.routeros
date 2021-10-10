@@ -119,6 +119,11 @@ options:
       - See also I(validate_cert_hostname). Only used when I(tls=true) and I(validate_certs=true).
     type: path
     version_added: 1.2.0
+seealso:
+  - ref: ansible_collections.community.routeros.docsite.api-guide
+    description: How to connect to RouterOS devices with the RouterOS API
+  - ref: ansible_collections.community.routeros.docsite.quoting
+    description: How to quote and unquote commands and arguments
 '''
 
 EXAMPLES = '''
