@@ -4,3 +4,4 @@ sections:
     toctree:
       - api-guide
       - ssh-guide
+      - quoting
