@@ -195,7 +195,10 @@ EXAMPLES = '''
         password: "{{ password }}"
         username: "{{ username }}"
         path: "{{ path }}"
-        update: ".id={{ query_id }} address={{ ip3 }}"
+        update: >-
+            .id={{ query_id }}
+            address={{ ip3 }}
+            comment={{ 'A comment with spaces' | community.routeros.quote_argument_value }}
       register: updateout
 
     - name: Dump "Update" output
