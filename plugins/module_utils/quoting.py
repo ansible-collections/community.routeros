@@ -156,6 +156,13 @@ def quote_routeros_argument_value(argument):
             result.append(b'\\%s' % ESCAPE_SEQUENCE_REVERSED[letter])
             quote = True
             continue
+        elif ord(letter) < 32:
+            v = ord(letter)
+            v1 = v % 16
+            v2 = v // 16
+            result.append(b'\\%s%s' % (ESCAPE_DIGITS[v2:v2 + 1], ESCAPE_DIGITS[v1:v1 + 1]))
+            quote = True
+            continue
         elif letter in (b' ', b'=', b';', b"'"):
             quote = True
         result.append(letter)

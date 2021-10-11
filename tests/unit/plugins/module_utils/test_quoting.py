@@ -26,6 +26,8 @@ TEST_PARSE_ARGUMENT_VALUE = [
     ('a   ', {'must_match_everything': False}, ('a', 1)),
     (r'"a b"', {}, ('a b', 5)),
     (r'"b\"f"', {}, ('b"f', 6)),
+    (r'"\01"', {}, ('\x01', 5)),
+    (r'"\1F"', {}, ('\x1f', 5)),
     (r'"\FF"', {}, (to_native(b'\xff'), 5)),
     (r'"\"e"', {}, ('"e', 5)),
     (r'"\""', {}, ('"', 4)),
@@ -225,11 +227,13 @@ TEST_QUOTE_ROUTEROS_ARGUMENT_VALUE = [
     ('_', r'"\_"'),
     ('\a', r'"\a"'),
     ('\b', r'"\b"'),
-    # (to_native('\xff'), r'"\f"'),
+    # (to_native(b'\xff'), r'"\f"'),
     ('\n', r'"\n"'),
     ('\r', r'"\r"'),
     ('\t', r'"\t"'),
     ('\v', r'"\v"'),
+    ('\x01', r'"\01"'),
+    ('\x1f', r'"\1F"'),
 ]
 
 
