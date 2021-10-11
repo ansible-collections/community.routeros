@@ -27,6 +27,9 @@ options:
         not be collected.
     required: false
     default: '!config'
+seealso:
+  - ref: ansible_collections.community.routeros.docsite.ssh-guide
+    description: How to connect to RouterOS devices with SSH
 '''
 
 EXAMPLES = """
