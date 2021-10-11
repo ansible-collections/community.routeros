@@ -85,7 +85,7 @@ def parse_argument_value(line, start_index=0, must_match_everything=True):
             ch = line[index:index + 1]
             index += 1
             if ch in ESCAPE_SEQUENCES:
-                current.append(ch)
+                current.append(ESCAPE_SEQUENCES[ch])
             else:
                 d1 = ESCAPE_DIGITS.find(ch)
                 if d1 < 0:

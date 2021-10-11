@@ -28,6 +28,7 @@ TEST_PARSE_ARGUMENT_VALUE = [
     (r'"b\"f"', {}, ('b"f', 6)),
     (r'"\FF"', {}, (to_native(b'\xff'), 5)),
     (r'"\"e"', {}, ('"e', 5)),
+    (r'"\n"', {}, ('\n', 4)),
     (r'"b=c"', {}, ('b=c', 5)),
     (r'""', {}, ('', 2)),
     (r'"" ', {'must_match_everything': False}, ('', 2)),
@@ -214,3 +215,31 @@ def test_quote_routeros_argument_value(argument, expected):
     result = quote_routeros_argument_value(argument)
     print(result, expected)
     assert result == expected
+
+
+TEST_ROUNDTRIP = [
+    {'a': 'b', 'c': 'd'},
+    {'script': ''':local host value=[/system identity get name];
+:local date value=[/system clock get date];
+:local day [ :pick $date 4 6 ];
+:local month [ :pick $date 0 3 ];
+:local year [ :pick $date 7 11 ];
+:local name value=($host."-".$day."-".$month."-".$year);
+/system backup save name=$name;
+/export file=$name;
+/tool fetch address="192.168.1.1" user=ros password="PASSWORD" mode=ftp dst-path=("/mikrotik/rsc/".$name.".rsc") src-path=($name.".rsc") upload=yes;
+/tool fetch address="192.168.1.1" user=ros password="PASSWORD" mode=ftp dst-path=("/mikrotik/backup/".$name.".backup") src-path=($name.".backup") upload=yes;
+'''},
+]
+
+
+@pytest.mark.parametrize("dictionary", TEST_ROUNDTRIP)
+def test_roundtrip(dictionary):
+    argument_list = ['%s=%s' % (k, v) for k, v in dictionary.items()]
+    command = join_routeros_command(argument_list)
+    resplit_list = split_routeros_command(command)
+    print(resplit_list, argument_list)
+    assert resplit_list == argument_list
+    re_dictionary = convert_list_to_dictionary(resplit_list)
+    print(re_dictionary, dictionary)
+    assert re_dictionary == dictionary
