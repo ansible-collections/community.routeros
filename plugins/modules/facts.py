@@ -27,6 +27,8 @@ options:
         not be collected.
     required: false
     default: '!config'
+    type: list
+    elements: str
 seealso:
   - ref: ansible_collections.community.routeros.docsite.ssh-guide
     description: How to connect to RouterOS devices with SSH
@@ -586,7 +588,7 @@ def main():
     """main entry point for module execution
     """
     argument_spec = dict(
-        gather_subset=dict(default=['!config'], type='list')
+        gather_subset=dict(default=['!config'], type='list', elements='str')
     )
 
     argument_spec.update(routeros_argument_spec)
