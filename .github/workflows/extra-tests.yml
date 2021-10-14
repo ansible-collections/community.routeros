@@ -28,7 +28,7 @@ jobs:
           python-version: 3.8
 
       - name: Install ansible-core
-        run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
+        run: pip install https://github.com/ansible/ansible/archive/stable-2.12.tar.gz --disable-pip-version-check
 
       - name: Install collection dependencies
         run: git clone --depth=1 --single-branch https://github.com/ansible-collections/community.internal_test_tools.git ./ansible_collections/community/internal_test_tools

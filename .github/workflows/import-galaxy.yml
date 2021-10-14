@@ -27,7 +27,7 @@ jobs:
           python-version: 3.8
 
       - name: Install ansible-core
-        run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
+        run: pip install https://github.com/ansible/ansible/archive/stable-2.12.tar.gz --disable-pip-version-check
 
       - name: Make sure galaxy.yml has version entry
         run: >-
@@ -68,7 +68,7 @@ jobs:
           python-version: 3.8
 
       - name: Install ansible-core
-        run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
+        run: pip install https://github.com/ansible/ansible/archive/stable-2.12.tar.gz --disable-pip-version-check
 
       - name: Install galaxy-importer
         run: pip install galaxy-importer --disable-pip-version-check
