@@ -109,7 +109,7 @@ jobs:
         working-directory: ./ansible_collections/community/routeros
 
       # See the reports at https://codecov.io/gh/ansible_collections/ansible-collections/community.routeros
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v2
         with:
           fail_ci_if_error: false
 
@@ -182,6 +182,6 @@ jobs:
         working-directory: ./ansible_collections/community/routeros
 
       # See the reports at https://codecov.io/gh/ansible-collections/community.routeros
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v2
         with:
           fail_ci_if_error: false
