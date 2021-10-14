@@ -1,2 +1,0 @@
-minor_changes:
-- "api - make validation of ``WHERE`` for ``query`` more strict (https://github.com/ansible-collections/community.routeros/pull/53)."

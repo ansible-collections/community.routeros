@@ -5,6 +5,44 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v2.0.0-a2
+=========
+
+Release Summary
+---------------
+
+Second prerelease for a new major release with breaking changes in the behavior of ``community.routeros.api`` and ``community.routeros.command``.
+
+Minor Changes
+-------------
+
+- api - make validation of ``WHERE`` for ``query`` more strict (https://github.com/ansible-collections/community.routeros/pull/53).
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- api - splitting commands no longer uses a naive split by whitespace, but a more RouterOS CLI compatible splitting algorithm (https://github.com/ansible-collections/community.routeros/pull/45).
+- command - the module now always indicates that a change happens. If this is not correct, please use ``changed_when`` to determine the correct changed status for a task (https://github.com/ansible-collections/community.routeros/pull/50).
+
+Bugfixes
+--------
+
+- api - improve splitting of ``WHERE`` queries (https://github.com/ansible-collections/community.routeros/pull/47).
+- api - when converting result lists to dictionaries, no longer removes second ``=`` and text following that if present (https://github.com/ansible-collections/community.routeros/pull/47).
+- routeros cliconf plugin - adjust function signature that was modified in Ansible after creation of this plugin (https://github.com/ansible-collections/community.routeros/pull/43).
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- join - Join a list of arguments to a command
+- list_to_dict - Convert a list of arguments to a list of dictionary
+- quote_argument - Quote an argument
+- quote_argument_value - Quote an argument value
+- split - Split a command into arguments
+
 v2.0.0-a1
 =========
 

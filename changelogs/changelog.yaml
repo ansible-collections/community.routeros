@@ -96,3 +96,47 @@ releases:
     - 2.0.0-a1.yml
     - 39-api-fail.yml
     release_date: '2021-07-31'
+  2.0.0-a2:
+    changes:
+      breaking_changes:
+      - api - splitting commands no longer uses a naive split by whitespace, but a
+        more RouterOS CLI compatible splitting algorithm (https://github.com/ansible-collections/community.routeros/pull/45).
+      - command - the module now always indicates that a change happens. If this is
+        not correct, please use ``changed_when`` to determine the correct changed
+        status for a task (https://github.com/ansible-collections/community.routeros/pull/50).
+      bugfixes:
+      - api - improve splitting of ``WHERE`` queries (https://github.com/ansible-collections/community.routeros/pull/47).
+      - api - when converting result lists to dictionaries, no longer removes second
+        ``=`` and text following that if present (https://github.com/ansible-collections/community.routeros/pull/47).
+      - routeros cliconf plugin - adjust function signature that was modified in Ansible
+        after creation of this plugin (https://github.com/ansible-collections/community.routeros/pull/43).
+      minor_changes:
+      - api - make validation of ``WHERE`` for ``query`` more strict (https://github.com/ansible-collections/community.routeros/pull/53).
+      release_summary: Second prerelease for a new major release with breaking changes
+        in the behavior of ``community.routeros.api`` and ``community.routeros.command``.
+    fragments:
+    - 2.0.0-a2.yml
+    - 43-sanity.yml
+    - 45-api-split.yml
+    - 47-api-split.yml
+    - 50-command-changed.yml
+    - 53-api-where.yml
+    - 53-quoting-filters.yml
+    plugins:
+      filter:
+      - description: Join a list of arguments to a command
+        name: join
+        namespace: null
+      - description: Convert a list of arguments to a list of dictionary
+        name: list_to_dict
+        namespace: null
+      - description: Quote an argument
+        name: quote_argument
+        namespace: null
+      - description: Quote an argument value
+        name: quote_argument_value
+        namespace: null
+      - description: Split a command into arguments
+        name: split
+        namespace: null
+    release_date: '2021-10-14'

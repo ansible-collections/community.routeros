@@ -1,2 +1,0 @@
-breaking_changes:
-- "command - the module now always indicates that a change happens. If this is not correct, please use ``changed_when`` to determine the correct changed status for a task (https://github.com/ansible-collections/community.routeros/pull/50)."
