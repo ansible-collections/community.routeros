@@ -1,3 +1,0 @@
-plugins/modules/command.py validate-modules:doc-missing-type
-plugins/modules/command.py validate-modules:parameter-type-not-in-doc
-plugins/modules/facts.py validate-modules:parameter-type-not-in-doc
