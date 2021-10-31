@@ -5,22 +5,25 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
-v2.0.0-a2
-=========
+v2.0.0
+======
 
 Release Summary
 ---------------
 
-Second prerelease for a new major release with breaking changes in the behavior of ``community.routeros.api`` and ``community.routeros.command``.
+A new major release with breaking changes in the behavior of ``community.routeros.api`` and ``community.routeros.command``.
 
 Minor Changes
 -------------
 
 - api - make validation of ``WHERE`` for ``query`` more strict (https://github.com/ansible-collections/community.routeros/pull/53).
+- command - the ``commands`` and ``wait_for`` options now convert the list elements to strings (https://github.com/ansible-collections/community.routeros/pull/55).
+- facts - the ``gather_subset`` option now converts the list elements to strings (https://github.com/ansible-collections/community.routeros/pull/55).
 
 Breaking Changes / Porting Guide
 --------------------------------
 
+- api - due to a programming error, the module never failed on errors. This has now been fixed. If you are relying on the module not failing in case of idempotent commands (resulting in errors like ``failure: already have such address``), you need to adjust your roles/playbooks. We suggest to use ``failed_when`` to accept failure in specific circumstances, for example ``failed_when: "'failure: already have ' in result.msg[0]"`` (https://github.com/ansible-collections/community.routeros/pull/39).
 - api - splitting commands no longer uses a naive split by whitespace, but a more RouterOS CLI compatible splitting algorithm (https://github.com/ansible-collections/community.routeros/pull/45).
 - command - the module now always indicates that a change happens. If this is not correct, please use ``changed_when`` to determine the correct changed status for a task (https://github.com/ansible-collections/community.routeros/pull/50).
 
@@ -42,19 +45,6 @@ Filter
 - quote_argument - Quote an argument
 - quote_argument_value - Quote an argument value
 - split - Split a command into arguments
-
-v2.0.0-a1
-=========
-
-Release Summary
----------------
-
-First prerelease for a new major release with a breaking change in the behavior of ``community.routeros.api``.
-
-Breaking Changes / Porting Guide
---------------------------------
-
-- api - due to a programming error, the module never failed on errors. This has now been fixed. If you are relying on the module not failing in case of idempotent commands (resulting in errors like ``failure: already have such address``), you need to adjust your roles/playbooks. We suggest to use ``failed_when`` to accept failure in specific circumstances, for example ``failed_when: "'failure: already have ' in result.msg[0]"`` (https://github.com/ansible-collections/community.routeros/pull/39).
 
 v1.2.0
 ======

@@ -81,6 +81,19 @@ releases:
     - 37-api-validate-cert-options.yml
     - ansible-core-_text.yml
     release_date: '2021-06-29'
+  2.0.0:
+    changes:
+      minor_changes:
+      - command - the ``commands`` and ``wait_for`` options now convert the list elements
+        to strings (https://github.com/ansible-collections/community.routeros/pull/55).
+      - facts - the ``gather_subset`` option now converts the list elements to strings
+        (https://github.com/ansible-collections/community.routeros/pull/55).
+      release_summary: A new major release with breaking changes in the behavior of
+        ``community.routeros.api`` and ``community.routeros.command``.
+    fragments:
+    - 2.0.0.yml
+    - 55-linting.yml
+    release_date: '2021-10-31'
   2.0.0-a1:
     changes:
       breaking_changes:
