@@ -2,7 +2,7 @@
 
 namespace: community
 name: routeros
-version: 2.0.0-a2
+version: 2.0.0
 readme: README.md
 authors:
   - Egor Zaitsev (github.com/heuels)
