@@ -56,8 +56,18 @@ jobs:
       # The docker container has all the pinned dependencies that are required
       # and all python versions ansible supports.
       - name: Run sanity tests
-        run: ansible-test sanity --docker -v --color
+        run: ansible-test sanity --docker -v --color --coverage
         working-directory: ./ansible_collections/community/routeros
+
+        # ansible-test support producing code coverage date
+      - name: Generate coverage report
+        run: ansible-test coverage xml -v --requirements --group-by command --group-by version
+        working-directory: ./ansible_collections/community/routeros
+
+      # See the reports at https://codecov.io/gh/ansible_collections/ansible-collections/community.routeros
+      - uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: false
 
 ###
 # Unit tests (OPTIONAL)
