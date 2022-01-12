@@ -265,37 +265,33 @@ class ROS_api_module:
         self.update = self.module.params['update']
         self.arbitrary = self.module.params['cmd']
 
-        self.where = None
+        self.result = dict(
+            message=[])
+
+        self.where_list = None
         self.query = self.module.params['query']
         if self.query:
             where_index = self.query.find(' WHERE ')
             if where_index < 0:
                 self.query = self.split_params(self.query)
             else:
+                self.where_list = []
                 where = self.query[where_index + len(' WHERE '):]
+                # create a list of WHERE arguments 
+                for wl in where.split(','):
+                    # where must be of the format '<attribute> <operator> <value>'
+                    m = re.match(r'^\s*([^ ]+)\s+([^ ]+)\s+(.*)$', wl)
+                    if not m:
+                        self.errors("invalid syntax for 'WHERE %s'" % wl)
+                    try:
+                        self.where_list.append([
+                            m.group(1),  # attribute
+                            m.group(2),  # operator
+                            parse_argument_value(m.group(3).rstrip())[0],  # value
+                        ])
+                    except ParseError as exc:
+                        self.errors("invalid syntax for 'WHERE %s': %s" % (wl, exc))
                 self.query = self.split_params(self.query[:where_index])
-                # where must be of the format '<attribute> <operator> <value>'
-                m = re.match(r'^\s*([^ ]+)\s+([^ ]+)\s+(.*)$', where)
-                if not m:
-                    self.errors("invalid syntax for 'WHERE %s'" % where)
-                try:
-                    self.where = [
-                        m.group(1),  # attribute
-                        m.group(2),  # operator
-                        parse_argument_value(m.group(3).rstrip())[0],  # value
-                    ]
-                except ParseError as exc:
-                    self.errors("invalid syntax for 'WHERE %s': %s" % (where, exc))
-            try:
-                idx = self.query.index('WHERE')
-                self.where = self.query[idx + 1:]
-                self.query = self.query[:idx]
-            except ValueError:
-                # Raised when WHERE has not been found
-                pass
-
-        self.result = dict(
-            message=[])
 
         # create api base path
         self.api_path = self.api_add_path(self.api, self.path)
@@ -374,27 +370,40 @@ class ROS_api_module:
                 self.errors("'%s' must be '.id'" % k)
             keys[k] = Key(k)
         try:
-            if self.where:
-                if self.where[1] == '==':
-                    select = self.api_path.select(*keys).where(keys[self.where[0]] == self.where[2])
-                elif self.where[1] == '!=':
-                    select = self.api_path.select(*keys).where(keys[self.where[0]] != self.where[2])
-                elif self.where[1] == '>':
-                    select = self.api_path.select(*keys).where(keys[self.where[0]] > self.where[2])
-                elif self.where[1] == '<':
-                    select = self.api_path.select(*keys).where(keys[self.where[0]] < self.where[2])
-                else:
-                    self.errors("'%s' is not operator for 'where'"
-                                % self.where[1])
+            if self.where_list:
+                where_args = False
+                for wl in self.where_list:
+                    if wl[1] == '==':
+                        if where_args:
+                            where_args = where_args + (keys[wl[0]] == wl[2],)
+                        else:
+                            where_args = (keys[wl[0]] == wl[2],)
+                    elif wl[1] == '!=':
+                        if where_args:
+                            where_args = where_args + (keys[wl[0]] != wl[2],)
+                        else:
+                            where_args = (keys[wl[0]] != wl[2],)
+                    elif wl[1] == '>':
+                        if where_args:
+                            where_args = where_args + (keys[wl[0]] > wl[2],)
+                        else:
+                            where_args = (keys[wl[0]] > wl[2],)
+                    elif wl[1] == '<':
+                        if where_args:
+                            where_args = where_args + (keys[wl[0]] < wl[2],)
+                        else:
+                            where_args = (keys[wl[0]] < wl[2],)
+                    else:
+                        self.errors("'%s' is not operator for 'WHERE %s'"
+                                    % (wl[1],' '.join(wl)))
+                select = self.api_path.select(*keys).where(*where_args)
             else:
                 select = self.api_path.select(*keys)
             for row in select:
                 self.result['message'].append(row)
             if len(self.result['message']) < 1:
                 msg = "no results for '%s 'query' %s" % (' '.join(self.path),
-                                                         ' '.join(self.query))
-                if self.where:
-                    msg = msg + ' WHERE %s' % ' '.join(self.where)
+                                                        self.module.params['query'])
                 self.result['message'].append(msg)
             self.return_result(False)
         except LibRouterosError as e:
