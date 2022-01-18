@@ -246,7 +246,7 @@ class ROS_api_module:
             remove=dict(type='str'),
             update=dict(type='str'),
             cmd=dict(type='str'),
-            query=dict(type='str'),
+            query=dict(type='dict'),
         )
         module_args.update(api_argument_spec())
 
@@ -268,30 +268,20 @@ class ROS_api_module:
         self.result = dict(
             message=[])
 
-        self.where_list = None
         self.query = self.module.params['query']
         if self.query:
-            where_index = self.query.find(' WHERE ')
-            if where_index < 0:
-                self.query = self.split_params(self.query)
-            else:
-                self.where_list = []
-                where = self.query[where_index + len(' WHERE '):]
-                # create a list of WHERE arguments 
-                for wl in where.split(','):
-                    # where must be of the format '<attribute> <operator> <value>'
-                    m = re.match(r'^\s*([^ ]+)\s+([^ ]+)\s+(.*)$', wl)
-                    if not m:
-                        self.errors("invalid syntax for 'WHERE %s'" % wl)
-                    try:
-                        self.where_list.append([
-                            m.group(1),  # attribute
-                            m.group(2),  # operator
-                            parse_argument_value(m.group(3).rstrip())[0],  # value
-                        ])
-                    except ParseError as exc:
-                        self.errors("invalid syntax for 'WHERE %s': %s" % (wl, exc))
-                self.query = self.split_params(self.query[:where_index])
+            if "items" not in self.query.keys():
+                self.errors("invalid 'query' syntax: missing 'items'")
+            if type(self.query["items"]) is not list:
+                self.errors("invalid 'query':'items' syntax: must be type list")
+            if "id" in self.query['items']:
+                self.errors("invalid 'query':'items' syntax: 'id' must be '.id'")
+            if "or" in self.query.keys() and "where" not in self.query.keys():
+                self.errors("invalid 'query':'or' syntax: missing 'where'")
+            if "where" in self.query.keys():
+               self.check_query('where')
+            if "or" in self.query.keys():
+               self.check_query("or")
 
         # create api base path
         self.api_path = self.api_add_path(self.api, self.path)
@@ -309,6 +299,18 @@ class ROS_api_module:
             self.api_arbitrary()
         else:
             self.api_get_all()
+
+    def check_query(self, check):
+        if type(self.query[check]) is not list:
+            self.errors("invalid 'query':'%s' syntax: must be type list" % check)
+        self.query_op = ["is", "not", "more", "less", "in"]
+        for w in self.query[check]:
+            for wk,wv in w.items():
+              if wk not in self.query["items"]:
+                  self.errors("invalid 'query':'%s' syntax: '%s' not in 'items': '%s'" % (check, wk, self.query["items"]))
+              for kwv in wv.keys():
+                  if kwv not in self.query_op:
+                    self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator" % (check, kwv, w))
 
     def list_to_dic(self, ldict):
         return convert_list_to_dictionary(ldict, skip_empty_values=True, require_assignment=True)
@@ -365,37 +367,37 @@ class ROS_api_module:
 
     def api_query(self):
         keys = {}
-        for k in self.query:
-            if k == 'id':
-                self.errors("'%s' must be '.id'" % k)
+        for k in self.query['items']:
             keys[k] = Key(k)
+        where_args = False
         try:
-            if self.where_list:
-                where_args = False
-                for wl in self.where_list:
-                    if wl[1] == '==':
-                        if where_args:
-                            where_args = where_args + (keys[wl[0]] == wl[2],)
-                        else:
-                            where_args = (keys[wl[0]] == wl[2],)
-                    elif wl[1] == '!=':
-                        if where_args:
-                            where_args = where_args + (keys[wl[0]] != wl[2],)
-                        else:
-                            where_args = (keys[wl[0]] != wl[2],)
-                    elif wl[1] == '>':
-                        if where_args:
-                            where_args = where_args + (keys[wl[0]] > wl[2],)
-                        else:
-                            where_args = (keys[wl[0]] > wl[2],)
-                    elif wl[1] == '<':
-                        if where_args:
-                            where_args = where_args + (keys[wl[0]] < wl[2],)
-                        else:
-                            where_args = (keys[wl[0]] < wl[2],)
-                    else:
-                        self.errors("'%s' is not operator for 'WHERE %s'"
-                                    % (wl[1],' '.join(wl)))
+            if self.query['where']:
+                for wl in self.query['where']:
+                    for k,v in wl.items():
+                        for kv,vv in v.items():
+                            if kv == 'is':
+                                if where_args:
+                                    where_args = where_args + (keys[k] == vv,)
+                                else:
+                                    where_args = (keys[k] == vv,)
+                            elif kv == 'not':
+                                if where_args:
+                                    where_args = where_args + (keys[k] != vv,)
+                                else:
+                                    where_args = (keys[k] != vv,)
+                            elif kv == 'less':
+                                if where_args:
+                                    where_args = where_args + (keys[k] < vv,)
+                                else:
+                                    where_args = (keys[k] < vv,)
+                            elif kv == 'more':
+                                if where_args:
+                                    where_args = where_args + (keys[k] > vv,)
+                                else:
+                                    where_args = (keys[k] > vv,)
+                            else:
+                                self.errors("'%s' is not operator for 'where %s'"
+                                            % (kv,wl))
                 select = self.api_path.select(*keys).where(*where_args)
             else:
                 select = self.api_path.select(*keys)
