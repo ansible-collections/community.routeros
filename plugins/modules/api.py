@@ -232,7 +232,7 @@ import traceback
 
 try:
     from librouteros.exceptions import LibRouterosError
-    from librouteros.query import Key
+    from librouteros.query import Key, Or
 except Exception:
     # Handled in api module_utils
     pass
@@ -246,14 +246,15 @@ class ROS_api_module:
             remove=dict(type='str'),
             update=dict(type='str'),
             cmd=dict(type='str'),
-            query=dict(type='dict'),
+            query=dict(type='str'),
+            extended_query=dict(type='dict'),
         )
         module_args.update(api_argument_spec())
 
         self.module = AnsibleModule(argument_spec=module_args,
                                     supports_check_mode=False,
                                     mutually_exclusive=(('add', 'remove', 'update',
-                                                         'cmd', 'query'),),)
+                                                         'cmd', 'query', 'extended_query'),),)
 
         check_has_library(self.module)
 
@@ -265,23 +266,12 @@ class ROS_api_module:
         self.update = self.module.params['update']
         self.arbitrary = self.module.params['cmd']
 
+        self.where = None
+        self.query = self.module.params['query']
+        self.extended_query = self.module.params['extended_query']
+
         self.result = dict(
             message=[])
-
-        self.query = self.module.params['query']
-        if self.query:
-            if "items" not in self.query.keys():
-                self.errors("invalid 'query' syntax: missing 'items'")
-            if type(self.query["items"]) is not list:
-                self.errors("invalid 'query':'items' syntax: must be type list")
-            if "id" in self.query['items']:
-                self.errors("invalid 'query':'items' syntax: 'id' must be '.id'")
-            if "or" in self.query.keys() and "where" not in self.query.keys():
-                self.errors("invalid 'query':'or' syntax: missing 'where'")
-            if "where" in self.query.keys():
-               self.check_query('where')
-            if "or" in self.query.keys():
-               self.check_query("or")
 
         # create api base path
         self.api_path = self.api_add_path(self.api, self.path)
@@ -294,23 +284,70 @@ class ROS_api_module:
         elif self.update:
             self.api_update()
         elif self.query:
+            self.check_query()
             self.api_query()
+        elif self.extended_query:
+            self.check_extended_query()
+            self.api_extended_query()
         elif self.arbitrary:
             self.api_arbitrary()
         else:
             self.api_get_all()
 
-    def check_query(self, check):
-        if type(self.query[check]) is not list:
-            self.errors("invalid 'query':'%s' syntax: must be type list" % check)
-        self.query_op = ["is", "not", "more", "less", "in"]
-        for w in self.query[check]:
-            for wk,wv in w.items():
-              if wk not in self.query["items"]:
-                  self.errors("invalid 'query':'%s' syntax: '%s' not in 'items': '%s'" % (check, wk, self.query["items"]))
-              for kwv in wv.keys():
-                  if kwv not in self.query_op:
-                    self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator" % (check, kwv, w))
+    def check_query(self):
+        where_index = self.query.find(' WHERE ')
+        if where_index < 0:
+            self.query = self.split_params(self.query)
+        else:
+            where = self.query[where_index + len(' WHERE '):]
+            self.query = self.split_params(self.query[:where_index])
+            # where must be of the format '<attribute> <operator> <value>'
+            m = re.match(r'^\s*([^ ]+)\s+([^ ]+)\s+(.*)$', where)
+            if not m:
+                self.errors("invalid syntax for 'WHERE %s'" % where)
+            try:
+                self.where = [
+                    m.group(1),  # attribute
+                    m.group(2),  # operator
+                    parse_argument_value(m.group(3).rstrip())[0],  # value
+                ]
+            except ParseError as exc:
+                self.errors("invalid syntax for 'WHERE %s': %s" % (where, exc))
+        try:
+            idx = self.query.index('WHERE')
+            self.where = self.query[idx + 1:]
+            self.query = self.query[:idx]
+        except ValueError:
+            # Raised when WHERE has not been found
+            pass
+
+    def check_extended_query(self):
+        if "items" not in self.extended_query.keys():
+            self.errors("invalid 'query' syntax: missing 'items'")
+        if type(self.extended_query["items"]) is not list:
+            self.errors("invalid 'query':'items' syntax: must be type list")
+        if "id" in self.extended_query['items']:
+            self.errors("invalid 'query':'items' syntax: 'id' must be '.id'")
+        if "where" in self.extended_query.keys():
+            check = "where"
+            if type(self.extended_query[check]) is not list:
+                self.errors("invalid 'query':'%s' syntax: must be type list" % check)
+            self.query_op = ["is", "not", "more", "less", "or", "in", "==", "!=", ">", "<"]
+            for w in self.extended_query[check]:
+                for wk,wv in w.items():
+                    if wk not in self.extended_query["items"]:
+                        self.errors("invalid 'query':'%s' syntax: '%s' not in 'items': '%s'" % (check, wk, self.extended_query["items"]))
+                    for kwv,wvv in wv.items():
+                        if kwv == "or":
+                            continue
+                            #or_index = self.extended_query[check].find(wk['or'])
+                            #self.errors("%s %s" % (or_index, self.query[check].find(wv['or']))
+                            #self.check_query(wk)
+                            #if type(wvv) is not list:
+                            #    self.errors("invalid 'query':'%s':'%s':'or':'%s' syntax: must be type list" % (check, wk, wvv))
+    
+                        if kwv not in self.query_op:
+                            self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator" % (check, kwv, w))
 
     def list_to_dic(self, ldict):
         return convert_list_to_dictionary(ldict, skip_empty_values=True, require_assignment=True)
@@ -367,45 +404,116 @@ class ROS_api_module:
 
     def api_query(self):
         keys = {}
-        for k in self.query['items']:
+        for k in self.query:
+            if 'id' in k and k != ".id":
+                self.errors("'%s' must be '.id'" % k)
             keys[k] = Key(k)
-        where_args = False
         try:
-            if self.query['where']:
-                for wl in self.query['where']:
-                    for k,v in wl.items():
-                        for kv,vv in v.items():
-                            if kv == 'is':
-                                if where_args:
-                                    where_args = where_args + (keys[k] == vv,)
-                                else:
-                                    where_args = (keys[k] == vv,)
-                            elif kv == 'not':
-                                if where_args:
-                                    where_args = where_args + (keys[k] != vv,)
-                                else:
-                                    where_args = (keys[k] != vv,)
-                            elif kv == 'less':
-                                if where_args:
-                                    where_args = where_args + (keys[k] < vv,)
-                                else:
-                                    where_args = (keys[k] < vv,)
-                            elif kv == 'more':
-                                if where_args:
-                                    where_args = where_args + (keys[k] > vv,)
-                                else:
-                                    where_args = (keys[k] > vv,)
-                            else:
-                                self.errors("'%s' is not operator for 'where %s'"
-                                            % (kv,wl))
-                select = self.api_path.select(*keys).where(*where_args)
+            if self.where:
+                if self.where[1] == '==':
+                    select = self.api_path.select(*keys).where(keys[self.where[0]] == self.where[2])
+                elif self.where[1] == '!=':
+                    select = self.api_path.select(*keys).where(keys[self.where[0]] != self.where[2])
+                elif self.where[1] == '>':
+                    select = self.api_path.select(*keys).where(keys[self.where[0]] > self.where[2])
+                elif self.where[1] == '<':
+                    select = self.api_path.select(*keys).where(keys[self.where[0]] < self.where[2])
+                else:
+                    self.errors("'%s' is not operator for 'where'"
+                                % self.where[1])
             else:
                 select = self.api_path.select(*keys)
             for row in select:
                 self.result['message'].append(row)
             if len(self.result['message']) < 1:
                 msg = "no results for '%s 'query' %s" % (' '.join(self.path),
-                                                        self.module.params['query'])
+                                                         ' '.join(self.query))
+                if self.where:
+                    msg = msg + ' WHERE %s' % ' '.join(self.where)
+                self.result['message'].append(msg)
+            self.return_result(False)
+        except LibRouterosError as e:
+            self.errors(e)
+
+    def build_api_extended_query(self, build_query):
+        where_args = False
+        for wl in build_query:
+            for k,v in wl.items():
+                for kv,vv in v.items():
+                    # check 'or' items
+                    if kv == 'or':
+                        where_or_args = False
+                        for ivv in vv:
+                            for kivv,vivv in ivv.items():
+                                if kivv == 'is' or kivv == '==':
+                                    if where_or_args:
+                                        where_or_args = where_or_args + (self.query_keys[k] == vivv,)
+                                    else:
+                                        where_or_args = (self.query_keys[k] == vivv,)
+                                elif kivv == 'not' or kivv == '!=':
+                                    if where_or_args:
+                                        where_or_args = where_or_args + (self.query_keys[k] != vivv,)
+                                    else:
+                                        where_or_args = (self.query_keys[k] != vivv,)
+                                elif kivv == 'less' or kivv == '<':
+                                    if where_or_args:
+                                        where_or_args = where_or_args + (self.query_keys[k] < vivv,)
+                                    else:
+                                        where_or_args = (self.query_keys[k] < vivv,)
+                                elif kivv == 'more' or kivv == '>':
+                                    if where_or_args:
+                                        where_or_args = where_or_args + (self.query_keys[k] > vivv,)
+                                    else:
+                                        where_or_args = (self.query_keys[k] > vivv,)
+                                else:
+                                    self.errors("'%s' is not operator for '%s'"
+                                                % (kivv, ivv))
+                        if where_args:
+                            where_args = where_args + (Or(*where_or_args),)
+                        else:
+                            where_args = (Or(*where_or_args),)
+                    # check top itmes
+                    elif kv == 'is' or kv == '==':
+                        if where_args:
+                            where_args = where_args + (self.query_keys[k] == vv,)
+                        else:
+                            where_args = (self.query_keys[k] == vv,)
+                    elif kv == 'not'or kv == '!=':
+                        if where_args:
+                            where_args = where_args + (self.query_keys[k] != vv,)
+                        else:
+                            where_args = (self.query_keys[k] != vv,)
+                    elif kv == 'less'or kv == '<':
+                        if where_args:
+                            where_args = where_args + (self.query_keys[k] < vv,)
+                        else:
+                            where_args = (self.query_keys[k] < vv,)
+                    elif kv == 'more' or kv == '>':
+                        if where_args:
+                            where_args = where_args + (self.query_keys[k] > vv,)
+                        else:
+                            where_args = (self.query_keys[k] > vv,)
+                    else:
+                        self.errors("'%s' is not operator for '%s'"
+                                    % (kv,wl))
+        return where_args
+
+    def api_extended_query(self):
+        self.query_keys = {}
+        for k in self.extended_query['items']:
+            self.query_keys[k] = Key(k)
+        where_args = False
+        try:
+            if self.extended_query['where']:
+                where_args = self.build_api_extended_query(self.extended_query['where'])
+                select = self.api_path.select(*self.query_keys).where(*where_args)
+            else:
+                select = self.api_path.select(*self.query_keys)
+            for row in select:
+                self.result['message'].append(row)
+            if len(self.result['message']) < 1:
+                msg = "no results for '%s 'query' %s" % (' '.join(self.path),
+                                                        self.module.params['extended_query'])
                 self.result['message'].append(msg)
             self.return_result(False)
         except LibRouterosError as e:
