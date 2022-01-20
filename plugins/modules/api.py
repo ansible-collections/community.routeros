@@ -52,7 +52,7 @@ options:
     description:
       - Query given path for selected query attributes from RouterOS aip.
       - WHERE is key word which extend query. WHERE format is key operator value - with spaces.
-      - WHERE valid operators are C(==), C(!=), C(>), C(<).
+      - WHERE valid operators are C(==) or C(is), C(!=) or C(not), C(>) or C(more), C(<) or C(less).
       - Example path C(ip address) and query C(.id address) will return only C(.id) and C(address) for all items in C(ip address) path.
       - Example path C(ip address) and query C(.id address WHERE address == 1.1.1.3/32).
         will return only C(.id) and C(address) for items in C(ip address) path, where address is eq to 1.1.1.3/32.
@@ -60,6 +60,10 @@ options:
         return only interfaces C(mtu,name) where mtu is bigger than 1400.
       - Equivalent in RouterOS CLI C(/interface print where mtu > 1400).
     type: str
+  extended_query:
+    description:
+      - TODO
+    type: dict
   cmd:
     description:
       - Execute any/arbitrary command in selected path, after the command we can add C(.id).
@@ -322,6 +326,8 @@ class ROS_api_module:
             pass
 
     def check_extended_query(self):
+        self.query_op_all = ["is", "not", "more", "less", "or", "in", "==", "!=", ">", "<"]
+        self.query_op_or = ["is", "not", "more", "less", "==", "!=", ">", "<"]
         if "items" not in self.extended_query.keys():
             self.errors("invalid 'query' syntax: missing 'items'")
         if type(self.extended_query["items"]) is not list:
@@ -332,22 +338,27 @@ class ROS_api_module:
             check = "where"
             if type(self.extended_query[check]) is not list:
                 self.errors("invalid 'query':'%s' syntax: must be type list" % check)
-            self.query_op = ["is", "not", "more", "less", "or", "in", "==", "!=", ">", "<"]
+            # we process nested list/dict structure
+            # for key,valu,item variables folow the loops.
+            # we start with 'w', for the next operation we add
+            # 'k' for key, 'v' for value, 'i' for item - at the end of the new variable
             for w in self.extended_query[check]:
                 for wk,wv in w.items():
                     if wk not in self.extended_query["items"]:
                         self.errors("invalid 'query':'%s' syntax: '%s' not in 'items': '%s'" % (check, wk, self.extended_query["items"]))
-                    for kwv,wvv in wv.items():
-                        if kwv == "or":
-                            continue
-                            #or_index = self.extended_query[check].find(wk['or'])
-                            #self.errors("%s %s" % (or_index, self.query[check].find(wv['or']))
-                            #self.check_query(wk)
-                            #if type(wvv) is not list:
-                            #    self.errors("invalid 'query':'%s':'%s':'or':'%s' syntax: must be type list" % (check, wk, wvv))
-    
-                        if kwv not in self.query_op:
-                            self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator" % (check, kwv, w))
+                    for wvk,wvv in wv.items():
+                        if wvk not in self.query_op_all:
+                            self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator" % (check, wvk, w))
+                        if wvk == "in":
+                            if type(wvv) is not list:
+                                self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list" % (check, wk, wvv))
+                        if wvk == "or":
+                            if type(wvv) is not list:
+                                self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list" % (check, wk, wvv))
+                            for wvvi in wvv:
+                                for wvvik,wvviv in wvvi.items():
+                                    if wvvik not in self.query_op_or:
+                                        self.errors("invalid 'query':'%s':'%s':'%s' '%s' is not a valid operator" % (check, wk, wvk, wvvik))
 
     def list_to_dic(self, ldict):
         return convert_list_to_dictionary(ldict, skip_empty_values=True, require_assignment=True)
@@ -410,13 +421,13 @@ class ROS_api_module:
             keys[k] = Key(k)
         try:
             if self.where:
-                if self.where[1] == '==':
+                if self.where[1] == '==' or self.where[1] == 'is':
                     select = self.api_path.select(*keys).where(keys[self.where[0]] == self.where[2])
-                elif self.where[1] == '!=':
+                elif self.where[1] == '!=' or self.where[1] == 'not':
                     select = self.api_path.select(*keys).where(keys[self.where[0]] != self.where[2])
-                elif self.where[1] == '>':
+                elif self.where[1] == '>' or self.where[1] == 'more':
                     select = self.api_path.select(*keys).where(keys[self.where[0]] > self.where[2])
-                elif self.where[1] == '<':
+                elif self.where[1] == '<' or self.where[1] == 'less':
                     select = self.api_path.select(*keys).where(keys[self.where[0]] < self.where[2])
                 else:
                     self.errors("'%s' is not operator for 'where'"
@@ -435,77 +446,59 @@ class ROS_api_module:
         except LibRouterosError as e:
             self.errors(e)
 
-    def build_api_extended_query(self, build_query):
-        where_args = False
-        for wl in build_query:
-            for k,v in wl.items():
-                for kv,vv in v.items():
-                    # check 'or' items
-                    if kv == 'or':
-                        where_or_args = False
-                        for ivv in vv:
-                            for kivv,vivv in ivv.items():
-                                if kivv == 'is' or kivv == '==':
-                                    if where_or_args:
-                                        where_or_args = where_or_args + (self.query_keys[k] == vivv,)
-                                    else:
-                                        where_or_args = (self.query_keys[k] == vivv,)
-                                elif kivv == 'not' or kivv == '!=':
-                                    if where_or_args:
-                                        where_or_args = where_or_args + (self.query_keys[k] != vivv,)
-                                    else:
-                                        where_or_args = (self.query_keys[k] != vivv,)
-                                elif kivv == 'less' or kivv == '<':
-                                    if where_or_args:
-                                        where_or_args = where_or_args + (self.query_keys[k] < vivv,)
-                                    else:
-                                        where_or_args = (self.query_keys[k] < vivv,)
-                                elif kivv == 'more' or kivv == '>':
-                                    if where_or_args:
-                                        where_or_args = where_or_args + (self.query_keys[k] > vivv,)
-                                    else:
-                                        where_or_args = (self.query_keys[k] > vivv,)
-                                else:
-                                    self.errors("'%s' is not operator for '%s'"
-                                                % (kivv, ivv))
-                        if where_args:
-                            where_args = where_args + (Or(*where_or_args),)
-                        else:
-                            where_args = (Or(*where_or_args),)
-                    # check top itmes
-                    elif kv == 'is' or kv == '==':
-                        if where_args:
-                            where_args = where_args + (self.query_keys[k] == vv,)
-                        else:
-                            where_args = (self.query_keys[k] == vv,)
-                    elif kv == 'not'or kv == '!=':
-                        if where_args:
-                            where_args = where_args + (self.query_keys[k] != vv,)
-                        else:
-                            where_args = (self.query_keys[k] != vv,)
-                    elif kv == 'less'or kv == '<':
-                        if where_args:
-                            where_args = where_args + (self.query_keys[k] < vv,)
-                        else:
-                            where_args = (self.query_keys[k] < vv,)
-                    elif kv == 'more' or kv == '>':
-                        if where_args:
-                            where_args = where_args + (self.query_keys[k] > vv,)
-                        else:
-                            where_args = (self.query_keys[k] > vv,)
-                    else:
-                        self.errors("'%s' is not operator for '%s'"
-                                    % (kv,wl))
-        return where_args
+    def build_api_extended_query(self, where_query, item, item_op, item_value):
+        if item_op == 'is' or item_op == '==':
+            return (self.query_keys[item] == item_value,)
+        elif item_op == 'not'or item_op == '!=':
+            return (self.query_keys[item] != item_value,)
+        elif item_op == 'less'or item_op == '<':
+            return (self.query_keys[item] < item_value,)
+        elif item_op == 'more' or item_op == '>':
+            return (self.query_keys[item] > item_value,)
+        else:
+            self.errors("'%s' is not operator for '%s'"
+                        % (item_value,where_query))
 
     def api_extended_query(self):
         self.query_keys = {}
         for k in self.extended_query['items']:
             self.query_keys[k] = Key(k)
-        where_args = False
         try:
             if self.extended_query['where']:
-                where_args = self.build_api_extended_query(self.extended_query['where'])
+                where_args = False
+                # we process nested list/dict structure
+                # for key,valu,item variables folow the loops.
+                # we start with 'w', for the next operation we add
+                # 'k' for key, 'v' for value, 'i' for item - at the end of the new variable
+                for w in self.extended_query['where']:
+                    for wk,wv in w.items():
+                        for wvk,wvv in wv.items():
+                            # check 'in' items
+                            if wvk == 'in':
+                                if where_args:
+                                    where_args = where_args + (self.query_keys[wk].In(*wvv),)
+                                else:
+                                    where_args = (self.query_keys[wk].In(*wvv),)
+                            # check 'or' items
+                            elif wvk == 'or':
+                               where_or_args = False
+                               for wvvi in wvv:
+                                   for wvvik,wvviv in wvvi.items():
+                                       if where_or_args:
+                                           where_or_args = where_or_args + self.build_api_extended_query(w, wk, wvvik, wvviv)
+                                       else:
+                                           where_or_args = self.build_api_extended_query(w, wk, wvvik, wvviv)
+                               if where_args:
+                                   where_args = where_args + (Or(*where_or_args),)
+                               else:
+                                   where_args = (Or(*where_or_args),)
+                            # check top itmes
+                            else:
+                                if where_args:
+                                    where_args = where_args + self.build_api_extended_query(w, wk, wvk, wvv)
+                                else:
+                                    where_args = self.build_api_extended_query(w, wk, wvk, wvv)
+
                 select = self.api_path.select(*self.query_keys).where(*where_args)
             else:
                 select = self.api_path.select(*self.query_keys)
