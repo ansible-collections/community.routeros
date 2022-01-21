@@ -330,37 +330,37 @@ class ROS_api_module:
         self.query_op_or = ["is", "not", "more", "less", "==", "!=", ">", "<"]
         if "items" not in self.extended_query.keys():
             self.errors("invalid 'query' syntax: missing 'items'")
-        if type(self.extended_query["items"]) is not list:
+        if not isinstance(self.extended_query["items"], list):
             self.errors("invalid 'query':'items' syntax: must be type list")
         if "id" in self.extended_query['items']:
             self.errors("invalid 'query':'items' syntax: 'id' must be '.id'")
         if "where" in self.extended_query.keys():
             check = "where"
-            if type(self.extended_query[check]) is not list:
+            if not isinstance(self.extended_query[check], list):
                 self.errors("invalid 'query':'%s' syntax: must be type list" % check)
             # we process nested list/dict structure
             # for key,valu,item variables folow the loops.
             # we start with 'w', for the next operation we add
             # 'k' for key, 'v' for value, 'i' for item - at the end of the new variable
             for w in self.extended_query[check]:
-                for wk,wv in w.items():
+                for wk, wv in w.items():
                     if wk not in self.extended_query["items"]:
                         self.errors("invalid 'query':'%s' syntax: '%s' not in 'items': '%s'"
                                     % (check, wk, self.extended_query["items"]))
-                    for wvk,wvv in wv.items():
+                    for wvk, wvv in wv.items():
                         if wvk not in self.query_op_all:
                             self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator"
                                         % (check, wvk, w))
                         if wvk == "in":
-                            if type(wvv) is not list:
+                            if not isinstance(wvv, list):
                                 self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list"
                                             % (check, wk, wvv))
                         if wvk == "or":
-                            if type(wvv) is not list:
+                            if not isinstance(wvv, list):
                                 self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list"
                                             % (check, wk, wvv))
                             for wvvi in wvv:
-                                for wvvik,wvviv in wvvi.items():
+                                for wvvik, wvviv in wvvi.items():
                                     if wvvik not in self.query_op_or:
                                         self.errors("invalid 'query':'%s':'%s':'%s' '%s' is not a valid operator"
                                                     % (check, wk, wvk, wvvik))
@@ -454,15 +454,15 @@ class ROS_api_module:
     def build_api_extended_query(self, where_query, item, item_op, item_value):
         if item_op == 'is' or item_op == '==':
             return (self.query_keys[item] == item_value,)
-        elif item_op == 'not'or item_op == '!=':
+        elif item_op == 'not' or item_op == '!=':
             return (self.query_keys[item] != item_value,)
-        elif item_op == 'less'or item_op == '<':
+        elif item_op == 'less' or item_op == '<':
             return (self.query_keys[item] < item_value,)
         elif item_op == 'more' or item_op == '>':
             return (self.query_keys[item] > item_value,)
         else:
             self.errors("'%s' is not operator for '%s'"
-                        % (item_value,where_query))
+                        % (item_value, where_query))
 
     def api_extended_query(self):
         self.query_keys = {}
@@ -476,8 +476,8 @@ class ROS_api_module:
                 # we start with 'w', for the next operation we add
                 # 'k' for key, 'v' for value, 'i' for item - at the end of the new variable
                 for w in self.extended_query['where']:
-                    for wk,wv in w.items():
-                        for wvk,wvv in wv.items():
+                    for wk, wv in w.items():
+                        for wvk, wvv in wv.items():
                             # check 'in' items
                             if wvk == 'in':
                                 if where_args:
@@ -486,18 +486,18 @@ class ROS_api_module:
                                     where_args = (self.query_keys[wk].In(*wvv),)
                             # check 'or' items
                             elif wvk == 'or':
-                               where_or_args = False
-                               for wvvi in wvv:
-                                   for wvvik,wvviv in wvvi.items():
-                                       if where_or_args:
-                                           where_or_args = where_or_args \
-                                                           + self.build_api_extended_query(w, wk, wvvik, wvviv)
-                                       else:
-                                           where_or_args = self.build_api_extended_query(w, wk, wvvik, wvviv)
-                               if where_args:
-                                   where_args = where_args + (Or(*where_or_args),)
-                               else:
-                                   where_args = (Or(*where_or_args),)
+                                where_or_args = False
+                                for wvvi in wvv:
+                                    for wvvik, wvviv in wvvi.items():
+                                        if where_or_args:
+                                            where_or_args = where_or_args \
+                                                             + self.build_api_extended_query(w, wk, wvvik, wvviv)
+                                        else:
+                                            where_or_args = self.build_api_extended_query(w, wk, wvvik, wvviv)
+                                if where_args:
+                                    where_args = where_args + (Or(*where_or_args),)
+                                else:
+                                    where_args = (Or(*where_or_args),)
                             # check top itmes
                             else:
                                 if where_args:
@@ -512,7 +512,7 @@ class ROS_api_module:
                 self.result['message'].append(row)
             if len(self.result['message']) < 1:
                 msg = "no results for '%s 'query' %s" % (' '.join(self.path),
-                                                        self.module.params['extended_query'])
+                                                         self.module.params['extended_query'])
                 self.result['message'].append(msg)
             self.return_result(False)
         except LibRouterosError as e:
