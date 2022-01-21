@@ -491,7 +491,7 @@ class ROS_api_module:
                                     for wvvik, wvviv in wvvi.items():
                                         if where_or_args:
                                             where_or_args = where_or_args \
-                                                             + self.build_api_extended_query(w, wk, wvvik, wvviv)
+                                                + self.build_api_extended_query(w, wk, wvvik, wvviv)
                                         else:
                                             where_or_args = self.build_api_extended_query(w, wk, wvvik, wvviv)
                                 if where_args:
