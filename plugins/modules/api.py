@@ -345,20 +345,25 @@ class ROS_api_module:
             for w in self.extended_query[check]:
                 for wk,wv in w.items():
                     if wk not in self.extended_query["items"]:
-                        self.errors("invalid 'query':'%s' syntax: '%s' not in 'items': '%s'" % (check, wk, self.extended_query["items"]))
+                        self.errors("invalid 'query':'%s' syntax: '%s' not in 'items': '%s'"
+                                    % (check, wk, self.extended_query["items"]))
                     for wvk,wvv in wv.items():
                         if wvk not in self.query_op_all:
-                            self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator" % (check, wvk, w))
+                            self.errors("invalid 'query':'%s' syntax: '%s' for '%s' is not a valid operator"
+                                        % (check, wvk, w))
                         if wvk == "in":
                             if type(wvv) is not list:
-                                self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list" % (check, wk, wvv))
+                                self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list"
+                                            % (check, wk, wvv))
                         if wvk == "or":
                             if type(wvv) is not list:
-                                self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list" % (check, wk, wvv))
+                                self.errors("invalid 'query':'%s':'%s':'%s' syntax: must be type list"
+                                            % (check, wk, wvv))
                             for wvvi in wvv:
                                 for wvvik,wvviv in wvvi.items():
                                     if wvvik not in self.query_op_or:
-                                        self.errors("invalid 'query':'%s':'%s':'%s' '%s' is not a valid operator" % (check, wk, wvk, wvvik))
+                                        self.errors("invalid 'query':'%s':'%s':'%s' '%s' is not a valid operator"
+                                                    % (check, wk, wvk, wvvik))
 
     def list_to_dic(self, ldict):
         return convert_list_to_dictionary(ldict, skip_empty_values=True, require_assignment=True)
@@ -485,7 +490,8 @@ class ROS_api_module:
                                for wvvi in wvv:
                                    for wvvik,wvviv in wvvi.items():
                                        if where_or_args:
-                                           where_or_args = where_or_args + self.build_api_extended_query(w, wk, wvvik, wvviv)
+                                           where_or_args = where_or_args \
+                                                           + self.build_api_extended_query(w, wk, wvvik, wvviv)
                                        else:
                                            where_or_args = self.build_api_extended_query(w, wk, wvvik, wvviv)
                                if where_args:
