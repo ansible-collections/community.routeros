@@ -12,7 +12,7 @@ author: "Egor Zaitsev (@heuels)"
 short_description: Collect facts from remote devices running MikroTik RouterOS
 description:
   - Collects a base set of device facts from a remote device that
-    is running RotuerOS.  This module prepends all of the
+    is running RouterOS.  This module prepends all of the
     base network fact keys with C(ansible_net_<fact>).  The facts
     module will always collect a base set of facts from the device
     and can enable or disable collection of additional facts.
