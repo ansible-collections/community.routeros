@@ -439,7 +439,7 @@ class ROS_api_module:
     def api_query(self):
         keys = {}
         for k in self.query:
-            if k == 'id' and k != ".id":
+            if k == 'id':
                 self.errors("'%s' must be '.id'" % k)
             keys[k] = Key(k)
         try:
