@@ -79,7 +79,7 @@ options:
     type: str
   query:
     description:
-      - Query given path for selected query attributes from RouterOS aip and return '.id'.
+      - Query given path for selected query attributes from RouterOS aip.
       - WHERE is key word which extend query. WHERE format is key operator value - with spaces.
       - WHERE valid operators are C(==), C(!=), C(>), C(<).
       - Example path C(ip address) and query C(.id address) will return only C(.id) and C(address) for all items in C(ip address) path.
@@ -439,7 +439,7 @@ class ROS_api_module:
     def api_query(self):
         keys = {}
         for k in self.query:
-            if 'id' in k and k != ".id":
+            if k == 'id' and k != ".id":
                 self.errors("'%s' must be '.id'" % k)
             keys[k] = Key(k)
         try:
