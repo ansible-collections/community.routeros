@@ -1,2 +1,2 @@
 bugfixes:
-  - "query - fix query function check for '.id' vs. 'id' arguments to not conflict with routeros arguments like 'identity'."
+  - "query - fix query function check for ``.id`` vs. ``id`` arguments to not conflict with routeros arguments like ``identity`` (https://github.com/ansible-collections/community.routeros/pull/68, https://github.com/ansible-collections/community.routeros/issues/67)."
