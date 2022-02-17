@@ -52,7 +52,7 @@ options:
     description:
       - Query given path for selected query attributes from RouterOS aip.
       - WHERE is key word which extend query. WHERE format is key operator value - with spaces.
-      - WHERE valid operators are C(==) or C(is), C(!=) or C(not), C(>) or C(more), C(<) or C(less).
+      - WHERE valid operators are C(==) or C(eq), C(!=) or C(not), C(>) or C(more), C(<) or C(less).
       - Example path C(ip address) and query C(.id address) will return only C(.id) and C(address) for all items in C(ip address) path.
       - Example path C(ip address) and query C(.id address WHERE address == 1.1.1.3/32).
         will return only C(.id) and C(address) for items in C(ip address) path, where address is eq to 1.1.1.3/32.
