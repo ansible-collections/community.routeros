@@ -35,16 +35,16 @@ jobs:
       # .../ansible_collections/community/routeros/
 
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ansible_collections/community/routeros
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           # it is just required to run that once as "ansible-test sanity" in the docker image
           # will run on all python versions it supports.
-          python-version: 3.8
+          python-version: '3.10'
 
       # Install the head of the given branch (devel, stable-2.10)
       - name: Install ansible-base (${{ matrix.ansible }})
@@ -92,7 +92,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ansible_collections/community/routeros
 
@@ -104,9 +104,9 @@ jobs:
         working-directory: ./ansible_collections/community/routeros
 
       - name: Set up Python ${{ matrix.ansible }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: '3.10'
 
       - name: Install ansible-base (${{ matrix.ansible }})
         run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
@@ -173,16 +173,18 @@ jobs:
 #
 #    steps:
 #      - name: Check out code
-#        uses: actions/checkout@v2
+#        uses: actions/checkout@v3
 #        with:
 #          path: ansible_collections/community/routeros
 #
-#      - name: Set up Python ${{ matrix.ansible }}
-#        uses: actions/setup-python@v2
+#      - name: Set up Python
+#        uses: actions/setup-python@v3
 #        with:
-#          python-version: 3.8
+#          # it is just required to run that once as "ansible-test integration" in the docker image
+#          # will run on all python versions it supports.
+#          python-version: '3.10'
 #
-#      - name: Install ansible-base (${{ matrix.ansible }})
+#      - name: Install ansible-core (${{ matrix.ansible }})
 #        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 #
 #      - name: Install collection dependencies
@@ -200,7 +202,7 @@ jobs:
 #        run: ansible-test coverage xml -v --requirements --group-by command --group-by version
 #        working-directory: ./ansible_collections/community/routeros
 #
-#      # See the reports at https://codecov.io/gh/ansible_collections/ansible-collections/community.routeros
+#      # See the reports at https://codecov.io/gh/ansible-collections/community.routeros
 #      - uses: codecov/codecov-action@v2
 #        with:
 #          fail_ci_if_error: false
