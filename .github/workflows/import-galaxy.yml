@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ./checkout
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: '3.10'
 
       - name: Install ansible-core
         run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
@@ -52,7 +52,7 @@ jobs:
         run: mkdir ./artifact && mv ./checkout/${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-*.tar.gz ./artifact
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-${{ github.sha }}
           path: ./artifact/
@@ -64,9 +64,9 @@ jobs:
       - build-collection
     steps:
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: '3.10'
 
       - name: Install ansible-core
         run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
@@ -75,7 +75,7 @@ jobs:
         run: pip install galaxy-importer --disable-pip-version-check
 
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-${{ github.sha }}
 
