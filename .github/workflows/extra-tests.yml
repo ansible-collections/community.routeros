@@ -6,10 +6,10 @@ on:
       - main
       - stable-*
   pull_request:
-  # Run CI once per day (at 06:00 UTC)
+  # Run CI once per day (at 05:15 UTC)
   # This ensures that even if there haven't been commits that we are still testing against latest version of ansible-test for each ansible-base version
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '15 5 * * *'
 env:
   NAMESPACE: community
   COLLECTION_NAME: routeros
