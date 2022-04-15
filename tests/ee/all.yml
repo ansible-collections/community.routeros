@@ -1,0 +1,13 @@
+- hosts: localhost
+  tasks:
+    - name: Find all roles
+      find:
+        paths:
+          - "{{ playbook_dir ~ '/roles/' }}"
+        file_type: directory
+        depth: 1
+      register: result
+    - name: Include all roles
+      include_role:
+        name: "{{ item }}"
+      loop: "{{ result.files | map(attribute='path') | map('regex_replace', '.*/', '') | sort }}"
