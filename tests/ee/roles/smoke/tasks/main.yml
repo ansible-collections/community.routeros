@@ -1,0 +1,35 @@
+---
+- name: Run api module
+  community.routeros.api:
+    username: foo
+    password: bar
+    hostname: localhost
+    path: ip address
+  ignore_errors: true
+  register: result
+
+- name: Validate result
+  assert:
+    that:
+      - result is failed
+      - "'error: [Errno 111] Connection refused' in result.msg"
+
+- name: Run command module
+  community.routeros.command:
+    commands:
+      - /ip address print
+  vars:
+    ansible_host: localhost
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: community.routeros.routeros
+    ansible_user: foo
+    ansible_ssh_pass: bar
+    ansible_ssh_port: 12349
+  ignore_errors: true
+  register: result
+
+- name: Validate result
+  assert:
+    that:
+      - result is failed
+      - "'Unable to connect to port 12349 ' in result.msg"

@@ -1,0 +1,59 @@
+---
+- name: "Test split filter"
+  assert:
+    that:
+      - "'' | community.routeros.split == []"
+      - "'foo bar' | community.routeros.split == ['foo', 'bar']"
+      - >
+        'foo bar="a b c"' | community.routeros.split == ['foo', 'bar=a b c']
+
+- name: "Test split filter error handling"
+  set_fact:
+    test: >-
+      {{ 'a="' | community.routeros.split }}
+  ignore_errors: true
+  register: result
+
+- name: "Verify split filter error handling"
+  assert:
+    that:
+      - >-
+        result.msg == "Unexpected end of string during escaped parameter"
+
+- name: "Test quote_argument filter"
+  assert:
+    that:
+      - >
+        'a=' | community.routeros.quote_argument == 'a=""'
+      - >
+        'a=b' | community.routeros.quote_argument == 'a=b'
+      - >
+        'a=b c' | community.routeros.quote_argument == 'a="b c"'
+      - >
+        'a=""' | community.routeros.quote_argument == 'a="\\"\\""'
+
+- name: "Test quote_argument_value filter"
+  assert:
+    that:
+      - >
+        '' | community.routeros.quote_argument_value == '""'
+      - >
+        'foo' | community.routeros.quote_argument_value == 'foo'
+      - >
+        '"foo bar"' | community.routeros.quote_argument_value == '"\\"foo bar\\""'
+
+- name: "Test join filter"
+  assert:
+    that:
+      - >
+        ['a=', 'b=c d'] | community.routeros.join == 'a="" b="c d"'
+
+- name: "Test list_to_dict filter"
+  assert:
+    that:
+      - >
+        ['a=', 'b=c'] | community.routeros.list_to_dict == {'a': '', 'b': 'c'}
+      - >
+        ['a=', 'b=c'] | community.routeros.list_to_dict(skip_empty_values=True) == {'b': 'c'}
+      - >
+        ['a', 'b=c'] | community.routeros.list_to_dict(require_assignment=False) == {'a': none, 'b': 'c'}
