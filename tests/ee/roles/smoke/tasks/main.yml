@@ -32,4 +32,4 @@
   assert:
     that:
       - result is failed
-      - "'Unable to connect to port 12349 ' in result.msg"
+      - "'Unable to connect to port 12349 ' in result.msg or 'ssh connect failed: Connection refused' in result.msg"
