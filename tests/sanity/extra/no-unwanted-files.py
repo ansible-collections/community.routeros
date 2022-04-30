@@ -6,6 +6,7 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 import os
+import os.path
 import sys
 
 
@@ -26,6 +27,11 @@ def main():
     skip_directories = (
     )
 
+    yaml_directories = (
+        'plugins/test/',
+        'plugins/filter/',
+    )
+
     for path in paths:
         if path in skip_paths:
             continue
@@ -33,7 +39,15 @@ def main():
         if any(path.startswith(skip_directory) for skip_directory in skip_directories):
             continue
 
+        if os.path.islink(path):
+            print('%s: is a symbolic link' % (path, ))
+        elif not os.path.isfile(path):
+            print('%s: is not a regular file' % (path, ))
+
         ext = os.path.splitext(path)[1]
+
+        if ext in ('.yml', ) and any(path.startswith(yaml_directory) for yaml_directory in yaml_directories):
+            continue
 
         if ext not in allowed_extensions:
             print('%s: extension must be one of: %s' % (path, ', '.join(allowed_extensions)))
