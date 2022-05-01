@@ -13,43 +13,14 @@ module: api
 author: "Nikolay Dachev (@NikolayDachev)"
 short_description: Ansible module for RouterOS API
 description:
-  - Ansible module for RouterOS API with python librouteros.
-  - This module can add, remove, update, query and execute arbitrary command in routeros via API.
+  - Ansible module for RouterOS API with the Python C(librouteros) library.
+  - This module can add, remove, update, query and execute arbitrary command in RouterOS via API.
 notes:
   - I(add), I(remove), I(update), I(cmd) and I(query) are mutually exclusive.
   - I(check_mode) is not supported.
-requirements:
-  - librouteros
-  - Python >= 3.6 (for librouteros)
+extends_documentation_fragment:
+  - community.routeros.api
 options:
-  hostname:
-    description:
-      - RouterOS hostname API.
-    required: true
-    type: str
-  username:
-    description:
-      - RouterOS login user.
-    required: true
-    type: str
-  password:
-    description:
-      - RouterOS user password.
-    required: true
-    type: str
-  tls:
-    description:
-      - If is set TLS will be used for RouterOS API connection.
-    required: false
-    type: bool
-    default: false
-    aliases:
-      - ssl
-  port:
-    description:
-      - RouterOS api port. If I(tls) is set, port will apply to TLS/SSL connection.
-      - Defaults are C(8728) for the HTTP API, and C(8729) for the HTTPS API.
-    type: int
   path:
     description:
       - Main path for all other arguments.
@@ -95,33 +66,7 @@ options:
       - Example path C(system script) and cmd C(run .id=*03) is equivalent in RouterOS CLI C(/system script run number=0).
       - Example path C(ip address) and cmd C(print) is equivalent in RouterOS CLI C(/ip address print).
     type: str
-  validate_certs:
-    description:
-      - Set to C(false) to skip validation of TLS certificates.
-      - See also I(validate_cert_hostname). Only used when I(tls=true).
-      - B(Note:) instead of simply deactivating certificate validations to "make things work",
-        please consider creating your own CA certificate and using it to sign certificates used
-        for your router. You can tell the module about your CA certificate with the I(ca_path)
-        option.
-    type: bool
-    default: true
-    version_added: 1.2.0
-  validate_cert_hostname:
-    description:
-      - Set to C(true) to validate hostnames in certificates.
-      - See also I(validate_certs). Only used when I(tls=true) and I(validate_certs=true).
-    type: bool
-    default: false
-    version_added: 1.2.0
-  ca_path:
-    description:
-      - PEM formatted file that contains a CA certificate to be used for certificate validation.
-      - See also I(validate_cert_hostname). Only used when I(tls=true) and I(validate_certs=true).
-    type: path
-    version_added: 1.2.0
 seealso:
-  - ref: ansible_collections.community.routeros.docsite.api-guide
-    description: How to connect to RouterOS devices with the RouterOS API
   - ref: ansible_collections.community.routeros.docsite.quoting
     description: How to quote and unquote commands and arguments
 '''
