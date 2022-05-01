@@ -360,7 +360,13 @@ class Interfaces(FactsBase):
             if family not in self.facts['interfaces'][key]:
                 self.facts['interfaces'][key][family] = []
             addr, subnet = value['address'].split('/')
-            ip = dict(address=addr.strip(), subnet=subnet.strip())
+            subset = subnet.strip()
+            # Try to convert subnet to an integer
+            try:
+                subnet = int(subnet)
+            except Exception:
+                pass
+            ip = dict(address=addr.strip(), subnet=subset)
             self.add_ip_address(addr.strip(), family)
             self.facts['interfaces'][key][family].append(ip)
 
