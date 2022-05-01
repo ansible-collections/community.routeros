@@ -21,10 +21,10 @@ options:
     description:
       - When supplied, this argument will restrict the facts collected
         to a given subset.  Possible values for this argument include
-        C(all), C(hardware), C(config), and C(interfaces).  Can specify a list of
-        values to include a larger subset.  Values can also be used
-        with an initial C(!) to specify that a specific subset should
-        not be collected.
+        C(all), C(hardware), C(config), C(interfaces), and C(routing).
+      - Can specify a list of values to include a larger subset.
+        Values can also be used with an initial C(!) to specify that a
+        specific subset should not be collected.
     required: false
     default: '!config'
     type: list
