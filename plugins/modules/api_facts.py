@@ -233,8 +233,6 @@ class FactsBase(object):
                     path=' '.join(path),
                     error=to_native(e),
                 ))
-            import q
-            q.q(path, str(result))
             self.responses.append(result)
 
     def run(self, cmd):
@@ -360,13 +358,13 @@ class Interfaces(FactsBase):
             if family not in self.facts['interfaces'][key]:
                 self.facts['interfaces'][key][family] = []
             addr, subnet = value['address'].split('/')
-            subset = subnet.strip()
+            subnet = subnet.strip()
             # Try to convert subnet to an integer
             try:
                 subnet = int(subnet)
             except Exception:
                 pass
-            ip = dict(address=addr.strip(), subnet=subset)
+            ip = dict(address=addr.strip(), subnet=subnet)
             self.add_ip_address(addr.strip(), family)
             self.facts['interfaces'][key][family].append(ip)
 
