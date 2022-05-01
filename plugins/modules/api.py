@@ -220,58 +220,44 @@ from ansible_collections.community.routeros.plugins.module_utils.quoting import 
     split_routeros_command,
 )
 
+from ansible_collections.community.routeros.plugins.module_utils.api import (
+    api_argument_spec,
+    check_has_library,
+    create_api,
+)
+
 import re
 import ssl
 import traceback
 
-LIB_IMP_ERR = None
 try:
-    from librouteros import connect
     from librouteros.exceptions import LibRouterosError
     from librouteros.query import Key
-    HAS_LIB = True
-except Exception as e:
-    HAS_LIB = False
-    LIB_IMP_ERR = traceback.format_exc()
+except Exception:
+    # Handled in api module_utils
+    pass
 
 
 class ROS_api_module:
     def __init__(self):
         module_args = dict(
-            username=dict(type='str', required=True),
-            password=dict(type='str', required=True, no_log=True),
-            hostname=dict(type='str', required=True),
-            port=dict(type='int'),
-            tls=dict(type='bool', default=False, aliases=['ssl']),
             path=dict(type='str', required=True),
             add=dict(type='str'),
             remove=dict(type='str'),
             update=dict(type='str'),
             cmd=dict(type='str'),
             query=dict(type='str'),
-            validate_certs=dict(type='bool', default=True),
-            validate_cert_hostname=dict(type='bool', default=False),
-            ca_path=dict(type='path'),
         )
+        module_args.update(api_argument_spec())
 
         self.module = AnsibleModule(argument_spec=module_args,
                                     supports_check_mode=False,
                                     mutually_exclusive=(('add', 'remove', 'update',
                                                          'cmd', 'query'),),)
 
-        if not HAS_LIB:
-            self.module.fail_json(msg=missing_required_lib("librouteros"),
-                                  exception=LIB_IMP_ERR)
+        check_has_library(self.module)
 
-        self.api = self.ros_api_connect(self.module.params['username'],
-                                        self.module.params['password'],
-                                        self.module.params['hostname'],
-                                        self.module.params['port'],
-                                        self.module.params['tls'],
-                                        self.module.params['validate_certs'],
-                                        self.module.params['validate_cert_hostname'],
-                                        self.module.params['ca_path'],
-                                        )
+        self.api = create_api(self.module)
 
         self.path = self.module.params['path'].split()
         self.add = self.module.params['add']
@@ -441,49 +427,6 @@ class ROS_api_module:
             self.return_result(False, False)
         self.result['message'].append("%s" % e)
         self.return_result(False, False)
-
-    def ros_api_connect(self, username, password, host, port, use_tls, validate_certs, validate_cert_hostname, ca_path):
-        # connect to routeros api
-        conn_status = {"connection": {"username": username,
-                                      "hostname": host,
-                                      "port": port,
-                                      "ssl": use_tls,
-                                      "status": "Connected"}}
-        try:
-            if use_tls:
-                if not port:
-                    port = 8729
-                    conn_status["connection"]["port"] = port
-                ctx = ssl.create_default_context(cafile=ca_path)
-                wrap_context = ctx.wrap_socket
-                if not validate_certs:
-                    ctx.check_hostname = False
-                    ctx.verify_mode = ssl.CERT_NONE
-                elif not validate_cert_hostname:
-                    ctx.check_hostname = False
-                else:
-                    # Since librouteros doesn't pass server_hostname,
-                    # we have to do this ourselves:
-                    def wrap_context(*args, **kwargs):
-                        kwargs.pop('server_hostname', None)
-                        return ctx.wrap_socket(*args, server_hostname=host, **kwargs)
-                api = connect(username=username,
-                              password=password,
-                              host=host,
-                              ssl_wrapper=wrap_context,
-                              port=port)
-            else:
-                if not port:
-                    port = 8728
-                    conn_status["connection"]["port"] = port
-                api = connect(username=username,
-                              password=password,
-                              host=host,
-                              port=port)
-        except Exception as e:
-            conn_status["connection"]["status"] = "error: %s" % e
-            self.module.fail_json(msg=to_native([conn_status]))
-        return api
 
 
 def main():
