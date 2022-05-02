@@ -130,11 +130,16 @@ class TestRouterosApiModule(ModuleTestCase):
         self.module = api
         self.module.LibRouterosError = FakeLibRouterosError
         self.module.connect = MagicMock(new=fake_ros_api)
+        self.patch_create_api = patch('ansible_collections.community.routeros.plugins.modules.api.create_api', MagicMock(new=fake_ros_api))
+        self.patch_create_api.start()
         self.module.Key = MagicMock(new=Key)
         self.config_module_args = {"username": "admin",
                                    "password": "pаss",
                                    "hostname": "127.0.0.1",
                                    "path": "interface bridge"}
+
+    def tearDown(self):
+        self.patch_create_api.stop()
 
     def test_module_fail_when_required_args_missing(self):
         with self.assertRaises(AnsibleFailJson) as exc:

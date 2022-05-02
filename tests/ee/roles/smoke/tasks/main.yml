@@ -12,7 +12,7 @@
   assert:
     that:
       - result is failed
-      - "'error: [Errno 111] Connection refused' in result.msg"
+      - "'Error while connecting: [Errno 111] Connection refused' == result.msg"
 
 - name: Run command module
   community.routeros.command:

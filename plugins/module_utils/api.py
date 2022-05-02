@@ -27,11 +27,10 @@ except Exception as e:
 
 def check_has_library(module):
     if not HAS_LIB:
-        self.module.fail_json(
+        module.fail_json(
             msg=missing_required_lib('librouteros'),
             exception=LIB_IMP_ERR,
         )
-    pass
 
 
 def api_argument_spec():

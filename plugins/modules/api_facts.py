@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
 ---
-module: facts
+module: api_facts
 author:
     - "Egor Zaitsev (@heuels)"
     - "Nikolay Dachev (@NikolayDachev)"
@@ -208,7 +208,6 @@ except Exception:
     pass
 
 
-
 class FactsBase(object):
 
     COMMANDS = []
@@ -234,9 +233,6 @@ class FactsBase(object):
                     error=to_native(e),
                 ))
             self.responses.append(result)
-
-    def run(self, cmd):
-        return run_commands(self.module, commands=cmd, check_rc=False)
 
 
 class Default(FactsBase):
