@@ -197,18 +197,20 @@ class FactsBase(object):
     def populate(self):
         self.responses = []
         for path in self.COMMANDS:
-            api_path = self.api.path()
-            for part in path:
-                api_path = api_path.join(part)
-            try:
-                result = list(api_path)
-            except LibRouterosError as e:
-                result = []
-                self.module.warn('Error while querying path {path}: {error}'.format(
-                    path=' '.join(path),
-                    error=to_native(e),
-                ))
-            self.responses.append(result)
+            self.responses.append(self.query_path(path))
+
+    def query_path(self, path):
+        api_path = self.api.path()
+        for part in path:
+            api_path = api_path.join(part)
+        try:
+            return list(api_path)
+        except LibRouterosError as e:
+            self.module.warn('Error while querying path {path}: {error}'.format(
+                path=' '.join(path),
+                error=to_native(e),
+            ))
+            return []
 
 
 class Default(FactsBase):
@@ -223,38 +225,17 @@ class Default(FactsBase):
         super(Default, self).populate()
         data = self.responses[0]
         if data:
-            self.facts['hostname'] = self.parse_hostname(data[0])
+            self.facts['hostname'] = data[0].get('name')
         data = self.responses[1]
         if data:
-            self.facts['version'] = self.parse_version(data[0])
-            self.facts['arch'] = self.parse_arch(data[0])
-            self.facts['uptime'] = self.parse_uptime(data[0])
-            self.facts['cpu_load'] = self.parse_cpu_load(data[0])
+            self.facts['version'] = data[0].get('version')
+            self.facts['arch'] = data[0].get('architecture-name')
+            self.facts['uptime'] = data[0].get('uptime')
+            self.facts['cpu_load'] = data[0].get('cpu-load')
         data = self.responses[2]
         if data:
-            self.facts['model'] = self.parse_model(data[0])
-            self.facts['serialnum'] = self.parse_serialnum(data[0])
-
-    def parse_hostname(self, data):
-        return data.get('name')
-
-    def parse_version(self, data):
-        return data.get('version')
-
-    def parse_model(self, data):
-        return data.get('model')
-
-    def parse_arch(self, data):
-        return data.get('architecture-name')
-
-    def parse_uptime(self, data):
-        return data.get('uptime')
-
-    def parse_cpu_load(self, data):
-        return data.get('cpu-load')
-
-    def parse_serialnum(self, data):
-        return data.get('serial-number')
+            self.facts['model'] = data[0].get('model')
+            self.facts['serialnum'] = data[0].get('serial-number')
 
 
 class Hardware(FactsBase):
@@ -384,112 +365,40 @@ class Routing(FactsBase):
         self.facts['ospf_neighbor'] = {}
         data = self.responses[0]
         if data:
-            peer = self.parse_bgp_peer(data)
-            self.populate_bgp_peer(peer)
+            peer = self.parse(data, 'name')
+            self.populate_result('bgp_peer', peer)
         data = self.responses[1]
         if data:
-            vpnv4 = self.parse_vpnv4_route(data)
-            self.populate_vpnv4_route(vpnv4)
+            vpnv4 = self.parse(data, 'interface')
+            self.populate_result('bgp_vpnv4_route', vpnv4)
         data = self.responses[2]
         if data:
-            instance = self.parse_instance(data)
-            self.populate_bgp_instance(instance)
+            instance = self.parse(data, 'name')
+            self.populate_result('bgp_instance', instance)
         data = self.responses[3]
         if data:
-            route = self.parse_route(data)
-            self.populate_route(route)
+            route = self.parse(data, 'routing-mark', fallback='main')
+            self.populate_result('route', route)
         data = self.responses[4]
         if data:
-            instance = self.parse_instance(data)
-            self.populate_ospf_instance(instance)
+            instance = self.parse(data, 'name')
+            self.populate_result('ospf_instance', instance)
         data = self.responses[5]
         if data:
-            instance = self.parse_ospf_neighbor(data)
-            self.populate_ospf_neighbor(instance)
+            instance = self.parse(data, 'instance')
+            self.populate_result('ospf_neighbor', instance)
 
-    def parse_name(self, data):
-        return data.get('name')
-
-    def parse_interface(self, data):
-        return data.get('interface')
-
-    def parse_instance_name(self, data):
-        return data.get('instance')
-
-    def parse_routing_mark(self, data):
-        return data.get('routing-mark') or 'main'
-
-    def parse_bgp_peer(self, data):
+    def parse(self, data, key, fallback=None):
         facts = {}
         for line in data:
-            name = self.parse_name(line)
+            name = line.get(key) or fallback
             line.pop('.id', None)
             facts[name] = line
         return facts
 
-    def parse_instance(self, data):
-        facts = {}
-        for line in data:
-            name = self.parse_name(line)
-            line.pop('.id', None)
-            facts[name] = line
-        return facts
-
-    def parse_vpnv4_route(self, data):
-        facts = {}
-        for line in data:
-            name = self.parse_interface(line)
-            line.pop('.id', None)
-            facts[name] = line
-        return facts
-
-    def parse_route(self, data):
-        facts = {}
-        for line in data:
-            name = self.parse_routing_mark(line)
-            line.pop('.id', None)
-            facts[name] = line
-        return facts
-
-    def parse_ospf_instance(self, data):
-        facts = {}
-        for line in data:
-            name = self.parse_name(line)
-            line.pop('.id', None)
-            facts[name] = line
-        return facts
-
-    def parse_ospf_neighbor(self, data):
-        facts = {}
-        for line in data:
-            name = self.parse_instance_name(line)
-            line.pop('.id', None)
-            facts[name] = line
-        return facts
-
-    def populate_bgp_peer(self, data):
+    def populate_result(self, name, data):
         for key, value in iteritems(data):
-            self.facts['bgp_peer'][key] = value
-
-    def populate_vpnv4_route(self, data):
-        for key, value in iteritems(data):
-            self.facts['bgp_vpnv4_route'][key] = value
-
-    def populate_bgp_instance(self, data):
-        for key, value in iteritems(data):
-            self.facts['bgp_instance'][key] = value
-
-    def populate_route(self, data):
-        for key, value in iteritems(data):
-            self.facts['route'][key] = value
-
-    def populate_ospf_instance(self, data):
-        for key, value in iteritems(data):
-            self.facts['ospf_instance'][key] = value
-
-    def populate_ospf_neighbor(self, data):
-        for key, value in iteritems(data):
-            self.facts['ospf_neighbor'][key] = value
+            self.facts[name][key] = value
 
 
 FACT_SUBSETS = dict(
