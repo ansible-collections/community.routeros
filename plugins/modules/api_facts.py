@@ -37,7 +37,7 @@ options:
         Values can also be used with an initial C(!) to specify that a
         specific subset should not be collected.
     required: false
-    default: '!config'
+    default: 'all'
     type: list
     elements: str
 seealso:
@@ -52,14 +52,6 @@ EXAMPLES = """
     username: admin
     password: password
     gather_subset: all
-
-- name: Collect only the config and default facts
-  community.routeros.api_facts:
-    hostname: myrouter
-    username: admin
-    password: password
-    gather_subset:
-      - config
 
 - name: Do not collect hardware facts
   community.routeros.api_facts:
@@ -128,22 +120,6 @@ ansible_facts:
       description: The total memory on the remote device in MiB.
       returned: I(gather_subset) contains C(hardware)
       type: int
-
-    # config
-    ansible_net_config:
-      description: The current active config from the device.
-      returned: I(gather_subset) contains C(config)
-      type: str
-
-    ansible_net_config_nonverbose:
-      description:
-        - The current active config from the device in minimal form.
-        - This value is idempotent in the sense that if the facts module is run twice and the device's config
-          was not changed between the runs, the value is identical. This is achieved by running C(/export)
-          and stripping the timestamp from the comment in the first line.
-      returned: I(gather_subset) contains C(config)
-      type: str
-      version_added: 1.2.0
 
     # interfaces
     ansible_net_all_ipv4_addresses:
@@ -531,7 +507,7 @@ warnings = []
 def main():
     argument_spec = dict(
         gather_subset=dict(
-            default=['!config'],
+            default=['all'],
             type='list',
             elements='str',
         )
