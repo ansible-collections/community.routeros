@@ -252,8 +252,24 @@ class ROS_api_module:
             cmd=dict(type='str'),
             query=dict(type='str'),
             extended_query=dict(type='dict', options=dict(
-                attributes=dict(type='list', required=True),
-                where=dict(type='list')
+                attributes=dict(type='list', elements='str', required=True),
+                where=dict(
+                    type='list',
+                    elements='dict',
+                    options=dict(
+                        attribute=dict(type='str'),
+                        is=dict(type='str', choices=["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]),
+                        value=dict(type='raw'),
+                        or=dict(type='list', elements='dict', options=dict(
+                            attribute=dict(type='str', required=True),
+                            is=dict(type='str', choices=["==", "!=", ">", "<", "in", "eq", "not", "more", "less"], required=True),
+                            value=dict(type='raw', required=True),
+                        )),
+                    ),
+                    required_together=[('attribute', 'is', 'value')],
+                    mutually_exclusive=[('attribute', 'or')],
+                    required_one_of=[('attribute', 'or')],
+                ),
 
             )),
         )
