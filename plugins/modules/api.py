@@ -64,6 +64,64 @@ options:
     description:
       - TODO
     type: dict
+    suboptions:
+      attributes:
+        description:
+          - The list of attributes to return.
+          - Every attribute used in a I(where) clause need to be listed here.
+        type: list
+        elements: str
+        required: true
+      where:
+        description:
+          - Allows to restrict the objects returned.
+          - The conditions here must all match. An I(or) condition needs at least one of its conditions to match.
+        type: list
+        elements: dict
+        suboptions:
+          attribute:
+            description:
+              - The attribute to match. Must be part of I(attributes).
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: str
+          is:
+            description:
+              - The operator to use for matching.
+              - For equality use C(==) or C(eq). For less use C(<) or C(less). For more use C(>) or C(more).
+              - Use C(in) to check whether the value is part of a list. In that case, I(value) must be a list.
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: str
+            choices: ["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]
+          value:
+            description:
+              - The value to compare to. Must be a list for I(is=in).
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: raw
+          or:
+            description:
+              - A list of conditions so that at least one of them has to match.
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: list
+            elements: dict
+            suboptions:
+              attribute:
+                description:
+                  - The attribute to match. Must be part of I(attributes).
+                type: str
+                required: true
+              is:
+                description:
+                  - The operator to use for matching.
+                  - For equality use C(==) or C(eq). For less use C(<) or C(less). For more use C(>) or C(more).
+                  - Use C(in) to check whether the value is part of a list. In that case, I(value) must be a list.
+                type: str
+                choices: ["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]
+                required: true
+              value:
+                description:
+                  - The value to compare to. Must be a list for I(is=in).
+                type: raw
+                required: true
   cmd:
     description:
       - Execute any/arbitrary command in selected path, after the command we can add C(.id).
@@ -270,7 +328,6 @@ class ROS_api_module:
                     mutually_exclusive=[('attribute', 'or')],
                     required_one_of=[('attribute', 'or')],
                 ),
-
             )),
         )
         module_args.update(api_argument_spec())
@@ -423,11 +480,11 @@ class ROS_api_module:
             if self.where:
                 if self.where[1] in ('==', 'eq'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] == self.where[2])
-                elif self.where[1] == '!=' or self.where[1] == 'not':
+                elif self.where[1] in ('!=', 'not'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] != self.where[2])
-                elif self.where[1] == '>' or self.where[1] == 'more':
+                elif self.where[1] in ('>', 'more'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] > self.where[2])
-                elif self.where[1] == '<' or self.where[1] == 'less':
+                elif self.where[1] in ('<', 'less'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] < self.where[2])
                 else:
                     self.errors("'%s' is not operator for 'where'"
@@ -450,13 +507,13 @@ class ROS_api_module:
         if item['attribute'] not in self.extended_query['attributes']:
             self.errors("'%s' attribute is not in attributes: %s"
                         % (item, self.extended_query['attributes']))
-        if item['is'] == 'eq' or item['is'] == '==':
+        if item['is'] in ('eq', '=='):
             return self.query_keys[item['attribute']] == item['value']
-        elif item['is'] == 'not' or item['is'] == '!=':
+        elif item['is'] in ('not', '!='):
             return self.query_keys[item['attribute']] != item['value']
-        elif item['is'] == 'less' or item['is'] == '<':
+        elif item['is'] in ('less', '<'):
             return self.query_keys[item['attribute']] < item['value']
-        elif item['is'] == 'more' or item['is'] == '>':
+        elif item['is'] in ('more', '>'):
             return self.query_keys[item['attribute']] > item['value']
         elif item['is'] == 'in':
             return self.query_keys[item['attribute']].In(*item['value'])
