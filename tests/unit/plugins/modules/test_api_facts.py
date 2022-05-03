@@ -393,7 +393,8 @@ API_RESPONSES = {
         },
     ],
     ('routing', 'ospf', 'instance', ): [
-        {'.id': '*0',
+        {
+            '.id': '*0',
             'name': 'default',
             'router-id': '0.0.0.0',
             'distribute-default': 'never',
