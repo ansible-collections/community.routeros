@@ -164,6 +164,11 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [
+            {'.id': '*A1', 'name': 'dummy_bridge_A1'},
+            {'.id': '*A2', 'name': 'dummy_bridge_A2'},
+            {'.id': '*A3', 'name': 'dummy_bridge_A3'},
+        ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_query_missing_key(self):
@@ -175,6 +180,7 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], ["no results for 'interface bridge 'query' .id other"])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.select_where)
     def test_api_query_and_WHERE(self):
@@ -186,6 +192,9 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [
+            {'.id': '*A1', 'name': 'dummy_bridge_A1'},
+        ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.select_where)
     def test_api_query_and_WHERE_no_cond(self):
@@ -197,6 +206,9 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [
+            {'.id': '*A1', 'name': 'dummy_bridge_A1'},
+        ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_extended_query(self):
@@ -210,6 +222,11 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [
+            {'.id': '*A1', 'name': 'dummy_bridge_A1'},
+            {'.id': '*A2', 'name': 'dummy_bridge_A2'},
+            {'.id': '*A3', 'name': 'dummy_bridge_A3'},
+        ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api)
     def test_api_extended_query_missing_key(self):
@@ -223,6 +240,7 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.select_where)
     def test_api_extended_query_and_WHERE(self):
@@ -243,6 +261,9 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [
+            {'.id': '*A1', 'name': 'dummy_bridge_A1'},
+        ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.select_where)
     def test_api_extended_query_and_WHERE_no_cond(self):
@@ -263,3 +284,38 @@ class TestRouterosApiModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [
+            {'.id': '*A1', 'name': 'dummy_bridge_A1'},
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api.ROS_api_module.api_add_path', new=fake_ros_api.select_where)
+    def test_api_extended_query_and_WHERE_or(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            module_args = self.config_module_args.copy()
+            module_args['extended_query'] = {
+                'attributes': ['.id', 'name'],
+                'where': [
+                    {
+                        'or': [
+                            {
+                                'attribute': 'name',
+                                'is': 'in',
+                                'value': [1, 2],
+                            },
+                            {
+                                'attribute': 'name',
+                                'is': '!=',
+                                'value': 5,
+                            },
+                        ],
+                    },
+                ],
+            }
+            set_module_args(module_args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['msg'], [
+            {'.id': '*A1', 'name': 'dummy_bridge_A1'},
+        ])

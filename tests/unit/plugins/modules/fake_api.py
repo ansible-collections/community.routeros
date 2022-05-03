@@ -90,7 +90,7 @@ class fake_ros_api(object):
         if result:
             return result
         else:
-            return ["no results for 'interface bridge 'query' %s" % ' '.join(args)]
+            return []
 
     @classmethod
     def select_where(cls, api, path):
@@ -106,7 +106,7 @@ class Where(object):
         return self
 
     def where(self, *args):
-        return ["*A1"]
+        return [{".id": "*A1", "name": "dummy_bridge_A1"}]
 
 
 class Key(object):
