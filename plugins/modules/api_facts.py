@@ -461,7 +461,7 @@ def main():
     runable_subsets.add('default')
 
     facts = {}
-    facts['gather_subset'] = list(runable_subsets)
+    facts['gather_subset'] = sorted(runable_subsets)
 
     instances = []
     for key in runable_subsets:
