@@ -346,31 +346,16 @@ class ROS_api_module:
             pass
 
     def check_extended_query_syntax(self, test_atr, or_msg=''):
-        extended_query_op = {'attribute': '', 'is': ["==", "!=", ">", "<", "in", "eq", "not", "more", "less"], 'value': ''}
-        if not isinstance(test_atr, dict):
-            self.errors("invalid syntax 'extended_query':'where':%s%s must be a type dict" % (or_msg, test_atr))
-        for ik in test_atr.keys():
-            if ik not in extended_query_op.keys():
-                self.errors("invalid syntax 'extended_query':'where'%s%s must have %s" % (or_msg, test_atr, extended_query_op.keys()))
-        if test_atr['is'] not in extended_query_op['is']:
-            self.errors("invalid syntax 'extended_query':'where':%s%s '%s' not a valid operator for 'is' %s" % (or_msg,
-                                                                                                                test_atr,
-                                                                                                                test_atr['is'],
-                                                                                                                extended_query_op['is']))
         if test_atr['is'] == "in" and not isinstance(test_atr['value'], list):
             self.errors("invalid syntax 'extended_query':'where':%s%s 'value' must be a type list" % (or_msg, test_atr))
 
     def check_extended_query(self):
         if self.extended_query["where"]:
             for i in self.extended_query['where']:
-                if "or" in i.keys():
-                    if not isinstance(i["or"], list):
-                        self.errors("invalid syntax 'extended_query':'where':'or':%s 'or' must be a type list" % i["or"])
+                if i["or"] is not None:
                     if len(i['or']) < 2:
                         self.errors("invalid syntax 'extended_query':'where':'or':%s 'or' requires minimum two items" % i["or"])
                     for orv in i['or']:
-                        if "or" in orv.keys():
-                            self.errors("invalid syntax 'extended_query':'where':'or':%s nested 'or' is not allowed" % i["or"])
                         self.check_extended_query_syntax(orv, ":'or':")
                 else:
                     self.check_extended_query_syntax(i)
@@ -463,21 +448,20 @@ class ROS_api_module:
 
     def build_api_extended_query(self, item):
         if item['attribute'] not in self.extended_query['attributes']:
-            self.errors("'%s' attribute is not in attributes:%s"
+            self.errors("'%s' attribute is not in attributes: %s"
                         % (item, self.extended_query['attributes']))
         if item['is'] == 'eq' or item['is'] == '==':
-            return (self.query_keys[item['attribute']] == item['value'],)
+            return self.query_keys[item['attribute']] == item['value']
         elif item['is'] == 'not' or item['is'] == '!=':
-            return (self.query_keys[item['attribute']] != item['value'],)
+            return self.query_keys[item['attribute']] != item['value']
         elif item['is'] == 'less' or item['is'] == '<':
-            return (self.query_keys[item['attribute']] < item['value'],)
+            return self.query_keys[item['attribute']] < item['value']
         elif item['is'] == 'more' or item['is'] == '>':
-            return (self.query_keys[item['attribute']] > item['value'],)
+            return self.query_keys[item['attribute']] > item['value']
         elif item['is'] == 'in':
-            return (self.query_keys[item['attribute']].In(*item['value']),)
+            return self.query_keys[item['attribute']].In(*item['value'])
         else:
-            self.errors("'%s' is not operator for 'is'"
-                        % item['is'])
+            self.errors("'%s' is not operator for 'is'" % item['is'])
 
     def api_extended_query(self):
         self.query_keys = {}
@@ -489,7 +473,7 @@ class ROS_api_module:
             if self.extended_query['where']:
                 where_args = []
                 for i in self.extended_query['where']:
-                    if "or" in i:
+                    if i['or']:
                         where_or_args = []
                         for ior in i['or']:
                             where_or_args.append(self.build_api_extended_query(ior))
