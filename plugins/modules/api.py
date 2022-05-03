@@ -436,7 +436,7 @@ class ROS_api_module:
             keys[k] = Key(k)
         try:
             if self.where:
-                if self.where[1] == '==' or self.where[1] == 'eq':
+                if self.where[1] in ('==', 'eq'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] == self.where[2])
                 elif self.where[1] == '!=' or self.where[1] == 'not':
                     select = self.api_path.select(*keys).where(keys[self.where[0]] != self.where[2])
@@ -487,27 +487,18 @@ class ROS_api_module:
             self.query_keys[k] = Key(k)
         try:
             if self.extended_query['where']:
-                where_args = False
+                where_args = []
                 for i in self.extended_query['where']:
-                    if "or" in i.keys():
-                        where_or_args = False
+                    if "or" in i:
+                        where_or_args = []
                         for ior in i['or']:
-                            if where_or_args:
-                                where_or_args = where_or_args + self.build_api_extended_query(ior)
-                            else:
-                                where_or_args = self.build_api_extended_query(ior)
-                        if where_args:
-                            where_args = where_args + (Or(*where_or_args),)
-                        else:
-                            where_args = (Or(*where_or_args),)
+                            where_or_args.append(self.build_api_extended_query(ior))
+                        where_args.append(Or(*where_or_args))
                     else:
-                        if where_args:
-                            where_args = where_args + self.build_api_extended_query(i)
-                        else:
-                            where_args = self.build_api_extended_query(i)
+                        where_args.append(self.build_api_extended_query(i))
                 select = self.api_path.select(*self.query_keys).where(*where_args)
             else:
-                select = self.api_path.select(*self.query_keys)
+                select = self.api_path.select(*self.extended_query['attributes'])
             for row in select:
                 self.result['message'].append(row)
             if len(self.result['message']) < 1:
