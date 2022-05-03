@@ -542,10 +542,6 @@ class ROS_api_module:
                 select = self.api_path.select(*self.extended_query['attributes'])
             for row in select:
                 self.result['message'].append(row)
-            if len(self.result['message']) < 1:
-                msg = "no results for '%s 'query' %s" % (' '.join(self.path),
-                                                         self.module.params['extended_query'])
-                self.result['message'].append(msg)
             self.return_result(False)
         except LibRouterosError as e:
             self.errors(e)
