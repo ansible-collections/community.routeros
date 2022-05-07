@@ -21,7 +21,7 @@ ESCAPE_SEQUENCES = {
     b'\\': b'\\',
     b'?': b'?',
     b'$': b'$',
-    b'_': b'_',
+    b'_': b' ',
     b'a': b'\a',
     b'b': b'\b',
     b'f': b'\xFF',
