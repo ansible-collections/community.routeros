@@ -3,7 +3,7 @@
 How to connect to RouterOS devices with the RouterOS API
 ========================================================
 
-You can use the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` to connect to a RouterOS device with the RouterOS API.
+You can use the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` to connect to a RouterOS device with the RouterOS API. The :ref:`community.routeros.api_facts module <ansible_collections.community.routeros.api_facts_module>` allows to retrieve Ansible facts using the RouterOS API.
 
 No special setup is needed; the module needs to be run on a host that can connect to the device's API. The most common case is that the module is run on ``localhost``, either by using ``hosts: localhost`` in the playbook, or by using ``delegate_to: localhost`` for the task. The following example shows how to run the equivalent of ``/ip address print``:
 
@@ -33,9 +33,9 @@ No special setup is needed; the module needs to be run on a host that can connec
             # ca_path: /path/to/ca-certificate.pem
           register: print_path
 
-    - name: Show IP address of first interface
-      debug:
-        msg: "{{ print_path.msg[0].address }}"
+        - name: Show IP address of first interface
+          ansible.builtin.debug:
+            msg: "{{ print_path.msg[0].address }}"
 
 This results in the following output:
 
@@ -55,6 +55,39 @@ This results in the following output:
     localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 Check out the documenation of the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` for details on the options.
+
+Using the ``community.routeros.api`` module defaults group
+----------------------------------------------------------
+
+To avoid having to specify common parameters for the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` and :ref:`community.routeros.api_facts module <ansible_collections.community.routeros.api_facts_module>` in every task, you can use the ``community.routeros.api`` module defaults group:
+
+.. code-block:: yaml+jinja
+
+    ---
+    - name: RouterOS test with API
+      hosts: localhost
+      gather_facts: no
+      module_defaults:
+        group/community.routeros.api
+          hostname: 192.168.1.1
+          password: admin
+          username: test1234
+          # The following options configure TLS/SSL.
+          # Depending on your setup, these options need different values:
+          tls: true
+          validate_certs: true
+          validate_cert_hostname: true
+          # If you are using your own PKI, specify the path to your CA certificate here:
+          # ca_path: /path/to/ca-certificate.pem
+      tasks:
+        - name: Gather facts"
+          community.routeros.api_facts:
+
+        - name: Get "ip address print"
+          community.routeros.api:
+            path: "ip address"
+
+Here both tasks will use the options set for the module defaults group.
 
 Setting up encryption
 ---------------------
