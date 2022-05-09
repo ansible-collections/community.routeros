@@ -34,7 +34,7 @@ TEST_PARSE_ARGUMENT_VALUE = [
     (r'"\\"', {}, ('\\', 4)),
     (r'"\?"', {}, ('?', 4)),
     (r'"\$"', {}, ('$', 4)),
-    (r'"\_"', {}, ('_', 4)),
+    (r'"\_"', {}, (' ', 4)),
     (r'"\a"', {}, ('\a', 4)),
     (r'"\b"', {}, ('\b', 4)),
     (r'"\f"', {}, (to_native(b'\xff'), 4)),
@@ -165,7 +165,7 @@ def test_convert_list_to_dictionary_errors(list, kwargs, message):
 
 
 TEST_JOIN_ROUTEROS_COMMAND = [
-    (['a=b', 'c=d=e', 'e=', 'f', 'g=h i j', 'h="h"'], r'a=b c="d=e" e="" f g="h i j" h="\"h\""'),
+    (['a=b', 'c=d=e', 'e=', 'f', 'g=h i j', 'h="h"'], r'a=b c="d=e" e="" f g="h\_i\_j" h="\"h\""'),
 ]
 
 
@@ -180,8 +180,8 @@ TEST_QUOTE_ROUTEROS_ARGUMENT = [
     (r'', r''),
     (r'a', r'a'),
     (r'a=b', r'a=b'),
-    (r'a=b c', r'a="b c"'),
-    (r'a="b c"', r'a="\"b c\""'),
+    (r'a=b c', r'a="b\_c"'),
+    (r'a="b c"', r'a="\"b\_c\""'),
     (r"a='b", "a=\"'b\""),
     (r"a=b'", "a=\"b'\""),
     (r'a=""', r'a="\"\""'),
@@ -212,19 +212,20 @@ def test_quote_routeros_argument_errors(argument, message):
 TEST_QUOTE_ROUTEROS_ARGUMENT_VALUE = [
     (r'', r'""'),
     (r";", r'";"'),
-    (r" ", r'" "'),
+    (r" ", r'"\_"'),
     (r"=", r'"="'),
     (r'a', r'a'),
     (r'a=b', r'"a=b"'),
-    (r'b c', r'"b c"'),
-    (r'"b c"', r'"\"b c\""'),
+    (r'b c', r'"b\_c"'),
+    (r'"b c"', r'"\"b\_c\""'),
     ("'b", "\"'b\""),
     ("b'", "\"b'\""),
     ('"', r'"\""'),
     ('\\', r'"\\"'),
     ('?', r'"\?"'),
     ('$', r'"\$"'),
-    ('_', r'"\_"'),
+    ('_', r'_'),
+    (' ', r'"\_"'),
     ('\a', r'"\a"'),
     ('\b', r'"\b"'),
     # (to_native(b'\xff'), r'"\f"'),

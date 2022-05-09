@@ -28,7 +28,7 @@
       - >
         'a=b' | community.routeros.quote_argument == 'a=b'
       - >
-        'a=b c' | community.routeros.quote_argument == 'a="b c"'
+        'a=b c' | community.routeros.quote_argument == 'a="b\\_c"'
       - >
         'a=""' | community.routeros.quote_argument == 'a="\\"\\""'
 
@@ -40,13 +40,13 @@
       - >
         'foo' | community.routeros.quote_argument_value == 'foo'
       - >
-        '"foo bar"' | community.routeros.quote_argument_value == '"\\"foo bar\\""'
+        '"foo bar"' | community.routeros.quote_argument_value == '"\\"foo\\_bar\\""'
 
 - name: "Test join filter"
   assert:
     that:
       - >
-        ['a=', 'b=c d'] | community.routeros.join == 'a="" b="c d"'
+        ['a=', 'b=c d'] | community.routeros.join == 'a="" b="c\\_d"'
 
 - name: "Test list_to_dict filter"
   assert:

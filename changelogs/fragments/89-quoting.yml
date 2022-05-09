@@ -1,0 +1,2 @@
+bugfixes:
+  - "quoting and unquoting filter plugins, api module - handle the escape sequence ``\\_`` correctly as escaping a space and not an underscore (https://github.com/ansible-collections/community.routeros/pull/89)."
