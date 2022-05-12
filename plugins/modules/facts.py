@@ -21,10 +21,10 @@ options:
     description:
       - When supplied, this argument will restrict the facts collected
         to a given subset.  Possible values for this argument include
-        C(all), C(hardware), C(config), and C(interfaces).  Can specify a list of
-        values to include a larger subset.  Values can also be used
-        with an initial C(!) to specify that a specific subset should
-        not be collected.
+        C(all), C(hardware), C(config), C(interfaces), and C(routing).
+      - Can specify a list of values to include a larger subset.
+        Values can also be used with an initial C(!) to specify that a
+        specific subset should not be collected.
     required: false
     default: '!config'
     type: list
@@ -52,67 +52,67 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: "Dictionary of ip geolocation facts for a host's IP address"
+  description: "Dictionary of IP geolocation facts for a host's IP address."
   returned: always
   type: dict
   contains:
     ansible_net_gather_subset:
-      description: The list of fact subsets collected from the device
+      description: The list of fact subsets collected from the device.
       returned: always
       type: list
 
     # default
     ansible_net_model:
-      description: The model name returned from the device
-      returned: always
+      description: The model name returned from the device.
+      returned: I(gather_subset) contains C(default)
       type: str
     ansible_net_serialnum:
-      description: The serial number of the remote device
-      returned: always
+      description: The serial number of the remote device.
+      returned: I(gather_subset) contains C(default)
       type: str
     ansible_net_version:
-      description: The operating system version running on the remote device
-      returned: always
+      description: The operating system version running on the remote device.
+      returned: I(gather_subset) contains C(default)
       type: str
     ansible_net_hostname:
-      description: The configured hostname of the device
-      returned: always
+      description: The configured hostname of the device.
+      returned: I(gather_subset) contains C(default)
       type: str
     ansible_net_arch:
-      description: The CPU architecture of the device
-      returned: always
+      description: The CPU architecture of the device.
+      returned: I(gather_subset) contains C(default)
       type: str
     ansible_net_uptime:
-      description: The uptime of the device
-      returned: always
+      description: The uptime of the device.
+      returned: I(gather_subset) contains C(default)
       type: str
     ansible_net_cpu_load:
-      description: Current CPU load
-      returned: always
+      description: Current CPU load.
+      returned: I(gather_subset) contains C(default)
       type: str
 
     # hardware
     ansible_net_spacefree_mb:
-      description: The available disk space on the remote device in MiB
-      returned: when hardware is configured
+      description: The available disk space on the remote device in MiB.
+      returned: I(gather_subset) contains C(hardware)
       type: dict
     ansible_net_spacetotal_mb:
-      description: The total disk space on the remote device in MiB
-      returned: when hardware is configured
+      description: The total disk space on the remote device in MiB.
+      returned: I(gather_subset) contains C(hardware)
       type: dict
     ansible_net_memfree_mb:
-      description: The available free memory on the remote device in MiB
-      returned: when hardware is configured
+      description: The available free memory on the remote device in MiB.
+      returned: I(gather_subset) contains C(hardware)
       type: int
     ansible_net_memtotal_mb:
-      description: The total memory on the remote device in MiB
-      returned: when hardware is configured
+      description: The total memory on the remote device in MiB.
+      returned: I(gather_subset) contains C(hardware)
       type: int
 
     # config
     ansible_net_config:
-      description: The current active config from the device
-      returned: when config is configured
+      description: The current active config from the device.
+      returned: I(gather_subset) contains C(config)
       type: str
 
     ansible_net_config_nonverbose:
@@ -121,52 +121,52 @@ ansible_facts:
         - This value is idempotent in the sense that if the facts module is run twice and the device's config
           was not changed between the runs, the value is identical. This is achieved by running C(/export)
           and stripping the timestamp from the comment in the first line.
-      returned: when config is configured
+      returned: I(gather_subset) contains C(config)
       type: str
       version_added: 1.2.0
 
     # interfaces
     ansible_net_all_ipv4_addresses:
-      description: All IPv4 addresses configured on the device
-      returned: when interfaces is configured
+      description: All IPv4 addresses configured on the device.
+      returned: I(gather_subset) contains C(interfaces)
       type: list
     ansible_net_all_ipv6_addresses:
-      description: All IPv6 addresses configured on the device
-      returned: when interfaces is configured
+      description: All IPv6 addresses configured on the device.
+      returned: I(gather_subset) contains C(interfaces)
       type: list
     ansible_net_interfaces:
-      description: A hash of all interfaces running on the system
-      returned: when interfaces is configured
+      description: A hash of all interfaces running on the system.
+      returned: I(gather_subset) contains C(interfaces)
       type: dict
     ansible_net_neighbors:
-      description: The list of neighbors from the remote device
-      returned: when interfaces is configured
+      description: The list of neighbors from the remote device.
+      returned: I(gather_subset) contains C(interfaces)
       type: dict
 
     # routing
     ansible_net_bgp_peer:
-      description: The dict bgp peer
-      returned: peer information
+      description: A dictionary with BGP peer information.
+      returned: I(gather_subset) contains C(routing)
       type: dict
     ansible_net_bgp_vpnv4_route:
-      description: The dict bgp vpnv4 route
-      returned: vpnv4 route information
+      description: A dictionary with BGP vpnv4 route information.
+      returned: I(gather_subset) contains C(routing)
       type: dict
     ansible_net_bgp_instance:
-      description: The dict bgp instance
-      returned: bgp instance information
+      description: A dictionary with BGP instance information.
+      returned: I(gather_subset) contains C(routing)
       type: dict
     ansible_net_route:
-      description: The dict routes in all routing table
-      returned: routes information in all routing table
+      description: A dictionary for routes in all routing tables.
+      returned: I(gather_subset) contains C(routing)
       type: dict
     ansible_net_ospf_instance:
-      description: The dict ospf instance
-      returned: ospf instance information
+      description: A dictionary with OSPF instances.
+      returned: I(gather_subset) contains C(routing)
       type: dict
     ansible_net_ospf_neighbor:
-      description: The dict ospf neighbor
-      returned: ospf neighbor information
+      description: A dictionary with OSPF neighbors.
+      returned: I(gather_subset) contains C(routing)
       type: dict
 """
 import re
