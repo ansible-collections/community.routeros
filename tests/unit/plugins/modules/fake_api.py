@@ -34,7 +34,8 @@ class fake_ros_api(object):
     def __init__(self, api, path):
         pass
 
-    def path(self, api, path):
+    @classmethod
+    def path(cls, api, path):
         fake_bridge = [{".id": "*DC", "name": "b2", "mtu": "auto", "actual-mtu": 1500,
                         "l2mtu": 65535, "arp": "enabled", "arp-timeout": "auto",
                         "mac-address": "3A:C1:90:D6:E8:44", "protocol-mode": "rstp",
@@ -45,7 +46,8 @@ class fake_ros_api(object):
                         "dhcp-snooping": "false", "running": "true", "disabled": "false"}]
         return fake_bridge
 
-    def arbitrary(self, api, path):
+    @classmethod
+    def arbitrary(cls, api, path):
         def retr(self, *args, **kwargs):
             if 'name' not in kwargs.keys():
                 raise TrapError(message="no such command")
@@ -90,7 +92,8 @@ class fake_ros_api(object):
         else:
             return ["no results for 'interface bridge 'query' %s" % ' '.join(args)]
 
-    def select_where(self, api, path):
+    @classmethod
+    def select_where(cls, api, path):
         api_path = Where()
         return api_path
 

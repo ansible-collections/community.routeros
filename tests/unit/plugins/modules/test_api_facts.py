@@ -424,10 +424,10 @@ class TestRouterosApiFactsModule(ModuleTestCase):
 
     def setUp(self):
         super(TestRouterosApiFactsModule, self).setUp()
-        librouteros = pytest.importorskip('librouteros')
         self.module = api_facts
         self.module.LibRouterosError = FakeLibRouterosError
         self.module.connect = MagicMock(new=fake_ros_api)
+        self.module.check_has_library = MagicMock()
         self.patch_create_api = patch('ansible_collections.community.routeros.plugins.modules.api_facts.create_api', MagicMock(new=fake_ros_api))
         self.patch_create_api.start()
         self.patch_query_path = patch('ansible_collections.community.routeros.plugins.modules.api_facts.FactsBase.query_path', self.query_path)
