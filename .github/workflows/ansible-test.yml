@@ -100,13 +100,6 @@ jobs:
         with:
           path: ansible_collections/community/routeros
 
-      - name: Overwrite unit test requirements (if applicable)
-        run: |
-          if [ -e tests/unit/requirements-${{ matrix.ansible }}.txt ]; then
-            cp tests/unit/requirements-${{ matrix.ansible }}.txt tests/unit/requirements.txt
-          fi
-        working-directory: ./ansible_collections/community/routeros
-
       - name: Set up Python ${{ matrix.ansible }}
         uses: actions/setup-python@v3
         with:
