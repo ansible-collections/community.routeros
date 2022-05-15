@@ -21,7 +21,7 @@ import json
 import pytest
 
 from ansible_collections.community.routeros.tests.unit.compat.mock import patch, MagicMock
-from ansible_collections.community.routeros.tests.unit.plugins.modules.fake_api import FakeLibRouterosError, Key, fake_ros_api
+from ansible_collections.community.routeros.tests.unit.plugins.modules.fake_api import FakeLibRouterosError, Key, Or, fake_ros_api
 from ansible_collections.community.routeros.tests.unit.plugins.modules.utils import set_module_args, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
 from ansible_collections.community.routeros.plugins.modules import api
 
@@ -37,6 +37,7 @@ class TestRouterosApiModule(ModuleTestCase):
         self.patch_create_api = patch('ansible_collections.community.routeros.plugins.modules.api.create_api', MagicMock(new=fake_ros_api))
         self.patch_create_api.start()
         self.module.Key = MagicMock(new=Key)
+        self.module.Or = MagicMock(new=Or)
         self.config_module_args = {"username": "admin",
                                    "password": "pаss",
                                    "hostname": "127.0.0.1",

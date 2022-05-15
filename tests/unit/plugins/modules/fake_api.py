@@ -116,3 +116,12 @@ class Key(object):
 
     def str_return(self):
         return str(self.name)
+
+
+class Or(object):
+    def __init__(self, *args):
+        self.args = args
+        self.str_return()
+
+    def str_return(self):
+        return repr(self.args)
