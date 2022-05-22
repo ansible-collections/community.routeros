@@ -151,7 +151,7 @@ EXAMPLES = '''
         username: "{{ username }}"
         path: "ip address"
         add: "address=192.168.255.10/24 interface=ether2"
-   
+
     - name: Query example - ".id, address" in "ip address WHERE address == 192.168.255.10/24"
       community.routeros.api:
         hostname: "{{ hostname }}"
