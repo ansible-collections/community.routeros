@@ -167,26 +167,26 @@ EXAMPLES = '''
         username: "{{ username }}"
         path: "ip address"
         extended_query:
-        attributes:
-          - network
-          - address
-          - .id
-        where:
-          - attribute: "network"
-            is: "=="
-            value: "192.168.255.0"
-          - or:
-              - attribute: "address"
-                is: "!="
-                value: "192.168.255.10/24"
-              - attribute: "address"
-                is: "eq"
-                value: "10.20.36.20/24"
-          - attribute: "network"
-            is: "in"
-            value:
-               - "10.20.36.0"
-               - "192.168.255.0"
+          attributes:
+            - network
+            - address
+            - .id
+          where:
+            - attribute: "network"
+              is: "=="
+              value: "192.168.255.0"
+            - or:
+                - attribute: "address"
+                  is: "!="
+                  value: "192.168.255.10/24"
+                - attribute: "address"
+                  is: "eq"
+                  value: "10.20.36.20/24"
+            - attribute: "network"
+              is: "in"
+              value:
+                 - "10.20.36.0"
+                 - "192.168.255.0"
 
     - name: Update example - ether2 ip addres with ".id = *14"
       community.routeros.api:
