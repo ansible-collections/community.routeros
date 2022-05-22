@@ -62,7 +62,8 @@ options:
     type: str
   extended_query:
     description:
-      - TODO
+      - Extended query given path for selected query attributes from RouterOS aip.
+      - Extended query allow conjunctive input, in such case 'no results' will be returned.
     type: dict
     suboptions:
       attributes:
@@ -135,118 +136,76 @@ seealso:
 
 EXAMPLES = '''
 ---
-- name: Use RouterOS API
-  hosts: localhost
-  gather_facts: no
-  vars:
-    hostname: "ros_api_hostname/ip"
-    username: "admin"
-    password: "secret_password"
-
-    path: "ip address"
-
-    nic: "ether2"
-    ip1: "1.1.1.1/32"
-    ip2: "2.2.2.2/32"
-    ip3: "3.3.3.3/32"
-
   tasks:
-    - name: Get "{{ path }} print"
+    - name: Get example - ip address print
       community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
-        path: "{{ path }}"
-      register: print_path
+        path: "ip address"
 
-    - name: Dump "{{ path }} print" output
-      ansible.builtin.debug:
-        msg: '{{ print_path }}'
-
-    - name: Add ip address "{{ ip1 }}" and "{{ ip2 }}"
+    - name: Add example - ip address
       community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
-        path: "{{ path }}"
-        add: "{{ item }}"
-      loop:
-        - "address={{ ip1 }} interface={{ nic }}"
-        - "address={{ ip2 }} interface={{ nic }}"
-      register: addout
-
-    - name: Dump "Add ip address" output - ".id" for new added items
-      ansible.builtin.debug:
-        msg: '{{ addout }}'
-
-    - name: Query for ".id" in "{{ path }} WHERE address == {{ ip2 }}"
+        path: "ip address"
+        add: "address=192.168.255.10/24 interface=ether2"
+   
+    - name: Query example - ".id, address" in "ip address WHERE address == 192.168.255.10/24"
       community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
-        path: "{{ path }}"
+        path: "ip address"
         query: ".id address WHERE address == {{ ip2 }}"
-      register: queryout
 
-    - name: Dump "Query for" output and set fact with ".id" for "{{ ip2 }}"
-      ansible.builtin.debug:
-        msg: '{{ queryout }}'
-
-    - name: Store query_id for later usage
-      ansible.builtin.set_fact:
-        query_id: "{{ queryout['msg'][0]['.id'] }}"
-
-    - name: Update ".id = {{ query_id }}" taken with custom fact "fquery_id"
+    - name: Extended query example - ".id,address,network" where address is not 192.168.255.10/24 or is 10.20.36.20/24
       community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
-        path: "{{ path }}"
+        path: "ip address"
+        extended_query:
+        attributes:
+          - network
+          - address
+          - .id
+        where:
+          - attribute: "network"
+            is: "=="
+            value: "192.168.255.0"
+          - or:
+              - attribute: "address"
+                is: "!="
+                value: "192.168.255.10/24"
+              - attribute: "address"
+                is: "eq"
+                value: "10.20.36.20/24"
+          - attribute: "network"
+            is: "in"
+            value:
+               - "10.20.36.0"
+               - "192.168.255.0"
+
+    - name: Update example - ether2 ip addres with ".id = *14"
+      community.routeros.api:
+        hostname: "{{ hostname }}"
+        password: "{{ password }}"
+        username: "{{ username }}"
+        path: "ip address"
         update: >-
-            .id={{ query_id }}
-            address={{ ip3 }}
-            comment={{ 'A comment with spaces' | community.routeros.quote_argument_value }}
-      register: updateout
+            .id=*14
+            address=192.168.255.20/24
+            comment={{ 'Update 192.168.255.10/24 with .id=*14 to 192.168.255.20/24 on ether2' | community.routeros.quote_argument_value }}
 
-    - name: Dump "Update" output
-      ansible.builtin.debug:
-        msg: '{{ updateout }}'
-
-    - name: Remove ips - stage 1 - query ".id" for "{{ ip2 }}" and "{{ ip3 }}"
+    - name: Remove example - ether2 ip 192.168.255.20/24 with ".id = *14"
       community.routeros.api:
         hostname: "{{ hostname }}"
         password: "{{ password }}"
         username: "{{ username }}"
-        path: "{{ path }}"
-        query: ".id address WHERE address == {{ item }}"
-      register: id_to_remove
-      loop:
-        - "{{ ip2 }}"
-        - "{{ ip3 }}"
-
-    - name: Set fact for ".id" from "Remove ips - stage 1 - query"
-      ansible.builtin.set_fact:
-        to_be_remove: "{{ to_be_remove |default([]) + [item['msg'][0]['.id']] }}"
-      loop: "{{ id_to_remove.results }}"
-
-    - name: Dump "Remove ips - stage 1 - query" output
-      ansible.builtin.debug:
-        msg: '{{ to_be_remove }}'
-
-    # Remove "{{ rmips }}" with ".id" by "to_be_remove" from query
-    - name: Remove ips - stage 2 - remove "{{ ip2 }}" and "{{ ip3 }}" by '.id'
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "{{ path }}"
-        remove: "{{ item }}"
-      register: remove
-      loop: "{{ to_be_remove }}"
-
-    - name: Dump "Remove ips - stage 2 - remove" output
-      ansible.builtin.debug:
-        msg: '{{ remove }}'
+        path: "ip address"
+        remove: "*14"
 
     - name: Arbitrary command example "/system identity print"
       community.routeros.api:
@@ -255,11 +214,6 @@ EXAMPLES = '''
         username: "{{ username }}"
         path: "system identity"
         cmd: "print"
-      register: cmdout
-
-    - name: Dump "Arbitrary command example" output
-      ansible.builtin.debug:
-        msg: "{{ cmdout }}"
 '''
 
 RETURN = '''
