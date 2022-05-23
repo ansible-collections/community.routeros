@@ -52,7 +52,7 @@ options:
     description:
       - Query given path for selected query attributes from RouterOS aip.
       - WHERE is key word which extend query. WHERE format is key operator value - with spaces.
-      - WHERE valid operators are C(==), C(!=), C(>), C(<).
+      - WHERE valid operators are C(==) or C(eq), C(!=) or C(not), C(>) or C(more), C(<) or C(less).
       - Example path C(ip address) and query C(.id address) will return only C(.id) and C(address) for all items in C(ip address) path.
       - Example path C(ip address) and query C(.id address WHERE address == 1.1.1.3/32).
         will return only C(.id) and C(address) for items in C(ip address) path, where address is eq to 1.1.1.3/32.
@@ -60,6 +60,69 @@ options:
         return only interfaces C(mtu,name) where mtu is bigger than 1400.
       - Equivalent in RouterOS CLI C(/interface print where mtu > 1400).
     type: str
+  extended_query:
+    description:
+      - Extended query given path for selected query attributes from RouterOS API.
+      - Extended query allow conjunctive input. If there is no matching entry, an empty list will be returned.
+    type: dict
+    suboptions:
+      attributes:
+        description:
+          - The list of attributes to return.
+          - Every attribute used in a I(where) clause need to be listed here.
+        type: list
+        elements: str
+        required: true
+      where:
+        description:
+          - Allows to restrict the objects returned.
+          - The conditions here must all match. An I(or) condition needs at least one of its conditions to match.
+        type: list
+        elements: dict
+        suboptions:
+          attribute:
+            description:
+              - The attribute to match. Must be part of I(attributes).
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: str
+          is:
+            description:
+              - The operator to use for matching.
+              - For equality use C(==) or C(eq). For less use C(<) or C(less). For more use C(>) or C(more).
+              - Use C(in) to check whether the value is part of a list. In that case, I(value) must be a list.
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: str
+            choices: ["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]
+          value:
+            description:
+              - The value to compare to. Must be a list for I(is=in).
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: raw
+          or:
+            description:
+              - A list of conditions so that at least one of them has to match.
+              - Either I(or) or all of I(attribute), I(is), and I(value) have to be specified.
+            type: list
+            elements: dict
+            suboptions:
+              attribute:
+                description:
+                  - The attribute to match. Must be part of I(attributes).
+                type: str
+                required: true
+              is:
+                description:
+                  - The operator to use for matching.
+                  - For equality use C(==) or C(eq). For less use C(<) or C(less). For more use C(>) or C(more).
+                  - Use C(in) to check whether the value is part of a list. In that case, I(value) must be a list.
+                type: str
+                choices: ["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]
+                required: true
+              value:
+                description:
+                  - The value to compare to. Must be a list for I(is=in).
+                type: raw
+                required: true
   cmd:
     description:
       - Execute any/arbitrary command in selected path, after the command we can add C(.id).
@@ -72,132 +135,103 @@ seealso:
 '''
 
 EXAMPLES = '''
----
-- name: Use RouterOS API
-  hosts: localhost
-  gather_facts: no
-  vars:
-    hostname: "ros_api_hostname/ip"
-    username: "admin"
-    password: "secret_password"
-
+- name: Get example - ip address print
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
     path: "ip address"
+  register: ipaddrd_printout
 
-    nic: "ether2"
-    ip1: "1.1.1.1/32"
-    ip2: "2.2.2.2/32"
-    ip3: "3.3.3.3/32"
+- name: Dump "Get example" output
+  ansible.builtin.debug:
+    msg: '{{ ipaddrd_printout }}'
 
-  tasks:
-    - name: Get "{{ path }} print"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "{{ path }}"
-      register: print_path
+- name: Add example - ip address
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    add: "address=192.168.255.10/24 interface=ether2"
 
-    - name: Dump "{{ path }} print" output
-      ansible.builtin.debug:
-        msg: '{{ print_path }}'
+- name: Query example - ".id, address" in "ip address WHERE address == 192.168.255.10/24"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    query: ".id address WHERE address == {{ ip2 }}"
+  register: queryout
 
-    - name: Add ip address "{{ ip1 }}" and "{{ ip2 }}"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "{{ path }}"
-        add: "{{ item }}"
-      loop:
-        - "address={{ ip1 }} interface={{ nic }}"
-        - "address={{ ip2 }} interface={{ nic }}"
-      register: addout
+- name: Dump "Query example" output
+  ansible.builtin.debug:
+    msg: '{{ queryout }}'
 
-    - name: Dump "Add ip address" output - ".id" for new added items
-      ansible.builtin.debug:
-        msg: '{{ addout }}'
+- name: Extended query example - ".id,address,network" where address is not 192.168.255.10/24 or is 10.20.36.20/24
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    extended_query:
+      attributes:
+        - network
+        - address
+        - .id
+      where:
+        - attribute: "network"
+          is: "=="
+          value: "192.168.255.0"
+        - or:
+            - attribute: "address"
+              is: "!="
+              value: "192.168.255.10/24"
+            - attribute: "address"
+              is: "eq"
+              value: "10.20.36.20/24"
+        - attribute: "network"
+          is: "in"
+          value:
+             - "10.20.36.0"
+             - "192.168.255.0"
+  register: extended_queryout
 
-    - name: Query for ".id" in "{{ path }} WHERE address == {{ ip2 }}"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "{{ path }}"
-        query: ".id address WHERE address == {{ ip2 }}"
-      register: queryout
+- name: Dump "Extended query example" output
+  ansible.builtin.debug:
+    msg: '{{ extended_queryout }}'
 
-    - name: Dump "Query for" output and set fact with ".id" for "{{ ip2 }}"
-      ansible.builtin.debug:
-        msg: '{{ queryout }}'
+- name: Update example - ether2 ip addres with ".id = *14"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    update: >-
+        .id=*14
+        address=192.168.255.20/24
+        comment={{ 'Update 192.168.255.10/24 to 192.168.255.20/24 on ether2' | community.routeros.quote_argument_value }}
 
-    - name: Store query_id for later usage
-      ansible.builtin.set_fact:
-        query_id: "{{ queryout['msg'][0]['.id'] }}"
+- name: Remove example - ether2 ip 192.168.255.20/24 with ".id = *14"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    remove: "*14"
 
-    - name: Update ".id = {{ query_id }}" taken with custom fact "fquery_id"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "{{ path }}"
-        update: >-
-            .id={{ query_id }}
-            address={{ ip3 }}
-            comment={{ 'A comment with spaces' | community.routeros.quote_argument_value }}
-      register: updateout
+- name: Arbitrary command example "/system identity print"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "system identity"
+    cmd: "print"
+  register: arbitraryout
 
-    - name: Dump "Update" output
-      ansible.builtin.debug:
-        msg: '{{ updateout }}'
-
-    - name: Remove ips - stage 1 - query ".id" for "{{ ip2 }}" and "{{ ip3 }}"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "{{ path }}"
-        query: ".id address WHERE address == {{ item }}"
-      register: id_to_remove
-      loop:
-        - "{{ ip2 }}"
-        - "{{ ip3 }}"
-
-    - name: Set fact for ".id" from "Remove ips - stage 1 - query"
-      ansible.builtin.set_fact:
-        to_be_remove: "{{ to_be_remove |default([]) + [item['msg'][0]['.id']] }}"
-      loop: "{{ id_to_remove.results }}"
-
-    - name: Dump "Remove ips - stage 1 - query" output
-      ansible.builtin.debug:
-        msg: '{{ to_be_remove }}'
-
-    # Remove "{{ rmips }}" with ".id" by "to_be_remove" from query
-    - name: Remove ips - stage 2 - remove "{{ ip2 }}" and "{{ ip3 }}" by '.id'
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "{{ path }}"
-        remove: "{{ item }}"
-      register: remove
-      loop: "{{ to_be_remove }}"
-
-    - name: Dump "Remove ips - stage 2 - remove" output
-      ansible.builtin.debug:
-        msg: '{{ remove }}'
-
-    - name: Arbitrary command example "/system identity print"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "system identity"
-        cmd: "print"
-      register: cmdout
-
-    - name: Dump "Arbitrary command example" output
-      ansible.builtin.debug:
-        msg: "{{ cmdout }}"
+- name: Dump "Arbitrary command example" output
+  ansible.builtin.debug:
+    msg: '{{ arbitraryout }}'
 '''
 
 RETURN = '''
@@ -232,7 +266,7 @@ import traceback
 
 try:
     from librouteros.exceptions import LibRouterosError
-    from librouteros.query import Key
+    from librouteros.query import Key, Or
 except Exception:
     # Handled in api module_utils
     pass
@@ -247,13 +281,33 @@ class ROS_api_module:
             update=dict(type='str'),
             cmd=dict(type='str'),
             query=dict(type='str'),
+            extended_query=dict(type='dict', options=dict(
+                attributes=dict(type='list', elements='str', required=True),
+                where=dict(
+                    type='list',
+                    elements='dict',
+                    options={
+                        'attribute': dict(type='str'),
+                        'is': dict(type='str', choices=["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]),
+                        'value': dict(type='raw'),
+                        'or': dict(type='list', elements='dict', options={
+                            'attribute': dict(type='str', required=True),
+                            'is': dict(type='str', choices=["==", "!=", ">", "<", "in", "eq", "not", "more", "less"], required=True),
+                            'value': dict(type='raw', required=True),
+                        }),
+                    },
+                    required_together=[('attribute', 'is', 'value')],
+                    mutually_exclusive=[('attribute', 'or')],
+                    required_one_of=[('attribute', 'or')],
+                ),
+            )),
         )
         module_args.update(api_argument_spec())
 
         self.module = AnsibleModule(argument_spec=module_args,
                                     supports_check_mode=False,
                                     mutually_exclusive=(('add', 'remove', 'update',
-                                                         'cmd', 'query'),),)
+                                                         'cmd', 'query', 'extended_query'),),)
 
         check_has_library(self.module)
 
@@ -267,32 +321,7 @@ class ROS_api_module:
 
         self.where = None
         self.query = self.module.params['query']
-        if self.query:
-            where_index = self.query.find(' WHERE ')
-            if where_index < 0:
-                self.query = self.split_params(self.query)
-            else:
-                where = self.query[where_index + len(' WHERE '):]
-                self.query = self.split_params(self.query[:where_index])
-                # where must be of the format '<attribute> <operator> <value>'
-                m = re.match(r'^\s*([^ ]+)\s+([^ ]+)\s+(.*)$', where)
-                if not m:
-                    self.errors("invalid syntax for 'WHERE %s'" % where)
-                try:
-                    self.where = [
-                        m.group(1),  # attribute
-                        m.group(2),  # operator
-                        parse_argument_value(m.group(3).rstrip())[0],  # value
-                    ]
-                except ParseError as exc:
-                    self.errors("invalid syntax for 'WHERE %s': %s" % (where, exc))
-            try:
-                idx = self.query.index('WHERE')
-                self.where = self.query[idx + 1:]
-                self.query = self.query[:idx]
-            except ValueError:
-                # Raised when WHERE has not been found
-                pass
+        self.extended_query = self.module.params['extended_query']
 
         self.result = dict(
             message=[])
@@ -308,11 +337,57 @@ class ROS_api_module:
         elif self.update:
             self.api_update()
         elif self.query:
+            self.check_query()
             self.api_query()
+        elif self.extended_query:
+            self.check_extended_query()
+            self.api_extended_query()
         elif self.arbitrary:
             self.api_arbitrary()
         else:
             self.api_get_all()
+
+    def check_query(self):
+        where_index = self.query.find(' WHERE ')
+        if where_index < 0:
+            self.query = self.split_params(self.query)
+        else:
+            where = self.query[where_index + len(' WHERE '):]
+            self.query = self.split_params(self.query[:where_index])
+            # where must be of the format '<attribute> <operator> <value>'
+            m = re.match(r'^\s*([^ ]+)\s+([^ ]+)\s+(.*)$', where)
+            if not m:
+                self.errors("invalid syntax for 'WHERE %s'" % where)
+            try:
+                self.where = [
+                    m.group(1),  # attribute
+                    m.group(2),  # operator
+                    parse_argument_value(m.group(3).rstrip())[0],  # value
+                ]
+            except ParseError as exc:
+                self.errors("invalid syntax for 'WHERE %s': %s" % (where, exc))
+        try:
+            idx = self.query.index('WHERE')
+            self.where = self.query[idx + 1:]
+            self.query = self.query[:idx]
+        except ValueError:
+            # Raised when WHERE has not been found
+            pass
+
+    def check_extended_query_syntax(self, test_atr, or_msg=''):
+        if test_atr['is'] == "in" and not isinstance(test_atr['value'], list):
+            self.errors("invalid syntax 'extended_query':'where':%s%s 'value' must be a type list" % (or_msg, test_atr))
+
+    def check_extended_query(self):
+        if self.extended_query["where"]:
+            for i in self.extended_query['where']:
+                if i["or"] is not None:
+                    if len(i['or']) < 2:
+                        self.errors("invalid syntax 'extended_query':'where':'or':%s 'or' requires minimum two items" % i["or"])
+                    for orv in i['or']:
+                        self.check_extended_query_syntax(orv, ":'or':")
+                else:
+                    self.check_extended_query_syntax(i)
 
     def list_to_dic(self, ldict):
         return convert_list_to_dictionary(ldict, skip_empty_values=True, require_assignment=True)
@@ -370,18 +445,18 @@ class ROS_api_module:
     def api_query(self):
         keys = {}
         for k in self.query:
-            if k == 'id':
+            if 'id' in k and k != ".id":
                 self.errors("'%s' must be '.id'" % k)
             keys[k] = Key(k)
         try:
             if self.where:
-                if self.where[1] == '==':
+                if self.where[1] in ('==', 'eq'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] == self.where[2])
-                elif self.where[1] == '!=':
+                elif self.where[1] in ('!=', 'not'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] != self.where[2])
-                elif self.where[1] == '>':
+                elif self.where[1] in ('>', 'more'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] > self.where[2])
-                elif self.where[1] == '<':
+                elif self.where[1] in ('<', 'less'):
                     select = self.api_path.select(*keys).where(keys[self.where[0]] < self.where[2])
                 else:
                     self.errors("'%s' is not operator for 'where'"
@@ -396,6 +471,49 @@ class ROS_api_module:
                 if self.where:
                     msg = msg + ' WHERE %s' % ' '.join(self.where)
                 self.result['message'].append(msg)
+            self.return_result(False)
+        except LibRouterosError as e:
+            self.errors(e)
+
+    def build_api_extended_query(self, item):
+        if item['attribute'] not in self.extended_query['attributes']:
+            self.errors("'%s' attribute is not in attributes: %s"
+                        % (item, self.extended_query['attributes']))
+        if item['is'] in ('eq', '=='):
+            return self.query_keys[item['attribute']] == item['value']
+        elif item['is'] in ('not', '!='):
+            return self.query_keys[item['attribute']] != item['value']
+        elif item['is'] in ('less', '<'):
+            return self.query_keys[item['attribute']] < item['value']
+        elif item['is'] in ('more', '>'):
+            return self.query_keys[item['attribute']] > item['value']
+        elif item['is'] == 'in':
+            return self.query_keys[item['attribute']].In(*item['value'])
+        else:
+            self.errors("'%s' is not operator for 'is'" % item['is'])
+
+    def api_extended_query(self):
+        self.query_keys = {}
+        for k in self.extended_query['attributes']:
+            if k == 'id':
+                self.errors("'extended_query':'attributes':'%s' must be '.id'" % k)
+            self.query_keys[k] = Key(k)
+        try:
+            if self.extended_query['where']:
+                where_args = []
+                for i in self.extended_query['where']:
+                    if i['or']:
+                        where_or_args = []
+                        for ior in i['or']:
+                            where_or_args.append(self.build_api_extended_query(ior))
+                        where_args.append(Or(*where_or_args))
+                    else:
+                        where_args.append(self.build_api_extended_query(i))
+                select = self.api_path.select(*self.query_keys).where(*where_args)
+            else:
+                select = self.api_path.select(*self.extended_query['attributes'])
+            for row in select:
+                self.result['message'].append(row)
             self.return_result(False)
         except LibRouterosError as e:
             self.errors(e)
