@@ -135,85 +135,103 @@ seealso:
 '''
 
 EXAMPLES = '''
----
-  tasks:
-    - name: Get example - ip address print
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "ip address"
+- name: Get example - ip address print
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+  register: ipaddrd_printout
 
-    - name: Add example - ip address
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "ip address"
-        add: "address=192.168.255.10/24 interface=ether2"
+- name: Dump "Get example" output
+  ansible.builtin.debug:
+    msg: '{{ ipaddrd_printout }}'
 
-    - name: Query example - ".id, address" in "ip address WHERE address == 192.168.255.10/24"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "ip address"
-        query: ".id address WHERE address == {{ ip2 }}"
+- name: Add example - ip address
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    add: "address=192.168.255.10/24 interface=ether2"
 
-    - name: Extended query example - ".id,address,network" where address is not 192.168.255.10/24 or is 10.20.36.20/24
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "ip address"
-        extended_query:
-          attributes:
-            - network
-            - address
-            - .id
-          where:
-            - attribute: "network"
-              is: "=="
-              value: "192.168.255.0"
-            - or:
-                - attribute: "address"
-                  is: "!="
-                  value: "192.168.255.10/24"
-                - attribute: "address"
-                  is: "eq"
-                  value: "10.20.36.20/24"
-            - attribute: "network"
-              is: "in"
-              value:
-                 - "10.20.36.0"
-                 - "192.168.255.0"
+- name: Query example - ".id, address" in "ip address WHERE address == 192.168.255.10/24"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    query: ".id address WHERE address == {{ ip2 }}"
+  register: queryout
 
-    - name: Update example - ether2 ip addres with ".id = *14"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "ip address"
-        update: >-
-            .id=*14
-            address=192.168.255.20/24
-            comment={{ 'Update 192.168.255.10/24 with .id=*14 to 192.168.255.20/24 on ether2' | community.routeros.quote_argument_value }}
+- name: Dump "Query example" output
+  ansible.builtin.debug:
+    msg: '{{ queryout }}'
 
-    - name: Remove example - ether2 ip 192.168.255.20/24 with ".id = *14"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "ip address"
-        remove: "*14"
+- name: Extended query example - ".id,address,network" where address is not 192.168.255.10/24 or is 10.20.36.20/24
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    extended_query:
+      attributes:
+        - network
+        - address
+        - .id
+      where:
+        - attribute: "network"
+          is: "=="
+          value: "192.168.255.0"
+        - or:
+            - attribute: "address"
+              is: "!="
+              value: "192.168.255.10/24"
+            - attribute: "address"
+              is: "eq"
+              value: "10.20.36.20/24"
+        - attribute: "network"
+          is: "in"
+          value:
+             - "10.20.36.0"
+             - "192.168.255.0"
+  register: extended_queryout
 
-    - name: Arbitrary command example "/system identity print"
-      community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "system identity"
-        cmd: "print"
+- name: Dump "Extended query example" output
+  ansible.builtin.debug:
+    msg: '{{ extended_queryout }}'
+
+- name: Update example - ether2 ip addres with ".id = *14"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    update: >-
+        .id=*14
+        address=192.168.255.20/24
+        comment={{ 'Update 192.168.255.10/24 to 192.168.255.20/24 on ether2' | community.routeros.quote_argument_value }}
+
+- name: Remove example - ether2 ip 192.168.255.20/24 with ".id = *14"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "ip address"
+    remove: "*14"
+
+- name: Arbitrary command example "/system identity print"
+  community.routeros.api:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: "system identity"
+    cmd: "print"
+  register: arbitraryout
+
+- name: Dump "Arbitrary command example" output
+  ansible.builtin.debug:
+    msg: '{{ arbitraryout }}'
 '''
 
 RETURN = '''
