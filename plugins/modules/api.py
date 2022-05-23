@@ -63,7 +63,7 @@ options:
   extended_query:
     description:
       - Extended query given path for selected query attributes from RouterOS API.
-      - Extended query allow conjunctive input, in such case 'no results' will be returned.
+      - Extended query allow conjunctive input. If there is no matching entry, an empty list will be returned.
     type: dict
     suboptions:
       attributes:
