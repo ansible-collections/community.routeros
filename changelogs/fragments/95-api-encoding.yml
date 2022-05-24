@@ -1,0 +1,2 @@
+minor_changes:
+  - "api* modules - switch encoding for API connection from ASCII to UTF-8 to allow Unicode input (https://github.com/ansible-collections/community.routeros/pull/95)."

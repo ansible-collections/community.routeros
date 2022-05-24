@@ -54,6 +54,13 @@ def _ros_api_connect(module, username, password, host, port, use_tls, validate_c
         else:
             port = 8728
     try:
+        params = dict(
+            username=username,
+            password=password,
+            host=host,
+            port=port,
+            encoding='utf-8',
+        )
         if use_tls:
             ctx = ssl.create_default_context(cafile=ca_path)
             wrap_context = ctx.wrap_socket
@@ -68,20 +75,8 @@ def _ros_api_connect(module, username, password, host, port, use_tls, validate_c
                 def wrap_context(*args, **kwargs):
                     kwargs.pop('server_hostname', None)
                     return ctx.wrap_socket(*args, server_hostname=host, **kwargs)
-            api = connect(
-                username=username,
-                password=password,
-                host=host,
-                ssl_wrapper=wrap_context,
-                port=port,
-            )
-        else:
-            api = connect(
-                username=username,
-                password=password,
-                host=host,
-                port=port,
-            )
+            params['ssl_wrapper'] = wrap_context
+        api = connect(**params)
     except Exception as e:
         connection = {
             'username': username,
