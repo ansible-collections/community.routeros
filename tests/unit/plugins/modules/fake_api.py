@@ -17,6 +17,8 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
+from ansible_collections.community.routeros.plugins.module_utils._api_data import PATHS
+
 
 class FakeLibRouterosError(Exception):
     def __init__(self, message):
@@ -125,3 +127,110 @@ class Or(object):
 
     def str_return(self):
         return repr(self.args)
+
+
+def _normalize_entry(entry, path_info):
+    for key, data in path_info.fields.items():
+        if key not in entry and data.default is not None:
+            entry[key] = data.default
+        if data.can_disable:
+            if key in entry and entry[key] in (None, data.remove_value):
+                del entry[key]
+            if ('!%s' % key) in entry:
+                entry.pop(key, None)
+                del entry['!%s' % key]
+
+
+def massage_expected_result_data(values, path, keep_all=False):
+    path_info = PATHS[path]
+    values = [entry.copy() for entry in values]
+    for entry in values:
+        _normalize_entry(entry, path_info)
+        if not keep_all:
+            for key in list(entry):
+                if key == '.id' or key in path_info.fields:
+                    continue
+                del entry[key]
+    return values
+
+
+class Path(object):
+    def __init__(self, path, initial_values, read_only=False):
+        self._path = path
+        self._path_info = PATHS[path]
+        self._values = [entry.copy() for entry in initial_values]
+        for entry in self._values:
+            _normalize_entry(entry, self._path_info)
+        self._new_id_counter = 0
+        self._read_only = read_only
+
+    def __iter__(self):
+        return [entry.copy() for entry in self._values].__iter__()
+
+    def _find_id(self, id, required=False):
+        for index, entry in enumerate(self._values):
+            if entry['.id'] == id:
+                return index
+        if required:
+            raise FakeLibRouterosError('Cannot find key "%s"' % id)
+        return None
+
+    def add(self, **kwargs):
+        if self._path_info.fixed_entries or self._path_info.single_value:
+            raise Exception('Cannot add entries')
+        if self._read_only:
+            raise Exception('Modifying read-only path: add %s' % repr(kwargs))
+        if '.id' in kwargs:
+            raise Exception('Trying to create new entry with ".id" field: %s' % repr(kwargs))
+        self._new_id_counter += 1
+        id = '*NEW%d' % self._new_id_counter
+        entry = {
+            '.id': id,
+        }
+        entry.update(kwargs)
+        _normalize_entry(entry, self._path_info)
+        self._values.append(entry)
+        return id
+
+    def remove(self, *args):
+        if self._path_info.fixed_entries or self._path_info.single_value:
+            raise Exception('Cannot remove entries')
+        if self._read_only:
+            raise Exception('Modifying read-only path: remove %s' % repr(args))
+        for id in args:
+            index = self._find_id(id, required=True)
+            del self._values[index]
+
+    def update(self, **kwargs):
+        if self._read_only:
+            raise Exception('Modifying read-only path: update %s' % repr(kwargs))
+        if self._path_info.single_value:
+            index = 0
+        else:
+            index = self._find_id(kwargs['.id'], required=True)
+        entry = self._values[index]
+        entry.update(kwargs)
+        _normalize_entry(entry, self._path_info)
+
+    def __call__(self, command, *args, **kwargs):
+        if self._read_only:
+            raise Exception('Modifying read-only path: "%s" %s %s' % (command, repr(args), repr(kwargs)))
+        if command != 'move':
+            raise FakeLibRouterosError('Unsupported command "%s"' % command)
+        if self._path_info.fixed_entries or self._path_info.single_value:
+            raise Exception('Cannot move entries')
+        yield None  # make sure that nothing happens if the result isn't consumed
+        source_index = self._find_id(kwargs.pop('numbers'), required=True)
+        entry = self._values.pop(source_index)
+        dest_index = self._find_id(kwargs.pop('destination'), required=True)
+        self._values.insert(dest_index, entry)
+
+
+def create_fake_path(path, initial_values, read_only=False):
+    def create(api, called_path):
+        called_path = tuple(called_path)
+        if path != called_path:
+            raise AssertionError('Expected {path}, got {called_path}'.format(path=path, called_path=called_path))
+        return Path(path, initial_values, read_only=read_only)
+
+    return create

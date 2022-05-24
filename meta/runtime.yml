@@ -4,3 +4,4 @@ action_groups:
   api:
   - api
   - api_facts
+  - api_find_and_modify
