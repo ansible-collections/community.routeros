@@ -329,23 +329,26 @@ class ROS_api_module:
         # create api base path
         self.api_path = self.api_add_path(self.api, self.path)
 
-        # api call's
-        if self.add:
-            self.api_add()
-        elif self.remove:
-            self.api_remove()
-        elif self.update:
-            self.api_update()
-        elif self.query:
-            self.check_query()
-            self.api_query()
-        elif self.extended_query:
-            self.check_extended_query()
-            self.api_extended_query()
-        elif self.arbitrary:
-            self.api_arbitrary()
-        else:
-            self.api_get_all()
+        # api calls
+        try:
+            if self.add:
+                self.api_add()
+            elif self.remove:
+                self.api_remove()
+            elif self.update:
+                self.api_update()
+            elif self.query:
+                self.check_query()
+                self.api_query()
+            elif self.extended_query:
+                self.check_extended_query()
+                self.api_extended_query()
+            elif self.arbitrary:
+                self.api_arbitrary()
+            else:
+                self.api_get_all()
+        except UnicodeEncodeError as exc:
+            self.module.fail_json(msg='Error while encoding text: {error}'.format(error=exc))
 
     def check_query(self):
         where_index = self.query.find(' WHERE ')
