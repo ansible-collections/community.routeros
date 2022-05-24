@@ -1,0 +1,2 @@
+minor_changes:
+  - "api* modules - allow to set an encoding other than the default ASCII for communicating with the API (https://github.com/ansible-collections/community.routeros/pull/95)."

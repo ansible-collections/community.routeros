@@ -277,7 +277,7 @@ def main():
         for modification in modifications:
             try:
                 api_path.update(**modification)
-            except LibRouterosError as e:
+            except (LibRouterosError, UnicodeEncodeError) as e:
                 module.fail_json(
                     msg='Error while modifying for .id={id}: {error}'.format(
                         id=modification['.id'],

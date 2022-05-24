@@ -63,6 +63,13 @@ options:
       - See also I(validate_cert_hostname). Only used when I(tls=true) and I(validate_certs=true).
     type: path
     version_added: 1.2.0
+  encoding:
+    description:
+      - Use the specified encoding when communicating with the RouterOS device.
+      - Default is C(ASCII). Note that C(UTF-8) requires librouteros 3.2.1 or newer.
+    type: str
+    default: ASCII
+    version_added: 2.1.0
 requirements:
   - librouteros
   - Python >= 3.6 (for librouteros)
