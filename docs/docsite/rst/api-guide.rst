@@ -3,7 +3,7 @@
 How to connect to RouterOS devices with the RouterOS API
 ========================================================
 
-You can use the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` to connect to a RouterOS device with the RouterOS API. The :ref:`community.routeros.api_facts module <ansible_collections.community.routeros.api_facts_module>` allows to retrieve Ansible facts using the RouterOS API.
+You can use the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` to connect to a RouterOS device with the RouterOS API. A more specific module to modify certain entries is the :ref:`community.routeros.api_find_and_modify module <ansible_collections.community.routeros.api_find_and_modify_module>`. The :ref:`community.routeros.api_facts module <ansible_collections.community.routeros.api_facts_module>` allows to retrieve Ansible facts using the RouterOS API.
 
 No special setup is needed; the module needs to be run on a host that can connect to the device's API. The most common case is that the module is run on ``localhost``, either by using ``hosts: localhost`` in the playbook, or by using ``delegate_to: localhost`` for the task. The following example shows how to run the equivalent of ``/ip address print``:
 
@@ -59,7 +59,7 @@ Check out the documenation of the :ref:`community.routeros.api module <ansible_c
 Using the ``community.routeros.api`` module defaults group
 ----------------------------------------------------------
 
-To avoid having to specify common parameters for the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` and :ref:`community.routeros.api_facts module <ansible_collections.community.routeros.api_facts_module>` in every task, you can use the ``community.routeros.api`` module defaults group:
+To avoid having to specify common parameters for all the API based modules in every task, you can use the ``community.routeros.api`` module defaults group:
 
 .. code-block:: yaml+jinja
 
@@ -87,7 +87,15 @@ To avoid having to specify common parameters for the :ref:`community.routeros.ap
           community.routeros.api:
             path: "ip address"
 
-Here both tasks will use the options set for the module defaults group.
+        - name: Change IP address to 192.168.1.1 for interface bridge
+          community.routeros.api_find_and_modify:
+            path: ip address
+            find:
+              interface: bridge
+            values:
+              address: "192.168.1.1/24"
+
+Here all three tasks will use the options set for the module defaults group.
 
 Setting up encryption
 ---------------------

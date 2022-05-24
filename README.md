@@ -24,6 +24,8 @@ Please note that `community.routeros.api` module does **not** support Windows ju
 ## Included content
 
 - `community.routeros.api`
+- `community.routeros.api_facts`
+- `community.routeros.api_find_and_modify`
 - `community.routeros.command`
 - `community.routeros.facts`
 
@@ -69,19 +71,19 @@ Example playbook:
   hosts: routers
   gather_facts: false
   tasks:
+    - name: Run a command
+      community.routeros.command:
+        commands:
+          - /system resource print
+      register: system_resource_print
+    - name: Print its output
+      ansible.builtin.debug:
+        var: system_resource_print.stdout_lines
 
-  # Run a command and print its output
-  - community.routeros.command:
-      commands:
-        - /system resource print
-    register: system_resource_print
-  - debug:
-      var: system_resource_print.stdout_lines
-
-  # Retrieve facts
-  - community.routeros.facts:
-  - debug:
-      msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
+    - name: Retrieve facts
+      community.routeros.facts:
+    - ansible.builtin.debug:
+        msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
 ```
 
 ### Connecting with HTTP/HTTPS API
@@ -97,18 +99,36 @@ Example playbook:
     hostname: 192.168.1.1
     username: admin
     password: test1234
+  module_defaults:
+    group/community.routeros.api:
+      hostname: "{{ hostname }}"
+      password: "{{ password }}"
+      username: "{{ username }}"
+      tls: true
+      validate_certs: true
+      validate_cert_hostname: true
+      ca_path: /path/to/ca-certificate.pem
   tasks:
     - name: Get "ip address print"
       community.routeros.api:
-        hostname: "{{ hostname }}"
-        password: "{{ password }}"
-        username: "{{ username }}"
-        path: "ip address"
-        tls: true
-        validate_certs: true
-        validate_cert_hostname: true
-        ca_path: /path/to/ca-certificate.pem
+        path: ip address
       register: print_path
+    - name: Print the result
+      ansible.builtin.debug:
+        var: print_path.msg
+
+    - name: Change IP address to 192.168.1.1 for interface bridge
+      community.routeros.api_find_and_modify:
+        path: ip address
+        find:
+          interface: bridge
+        values:
+          address: "192.168.1.1/24"
+
+    - name: Retrieve facts
+      community.routeros.api_facts:
+    - ansible.builtin.debug:
+        msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
 ```
 
 ## Contributing to this collection
