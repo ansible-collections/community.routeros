@@ -2,11 +2,12 @@
 
 namespace: community
 name: routeros
-version: 2.0.0
+version: 2.1.0
 readme: README.md
 authors:
   - Egor Zaitsev (github.com/heuels)
   - Nikolay Dachev (github.com/NikolayDachev)
+  - Felix Fontein (github.com/felixfontein)
 description: Modules for MikroTik RouterOS
 license_file: COPYING
 tags:
