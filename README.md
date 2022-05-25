@@ -32,6 +32,8 @@ Please note that `community.routeros.api` module does **not** support Windows ju
 - `community.routeros.api`
 - `community.routeros.api_facts`
 - `community.routeros.api_find_and_modify`
+- `community.routeros.api_info`
+- `community.routeros.api_modify`
 - `community.routeros.command`
 - `community.routeros.facts`
 

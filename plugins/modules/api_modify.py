@@ -16,6 +16,9 @@ short_description: Retrieve information from API
 version_added: 2.1.0
 description:
   - Allows to modify information for a path using the API.
+  - Use the M(community.routeros.api_find_and_modify) module to modify one or multiple entries in a controlled way
+    depending on some search conditions.
+  - To make a backup of a path that can be restored with this module, use the M(community.routeros.api_info) module.
 notes:
   - Supports I(check_mode).
 requirements:
@@ -158,6 +161,8 @@ options:
     default: ignore
 seealso:
   - module: community.routeros.api
+  - module: community.routeros.api_facts
+  - module: community.routeros.api_find_and_modify
   - module: community.routeros.api_info
 '''
 
