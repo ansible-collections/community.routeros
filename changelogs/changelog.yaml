@@ -153,3 +153,39 @@ releases:
         name: split
         namespace: null
     release_date: '2021-10-14'
+  2.1.0:
+    changes:
+      bugfixes:
+      - query - fix query function check for ``.id`` vs. ``id`` arguments to not conflict
+        with routeros arguments like ``identity`` (https://github.com/ansible-collections/community.routeros/pull/68,
+        https://github.com/ansible-collections/community.routeros/issues/67).
+      - quoting and unquoting filter plugins, api module - handle the escape sequence
+        ``\_`` correctly as escaping a space and not an underscore (https://github.com/ansible-collections/community.routeros/pull/89).
+      minor_changes:
+      - Added a ``community.routeros.api`` module defaults group. Use with ``group/community.routeros.api``
+        to provide options for all API-based modules (https://github.com/ansible-collections/community.routeros/pull/89).
+      - Prepare collection for inclusion in an Execution Environment by declaring
+        its dependencies (https://github.com/ansible-collections/community.routeros/pull/83).
+      - api - add new option ``extended query`` more complex queries against RouterOS
+        API (https://github.com/ansible-collections/community.routeros/pull/63).
+      - api - update ``query`` to accept symbolic parameters (https://github.com/ansible-collections/community.routeros/pull/63).
+      - api* modules - allow to set an encoding other than the default ASCII for communicating
+        with the API (https://github.com/ansible-collections/community.routeros/pull/95).
+      release_summary: Feature and bugfix release with new modules.
+    fragments:
+    - 2.1.0.yml
+    - 63-add-extended_query.yml
+    - 68-fix-query-id-check.yml
+    - 83-ee.yml
+    - 89-quoting.yml
+    - 90-api-action-group.yml
+    - 95-api-encoding.yml
+    modules:
+    - description: Collect facts from remote devices running MikroTik RouterOS using
+        the API
+      name: api_facts
+      namespace: ''
+    - description: Find and modify information using the API
+      name: api_find_and_modify
+      namespace: ''
+    release_date: '2022-05-25'

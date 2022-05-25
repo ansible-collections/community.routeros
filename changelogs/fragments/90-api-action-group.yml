@@ -1,2 +1,0 @@
-minor_changes:
-  - "Added a ``community.routeros.api`` module defaults group. Use with ``group/community.routeros.api`` to provide options for all API-based modules (https://github.com/ansible-collections/community.routeros/pull/89)."

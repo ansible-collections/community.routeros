@@ -1,3 +1,0 @@
-minor_changes:
-  - "api - add new option ``extended query`` more complex queries against RouterOS API (https://github.com/ansible-collections/community.routeros/pull/63)."
-  - "api - update ``query`` to accept symbolic parameters (https://github.com/ansible-collections/community.routeros/pull/63)."
