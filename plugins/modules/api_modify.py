@@ -13,7 +13,7 @@ module: api_modify
 author:
   - "Felix Fontein (@felixfontein)"
 short_description: Retrieve information from API
-version_added: 2.1.0
+version_added: 2.2.0
 description:
   - Allows to modify information for a path using the API.
   - Use the M(community.routeros.api_find_and_modify) module to modify one or multiple entries in a controlled way

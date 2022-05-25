@@ -13,7 +13,7 @@ module: api_info
 author:
   - "Felix Fontein (@felixfontein)"
 short_description: Retrieve information from API
-version_added: 2.1.0
+version_added: 2.2.0
 description:
   - Allows to retrieve information for a path using the API.
   - This can be used to backup a path to restore it with the M(community.routeros.api_modify) module.
