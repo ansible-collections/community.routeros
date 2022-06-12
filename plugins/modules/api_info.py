@@ -17,6 +17,9 @@ version_added: 2.2.0
 description:
   - Allows to retrieve information for a path using the API.
   - This can be used to backup a path to restore it with the M(community.routeros.api_modify) module.
+  - Entries are normalized, and dynamic entries are not returned. Use the I(handle_disabled) and
+    I(hide_defaults) options to control normalization, the I(include_dynamic) option to also return
+    dynamic entries, and use I(unfiltered) to return all fields including counters.
 notes:
   - Supports I(check_mode).
 extends_documentation_fragment:

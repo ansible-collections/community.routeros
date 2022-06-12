@@ -19,6 +19,7 @@ description:
   - Use the M(community.routeros.api_find_and_modify) module to modify one or multiple entries in a controlled way
     depending on some search conditions.
   - To make a backup of a path that can be restored with this module, use the M(community.routeros.api_info) module.
+  - The module ignores dynamic entries.
 notes:
   - Supports I(check_mode).
 requirements:
