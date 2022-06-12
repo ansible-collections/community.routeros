@@ -180,6 +180,14 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'chain': 'input',
                 'in-interface-list': 'LAN',
                 '.id': '*1',
+                'dynamic': False,
+            },
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+                'dynamic': True,
             },
         ]
         with self.assertRaises(AnsibleExitJson) as exc:
@@ -262,6 +270,7 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'chain': 'input',
                 'in-interface-list': 'LAN',
                 '.id': '*1',
+                'dynamic': False,
             },
         ]
         with self.assertRaises(AnsibleExitJson) as exc:
@@ -344,6 +353,7 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'chain': 'input',
                 'in-interface-list': 'LAN',
                 '.id': '*1',
+                'dynamic': False,
             },
         ]
         with self.assertRaises(AnsibleExitJson) as exc:
@@ -362,3 +372,48 @@ class TestRouterosApiInfoModule(ModuleTestCase):
             'in-interface-list': 'LAN',
             '.id': '*1',
         }])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_dynamic(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                'chain': 'input',
+                'in-interface-list': 'LAN',
+                'dynamic': False,
+                '.id': '*1',
+            },
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+                'dynamic': True,
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'handle_disabled': 'omit',
+                'include_dynamic': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                'chain': 'input',
+                'in-interface-list': 'LAN',
+                '.id': '*1',
+                'dynamic': False,
+            },
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+                'dynamic': True,
+            },
+        ])

@@ -430,6 +430,15 @@ def match_entries(new_entries, old_entries, path_info, module):
     return matching_old_entries, unmatched_old_entries
 
 
+def remove_dynamic(entries):
+    result = []
+    for entry in entries:
+        if entry.get('dynamic', False):
+            continue
+        result.append(entry)
+    return result
+
+
 def sync_list(module, api, path, path_info):
     handle_absent_entries = module.params['handle_absent_entries']
     handle_entries_content = module.params['handle_entries_content']
@@ -461,6 +470,7 @@ def sync_list(module, api, path, path_info):
     api_path = compose_api_path(api, path)
 
     old_data = list(api_path)
+    old_data = remove_dynamic(old_data)
     stratified_old_data = defaultdict(list)
     for index, entry in enumerate(old_data):
         sks = tuple(entry[stratify_key] for stratify_key in stratify_keys)
@@ -571,7 +581,7 @@ def sync_list(module, api, path, path_info):
 
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
-            new_data = list(api_path)
+            new_data = remove_dynamic(list(api_path))
 
     # Remove 'irrelevant' data
     for entry in old_data:
@@ -640,6 +650,7 @@ def sync_with_primary_keys(module, api, path, path_info):
     api_path = compose_api_path(api, path)
 
     old_data = list(api_path)
+    old_data = remove_dynamic(old_data)
     old_data_by_key = OrderedDict()
     id_by_key = {}
     for entry in old_data:
@@ -764,7 +775,7 @@ def sync_with_primary_keys(module, api, path, path_info):
 
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
-            new_data = list(api_path)
+            new_data = remove_dynamic(list(api_path))
 
     # Remove 'irrelevant' data
     for entry in old_data:

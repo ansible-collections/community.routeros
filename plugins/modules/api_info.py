@@ -140,6 +140,13 @@ options:
       - Whether to hide default values.
     type: bool
     default: true
+  include_dynamic:
+    description:
+      - Whether to include dynamic values.
+      - By default, they are not returned, and the C(dynamic) keys are omitted.
+      - If set to C(true), they are returned as well, and the C(dynamic) keys are returned as well.
+    type: bool
+    default: false
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -216,6 +223,7 @@ def main():
         unfiltered=dict(type='bool', default=False),
         handle_disabled=dict(type='str', choices=['exclamation', 'null-value', 'omit'], default='exclamation'),
         hide_defaults=dict(type='bool', default=True),
+        include_dynamic=dict(type='bool', default=False),
     )
     module_args.update(api_argument_spec())
 
@@ -234,15 +242,21 @@ def main():
 
     handle_disabled = module.params['handle_disabled']
     hide_defaults = module.params['hide_defaults']
+    include_dynamic = module.params['include_dynamic']
     try:
         api_path = compose_api_path(api, path)
 
         result = []
         unfiltered = module.params['unfiltered']
         for entry in api_path:
+            if not include_dynamic:
+                if entry.get('dynamic', False):
+                    continue
             if not unfiltered:
                 for k in list(entry):
                     if k == '.id':
+                        continue
+                    if k == 'dynamic' and include_dynamic:
                         continue
                     if k not in path_info.fields:
                         entry.pop(k)

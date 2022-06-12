@@ -50,9 +50,16 @@ START_IP_DNS_STATIC = [
         'address': '192.168.88.2',
         'dynamic': False,
     },
+    {
+        '.id': '*8',
+        'comment': '',
+        'name': 'dynfoo',
+        'address': '192.168.88.15',
+        'dynamic': True,
+    },
 ]
 
-START_IP_DNS_STATIC_OLD_DATA = massage_expected_result_data(START_IP_DNS_STATIC, ('ip', 'dns', 'static'))
+START_IP_DNS_STATIC_OLD_DATA = massage_expected_result_data(START_IP_DNS_STATIC, ('ip', 'dns', 'static'), remove_dynamic=True)
 
 START_IP_SETTINGS = [
     {
