@@ -9,7 +9,9 @@ authors:
   - Nikolay Dachev (github.com/NikolayDachev)
   - Felix Fontein (github.com/felixfontein)
 description: Modules for MikroTik RouterOS
-license_file: COPYING
+license:
+  - GPL-3.0-or-later
+#license_file: COPYING
 tags:
   - network
   - mikrotik
