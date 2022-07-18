@@ -1,3 +1,8 @@
+---
+# Copyright (c) Ansible Project
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # See https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html
 
 namespace: community
@@ -9,7 +14,9 @@ authors:
   - Nikolay Dachev (github.com/NikolayDachev)
   - Felix Fontein (github.com/felixfontein)
 description: Modules for MikroTik RouterOS
-license_file: COPYING
+license:
+  - GPL-3.0-or-later
+#license_file: COPYING
 tags:
   - network
   - mikrotik

@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright: (c) 2022, Felix Fontein <felix@fontein.de>
+# Copyright (c) 2022, Felix Fontein <felix@fontein.de>
 # GNU General Public License v3.0+ https://www.gnu.org/licenses/gpl-3.0.txt
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
