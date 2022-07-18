@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright: (c) 2020, Nikolay Dachev <nikolay@dachev.info>
+# Copyright (c) 2020, Nikolay Dachev <nikolay@dachev.info>
 # GNU General Public License v3.0+ https://www.gnu.org/licenses/gpl-3.0.txt
 # SPDX-License-Identifier: GPL-3.0-or-later
 
