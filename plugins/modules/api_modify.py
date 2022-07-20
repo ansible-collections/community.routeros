@@ -13,7 +13,7 @@ DOCUMENTATION = '''
 module: api_modify
 author:
   - "Felix Fontein (@felixfontein)"
-short_description: Retrieve information from API
+short_description: Modify data at paths with API
 version_added: 2.2.0
 description:
   - Allows to modify information for a path using the API.
@@ -21,6 +21,9 @@ description:
     depending on some search conditions.
   - To make a backup of a path that can be restored with this module, use the M(community.routeros.api_info) module.
   - The module ignores dynamic entries.
+  - B(Note) that this module is still heavily in development, and only supports B(some) paths.
+    If you want to support new paths, or think you found problems with existing paths, please first
+    L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
 notes:
   - Supports I(check_mode).
 requirements:

@@ -21,6 +21,9 @@ description:
   - Entries are normalized, and dynamic entries are not returned. Use the I(handle_disabled) and
     I(hide_defaults) options to control normalization, the I(include_dynamic) option to also return
     dynamic entries, and use I(unfiltered) to return all fields including counters.
+  - B(Note) that this module is still heavily in development, and only supports B(some) paths.
+    If you want to support new paths, or think you found problems with existing paths, please first
+    L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
 notes:
   - Supports I(check_mode).
 extends_documentation_fragment:
