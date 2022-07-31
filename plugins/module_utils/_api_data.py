@@ -61,10 +61,7 @@ class KeyInfo(object):
 
 
 def split_path(path):
-    parts = path.split()
-    if len(parts) == 1 and parts[0] == '':
-        parts = []
-    return parts
+    return path.split()
 
 
 def join_path(path):

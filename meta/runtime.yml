@@ -9,3 +9,5 @@ action_groups:
   - api
   - api_facts
   - api_find_and_modify
+  - api_info
+  - api_modify

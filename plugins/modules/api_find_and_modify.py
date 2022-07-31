@@ -17,6 +17,8 @@ short_description: Find and modify information using the API
 version_added: 2.1.0
 description:
   - Allows to find entries for a path by conditions and modify the values of these entries.
+  - Use the M(community.routeros.api_find_and_modify) module to set all entries of a path to specific values,
+    or change multiple entries in different ways in one step.
 notes:
   - "If you want to change values based on their old values (like change all comments 'foo' to 'bar') and make sure that
      there are at least N such values, you can use I(require_matches_min=N) together with I(allow_no_matches=true).
@@ -65,6 +67,9 @@ options:
     type: bool
 seealso:
   - module: community.routeros.api
+  - module: community.routeros.api_facts
+  - module: community.routeros.api_modify
+  - module: community.routeros.api_info
 '''
 
 EXAMPLES = '''

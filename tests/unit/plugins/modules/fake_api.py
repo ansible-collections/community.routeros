@@ -130,8 +130,10 @@ def _normalize_entry(entry, path_info):
                 del entry['!%s' % key]
 
 
-def massage_expected_result_data(values, path, keep_all=False):
+def massage_expected_result_data(values, path, keep_all=False, remove_dynamic=False):
     path_info = PATHS[path]
+    if remove_dynamic:
+        values = [entry for entry in values if not entry.get('dynamic', False)]
     values = [entry.copy() for entry in values]
     for entry in values:
         _normalize_entry(entry, path_info)

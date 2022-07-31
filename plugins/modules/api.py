@@ -19,6 +19,9 @@ description:
 notes:
   - I(add), I(remove), I(update), I(cmd) and I(query) are mutually exclusive.
   - I(check_mode) is not supported.
+  - Use the M(community.routeros.api_modify) and M(community.routeros.api_find_and_modify) modules
+    for more specific modifications, and the M(community.routeros.api_info) module for a more controlled
+    way of returning all entries for a path.
 extends_documentation_fragment:
   - community.routeros.api
 options:
@@ -133,6 +136,10 @@ options:
 seealso:
   - ref: ansible_collections.community.routeros.docsite.quoting
     description: How to quote and unquote commands and arguments
+  - module: community.routeros.api_facts
+  - module: community.routeros.api_find_and_modify
+  - module: community.routeros.api_info
+  - module: community.routeros.api_modify
 '''
 
 EXAMPLES = '''

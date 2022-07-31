@@ -1,0 +1,8 @@
+{
+    "include_symlinks": false,
+    "prefixes": [
+        "docs/docsite/rst/api-guide.rst",
+        "plugins/modules/",
+    ],
+    "output": "path-line-column-message",
+}

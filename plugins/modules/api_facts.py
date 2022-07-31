@@ -44,6 +44,9 @@ options:
 seealso:
   - module: community.routeros.facts
   - module: community.routeros.api
+  - module: community.routeros.api_find_and_modify
+  - module: community.routeros.api_info
+  - module: community.routeros.api_modify
 '''
 
 EXAMPLES = """
