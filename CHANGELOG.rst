@@ -5,6 +5,30 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v2.2.0
+======
+
+Release Summary
+---------------
+
+New feature release.
+
+Minor Changes
+-------------
+
+- All software licenses are now in the ``LICENSES/`` directory of the collection root. Moreover, ``SPDX-License-Identifier:`` is used to declare the applicable license for every file that is not automatically generated (https://github.com/ansible-collections/community.routeros/pull/101).
+
+Bugfixes
+--------
+
+- Include ``LICENSES/BSD-2-Clause.txt`` file for the ``routeros`` module utils (https://github.com/ansible-collections/community.routeros/pull/101).
+
+New Modules
+-----------
+
+- api_info - Retrieve information from API
+- api_modify - Modify data at paths with API
+
 v2.1.0
 ======
 

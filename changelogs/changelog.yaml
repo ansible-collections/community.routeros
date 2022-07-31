@@ -189,3 +189,24 @@ releases:
       name: api_find_and_modify
       namespace: ''
     release_date: '2022-05-25'
+  2.2.0:
+    changes:
+      bugfixes:
+      - Include ``LICENSES/BSD-2-Clause.txt`` file for the ``routeros`` module utils
+        (https://github.com/ansible-collections/community.routeros/pull/101).
+      minor_changes:
+      - All software licenses are now in the ``LICENSES/`` directory of the collection
+        root. Moreover, ``SPDX-License-Identifier:`` is used to declare the applicable
+        license for every file that is not automatically generated (https://github.com/ansible-collections/community.routeros/pull/101).
+      release_summary: New feature release.
+    fragments:
+    - 101-licenses.yml
+    - 2.2.0.yml
+    modules:
+    - description: Retrieve information from API
+      name: api_info
+      namespace: ''
+    - description: Modify data at paths with API
+      name: api_modify
+      namespace: ''
+    release_date: '2022-07-31'
