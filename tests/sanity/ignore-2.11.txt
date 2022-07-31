@@ -1,0 +1,6 @@
+update-docs.py compile-2.6
+update-docs.py compile-2.7
+update-docs.py compile-3.5
+update-docs.py future-import-boilerplate
+update-docs.py metaclass-boilerplate
+update-docs.py shebang
