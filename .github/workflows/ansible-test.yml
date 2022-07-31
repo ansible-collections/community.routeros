@@ -42,7 +42,7 @@ jobs:
           # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
           pre-test-cmd: >-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon ;
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ansible_collections/ansible/utils ;
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ansible_collections/ansible/utils
 
   units:
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
           # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
           pre-test-cmd: >-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon ;
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ansible_collections/ansible/utils ;
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ansible_collections/ansible/utils
 
   integration:
     runs-on: ubuntu-latest
@@ -120,6 +120,6 @@ jobs:
           # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
           pre-test-cmd: >-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon ;
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ansible_collections/ansible/utils ;
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ansible_collections/ansible/utils
           target-python-version: ${{ matrix.python }}
           testing-type: integration
