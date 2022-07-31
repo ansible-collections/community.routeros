@@ -38,6 +38,7 @@ options:
     required: true
     type: str
     choices:
+    # BEGIN PATH LIST
         - caps-man aaa
         - certificate settings
         - interface bridge port
@@ -126,6 +127,7 @@ options:
         - tool traffic-generator
         - user aaa
         - user group
+    # END PATH LIST
   data:
     description:
       - Data to ensure that is present for this path.

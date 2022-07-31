@@ -36,6 +36,7 @@ options:
     required: true
     type: str
     choices:
+    # BEGIN PATH LIST
         - caps-man aaa
         - certificate settings
         - interface bridge port
@@ -124,6 +125,7 @@ options:
         - tool traffic-generator
         - user aaa
         - user group
+    # END PATH LIST
   unfiltered:
     description:
       - Whether to output all fields, and not just the ones supported as input for M(community.routeros.api_modify).
