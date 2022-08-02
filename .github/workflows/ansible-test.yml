@@ -40,7 +40,7 @@ jobs:
           ansible-core-version: ${{ matrix.ansible }}
           testing-type: sanity
           # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-          pre-test-cmd: |
+          pre-test-cmd: |-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
 
@@ -68,7 +68,7 @@ jobs:
           ansible-core-version: ${{ matrix.ansible }}
           testing-type: units
           # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-          pre-test-cmd: |
+          pre-test-cmd: |-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
 
@@ -118,7 +118,7 @@ jobs:
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-          pre-test-cmd: |
+          pre-test-cmd: |-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
           target-python-version: ${{ matrix.python }}
