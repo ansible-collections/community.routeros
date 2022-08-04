@@ -3,6 +3,9 @@
 # GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+# For the comprehensive list of the inputs supported by the ansible-community/ansible-test-gh-action GitHub Action, see
+# https://github.com/marketplace/actions/ansible-test
+
 name: CI
 on:
   # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
@@ -16,12 +19,6 @@ on:
     - cron: '15 5 * * *'
 
 jobs:
-
-###
-# Sanity tests (REQUIRED)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_sanity.html
-
   sanity:
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
@@ -37,52 +34,15 @@ jobs:
           - devel
     runs-on: ubuntu-latest
     steps:
-
-      # ansible-test requires the collection to be in a directory in the form
-      # .../ansible_collections/community/routeros/
-
-      - name: Check out code
-        uses: actions/checkout@v3
+      - name: Perform sanity testing
+        uses: ansible-community/ansible-test-gh-action@release/v1
         with:
-          path: ansible_collections/community/routeros
-
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          # it is just required to run that once as "ansible-test sanity" in the docker image
-          # will run on all python versions it supports.
-          python-version: '3.10'
-
-      # Install the head of the given branch (devel, stable-2.10)
-      - name: Install ansible-base (${{ matrix.ansible }})
-        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
-
-      - name: Install collection dependencies
-        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon
-        # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-        # run: ansible-galaxy collection install ansible.netcommon -p .
-
-      # run ansible-test sanity inside of Docker.
-      # The docker container has all the pinned dependencies that are required
-      # and all python versions ansible supports.
-      - name: Run sanity tests
-        run: ansible-test sanity --docker -v --color --coverage
-        working-directory: ./ansible_collections/community/routeros
-
-        # ansible-test support producing code coverage date
-      - name: Generate coverage report
-        run: ansible-test coverage xml -v --requirements --group-by command --group-by version
-        working-directory: ./ansible_collections/community/routeros
-
-      # See the reports at https://codecov.io/gh/ansible_collections/ansible-collections/community.routeros
-      - uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: false
-
-###
-# Unit tests (OPTIONAL)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_units.html
+          ansible-core-version: ${{ matrix.ansible }}
+          testing-type: sanity
+          # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
+          pre-test-cmd: |-
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
 
   units:
     runs-on: ubuntu-latest
@@ -100,43 +60,17 @@ jobs:
           - devel
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+      - name: >-
+          Perform unit testing against
+          Ansible version ${{ matrix.ansible }}
+        uses: ansible-community/ansible-test-gh-action@release/v1
         with:
-          path: ansible_collections/community/routeros
-
-      - name: Set up Python ${{ matrix.ansible }}
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.10'
-
-      - name: Install ansible-base (${{ matrix.ansible }})
-        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
-
-      - name: Install collection dependencies
-        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon
-        # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-        # run: ansible-galaxy collection install ansible.netcommon -p .
-
-      # Run the unit tests
-      - name: Run unit tests for all Python versions
-        run: ansible-test units -v --color --docker --coverage
-        working-directory: ./ansible_collections/community/routeros
-
-        # ansible-test support producing code coverage date
-      - name: Generate coverage report
-        run: ansible-test coverage xml -v --requirements --group-by command --group-by version
-        working-directory: ./ansible_collections/community/routeros
-
-      # See the reports at https://codecov.io/gh/ansible_collections/ansible-collections/community.routeros
-      - uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: false
-
-###
-# Integration tests (RECOMMENDED)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_integration.html
+          ansible-core-version: ${{ matrix.ansible }}
+          testing-type: units
+          # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
+          pre-test-cmd: |-
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
 
   integration:
     runs-on: ubuntu-latest
@@ -176,37 +110,16 @@ jobs:
             python: "3.10"
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
+      - name: >-
+          Perform integration testing against
+          Ansible version ${{ matrix.ansible }}
+          under Python ${{ matrix.python }}
+        uses: ansible-community/ansible-test-gh-action@release/v1
         with:
-          path: ansible_collections/community/routeros
-
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          # it is just required to run that once as "ansible-test integration" in the docker image
-          # will run on all python versions it supports.
-          python-version: '3.10'
-
-      - name: Install ansible-core (${{ matrix.ansible }})
-        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
-
-      - name: Install collection dependencies
-        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ansible_collections/ansible/netcommon
-        # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-        # run: ansible-galaxy collection install ansible.netcommon -p .
-
-      # Run the integration tests
-      - name: Run integration test
-        run: ansible-test integration -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --docker --coverage
-        working-directory: ./ansible_collections/community/routeros
-
-        # ansible-test support producing code coverage date
-      - name: Generate coverage report
-        run: ansible-test coverage xml -v --requirements --group-by command --group-by version
-        working-directory: ./ansible_collections/community/routeros
-
-      # See the reports at https://codecov.io/gh/ansible-collections/community.routeros
-      - uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: false
+          ansible-core-version: ${{ matrix.ansible }}
+          # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
+          pre-test-cmd: |-
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
+            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
+          target-python-version: ${{ matrix.python }}
+          testing-type: integration
