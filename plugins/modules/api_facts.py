@@ -38,7 +38,8 @@ options:
         Values can also be used with an initial C(!) to specify that a
         specific subset should not be collected.
     required: false
-    default: 'all'
+    default:
+      - all
     type: list
     elements: str
 seealso:
