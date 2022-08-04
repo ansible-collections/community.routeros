@@ -246,7 +246,9 @@ RETURN = '''
 ---
 message:
     description: All outputs are in list with dictionary elements returned from RouterOS api.
-    sample: C([{...},{...}])
+    sample:
+        - address: 1.2.3.4
+        - address: 2.3.4.5
     type: list
     returned: always
 '''
