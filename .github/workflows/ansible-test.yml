@@ -43,7 +43,6 @@ jobs:
           pre-test-cmd: |-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
-          collection-root: ''
 
   units:
     runs-on: ubuntu-latest
@@ -72,7 +71,6 @@ jobs:
           pre-test-cmd: |-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
-          collection-root: ''
 
   integration:
     runs-on: ubuntu-latest
@@ -125,4 +123,3 @@ jobs:
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
           target-python-version: ${{ matrix.python }}
           testing-type: integration
-          collection-root: ''
