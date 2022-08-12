@@ -406,3 +406,92 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'dynamic': True,
             },
         ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_absent(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*1',
+                'address': '192.168.88.2',
+                'mac-address': '11:22:33:44:55:66',
+                'client-id': 'ff:1:2:3:4:5:6:7:8:9:a:b:c:d:e:f:0:1:2',
+                'address-lists': '',
+                'server': 'main',
+                'dhcp-option': '',
+                'status': 'waiting',
+                'last-seen': 'never',
+                'radius': False,
+                'dynamic': False,
+                'blocked': False,
+                'disabled': False,
+                'comment': 'foo',
+            },
+            {
+                '.id': '*2',
+                'address': '192.168.88.3',
+                'mac-address': '11:22:33:44:55:77',
+                'client-id': '1:2:3:4:5:6:7',
+                'address-lists': '',
+                'server': 'main',
+                'dhcp-option': '',
+                'status': 'bound',
+                'expires-after': '3d7m8s',
+                'last-seen': '1m52s',
+                'active-address': '192.168.88.14',
+                'active-mac-address': '11:22:33:44:55:76',
+                'active-client-id': '1:2:3:4:5:6:7',
+                'active-server': 'main',
+                'host-name': 'bar',
+                'radius': False,
+                'dynamic': False,
+                'blocked': False,
+                'disabled': False,
+            },
+            {
+                '.id': '*3',
+                'address': '0.0.0.1',
+                'mac-address': '00:00:00:00:00:01',
+                'address-lists': '',
+                'dhcp-option': '',
+                'status': 'waiting',
+                'last-seen': 'never',
+                'radius': False,
+                'dynamic': False,
+                'blocked': False,
+                'disabled': False,
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip dhcp-server lease',
+                'handle_disabled': 'omit',
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*1',
+                'address': '192.168.88.2',
+                'mac-address': '11:22:33:44:55:66',
+                'client-id': 'ff:1:2:3:4:5:6:7:8:9:a:b:c:d:e:f:0:1:2',
+                'server': 'main',
+                'comment': 'foo',
+            },
+            {
+                '.id': '*2',
+                'address': '192.168.88.3',
+                'mac-address': '11:22:33:44:55:77',
+                'client-id': '1:2:3:4:5:6:7',
+                'server': 'main',
+            },
+            {
+                '.id': '*3',
+                'address': '0.0.0.1',
+                'mac-address': '00:00:00:00:00:01',
+                'server': 'all',
+            },
+        ])
