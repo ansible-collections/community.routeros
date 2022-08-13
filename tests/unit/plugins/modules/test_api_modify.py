@@ -93,6 +93,74 @@ START_IP_ADDRESS = [
 
 START_IP_ADDRESS_OLD_DATA = massage_expected_result_data(START_IP_ADDRESS, ('ip', 'address'))
 
+START_IP_DHCP_SEVER_LEASE = [
+    {
+        '.id': '*1',
+        'address': '192.168.88.2',
+        'mac-address': '11:22:33:44:55:66',
+        'client-id': 'ff:1:2:3:4:5:6:7:8:9:a:b:c:d:e:f:0:1:2',
+        'address-lists': '',
+        'server': 'main',
+        'dhcp-option': '',
+        'status': 'waiting',
+        'last-seen': 'never',
+        'radius': False,
+        'dynamic': False,
+        'blocked': False,
+        'disabled': False,
+        'comment': 'foo',
+    },
+    {
+        '.id': '*2',
+        'address': '192.168.88.3',
+        'mac-address': '11:22:33:44:55:77',
+        'client-id': '1:2:3:4:5:6:7',
+        'address-lists': '',
+        'server': 'main',
+        'dhcp-option': '',
+        'status': 'bound',
+        'expires-after': '3d7m8s',
+        'last-seen': '1m52s',
+        'active-address': '192.168.88.14',
+        'active-mac-address': '11:22:33:44:55:76',
+        'active-client-id': '1:2:3:4:5:6:7',
+        'active-server': 'main',
+        'host-name': 'bar',
+        'radius': False,
+        'dynamic': False,
+        'blocked': False,
+        'disabled': False,
+    },
+    {
+        '.id': '*3',
+        'address': '0.0.0.1',
+        'mac-address': '00:00:00:00:00:01',
+        'address-lists': '',
+        'dhcp-option': '',
+        'status': 'waiting',
+        'last-seen': 'never',
+        'radius': False,
+        'dynamic': False,
+        'blocked': False,
+        'disabled': False,
+    },
+    {
+        '.id': '*4',
+        'address': '0.0.0.2',
+        'mac-address': '00:00:00:00:00:02',
+        'address-lists': '',
+        'dhcp-option': '',
+        'status': 'waiting',
+        'last-seen': 'never',
+        'radius': False,
+        'dynamic': False,
+        'blocked': False,
+        'disabled': False,
+    },
+]
+
+START_IP_DHCP_SEVER_LEASE_OLD_DATA = massage_expected_result_data(START_IP_DHCP_SEVER_LEASE, ('ip', 'dhcp-server', 'lease'))
+
 
 class TestRouterosApiModifyModule(ModuleTestCase):
 
@@ -1538,3 +1606,47 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'disabled': False,
             },
         ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'dhcp-server', 'lease'), START_IP_DHCP_SEVER_LEASE, read_only=True))
+    def test_absent_value(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip dhcp-server lease',
+                'data': [
+                    {
+                        'address': '192.168.88.2',
+                        'mac-address': '11:22:33:44:55:66',
+                        'client-id': 'ff:1:2:3:4:5:6:7:8:9:a:b:c:d:e:f:0:1:2',
+                        'server': 'main',
+                        'comment': 'foo',
+                    },
+                    {
+                        'address': '192.168.88.3',
+                        'mac-address': '11:22:33:44:55:77',
+                        'client-id': '1:2:3:4:5:6:7',
+                        'server': 'main',
+                    },
+                    {
+                        'address': '0.0.0.1',
+                        'mac-address': '00:00:00:00:00:01',
+                        'server': 'all',
+                    },
+                    {
+                        'address': '0.0.0.2',
+                        'mac-address': '00:00:00:00:00:02',
+                        'server': 'all',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'ensure_order': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)

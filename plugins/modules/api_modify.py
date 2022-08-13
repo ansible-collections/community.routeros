@@ -446,6 +446,15 @@ def remove_dynamic(entries):
     return result
 
 
+def get_api_data(api_path, path_info):
+    entries = list(api_path)
+    for entry in entries:
+        for k, field_info in path_info.fields.items():
+            if field_info.absent_value is not None and k not in entry:
+                entry[k] = field_info.absent_value
+    return entries
+
+
 def sync_list(module, api, path, path_info):
     handle_absent_entries = module.params['handle_absent_entries']
     handle_entries_content = module.params['handle_entries_content']
@@ -476,7 +485,7 @@ def sync_list(module, api, path, path_info):
 
     api_path = compose_api_path(api, path)
 
-    old_data = list(api_path)
+    old_data = get_api_data(api_path, path_info)
     old_data = remove_dynamic(old_data)
     stratified_old_data = defaultdict(list)
     for index, entry in enumerate(old_data):
@@ -588,7 +597,7 @@ def sync_list(module, api, path, path_info):
 
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
-            new_data = remove_dynamic(list(api_path))
+            new_data = remove_dynamic(get_api_data(api_path, path_info))
 
     # Remove 'irrelevant' data
     for entry in old_data:
@@ -656,7 +665,7 @@ def sync_with_primary_keys(module, api, path, path_info):
 
     api_path = compose_api_path(api, path)
 
-    old_data = list(api_path)
+    old_data = get_api_data(api_path, path_info)
     old_data = remove_dynamic(old_data)
     old_data_by_key = OrderedDict()
     id_by_key = {}
@@ -782,7 +791,7 @@ def sync_with_primary_keys(module, api, path, path_info):
 
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
-            new_data = remove_dynamic(list(api_path))
+            new_data = remove_dynamic(get_api_data(api_path, path_info))
 
     # Remove 'irrelevant' data
     for entry in old_data:
@@ -818,7 +827,7 @@ def sync_single_value(module, api, path, path_info):
 
     api_path = compose_api_path(api, path)
 
-    old_data = list(api_path)
+    old_data = get_api_data(api_path, path_info)
     if len(old_data) != 1:
         module.fail_json(
             msg='Internal error: retrieving /{path} resulted in {count} elements. Expected exactly 1.'.format(
@@ -839,7 +848,7 @@ def sync_single_value(module, api, path, path_info):
             except (LibRouterosError, UnicodeEncodeError) as e:
                 module.fail_json(msg='Error while modifying: {error}'.format(error=to_native(e)))
             # Retrieve latest version
-            new_data = list(api_path)
+            new_data = get_api_data(api_path, path_info)
             if len(new_data) == 1:
                 updated_entry = new_data[0]
 

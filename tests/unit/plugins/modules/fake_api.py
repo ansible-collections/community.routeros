@@ -128,6 +128,8 @@ def _normalize_entry(entry, path_info):
             if ('!%s' % key) in entry:
                 entry.pop(key, None)
                 del entry['!%s' % key]
+        if data.absent_value is not None and key in entry and entry[key] == data.absent_value:
+            del entry[key]
 
 
 def massage_expected_result_data(values, path, keep_all=False, remove_dynamic=False):
@@ -142,6 +144,9 @@ def massage_expected_result_data(values, path, keep_all=False, remove_dynamic=Fa
                 if key == '.id' or key in path_info.fields:
                     continue
                 del entry[key]
+        for key, data in path_info.fields.items():
+            if data.absent_value is not None and key not in entry:
+                entry[key] = data.absent_value
     return values
 
 

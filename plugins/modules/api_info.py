@@ -275,10 +275,12 @@ def main():
                         if handle_disabled == 'exclamation':
                             k = '!%s' % k
                         entry[k] = None
-            if hide_defaults:
-                for k, field_info in path_info.fields.items():
+            for k, field_info in path_info.fields.items():
+                if hide_defaults:
                     if field_info.default is not None and entry.get(k) == field_info.default:
                         entry.pop(k)
+                if field_info.absent_value and k not in entry:
+                    entry[k] = field_info.absent_value
             result.append(entry)
 
         module.exit_json(result=result)
