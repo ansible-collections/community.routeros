@@ -176,4 +176,4 @@ See [LICENSES/GPL-3.0-or-later.txt](https://github.com/ansible-collections/commu
 
 Parts of the collection are licensed under the [BSD 2-Clause license](https://github.com/ansible-collections/community.routeros/blob/main/LICENSES/BSD-2-Clause.txt).
 
-Most files in the collection that are not automatically generated have a machine readable `SDPX-License-Identifier:` comment denoting its respective license(s).
+All files except changelog fragments (that will not be part of a release) have a machine readable `SDPX-License-Identifier:` comment denoting its respective license(s), or an equivalent entry in an accompanying ``.license`` file. This conforms to the `REUSE specification <https://reuse.software/spec/>`_.
