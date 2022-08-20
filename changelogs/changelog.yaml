@@ -210,3 +210,18 @@ releases:
       name: api_modify
       namespace: ''
     release_date: '2022-07-31'
+  2.2.1:
+    changes:
+      bugfixes:
+      - api_modify, api_info - make API path ``ip dhcp-server lease`` support ``server=all``
+        (https://github.com/ansible-collections/community.routeros/issues/104, https://github.com/ansible-collections/community.routeros/pull/107).
+      - api_modify, api_info - make API path ``ip dhcp-server network`` support missing
+        options ``boot-file-name``, ``dhcp-option-set``, ``dns-none``, ``domain``,
+        and ``next-server`` (https://github.com/ansible-collections/community.routeros/issues/104,
+        https://github.com/ansible-collections/community.routeros/pull/106).
+      release_summary: Bugfix release.
+    fragments:
+    - 106-api-path-ip-dhcp-network.yml
+    - 107-api-path-ip-dhcp-lease.yml
+    - 2.2.1.yml
+    release_date: '2022-08-20'
