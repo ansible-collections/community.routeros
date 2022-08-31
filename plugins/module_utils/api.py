@@ -44,11 +44,12 @@ def api_argument_spec():
         validate_certs=dict(type='bool', default=True),
         validate_cert_hostname=dict(type='bool', default=False),
         ca_path=dict(type='path'),
-        encoding=dict(type='str', default='ASCII')
+        encoding=dict(type='str', default='ASCII'),
+        timeout=dict(type='int', default=10)
     )
 
 
-def _ros_api_connect(module, username, password, host, port, use_tls, validate_certs, validate_cert_hostname, ca_path, encoding):
+def _ros_api_connect(module, username, password, host, port, use_tls, validate_certs, validate_cert_hostname, ca_path, encoding, timeout):
     '''Connect to RouterOS API.'''
     if not port:
         if use_tls:
@@ -62,6 +63,7 @@ def _ros_api_connect(module, username, password, host, port, use_tls, validate_c
             host=host,
             port=port,
             encoding=encoding,
+            timeout=timeout,
         )
         if use_tls:
             ctx = ssl.create_default_context(cafile=ca_path)
@@ -103,4 +105,5 @@ def create_api(module):
         module.params['validate_cert_hostname'],
         module.params['ca_path'],
         module.params['encoding'],
+        module.params['timeout'],
     )
