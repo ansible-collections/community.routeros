@@ -45,7 +45,7 @@ def api_argument_spec():
         validate_cert_hostname=dict(type='bool', default=False),
         ca_path=dict(type='path'),
         encoding=dict(type='str', default='ASCII'),
-        timeout=dict(type='int', default=10)
+        timeout=dict(type='int', default=10),
     )
 
 
