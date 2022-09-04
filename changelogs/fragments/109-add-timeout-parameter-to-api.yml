@@ -1,2 +1,2 @@
 minor_changes:
-- "api* modules - added timeout parameter (https://github.com//pull/109)."
+- "api* modules - added ``timeout`` parameter (https://github.com/ansible-collections/community.routeros/pull/109)."
