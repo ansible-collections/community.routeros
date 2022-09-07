@@ -27,6 +27,12 @@ options:
       - RouterOS user password.
     required: true
     type: str
+  timeout:
+    description:
+      - Timeout for the request.
+    type: int
+    default: 10
+    version_added: 2.3.0
   tls:
     description:
       - If is set TLS will be used for RouterOS API connection.
