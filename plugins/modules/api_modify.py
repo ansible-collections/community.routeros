@@ -73,6 +73,7 @@ options:
         - ip firewall address-list
         - ip firewall connection tracking
         - ip firewall filter
+        - ip firewall mangle
         - ip firewall nat
         - ip firewall service-port
         - ip hotspot service-port
