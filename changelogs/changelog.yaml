@@ -225,3 +225,21 @@ releases:
     - 107-api-path-ip-dhcp-lease.yml
     - 2.2.1.yml
     release_date: '2022-08-20'
+  2.3.0:
+    changes:
+      bugfixes:
+      - api_modify, api_info - make API path ``ip dhcp-server`` support ``script``,
+        and ``ip firewall nat`` support ``in-interface`` and ``in-interface-list``
+        (https://github.com/ansible-collections/community.routeros/pull/110).
+      minor_changes:
+      - The collection repository conforms to the `REUSE specification <https://reuse.software/spec/>`__
+        except for the changelog fragments (https://github.com/ansible-collections/community.routeros/pull/108).
+      - api* modules - added ``timeout`` parameter (https://github.com/ansible-collections/community.routeros/pull/109).
+      - api_modify, api_info - support API path ``ip firewall mangle`` (https://github.com/ansible-collections/community.routeros/pull/110).
+      release_summary: Feature and bugfix release.
+    fragments:
+    - 109-add-timeout-parameter-to-api.yml
+    - 110-api.yml
+    - 2.3.0.yml
+    - licenses.yml
+    release_date: '2022-09-11'

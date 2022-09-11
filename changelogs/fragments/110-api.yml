@@ -1,6 +1,0 @@
-bugfixes:
-  - api_modify, api_info - make API path ``ip dhcp-server`` support ``script``, and ``ip firewall nat`` support ``in-interface`` and ``in-interface-list``
-    (https://github.com/ansible-collections/community.routeros/pull/110).
-minor_changes:
-  - api_modify, api_info - support API path ``ip firewall mangle``
-    (https://github.com/ansible-collections/community.routeros/pull/110).
