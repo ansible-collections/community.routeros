@@ -28,15 +28,8 @@ extends_documentation_fragment:
   - community.routeros.api
   - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
+  - community.routeros.attributes.info_module
 attributes:
-  check_mode:
-    support: full
-    details:
-      - This action does not modify state.
-  diff_mode:
-    support: N/A
-    details:
-      - This action does not modify state.
   platform:
     support: full
     platforms: RouterOS

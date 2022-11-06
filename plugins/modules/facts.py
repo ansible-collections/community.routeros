@@ -21,20 +21,11 @@ description:
 extends_documentation_fragment:
   - community.routeros.attributes
   - community.routeros.attributes.facts
+  - community.routeros.attributes.facts_module
 attributes:
-  check_mode:
-    support: full
-    details:
-      - This action does not modify state.
-  diff_mode:
-    support: N/A
-    details:
-      - This action does not modify state.
   platform:
     support: full
     platforms: RouterOS
-  facts:
-    support: full
 options:
   gather_subset:
     description:
