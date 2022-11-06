@@ -243,3 +243,15 @@ releases:
     - 2.3.0.yml
     - licenses.yml
     release_date: '2022-09-11'
+  2.3.1:
+    changes:
+      known_issues:
+      - The ``community.routeros.command`` module claims to support check mode. Since
+        it cannot judge whether the commands executed modify state or not, this behavior
+        is incorrect. Since this potentially breaks existing playbooks, we will not
+        change this behavior until community.routeros 3.0.0.
+      release_summary: Maintenance release with improved documentation.
+    fragments:
+    - 2.3.1.yml
+    - command-check_mode.yml
+    release_date: '2022-11-06'

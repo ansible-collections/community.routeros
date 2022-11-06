@@ -5,6 +5,19 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v2.3.1
+======
+
+Release Summary
+---------------
+
+Maintenance release with improved documentation.
+
+Known Issues
+------------
+
+- The ``community.routeros.command`` module claims to support check mode. Since it cannot judge whether the commands executed modify state or not, this behavior is incorrect. Since this potentially breaks existing playbooks, we will not change this behavior until community.routeros 3.0.0.
+
 v2.3.0
 ======
 
