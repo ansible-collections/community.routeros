@@ -6,8 +6,8 @@
 requires_ansible: '>=2.9.10'
 action_groups:
   api:
-  - api
-  - api_facts
-  - api_find_and_modify
-  - api_info
-  - api_modify
+    - api
+    - api_facts
+    - api_find_and_modify
+    - api_info
+    - api_modify

@@ -20,6 +20,21 @@ description:
   - The module always indicates a (changed) status. You can use
     R(the changed_when task property,override_the_changed_result) to determine
     whether a command task actually resulted in a change or not.
+notes:
+  - The module declares that it B(supports check mode). This is a bug and will
+    be changed in community.routeros 3.0.0.
+extends_documentation_fragment:
+  - community.routeros.attributes
+attributes:
+  check_mode:
+    support: partial
+    details:
+      - The module claims to support check mode, but it simply always executes the command.
+  diff_mode:
+    support: none
+  platform:
+    support: full
+    platforms: RouterOS
 options:
   commands:
     description:
