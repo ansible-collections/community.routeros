@@ -17,7 +17,7 @@ No special setup is needed; the module needs to be run on a host that can connec
     ---
     - name: RouterOS test with API
       hosts: localhost
-      gather_facts: no
+      gather_facts: false
       vars:
         hostname: 192.168.1.1
         username: admin
@@ -71,7 +71,7 @@ To avoid having to specify common parameters for all the API based modules in ev
     ---
     - name: RouterOS test with API
       hosts: localhost
-      gather_facts: no
+      gather_facts: false
       module_defaults:
         group/community.routeros.api
           hostname: 192.168.1.1
