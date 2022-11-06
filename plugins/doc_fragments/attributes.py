@@ -12,6 +12,7 @@ class ModuleDocFragment(object):
 
     # Standard documentation fragment
     DOCUMENTATION = r'''
+options: {}
 attributes:
     check_mode:
       description: Can run in C(check_mode) and return changed status prediction without modifying target.
@@ -23,6 +24,7 @@ attributes:
 '''
 
     ACTIONGROUP_API = r'''
+options: {}
 attributes:
     action_group:
       description: Use C(group/community.routeros.api) in C(module_defaults) to set defaults for this module.
@@ -32,6 +34,7 @@ attributes:
 '''
 
     CONN = r'''
+options: {}
 attributes:
     become:
       description: Is usable alongside C(become) keywords.
@@ -42,18 +45,21 @@ attributes:
 '''
 
     FACTS = r'''
+options: {}
 attributes:
     facts:
       description: Action returns an C(ansible_facts) dictionary that will update existing host facts.
 '''
 
     FILES = r'''
+options: {}
 attributes:
     safe_file_operations:
       description: Uses Ansbile's strict file operation functions to ensure proper permissions and avoid data corruption.
 '''
 
     FLOW = r'''
+options: {}
 attributes:
     action:
       description: Indicates this has a corresponding action plugin so some parts of the options can be executed on the controller.
