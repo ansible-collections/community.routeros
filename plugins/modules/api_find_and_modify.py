@@ -27,6 +27,7 @@ notes:
   - Supports I(check_mode).
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.attributes.actiongroup_api
 options:
   path:
     description:

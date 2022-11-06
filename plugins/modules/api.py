@@ -24,6 +24,10 @@ notes:
     way of returning all entries for a path.
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.attributes.actiongroup_api
+attributes:
+    action_group:
+        version_added: 2.1.0
 options:
   path:
     description:

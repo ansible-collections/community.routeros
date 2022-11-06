@@ -30,6 +30,7 @@ requirements:
   - Needs L(ordereddict,https://pypi.org/project/ordereddict) for Python 2.6
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.attributes.actiongroup_api
 options:
   path:
     description:

@@ -28,6 +28,7 @@ description:
     RouterOS API, similar to the M(community.routeros.api) module.
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.attributes.actiongroup_api
 options:
   gather_subset:
     description:
