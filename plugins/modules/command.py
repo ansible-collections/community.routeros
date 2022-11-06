@@ -28,6 +28,8 @@ extends_documentation_fragment:
 attributes:
   check_mode:
     support: partial
+    details:
+      - The module claims to support check mode, but it simply always executes the command.
   diff_mode:
     support: none
   platform:
