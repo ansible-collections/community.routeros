@@ -20,6 +20,16 @@ description:
   - The module always indicates a (changed) status. You can use
     R(the changed_when task property,override_the_changed_result) to determine
     whether a command task actually resulted in a change or not.
+extends_documentation_fragment:
+  - community.routeros.attributes
+attributes:
+  check_mode:
+    support: partial
+  diff_mode:
+    support: none
+  platform:
+    support: full
+    platforms: RouterOS
 options:
   commands:
     description:

@@ -18,6 +18,19 @@ description:
     base network fact keys with C(ansible_net_<fact>).  The facts
     module will always collect a base set of facts from the device
     and can enable or disable collection of additional facts.
+extends_documentation_fragment:
+  - community.routeros.attributes
+  - community.routeros.attributes.facts
+attributes:
+  check_mode:
+    support: full
+  diff_mode:
+    support: full
+  platform:
+    support: full
+    platforms: RouterOS
+  facts:
+    support: full
 options:
   gather_subset:
     description:

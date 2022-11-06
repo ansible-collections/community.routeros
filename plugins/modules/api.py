@@ -18,16 +18,23 @@ description:
   - This module can add, remove, update, query and execute arbitrary command in RouterOS via API.
 notes:
   - I(add), I(remove), I(update), I(cmd) and I(query) are mutually exclusive.
-  - I(check_mode) is not supported.
   - Use the M(community.routeros.api_modify) and M(community.routeros.api_find_and_modify) modules
     for more specific modifications, and the M(community.routeros.api_info) module for a more controlled
     way of returning all entries for a path.
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
 attributes:
-    action_group:
-        version_added: 2.1.0
+  check_mode:
+    support: none
+  diff_mode:
+    support: none
+  platform:
+    support: full
+    platforms: RouterOS
+  action_group:
+    version_added: 2.1.0
 options:
   path:
     description:

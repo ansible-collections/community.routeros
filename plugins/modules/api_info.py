@@ -24,11 +24,18 @@ description:
   - B(Note) that this module is still heavily in development, and only supports B(some) paths.
     If you want to support new paths, or think you found problems with existing paths, please first
     L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
-notes:
-  - Supports I(check_mode).
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
+attributes:
+  check_mode:
+    support: full
+  diff_mode:
+    support: full
+  platform:
+    support: full
+    platforms: RouterOS
 options:
   path:
     description:

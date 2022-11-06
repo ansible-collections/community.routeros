@@ -24,10 +24,18 @@ notes:
      there are at least N such values, you can use I(require_matches_min=N) together with I(allow_no_matches=true).
      This will make the module fail if there are less than N such entries, but not if there is no match. The latter case
      is needed for idempotency of the task: once the values have been changed, there should be no further match."
-  - Supports I(check_mode).
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
+attributes:
+  check_mode:
+    support: full
+  diff_mode:
+    support: full
+  platform:
+    support: full
+    platforms: RouterOS
 options:
   path:
     description:
