@@ -133,7 +133,7 @@ PATHS = {
             'power-cycle-interval': KeyInfo(),
             'power-cycle-ping-address': KeyInfo(),
             'power-cycle-ping-enabled': KeyInfo(),
-            'power-cycle-ping-timeout': KeyInfo()
+            'power-cycle-ping-timeout': KeyInfo(),
             'rx-flow-control': KeyInfo(default='off'),
             'sfp-rate-select': KeyInfo(default='high'),
             'sfp-shutdown-temperature': KeyInfo(default='95C'),
