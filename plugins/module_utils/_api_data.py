@@ -141,7 +141,7 @@ PATHS = {
         },
     ),
     ('interface', 'list', 'member'): APIData(
-        primary_keys=('interface','list', ),
+        primary_keys=('interface', 'list', ),
         fully_understood=True,
         fields={
             'comment': KeyInfo(can_disable=True, remove_value=''),
