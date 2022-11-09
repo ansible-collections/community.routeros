@@ -58,6 +58,8 @@ options:
         - interface ethernet switch
         - interface ethernet switch port
         - interface l2tp-server server
+        - interface list
+        - interface list member
         - interface ovpn-server server
         - interface pptp-server server
         - interface sstp-server server

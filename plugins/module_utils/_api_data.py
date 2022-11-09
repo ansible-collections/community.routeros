@@ -132,11 +132,22 @@ PATHS = {
     ),
     ('interface', 'list'): APIData(
         primary_keys=('name', ),
+        fully_understood=True,
         fields={
             'comment': KeyInfo(can_disable=True, remove_value=''),
             'exclude': KeyInfo(),
             'include': KeyInfo(),
             'name': KeyInfo(),
+        },
+    ),
+    ('interface', 'list', 'member'): APIData(
+        primary_keys=('list', 'interface', ),
+        fully_understood=True,
+        fields={
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'interface': KeyInfo(),
+            'list': KeyInfo(),
+            'disabled': KeyInfo(default=False),
         },
     ),
     ('interface', 'lte', 'apn'): APIData(
