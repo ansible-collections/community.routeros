@@ -107,6 +107,7 @@ Setting up encryption
 
 It is recommended to always use ``tls: true`` when connecting with the API, even if you are only connecting to the device through a trusted network. The following options control how TLS/SSL is used:
 
+:force_no_cert: Setting to ``true`` connects to the device without a certificate. **This is discouraged to use in production and is susceptible to Man-in-the-Middle attacks**, but might be useful when setting the device up. The default value is ``false``.
 :validate_certs: Setting to ``false`` disables any certificate validation. **This is discouraged to use in production**, but is needed when setting the device up. The default value is ``true``.
 :validate_cert_hostname: Setting to ``false`` (default) disables hostname verification during certificate validation. This is needed if the hostnames specified in the certificate do not match the hostname used for connecting (usually the device's IP). It is recommended to set up the certificate correctly and set this to ``true``; the default ``false`` is chosen for backwards compatibility to an older version of the module.
 :ca_path: If you are not using a commerically trusted CA certificate to sign your device's certificate, or have not included your CA certificate in Python's truststore, you need to point this option to the CA certificate.
