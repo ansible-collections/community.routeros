@@ -1,3 +1,3 @@
 minor_changes:
   - api_modify, api_info - support API paths ``interface pppoe-client``, ``interface vlan`` and ``interface bridge vlan``
-    (https://github.com/ansible-collections/community.routeros/pull/XXX).
+    (https://github.com/ansible-collections/community.routeros/pull/125).
