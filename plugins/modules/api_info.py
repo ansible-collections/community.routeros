@@ -59,6 +59,7 @@ options:
         - interface pppoe-client
         - interface pptp-server server
         - interface sstp-server server
+        - interface vlan
         - interface wireless align
         - interface wireless cap
         - interface wireless sniffer
