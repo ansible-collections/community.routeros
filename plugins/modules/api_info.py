@@ -86,6 +86,8 @@ options:
         - ip neighbor discovery-settings
         - ip pool
         - ip proxy
+        - ip route
+        - ip route vrf
         - ip service
         - ip settings
         - ip smb
