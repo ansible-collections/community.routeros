@@ -7,7 +7,7 @@
 
 namespace: community
 name: routeros
-version: 2.3.1
+version: 2.4.0
 readme: README.md
 authors:
   - Egor Zaitsev (github.com/heuels)
