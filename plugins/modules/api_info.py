@@ -56,6 +56,7 @@ options:
         - interface list
         - interface list member
         - interface ovpn-server server
+        - interface pppoe-client
         - interface pptp-server server
         - interface sstp-server server
         - interface wireless align
