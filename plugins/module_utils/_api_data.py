@@ -298,6 +298,31 @@ PATHS = {
             'ranges': KeyInfo(),
         },
     ),
+    ('ip', 'route'): APIData(
+        fully_understood=True,
+        fields={
+            'check-gateway': KeyInfo(can_disable=True),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'distance': KeyInfo(),
+            'dst-address': KeyInfo(),
+            'gateway': KeyInfo(required=True),
+            'route-tag': KeyInfo(can_disable=True),
+            'routing-mark': KeyInfo(can_disable=True),
+            'scope': KeyInfo(),
+            'target-scope': KeyInfo(),
+        },
+    ),
+    ('ip', 'route', 'vrf'): APIData(
+        fully_understood=True,
+        primary_keys=('routing-mark', ),
+        fields={
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'interfaces': KeyInfo(),
+            'routing-mark': KeyInfo(),
+        },
+    ),
     ('ip', 'dhcp-server'): APIData(
         fully_understood=True,
         primary_keys=('name', ),
