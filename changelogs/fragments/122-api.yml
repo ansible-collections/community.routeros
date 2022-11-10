@@ -1,0 +1,4 @@
+minor_changes:
+  - api_modify, api_info - support paths ``system ntp client servers`` and ``system ntp server`` available in ROS7,
+    as well as new fields ``servers``, ``mode``, and ``vrf`` for ``system ntp client``
+    (https://github.com/ansible-collections/community.routeros/pull/122).

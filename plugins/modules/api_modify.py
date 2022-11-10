@@ -122,6 +122,8 @@ options:
         - system leds settings
         - system note
         - system ntp client
+        - system ntp client servers
+        - system ntp server
         - system package update
         - system routerboard settings
         - system upgrade mirror
