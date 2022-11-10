@@ -48,6 +48,7 @@ options:
         - interface bridge port-controller
         - interface bridge port-extender
         - interface bridge settings
+        - interface bridge vlan
         - interface detect-internet
         - interface ethernet
         - interface ethernet switch

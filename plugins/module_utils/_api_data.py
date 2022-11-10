@@ -574,6 +574,18 @@ PATHS = {
             'use-ip-firewall-for-vlan': KeyInfo(default=False),
         },
     ),
+    ('interface', 'bridge', 'vlan'): APIData(
+        fully_understood=True,
+        primary_keys=('bridge', 'vlan-ids', ),
+        fields={
+            'bridge': KeyInfo(),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'tagged': KeyInfo(default=''),
+            'untagged': KeyInfo(default=''),
+            'vlan-ids': KeyInfo(),
+        },
+    ),
     ('ip', 'firewall', 'connection', 'tracking'): APIData(
         single_value=True,
         fully_understood=True,
