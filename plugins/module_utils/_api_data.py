@@ -1492,7 +1492,7 @@ PATHS = {
             'vrf': KeyInfo(),
         },
     ),
-    ('system', 'ntp', 'client','servers'): APIData(
+    ('system', 'ntp', 'client', 'servers'): APIData(
         primary_keys=('address', ),
         fully_understood=True,
         fields={
