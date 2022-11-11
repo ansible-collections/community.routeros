@@ -48,7 +48,7 @@ options:
     type: int
   force_no_cert:
     description:
-      - Set to C(true) to connect without a certificate
+      - Set to C(true) to connect without a certificate when I(tls=true).
       - See also I(validate_certs).
       - B(Note:) this forces the use of anonymous Diffie-Hellman (ADH) ciphers. The protocol is susceptible
         to Man-in-the-Middle attacks, because the keys used in the exchange are not authenticated.
