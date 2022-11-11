@@ -44,6 +44,7 @@ options:
     # BEGIN PATH LIST
         - caps-man aaa
         - certificate settings
+        - interface bridge
         - interface bridge port
         - interface bridge port-controller
         - interface bridge port-extender
