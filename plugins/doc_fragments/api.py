@@ -46,6 +46,17 @@ options:
       - RouterOS api port. If I(tls) is set, port will apply to TLS/SSL connection.
       - Defaults are C(8728) for the HTTP API, and C(8729) for the HTTPS API.
     type: int
+  force_no_cert:
+    description:
+      - Set to C(true) to connect without a certificate when I(tls=true).
+      - See also I(validate_certs).
+      - B(Note:) this forces the use of anonymous Diffie-Hellman (ADH) ciphers. The protocol is susceptible
+        to Man-in-the-Middle attacks, because the keys used in the exchange are not authenticated.
+        Instead of simply connecting without a certificate to "make things work" have a look at
+        I(validate_certs) and I(ca_path).
+    type: bool
+    default: false
+    version_added: 2.4.0
   validate_certs:
     description:
       - Set to C(false) to skip validation of TLS certificates.
