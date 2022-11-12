@@ -2,5 +2,5 @@ minor_changes:
   - api_modify, api_info - support API paths ``interface pppoe-client``, ``interface vlan``, ``interface bridge``, ``interface bridge vlan``
     (https://github.com/ansible-collections/community.routeros/pull/125).
 bugfixes:
-  - api_modify, api_info - setting ``interface bridge port ingress-filtering`` field default to ``true`` which is the default in ROS
+  - api_modify, api_info - the default of the field ``ingress-filtering`` in ``interface bridge port`` is now ``true``, which is the default in ROS
     (https://github.com/ansible-collections/community.routeros/pull/125).
