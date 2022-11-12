@@ -482,6 +482,24 @@ PATHS = {
             'interface': KeyInfo(),
         },
     ),
+    ('caps-man', 'security'): APIData(
+        fully_understood=True,
+        primary_keys=('name', ),
+        fields={
+            'authentication-types': KeyInfo(can_disable=True),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disable-pmkid': KeyInfo(can_disable=True),
+            'eap-methods': KeyInfo(can_disable=True),
+            'eap-radius-accounting': KeyInfo(can_disable=True),
+            'encryption': KeyInfo(can_disable=True),
+            'group-encryption': KeyInfo(can_disable=True),
+            'group-key-update': KeyInfo(),
+            'name': KeyInfo(),
+            'passphrase': KeyInfo(can_disable=True),
+            'tls-certificate': KeyInfo(),
+            'tls-mode': KeyInfo(),
+        }
+    ),
     ('certificate', 'settings'): APIData(
         single_value=True,
         fully_understood=True,
