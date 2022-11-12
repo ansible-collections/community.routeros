@@ -570,6 +570,23 @@ PATHS = {
             'interface': KeyInfo(),
         },
     ),
+    ('caps-man', 'provisioning'): APIData(
+        fully_understood=True,
+        fields={
+            'action': KeyInfo(default='none'),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'common-name-regexp': KeyInfo(default=''),
+            'disabled': KeyInfo(default=False),
+            'hw-supported-modes': KeyInfo(default=''),
+            'identity-regexp': KeyInfo(default=''),
+            'ip-address-ranges': KeyInfo(default=''),
+            'master-configuration': KeyInfo(default='*FFFFFFFF'),
+            'name-format': KeyInfo(default='cap'),
+            'name-prefix': KeyInfo(default=''),
+            'radio-mac': KeyInfo(default='00:00:00:00:00:00'),
+            'slave-configurations': KeyInfo(default=''),
+        },
+    ),
     ('caps-man', 'security'): APIData(
         fully_understood=True,
         primary_keys=('name', ),
