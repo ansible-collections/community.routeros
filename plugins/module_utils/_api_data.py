@@ -2152,12 +2152,12 @@ PATHS = {
         },
     ),
     ('system', 'logging'): APIData(
-        has_identifier=True,
+        fully_understood=True,
         fields={
-            'action': KeyInfo(),
-            'disabled': KeyInfo(),
-            'prefix': KeyInfo(),
-            'topics': KeyInfo(),
+            'action': KeyInfo(default='memory'),
+            'disabled': KeyInfo(default=False),
+            'prefix': KeyInfo(default=''),
+            'topics': KeyInfo(default=''),
         },
     ),
     ('system', 'resource', 'irq'): APIData(
