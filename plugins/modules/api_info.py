@@ -44,10 +44,12 @@ options:
     # BEGIN PATH LIST
         - caps-man aaa
         - certificate settings
+        - interface bridge
         - interface bridge port
         - interface bridge port-controller
         - interface bridge port-extender
         - interface bridge settings
+        - interface bridge vlan
         - interface detect-internet
         - interface ethernet
         - interface ethernet switch
@@ -56,8 +58,10 @@ options:
         - interface list
         - interface list member
         - interface ovpn-server server
+        - interface pppoe-client
         - interface pptp-server server
         - interface sstp-server server
+        - interface vlan
         - interface wireless align
         - interface wireless cap
         - interface wireless sniffer
