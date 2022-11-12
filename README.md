@@ -113,6 +113,7 @@ Example playbook:
       password: "{{ password }}"
       username: "{{ username }}"
       tls: true
+      force_no_cert: false
       validate_certs: true
       validate_cert_hostname: true
       ca_path: /path/to/ca-certificate.pem
