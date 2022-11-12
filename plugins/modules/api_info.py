@@ -43,6 +43,12 @@ options:
     choices:
     # BEGIN PATH LIST
         - caps-man aaa
+        - caps-man access-list
+        - caps-man configuration
+        - caps-man datapath
+        - caps-man manager
+        - caps-man provisioning
+        - caps-man security
         - certificate settings
         - interface bridge
         - interface bridge port
