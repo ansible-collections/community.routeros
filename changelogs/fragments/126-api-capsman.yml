@@ -1,3 +1,3 @@
 minor_changes:
-  - api_modify, api_info - support API paths: ``caps-man access-list``, ``caps-man configuration``, ``caps-man datapath``, ``caps-man manager``, ``caps-man provisioning``, ``caps-man security``
+  - api_modify, api_info - support API paths ``caps-man access-list``, ``caps-man configuration``, ``caps-man datapath``, ``caps-man manager``, ``caps-man provisioning``, ``caps-man security``
     (https://github.com/ansible-collections/community.routeros/pull/126).
