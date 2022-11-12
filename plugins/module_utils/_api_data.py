@@ -2015,6 +2015,7 @@ PATHS = {
     ),
     ('caps-man', 'manager'): APIData(
         single_value=True,
+        fully_understood=True,
         fields={
             'ca-certificate': KeyInfo(default='none'),
             'certificate': KeyInfo(default='none'),
