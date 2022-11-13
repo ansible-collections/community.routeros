@@ -63,20 +63,20 @@ def test_key_info_errors():
         ('can_disable', True),
     ]
 
-    values_allowed_together = [
-        ('default', ''),
-        ('can_disable', True),
+    params_allowed_together = [
+        'default',
+        'can_disable',
     ]
 
     for index, (param, param_value) in enumerate(values):
         for param2, param2_value in values[index + 1:]:
-            if param in values_allowed_together and param2 in values_allowed_together:
+            if param in params_allowed_together and param2 in params_allowed_together:
                 continue
             with pytest.raises(ValueError) as exc:
                 KeyInfo(**{param: param_value, param2: param2_value})
             assert exc.value.args[0] == (
-                    'required, default, automatically_computed_from, and can_disable are mutually exclusive ' +
-                    'besides default and can_disable which can be set together')
+                            'required, default, automatically_computed_from, and can_disable are mutually exclusive ' +
+                            'besides default and can_disable which can be set together')
 
     with pytest.raises(ValueError) as exc:
         KeyInfo('foo')
