@@ -132,6 +132,8 @@ options:
         - system clock manual
         - system identity
         - system leds settings
+        - system logging
+        - system logging action
         - system note
         - system ntp client
         - system ntp client servers
