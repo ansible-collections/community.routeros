@@ -1,0 +1,3 @@
+bugfixes:
+  - api_modify - ignore  ``builtin`` entries
+    (https://github.com/ansible-collections/community.routeros/pull/130).

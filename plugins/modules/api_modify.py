@@ -20,7 +20,7 @@ description:
   - Use the M(community.routeros.api_find_and_modify) module to modify one or multiple entries in a controlled way
     depending on some search conditions.
   - To make a backup of a path that can be restored with this module, use the M(community.routeros.api_info) module.
-  - The module ignores dynamic entries.
+  - The module ignores dynamic and builtin entries.
   - B(Note) that this module is still heavily in development, and only supports B(some) paths.
     If you want to support new paths, or think you found problems with existing paths, please first
     L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
@@ -472,7 +472,7 @@ def match_entries(new_entries, old_entries, path_info, module):
 def remove_dynamic(entries):
     result = []
     for entry in entries:
-        if entry.get('dynamic', False):
+        if entry.get('dynamic', False) or entry.get('builtin', False):
             continue
         result.append(entry)
     return result
