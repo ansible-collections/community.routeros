@@ -49,8 +49,7 @@ class KeyInfo(object):
     def __init__(self, _dummy=None, can_disable=False, remove_value=None, absent_value=None, default=None, required=False, automatically_computed_from=None):
         if _dummy is not None:
             raise ValueError('KeyInfo() does not have positional arguments')
-        sm = sum([required, default is not None, automatically_computed_from is not None, can_disable])
-        if sm > 1 and sm > sum([default is not None, can_disable]):
+        if sum([required, default is not None or can_disable, automatically_computed_from is not None]) > 1:
             raise ValueError(
                 'required, default, automatically_computed_from, and can_disable are mutually exclusive ' +
                 'besides default and can_disable which can be set together')
