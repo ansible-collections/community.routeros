@@ -97,6 +97,11 @@ options:
         - ip firewall nat
         - ip firewall service-port
         - ip hotspot service-port
+        - ip ipsec identity
+        - ip ipsec peer
+        - ip ipsec policy
+        - ip ipsec profile
+        - ip ipsec proposal
         - ip ipsec settings
         - ip neighbor discovery-settings
         - ip pool
