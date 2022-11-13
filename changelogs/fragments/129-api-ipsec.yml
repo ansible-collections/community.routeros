@@ -1,0 +1,3 @@
+minor_changes:
+  - api_modify, api_info - support API paths ``ip ipsec identity``, ``ip ipsec peer``, ``ip ipsec policy``, ``ip ipsec profile``, ``ip ipsec proposal``
+    (https://github.com/ansible-collections/community.routeros/pull/129).
