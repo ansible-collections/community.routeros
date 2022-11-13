@@ -51,7 +51,9 @@ class KeyInfo(object):
             raise ValueError('KeyInfo() does not have positional arguments')
         sm = sum([required, default is not None, automatically_computed_from is not None, can_disable])
         if sm > 1 and sm > sum([default is not None, can_disable]):
-            raise ValueError('required, default, automatically_computed_from, and can_disable are mutually exclusive besides default and can_disable which can be set together')
+            raise ValueError(
+                'required, default, automatically_computed_from, and can_disable are mutually exclusive ' +
+                'besides default and can_disable which can be set together')
         if not can_disable and remove_value is not None:
             raise ValueError('remove_value can only be specified if can_disable=True')
         if absent_value is not None and any([default is not None, automatically_computed_from is not None, can_disable]):
