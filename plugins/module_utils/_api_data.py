@@ -567,7 +567,7 @@ PATHS = {
             'switch-to-spt-bytes': KeyInfo(default=0),
             'switch-to-spt-interval': KeyInfo(),
             'vrf': KeyInfo(default="main"),
-         },
+        },
     ),
     ('routing', 'pimsm', 'interface-template'): APIData(
         fully_understood=True,
