@@ -112,19 +112,30 @@ options:
         - ip traffic-flow
         - ip traffic-flow ipfix
         - ip upnp
+        - ipv6 address
         - ipv6 dhcp-client
+        - ipv6 dhcp-server
+        - ipv6 dhcp-server option
         - ipv6 firewall address-list
         - ipv6 firewall filter
         - ipv6 nd prefix default
+        - ipv6 route
         - ipv6 settings
         - mpls
         - mpls ldp
         - port firmware
         - ppp aaa
         - queue interface
+        - queue tree
         - radius incoming
         - routing bgp instance
         - routing mme
+        - routing ospf area
+        - routing ospf area range
+        - routing ospf instance
+        - routing ospf interface-template
+        - routing pimsm instance
+        - routing pimsm interface-template
         - routing rip
         - routing ripng
         - snmp
