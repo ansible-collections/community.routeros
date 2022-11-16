@@ -62,6 +62,7 @@ options:
         - interface bridge settings
         - interface bridge vlan
         - interface detect-internet
+        - interface eoip
         - interface ethernet
         - interface ethernet switch
         - interface ethernet switch port
