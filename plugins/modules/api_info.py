@@ -18,9 +18,9 @@ version_added: 2.2.0
 description:
   - Allows to retrieve information for a path using the API.
   - This can be used to backup a path to restore it with the M(community.routeros.api_modify) module.
-  - Entries are normalized, and dynamic entries are not returned. Use the I(handle_disabled) and
-    I(hide_defaults) options to control normalization, the I(include_dynamic) option to also return
-    dynamic entries, and use I(unfiltered) to return all fields including counters.
+  - Entries are normalized, dynamic and builtin entries are not returned. Use the I(handle_disabled) and
+    I(hide_defaults) options to control normalization, the I(include_dynamic) and I(include_builtin) options to also return
+    dynamic resp. builtin entries, and use I(unfiltered) to return all fields including counters.
   - B(Note) that this module is still heavily in development, and only supports B(some) paths.
     If you want to support new paths, or think you found problems with existing paths, please first
     L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
@@ -185,6 +185,13 @@ options:
       - If set to C(true), they are returned as well, and the C(dynamic) keys are returned as well.
     type: bool
     default: false
+  include_builtin:
+    description:
+      - Whether to include builtin values.
+      - By default, they are not returned, and the C(builtin) keys are omitted.
+      - If set to C(true), they are returned as well, and the C(builtin) keys are returned as well.
+    type: bool
+    default: false
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -262,6 +269,7 @@ def main():
         handle_disabled=dict(type='str', choices=['exclamation', 'null-value', 'omit'], default='exclamation'),
         hide_defaults=dict(type='bool', default=True),
         include_dynamic=dict(type='bool', default=False),
+        include_builtin=dict(type='bool', default=False),
     )
     module_args.update(api_argument_spec())
 
@@ -281,6 +289,7 @@ def main():
     handle_disabled = module.params['handle_disabled']
     hide_defaults = module.params['hide_defaults']
     include_dynamic = module.params['include_dynamic']
+    include_builtin = module.params['include_builtin']
     try:
         api_path = compose_api_path(api, path)
 
@@ -290,11 +299,16 @@ def main():
             if not include_dynamic:
                 if entry.get('dynamic', False):
                     continue
+            if not include_builtin:
+                if entry.get('builtin', False):
+                    continue
             if not unfiltered:
                 for k in list(entry):
                     if k == '.id':
                         continue
                     if k == 'dynamic' and include_dynamic:
+                        continue
+                    if k == 'builtin' and include_builtin:
                         continue
                     if k not in path_info.fields:
                         entry.pop(k)
