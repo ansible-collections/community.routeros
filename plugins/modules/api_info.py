@@ -203,6 +203,7 @@ options:
       - If set to C(true), they are returned as well, and the C(builtin) keys are returned as well.
     type: bool
     default: false
+    version_added: 2.4.0
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
