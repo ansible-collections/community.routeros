@@ -1,5 +1,5 @@
 minor_changes:
-  - api_info - new parametr: ``ignore_builtin``
+  - api_info - new parametr ``include_builtin``
     (https://github.com/ansible-collections/community.routeros/pull/130).
 bugfixes:
   - api_modify - ignore  ``builtin`` entries
