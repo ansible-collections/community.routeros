@@ -50,7 +50,9 @@ options:
         - caps-man provisioning
         - caps-man security
         - certificate settings
+        - interface bonding
         - interface bridge
+        - interface bridge mlag
         - interface bridge port
         - interface bridge port-controller
         - interface bridge port-extender
@@ -120,6 +122,8 @@ options:
         - ipv6 dhcp-server option
         - ipv6 firewall address-list
         - ipv6 firewall filter
+        - ipv6 firewall mangle
+        - ipv6 nd
         - ipv6 nd prefix default
         - ipv6 route
         - ipv6 settings
@@ -153,7 +157,10 @@ options:
         - system ntp server
         - system package update
         - system routerboard settings
+        - system scheduler
+        - system script
         - system upgrade mirror
+        - system ups
         - system watchdog
         - tool bandwidth-server
         - tool e-mail
