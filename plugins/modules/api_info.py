@@ -57,9 +57,11 @@ options:
         - interface bridge settings
         - interface bridge vlan
         - interface detect-internet
+        - interface eoip
         - interface ethernet
         - interface ethernet switch
         - interface ethernet switch port
+        - interface gre
         - interface l2tp-server server
         - interface list
         - interface list member

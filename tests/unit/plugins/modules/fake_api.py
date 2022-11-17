@@ -120,7 +120,7 @@ class Or(object):
 
 def _normalize_entry(entry, path_info):
     for key, data in path_info.fields.items():
-        if key not in entry and data.default is not None:
+        if key not in entry and data.default is not None and not data.can_disable:
             entry[key] = data.default
         if data.can_disable:
             if key in entry and entry[key] in (None, data.remove_value):

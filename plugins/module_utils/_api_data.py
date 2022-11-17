@@ -49,8 +49,10 @@ class KeyInfo(object):
     def __init__(self, _dummy=None, can_disable=False, remove_value=None, absent_value=None, default=None, required=False, automatically_computed_from=None):
         if _dummy is not None:
             raise ValueError('KeyInfo() does not have positional arguments')
-        if sum([required, default is not None, automatically_computed_from is not None, can_disable]) > 1:
-            raise ValueError('required, default, automatically_computed_from, and can_disable are mutually exclusive')
+        if sum([required, default is not None or can_disable, automatically_computed_from is not None]) > 1:
+            raise ValueError(
+                'required, default, automatically_computed_from, and can_disable are mutually exclusive ' +
+                'besides default and can_disable which can be set together')
         if not can_disable and remove_value is not None:
             raise ValueError('remove_value can only be specified if can_disable=True')
         if absent_value is not None and any([default is not None, automatically_computed_from is not None, can_disable]):
@@ -106,6 +108,31 @@ PATHS = {
             'vlan-filtering': KeyInfo(default=False),
         },
     ),
+    ('interface', 'eoip'): APIData(
+        fully_understood=True,
+        primary_keys=('name',),
+        fields={
+            'allow-fast-path': KeyInfo(default=True),
+            'arp': KeyInfo(default='enabled'),
+            'arp-timeout': KeyInfo(default='auto'),
+            'clamp-tcp-mss': KeyInfo(default=True),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'dont-fragment': KeyInfo(default=False),
+            'dscp': KeyInfo(default='inherit'),
+            'ipsec-secret': KeyInfo(can_disable=True),
+            'keepalive': KeyInfo(default='10s,10', can_disable=True),
+            'local-address': KeyInfo(default='0.0.0.0'),
+            'loop-protect': KeyInfo(default='default'),
+            'loop-protect-disable-time': KeyInfo(default='5m'),
+            'loop-protect-send-interval': KeyInfo(default='5s'),
+            'mac-address': KeyInfo(),
+            'mtu': KeyInfo(default='auto'),
+            'name': KeyInfo(),
+            'remote-address': KeyInfo(required=True),
+            'tunnel-id': KeyInfo(required=True),
+        },
+    ),
     ('interface', 'ethernet'): APIData(
         fixed_entries=True,
         fully_understood=True,
@@ -143,6 +170,24 @@ PATHS = {
             'sfp-shutdown-temperature': KeyInfo(default='95C'),
             'speed': KeyInfo(),
             'tx-flow-control': KeyInfo(default='off'),
+        },
+    ),
+    ('interface', 'gre'): APIData(
+        fully_understood=True,
+        primary_keys=('name', ),
+        fields={
+            'allow-fast-path': KeyInfo(default=True),
+            'clamp-tcp-mss': KeyInfo(default=True),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'dont-fragment': KeyInfo(default=False),
+            'dscp': KeyInfo(default='inherit'),
+            'ipsec-secret': KeyInfo(can_disable=True),
+            'keepalive': KeyInfo(default='10s,10', can_disable=True),
+            'local-address': KeyInfo(default='0.0.0.0'),
+            'mtu': KeyInfo(default='auto'),
+            'name': KeyInfo(),
+            'remote-address': KeyInfo(required=True),
         },
     ),
     ('interface', 'list'): APIData(

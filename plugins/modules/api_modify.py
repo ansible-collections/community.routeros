@@ -62,9 +62,11 @@ options:
         - interface bridge settings
         - interface bridge vlan
         - interface detect-internet
+        - interface eoip
         - interface ethernet
         - interface ethernet switch
         - interface ethernet switch port
+        - interface gre
         - interface l2tp-server server
         - interface list
         - interface list member
@@ -352,7 +354,7 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
                     modifications['!%s' % disabled_k] = ''
                 del updated_entry[disabled_k]
             continue
-        if k not in old_entry and path_info.fields[k].default == v:
+        if k not in old_entry and path_info.fields[k].default == v and not path_info.fields[k].can_disable:
             continue
         if k not in old_entry or old_entry[k] != v:
             modifications[k] = v
@@ -368,7 +370,9 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
             if field_info.remove_value is not None and field_info.remove_value == old_entry[k]:
                 continue
             if field_info.can_disable:
-                if field_info.remove_value is not None:
+                if field_info.default is not None:
+                    modifications[k] = field_info.default
+                elif field_info.remove_value is not None:
                     modifications[k] = field_info.remove_value
                 else:
                     modifications['!%s' % k] = ''
@@ -380,6 +384,11 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
                 if return_none_instead_of_fail:
                     return None, None
                 module.fail_json(msg='Key "{key}" cannot be removed{for_text}.'.format(key=k, for_text=for_text))
+        for k in path_info.fields:
+            field_info = path_info.fields[k]
+            if k not in old_entry and k not in new_entry and field_info.can_disable and field_info.default is not None:
+                modifications[k] = field_info.default
+                updated_entry[k] = field_info.default
     return modifications, updated_entry
 
 
