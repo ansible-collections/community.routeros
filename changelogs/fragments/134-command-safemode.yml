@@ -1,0 +1,3 @@
+bugfixes:
+  - ``command`` module - commands don't timeout in safe mode anymore
+    (https://github.com/ansible-collections/community.routeros/pull/134).
