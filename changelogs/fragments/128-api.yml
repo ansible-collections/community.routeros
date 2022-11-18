@@ -1,3 +1,0 @@
-minor_changes:
-  - api_modify, api_info - support for API fields that can be disabled and have default value at the same time, support API paths ``interface gre``, ``interface eoip``
-    (https://github.com/ansible-collections/community.routeros/pull/128).

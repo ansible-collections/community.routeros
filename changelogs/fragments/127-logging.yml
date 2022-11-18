@@ -1,3 +1,0 @@
-minor_changes:
-  - api_modify, api_info - support API paths ``system logging``, ``system logging action``
-    (https://github.com/ansible-collections/community.routeros/pull/127).

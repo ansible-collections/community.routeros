@@ -1,3 +1,0 @@
-minor_changes:
-  - api* modules - Add new option ``force_no_cert`` to connect with ADH ciphers
-    (https://github.com/ansible-collections/community.routeros/pull/124).

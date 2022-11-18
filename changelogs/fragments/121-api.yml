@@ -1,6 +1,0 @@
-minor_changes:
-  - api_modify, api_info - support fields ``combo-mode``, ``comment``, ``fec-mode``, ``mdix-enable``, ``poe-out``, ``poe-priority``,
-    ``poe-voltage``, ``power-cycle-interval``, ``power-cycle-ping-address``, ``power-cycle-ping-enabled``, ``power-cycle-ping-timeout``
-    for path ``interface ethernet`` (https://github.com/ansible-collections/community.routeros/pull/121).
-  - api_modify, api_info - support field ``hw-offload`` for path ``ip firewall filter``
-    (https://github.com/ansible-collections/community.routeros/pull/121).

@@ -1,3 +1,0 @@
-minor_changes:
-  - api_modify, api_info - support API paths ``interface list`` and ``interface list member``
-    (https://github.com/ansible-collections/community.routeros/pull/120).
