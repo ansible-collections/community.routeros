@@ -161,6 +161,47 @@ START_IP_DHCP_SEVER_LEASE = [
 
 START_IP_DHCP_SEVER_LEASE_OLD_DATA = massage_expected_result_data(START_IP_DHCP_SEVER_LEASE, ('ip', 'dhcp-server', 'lease'))
 
+START_INTERFACE_LIST = [
+    {
+        '.id': '*2000000',
+        'name': 'all',
+        'dynamic': False,
+        'include': '',
+        'exclude': '',
+        'builtin': True,
+        'comment': 'contains all interfaces',
+    },
+    {
+        '.id': '*2000001',
+        'name': 'none',
+        'dynamic': False,
+        'include': '',
+        'exclude': '',
+        'builtin': True,
+        'comment': 'contains no interfaces',
+    },
+    {
+        '.id': '*2000010',
+        'name': 'WAN',
+        'dynamic': False,
+        'include': '',
+        'exclude': '',
+        'builtin': False,
+        'comment': 'defconf',
+    },
+    {
+        '.id': '*2000011',
+        'name': 'Foo',
+        'dynamic': False,
+        'include': '',
+        'exclude': '',
+        'builtin': False,
+        'comment': '',
+    },
+]
+
+START_INTERFACE_LIST_OLD_DATA = massage_expected_result_data(START_INTERFACE_LIST, ('interface', 'list'), remove_builtin=True)
+
 
 class TestRouterosApiModifyModule(ModuleTestCase):
 
@@ -1650,3 +1691,30 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)
         self.assertEqual(result['new_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('interface', 'list'), START_INTERFACE_LIST, read_only=True))
+    def test_absent_entries_builtin(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface list',
+                'data': [
+                    {
+                        'name': 'WAN',
+                        'comment': 'defconf',
+                    },
+                    {
+                        'name': 'Foo',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'ensure_order': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_INTERFACE_LIST_OLD_DATA)
+        self.assertEqual(result['new_data'], START_INTERFACE_LIST_OLD_DATA)

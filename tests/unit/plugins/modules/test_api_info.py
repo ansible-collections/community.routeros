@@ -414,6 +414,128 @@ class TestRouterosApiInfoModule(ModuleTestCase):
         ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_builtin_exclude(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*2000000',
+                'name': 'all',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains all interfaces',
+            },
+            {
+                '.id': '*2000001',
+                'name': 'none',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains no interfaces',
+            },
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': False,
+                'comment': 'defconf',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface list',
+                'handle_disabled': 'omit',
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'include': '',
+                'exclude': '',
+                'comment': 'defconf',
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_builtin_include(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*2000000',
+                'name': 'all',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains all interfaces',
+            },
+            {
+                '.id': '*2000001',
+                'name': 'none',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains no interfaces',
+            },
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': False,
+                'comment': 'defconf',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface list',
+                'handle_disabled': 'omit',
+                'include_builtin': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*2000000',
+                'name': 'all',
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains all interfaces',
+            },
+            {
+                '.id': '*2000001',
+                'name': 'none',
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains no interfaces',
+            },
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'include': '',
+                'exclude': '',
+                'builtin': False,
+                'comment': 'defconf',
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
     def test_absent(self, mock_compose_api_path):
         mock_compose_api_path.return_value = [
             {

@@ -132,10 +132,12 @@ def _normalize_entry(entry, path_info):
             del entry[key]
 
 
-def massage_expected_result_data(values, path, keep_all=False, remove_dynamic=False):
+def massage_expected_result_data(values, path, keep_all=False, remove_dynamic=False, remove_builtin=False):
     path_info = PATHS[path]
     if remove_dynamic:
         values = [entry for entry in values if not entry.get('dynamic', False)]
+    if remove_builtin:
+        values = [entry for entry in values if not entry.get('builtin', False)]
     values = [entry.copy() for entry in values]
     for entry in values:
         _normalize_entry(entry, path_info)
@@ -178,6 +180,8 @@ class Path(object):
             raise Exception('Modifying read-only path: add %s' % repr(kwargs))
         if '.id' in kwargs:
             raise Exception('Trying to create new entry with ".id" field: %s' % repr(kwargs))
+        if 'dynamic' in kwargs or 'builtin' in kwargs:
+            raise Exception('Trying to add a dynamic or builtin entry')
         self._new_id_counter += 1
         id = '*NEW%d' % self._new_id_counter
         entry = {
@@ -195,16 +199,23 @@ class Path(object):
             raise Exception('Modifying read-only path: remove %s' % repr(args))
         for id in args:
             index = self._find_id(id, required=True)
+            entry = self._values[index]
+            if entry.get('dynamic', False) or entry.get('builtin', False):
+                raise Exception('Trying to remove a dynamic or builtin entry')
             del self._values[index]
 
     def update(self, **kwargs):
         if self._read_only:
             raise Exception('Modifying read-only path: update %s' % repr(kwargs))
+        if 'dynamic' in kwargs or 'builtin' in kwargs:
+            raise Exception('Trying to update dynamic builtin fields')
         if self._path_info.single_value:
             index = 0
         else:
             index = self._find_id(kwargs['.id'], required=True)
         entry = self._values[index]
+        if entry.get('dynamic', False) or entry.get('builtin', False):
+            raise Exception('Trying to update a dynamic or builtin entry')
         entry.update(kwargs)
         _normalize_entry(entry, self._path_info)
 
