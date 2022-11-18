@@ -623,3 +623,192 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'server': 'all',
             },
         ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_default_disable_1(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.1',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.2',
+                'keepalive': '10s,10',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+                'comment': 'foo',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface gre',
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'remote-address': '192.168.1.1',
+                '!comment': None,
+                '!ipsec-secret': None,
+                '!keepalive': None,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'remote-address': '192.168.1.2',
+                '!comment': None,
+                '!ipsec-secret': None,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'comment': 'foo',
+                '!ipsec-secret': None,
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_default_disable_2(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.1',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.2',
+                'keepalive': '10s,10',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+                'comment': 'foo',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface gre',
+                'handle_disabled': 'omit',
+                'hide_defaults': False,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'mtu': 'auto',
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.1',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'mtu': 'auto',
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.2',
+                'keepalive': '10s,10',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'mtu': 'auto',
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'disabled': False,
+                'comment': 'foo',
+            },
+        ])

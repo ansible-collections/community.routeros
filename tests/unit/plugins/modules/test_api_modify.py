@@ -202,6 +202,56 @@ START_INTERFACE_LIST = [
 
 START_INTERFACE_LIST_OLD_DATA = massage_expected_result_data(START_INTERFACE_LIST, ('interface', 'list'), remove_builtin=True)
 
+START_INTERFACE_GRE = [
+    {
+        '.id': '*10',
+        'name': 'gre-tunnel3',
+        'mtu': 'auto',
+        'actual-mtu': 65496,
+        'local-address': '0.0.0.0',
+        'remote-address': '192.168.1.1',
+        'dscp': 'inherit',
+        'clamp-tcp-mss': True,
+        'dont-fragment': False,
+        'allow-fast-path': True,
+        'running': True,
+        'disabled': False,
+    },
+    {
+        '.id': '*11',
+        'name': 'gre-tunnel4',
+        'mtu': 'auto',
+        'actual-mtu': 65496,
+        'local-address': '0.0.0.0',
+        'remote-address': '192.168.1.2',
+        'keepalive': '10s,10',
+        'dscp': 'inherit',
+        'clamp-tcp-mss': True,
+        'dont-fragment': False,
+        'allow-fast-path': True,
+        'running': True,
+        'disabled': False,
+    },
+    {
+        '.id': '*12',
+        'name': 'gre-tunnel5',
+        'mtu': 'auto',
+        'actual-mtu': 65496,
+        'local-address': '192.168.0.1',
+        'remote-address': '192.168.1.3',
+        'keepalive': '20s,20',
+        'dscp': 'inherit',
+        'clamp-tcp-mss': True,
+        'dont-fragment': False,
+        'allow-fast-path': True,
+        'running': True,
+        'disabled': False,
+        'comment': 'foo',
+    },
+]
+
+START_INTERFACE_GRE_OLD_DATA = massage_expected_result_data(START_INTERFACE_GRE, ('interface', 'gre'))
+
 
 class TestRouterosApiModifyModule(ModuleTestCase):
 
@@ -1718,3 +1768,39 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_INTERFACE_LIST_OLD_DATA)
         self.assertEqual(result['new_data'], START_INTERFACE_LIST_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('interface', 'gre'), START_INTERFACE_GRE, read_only=True))
+    def test_idempotent_default_disabled(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface gre',
+                'data': [
+                    {
+                        'name': 'gre-tunnel3',
+                        'remote-address': '192.168.1.1',
+                        '!keepalive': None,
+                    },
+                    {
+                        'name': 'gre-tunnel4',
+                        'remote-address': '192.168.1.2',
+                    },
+                    {
+                        'name': 'gre-tunnel5',
+                        'local-address': '192.168.0.1',
+                        'remote-address': '192.168.1.3',
+                        'keepalive': '20s,20',
+                        'comment': 'foo',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'ensure_order': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_INTERFACE_GRE_OLD_DATA)
+        self.assertEqual(result['new_data'], START_INTERFACE_GRE_OLD_DATA)
