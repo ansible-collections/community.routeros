@@ -414,6 +414,128 @@ class TestRouterosApiInfoModule(ModuleTestCase):
         ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_builtin_exclude(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*2000000',
+                'name': 'all',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains all interfaces',
+            },
+            {
+                '.id': '*2000001',
+                'name': 'none',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains no interfaces',
+            },
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': False,
+                'comment': 'defconf',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface list',
+                'handle_disabled': 'omit',
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'include': '',
+                'exclude': '',
+                'comment': 'defconf',
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_builtin_include(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*2000000',
+                'name': 'all',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains all interfaces',
+            },
+            {
+                '.id': '*2000001',
+                'name': 'none',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains no interfaces',
+            },
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'dynamic': False,
+                'include': '',
+                'exclude': '',
+                'builtin': False,
+                'comment': 'defconf',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface list',
+                'handle_disabled': 'omit',
+                'include_builtin': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*2000000',
+                'name': 'all',
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains all interfaces',
+            },
+            {
+                '.id': '*2000001',
+                'name': 'none',
+                'include': '',
+                'exclude': '',
+                'builtin': True,
+                'comment': 'contains no interfaces',
+            },
+            {
+                '.id': '*2000010',
+                'name': 'WAN',
+                'include': '',
+                'exclude': '',
+                'builtin': False,
+                'comment': 'defconf',
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
     def test_absent(self, mock_compose_api_path):
         mock_compose_api_path.return_value = [
             {
@@ -499,5 +621,194 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'address': '0.0.0.1',
                 'mac-address': '00:00:00:00:00:01',
                 'server': 'all',
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_default_disable_1(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.1',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.2',
+                'keepalive': '10s,10',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+                'comment': 'foo',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface gre',
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'remote-address': '192.168.1.1',
+                '!comment': None,
+                '!ipsec-secret': None,
+                '!keepalive': None,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'remote-address': '192.168.1.2',
+                '!comment': None,
+                '!ipsec-secret': None,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'comment': 'foo',
+                '!ipsec-secret': None,
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_default_disable_2(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.1',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.2',
+                'keepalive': '10s,10',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'mtu': 'auto',
+                'actual-mtu': 65496,
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'running': True,
+                'disabled': False,
+                'comment': 'foo',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'interface gre',
+                'handle_disabled': 'omit',
+                'hide_defaults': False,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                '.id': '*10',
+                'name': 'gre-tunnel3',
+                'mtu': 'auto',
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.1',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*11',
+                'name': 'gre-tunnel4',
+                'mtu': 'auto',
+                'local-address': '0.0.0.0',
+                'remote-address': '192.168.1.2',
+                'keepalive': '10s,10',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'disabled': False,
+            },
+            {
+                '.id': '*12',
+                'name': 'gre-tunnel5',
+                'mtu': 'auto',
+                'local-address': '192.168.0.1',
+                'remote-address': '192.168.1.3',
+                'keepalive': '20s,20',
+                'dscp': 'inherit',
+                'clamp-tcp-mss': True,
+                'dont-fragment': False,
+                'allow-fast-path': True,
+                'disabled': False,
+                'comment': 'foo',
             },
         ])
