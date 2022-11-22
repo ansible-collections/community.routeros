@@ -232,6 +232,22 @@ PATHS = {
             'remote-address': KeyInfo(required=True),
         },
     ),
+    ('interface', 'gre6'): APIData(
+        fully_understood=True,
+        primary_keys=('name',),
+        fields={
+            'clamp-tcp-mss': KeyInfo(default=True),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'dscp': KeyInfo(default='inherit'),
+            'ipsec-secret': KeyInfo(can_disable=True),
+            'keepalive': KeyInfo(default='10s,10', can_disable=True),
+            'local-address': KeyInfo(default='::'),
+            'mtu': KeyInfo(default='auto'),
+            'name': KeyInfo(),
+            'remote-address': KeyInfo(required=True),
+        },
+    ),
     ('interface', 'list'): APIData(
         primary_keys=('name', ),
         fully_understood=True,
