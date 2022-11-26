@@ -27,6 +27,16 @@ The collection supports the `network_cli` connection.
 
 Please note that `community.routeros.api` module does **not** support Windows jump hosts!
 
+## Collection Documentation
+
+Browsing the [**latest** collection documentation](https://docs.ansible.com/ansible/latest/collections/community/routeros) will show docs for the _latest version released in the Ansible package_, not the latest version of the collection released on Galaxy.
+
+Browsing the [**devel** collection documentation](https://docs.ansible.com/ansible/devel/collections/community/routeros) shows docs for the _latest version released on Galaxy_.
+
+We also separately publish [**latest commit** collection documentation](https://ansible-collections.github.io/community.routeros/branch/main/) which shows docs for the _latest commit in the `main` branch_.
+
+If you use the Ansible package and do not update collections independently, use **latest**. If you install or update this collection directly from Galaxy, use **devel**. If you are looking to contribute, use **latest commit**.
+
 ## Included content
 
 - `community.routeros.api`
