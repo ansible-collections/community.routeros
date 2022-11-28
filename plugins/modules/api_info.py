@@ -61,9 +61,11 @@ options:
         - interface detect-internet
         - interface eoip
         - interface ethernet
+        - interface ethernet poe
         - interface ethernet switch
         - interface ethernet switch port
         - interface gre
+        - interface gre6
         - interface l2tp-server server
         - interface list
         - interface list member
@@ -72,6 +74,7 @@ options:
         - interface pptp-server server
         - interface sstp-server server
         - interface vlan
+        - interface vrrp
         - interface wireless align
         - interface wireless cap
         - interface wireless sniffer

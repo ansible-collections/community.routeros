@@ -1,0 +1,5 @@
+---
+minor_changes:
+  - api_info, api_modify - support API paths - ``interface ethernet poe``, ``interface gre6``, ``interface vrrp`` and also support for all preivously missing fileds of entries in ``ip dhcp-server``
+bugfixes:
+  - api_info, api_modify - ``address-pool`` field of entries in API path ``ip dhcp-server`` is not required anymore
