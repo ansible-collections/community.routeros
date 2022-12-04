@@ -354,3 +354,17 @@ releases:
     - 134-command-safemode.yml
     - 2.4.0.yml
     release_date: '2022-11-18'
+  2.5.0:
+    changes:
+      bugfixes:
+      - api_modify - ``address-pool`` field of entries in API path ``ip dhcp-server``
+        is not required anymore (https://github.com/ansible-collections/community.routeros/pull/137).
+      minor_changes:
+      - api_info, api_modify - support API paths ``interface ethernet poe``, ``interface
+        gre6``, ``interface vrrp`` and also support all previously missing fields
+        of entries in ``ip dhcp-server`` (https://github.com/ansible-collections/community.routeros/pull/137).
+      release_summary: Feature and bugfix release.
+    fragments:
+    - 137-api.yml
+    - 2.5.0.yml
+    release_date: '2022-12-04'
