@@ -17,6 +17,8 @@ on:
   # Run CI once per day (at 05:15 UTC)
   schedule:
     - cron: '15 5 * * *'
+  # Allow manual trigger (for newer antsibull-docs, sphinx-ansible-theme, ... versions)
+  workflow_dispatch:
 
 jobs:
   build-docs:
