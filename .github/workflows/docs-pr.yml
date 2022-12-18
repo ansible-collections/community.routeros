@@ -25,6 +25,12 @@ jobs:
       init-lenient: false
       init-fail-on-error: true
       squash-hierarchy: true
+      init-project: Community.Routeros Collection
+      init-copyright: Community.Routeros Contributors
+      init-title: Community.Routeros Collection Documentation
+      init-html-short-title: Community.Routeros Collection Docs
+      init-extra-html-theme-options: |
+        documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
       render-file-line: '> * `$<status>` [$<path_tail>](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr/${{ github.event.number }}/$<path_tail>)'
 
   publish-docs-gh-pages:
