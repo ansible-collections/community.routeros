@@ -44,7 +44,7 @@ jobs:
       ), matrix.ansible) && 'ubuntu-20.04' || 'ubuntu-latest' }}
     steps:
       - name: Perform sanity testing
-        uses: ansible-community/ansible-test-gh-action@release/v1
+        uses: felixfontein/ansible-test-gh-action@main
         with:
           ansible-core-version: ${{ matrix.ansible }}
           testing-type: sanity
@@ -81,7 +81,7 @@ jobs:
       - name: >-
           Perform unit testing against
           Ansible version ${{ matrix.ansible }}
-        uses: ansible-community/ansible-test-gh-action@release/v1
+        uses: felixfontein/ansible-test-gh-action@main
         with:
           ansible-core-version: ${{ matrix.ansible }}
           testing-type: units
@@ -145,9 +145,12 @@ jobs:
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
           under Python ${{ matrix.python }}
-        uses: ansible-community/ansible-test-gh-action@release/v1
+        uses: felixfontein/ansible-test-gh-action@main
         with:
           ansible-core-version: ${{ matrix.ansible }}
+          integration-continue-on-error: 'false'
+          integration-diff: 'false'
+          integration-retry-on-error: 'true'
           # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
           pre-test-cmd: |-
             git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
