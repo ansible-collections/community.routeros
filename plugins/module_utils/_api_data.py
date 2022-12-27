@@ -1150,6 +1150,33 @@ PATHS = {
             'verify-client-certificate': KeyInfo(default='no'),
         },
     ),
+    ('interface', 'wireguard'): APIData(
+        fully_understood=True,
+        primary_keys=('name', ),
+        fields={
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'listen-port': KeyInfo(),
+            'mtu': KeyInfo(default=1420),
+            'name': KeyInfo(),
+            'private-key': KeyInfo(),
+        },
+    ),
+    ('interface', 'wireguard', 'peers'): APIData(
+        fully_understood=True,
+        primary_keys=('public-key', 'interface'),
+        fields={
+            'allowed-address': KeyInfo(),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(default=False),
+            'endpoint-address': KeyInfo(),
+            'endpoint-port': KeyInfo(default=0),
+            'interface': KeyInfo(),
+            'persistent-keepalive': KeyInfo(),
+            'preshared-key': KeyInfo(),
+            'public-key': KeyInfo(),
+        },
+    ),
     ('interface', 'wireless', 'align'): APIData(
         single_value=True,
         fully_understood=True,

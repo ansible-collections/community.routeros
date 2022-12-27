@@ -80,6 +80,8 @@ options:
         - interface sstp-server server
         - interface vlan
         - interface vrrp
+        - interface wireguard
+        - interface wireguard peers
         - interface wireless align
         - interface wireless cap
         - interface wireless sniffer
