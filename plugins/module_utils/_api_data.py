@@ -13,6 +13,7 @@ __metaclass__ = type
 class APIData(object):
     def __init__(self, primary_keys=None,
                  stratify_keys=None,
+                 required_one_of=None,
                  has_identifier=False,
                  single_value=False,
                  unknown_mechanism=False,
@@ -25,6 +26,7 @@ class APIData(object):
             raise ValueError('unknown_mechanism and fully_understood cannot be combined')
         self.primary_keys = primary_keys
         self.stratify_keys = stratify_keys
+        self.required_one_of = required_one_of or []
         self.has_identifier = has_identifier
         self.single_value = single_value
         self.unknown_mechanism = unknown_mechanism
@@ -43,6 +45,13 @@ class APIData(object):
             for sk in stratify_keys:
                 if sk not in fields:
                     raise ValueError('Stratify key {sk} must be in fields!'.format(sk=sk))
+        if required_one_of:
+            for index, require_list in enumerate(required_one_of):
+                if not isinstance(require_list, list):
+                    raise ValueError('Require one of element at index #{index} must be a list!'.format(index=index + 1))
+                for rk in require_list:
+                    if rk not in fields:
+                        raise ValueError('Require one of key {rk} must be in fields!'.format(rk=rk))
 
 
 class KeyInfo(object):
@@ -1356,7 +1365,7 @@ PATHS = {
     ),
     ('ip', 'dns', 'static'): APIData(
         fully_understood=True,
-        # stratify_keys=('name', ),
+        required_one_of=[['name', 'regexp']],
         fields={
             'address': KeyInfo(),
             'cname': KeyInfo(),

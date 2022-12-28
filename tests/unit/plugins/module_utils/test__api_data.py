@@ -54,6 +54,14 @@ def test_api_data_errors():
         APIData(stratify_keys=['foo'], fields={})
     assert exc.value.args[0] == 'Stratify key foo must be in fields!'
 
+    with pytest.raises(ValueError) as exc:
+        APIData(required_one_of=['foo'], fields={})
+    assert exc.value.args[0] == 'Require one of element at index #1 must be a list!'
+
+    with pytest.raises(ValueError) as exc:
+        APIData(required_one_of=[['foo']], fields={})
+    assert exc.value.args[0] == 'Require one of key foo must be in fields!'
+
 
 def test_key_info_errors():
     values = [

@@ -397,6 +397,22 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['failed'], True)
         self.assertEqual(result['msg'], 'Every element in data must contain "name". For example, the element at index #1 does not provide it.')
 
+    def test_invalid_required_one_of_missing(self):
+        with self.assertRaises(AnsibleFailJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip dns static',
+                'data': [{
+                    'address': '192.168.88.1',
+                }],
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['failed'], True)
+        self.assertEqual(result['msg'], 'Every element in data must contain one of "name", "regexp". For example, the element at index 1 does not provide it.')
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'dns', 'static'), START_IP_DNS_STATIC, read_only=True))
     def test_sync_list_idempotent(self):
