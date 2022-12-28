@@ -385,9 +385,9 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         with self.assertRaises(AnsibleFailJson) as exc:
             args = self.config_module_args.copy()
             args.update({
-                'path': 'ip dns static',
+                'path': 'ip dhcp-server',
                 'data': [{
-                    'address': '1.2.3.4',
+                    'interface': 'eth0',
                 }],
             })
             set_module_args(args)
