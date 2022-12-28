@@ -62,6 +62,14 @@ def test_api_data_errors():
         APIData(required_one_of=[['foo']], fields={})
     assert exc.value.args[0] == 'Require one of key foo must be in fields!'
 
+    with pytest.raises(ValueError) as exc:
+        APIData(mutually_exclusive=['foo'], fields={})
+    assert exc.value.args[0] == 'Mutually exclusive element at index #1 must be a list!'
+
+    with pytest.raises(ValueError) as exc:
+        APIData(mutually_exclusive=[['foo']], fields={})
+    assert exc.value.args[0] == 'Mutually exclusive key foo must be in fields!'
+
 
 def test_key_info_errors():
     values = [

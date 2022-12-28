@@ -14,6 +14,7 @@ class APIData(object):
     def __init__(self, primary_keys=None,
                  stratify_keys=None,
                  required_one_of=None,
+                 mutually_exclusive=None,
                  has_identifier=False,
                  single_value=False,
                  unknown_mechanism=False,
@@ -27,6 +28,7 @@ class APIData(object):
         self.primary_keys = primary_keys
         self.stratify_keys = stratify_keys
         self.required_one_of = required_one_of or []
+        self.mutually_exclusive = mutually_exclusive or []
         self.has_identifier = has_identifier
         self.single_value = single_value
         self.unknown_mechanism = unknown_mechanism
@@ -52,6 +54,13 @@ class APIData(object):
                 for rk in require_list:
                     if rk not in fields:
                         raise ValueError('Require one of key {rk} must be in fields!'.format(rk=rk))
+        if mutually_exclusive:
+            for index, exclusive_list in enumerate(mutually_exclusive):
+                if not isinstance(exclusive_list, list):
+                    raise ValueError('Mutually exclusive element at index #{index} must be a list!'.format(index=index + 1))
+                for ek in exclusive_list:
+                    if ek not in fields:
+                        raise ValueError('Mutually exclusive key {ek} must be in fields!'.format(ek=ek))
 
 
 class KeyInfo(object):
@@ -1366,6 +1375,7 @@ PATHS = {
     ('ip', 'dns', 'static'): APIData(
         fully_understood=True,
         required_one_of=[['name', 'regexp']],
+        mutually_exclusive=[['name', 'regexp']],
         fields={
             'address': KeyInfo(),
             'cname': KeyInfo(),

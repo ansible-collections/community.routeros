@@ -474,6 +474,15 @@ def polish_entry(entry, path_info, module, for_text):
                     for_text=for_text,
                 )
             )
+    for exclusive_list in path_info.mutually_exclusive:
+        found_ex_keys = [ek for ek in exclusive_list if ek in entry]
+        if len(found_ex_keys) > 1:
+            module.fail_json(
+                msg='Keys {exclusive_keys} cannot be used at the same time{for_text}.'.format(
+                    exclusive_keys=', '.join(['"{k}"'.format(k=k) for k in found_ex_keys]),
+                    for_text=for_text,
+                )
+            )
 
 
 def remove_irrelevant_data(entry, path_info):
