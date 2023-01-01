@@ -89,6 +89,7 @@ options:
         - ip accounting
         - ip accounting web-access
         - ip address
+        - ip arp
         - ip cloud
         - ip cloud advanced
         - ip dhcp-client
@@ -104,6 +105,7 @@ options:
         - ip firewall filter
         - ip firewall mangle
         - ip firewall nat
+        - ip firewall raw
         - ip firewall service-port
         - ip hotspot service-port
         - ip ipsec identity
@@ -133,6 +135,7 @@ options:
         - ipv6 firewall address-list
         - ipv6 firewall filter
         - ipv6 firewall mangle
+        - ipv6 firewall raw
         - ipv6 nd
         - ipv6 nd prefix default
         - ipv6 route
