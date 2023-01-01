@@ -368,3 +368,19 @@ releases:
     - 137-api.yml
     - 2.5.0.yml
     release_date: '2022-12-04'
+  2.6.0:
+    changes:
+      bugfixes:
+      - api_modify - do not use ``name`` as a unique key in ``ip dns static`` (https://github.com/ansible-collections/community.routeros/issues/141).
+      - api_modify, api_info - do not crash if router contains ``regexp`` DNS entries
+        in ``ip dns static`` (https://github.com/ansible-collections/community.routeros/issues/141).
+      minor_changes:
+      - api_modify, api_info - add field ``regexp`` to ``ip dns static`` (https://github.com/ansible-collections/community.routeros/issues/141).
+      - api_modify, api_info - support API paths ``interface wireguard``, ``interface
+        wireguard peers`` (https://github.com/ansible-collections/community.routeros/pull/143).
+      release_summary: Regular bugfix and feature release.
+    fragments:
+    - 142-dns-regexp.yml
+    - 143-add-wireguard.yml
+    - 2.6.0.yml
+    release_date: '2023-01-01'

@@ -1,2 +1,0 @@
-minor_changes:
-  - api_modify, api_info - support API paths ``interface wireguard``, ``interface wireguard peers`` (https://github.com/ansible-collections/community.routeros/pull/143).
