@@ -81,3 +81,17 @@ releases:
     - 37-api-validate-cert-options.yml
     - ansible-core-_text.yml
     release_date: '2021-06-29'
+  1.2.1:
+    changes:
+      bugfixes:
+      - query - fix query function check for ``.id`` vs. ``id`` arguments to not conflict
+        with routeros arguments like ``identity`` (https://github.com/ansible-collections/community.routeros/pull/68,
+        https://github.com/ansible-collections/community.routeros/issues/67).
+      - routeros cliconf plugin - adjust function signature that was modified in Ansible
+        after creation of this plugin (https://github.com/ansible-collections/community.routeros/pull/43).
+      release_summary: Bugfix maintenance release.
+    fragments:
+    - 1.2.1.yml
+    - 43-sanity.yml
+    - 68-fix-query-id-check.yml
+    release_date: '2023-01-14'
