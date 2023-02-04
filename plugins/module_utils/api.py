@@ -18,7 +18,7 @@ import traceback
 LIB_IMP_ERR = None
 try:
     from librouteros import connect
-    from librouteros.exceptions import LibRouterosError  # pylint: disable=unused-import
+    from librouteros.exceptions import LibRouterosError  # noqa: F401, pylint: disable=unused-import
     HAS_LIB = True
 except Exception as e:
     HAS_LIB = False
