@@ -12,14 +12,13 @@ __metaclass__ = type
 from ansible.module_utils.basic import missing_required_lib
 from ansible.module_utils.common.text.converters import to_native
 
-import re
 import ssl
 import traceback
 
 LIB_IMP_ERR = None
 try:
     from librouteros import connect
-    from librouteros.exceptions import LibRouterosError
+    from librouteros.exceptions import LibRouterosError  # noqa: F401, pylint: disable=unused-import
     HAS_LIB = True
 except Exception as e:
     HAS_LIB = False

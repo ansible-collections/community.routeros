@@ -265,7 +265,6 @@ message:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.basic import missing_required_lib
 from ansible.module_utils.common.text.converters import to_native
 
 from ansible_collections.community.routeros.plugins.module_utils.quoting import (
@@ -282,8 +281,6 @@ from ansible_collections.community.routeros.plugins.module_utils.api import (
 )
 
 import re
-import ssl
-import traceback
 
 try:
     from librouteros.exceptions import LibRouterosError

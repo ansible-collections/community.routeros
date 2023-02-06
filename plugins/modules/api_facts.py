@@ -178,7 +178,6 @@ ansible_facts:
       returned: I(gather_subset) contains C(routing)
       type: dict
 """
-import re
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.six import iteritems
