@@ -9,8 +9,6 @@
 Updates DOCUMENTATION of modules using module_utils._api_data with the correct list of supported paths.
 '''
 
-import os
-
 from plugins.module_utils._api_data import (
     PATHS,
     join_path,
