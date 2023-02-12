@@ -9,8 +9,6 @@ __metaclass__ = type
 
 import pytest
 
-from ansible.module_utils.common.text.converters import to_native
-
 from ansible_collections.community.routeros.plugins.module_utils._api_data import (
     APIData,
     KeyInfo,
