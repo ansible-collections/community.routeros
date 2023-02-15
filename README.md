@@ -112,7 +112,7 @@ Example playbook:
 ---
 - name: RouterOS test with API
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   vars:
     hostname: 192.168.1.1
     username: admin
