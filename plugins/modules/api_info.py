@@ -102,6 +102,7 @@ options:
         - ip firewall nat
         - ip firewall raw
         - ip firewall service-port
+        - ip firewall layer7-protocol
         - ip hotspot service-port
         - ip ipsec identity
         - ip ipsec peer
