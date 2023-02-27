@@ -2759,6 +2759,15 @@ PATHS = {
             'sip-timeout': KeyInfo(),
         },
     ),
+    ('ip', 'firewall', 'layer7-protocol'): APIData(
+        primary_keys=('name', ),
+        fully_understood=True,
+        fields={
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'name': KeyInfo(),
+            'regexp': KeyInfo(),
+        },
+    ),
     ('ip', 'hotspot', 'service-port'): APIData(
         fixed_entries=True,
         primary_keys=('name', ),
