@@ -130,7 +130,7 @@ START_IP_DHCP_CLIENT = [
 
 START_IP_DHCP_CLIENT_OLD_DATA = massage_expected_result_data(START_IP_DHCP_CLIENT, ('ip', 'dhcp-client'))
 
-START_IP_DHCP_SEVER_LEASE = [
+START_IP_DHCP_SERVER_LEASE = [
     {
         '.id': '*1',
         'address': '192.168.88.2',
@@ -196,7 +196,7 @@ START_IP_DHCP_SEVER_LEASE = [
     },
 ]
 
-START_IP_DHCP_SEVER_LEASE_OLD_DATA = massage_expected_result_data(START_IP_DHCP_SEVER_LEASE, ('ip', 'dhcp-server', 'lease'))
+START_IP_DHCP_SERVER_LEASE_OLD_DATA = massage_expected_result_data(START_IP_DHCP_SERVER_LEASE, ('ip', 'dhcp-server', 'lease'))
 
 START_INTERFACE_LIST = [
     {
@@ -1770,7 +1770,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
-           new=create_fake_path(('ip', 'dhcp-server', 'lease'), START_IP_DHCP_SEVER_LEASE, read_only=True))
+           new=create_fake_path(('ip', 'dhcp-server', 'lease'), START_IP_DHCP_SERVER_LEASE, read_only=True))
     def test_absent_value(self):
         with self.assertRaises(AnsibleExitJson) as exc:
             args = self.config_module_args.copy()
@@ -1810,8 +1810,8 @@ class TestRouterosApiModifyModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
-        self.assertEqual(result['old_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)
-        self.assertEqual(result['new_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)
+        self.assertEqual(result['old_data'], START_IP_DHCP_SERVER_LEASE_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_DHCP_SERVER_LEASE_OLD_DATA)
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'dhcp-client'), START_IP_DHCP_CLIENT, read_only=True))
