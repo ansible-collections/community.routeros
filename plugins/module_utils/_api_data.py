@@ -1313,7 +1313,7 @@ PATHS = {
             'add-default-route': KeyInfo(default=True),
             'comment': KeyInfo(can_disable=True, remove_value=''),
             'default-route-distance': KeyInfo(default=1),
-            'dhcp-options': KeyInfo(default='hostname,clientid'),
+            'dhcp-options': KeyInfo(default='hostname,clientid', can_disable=True, remove_value=''),
             'disabled': KeyInfo(default=False),
             'interface': KeyInfo(),
             'script': KeyInfo(can_disable=True),
