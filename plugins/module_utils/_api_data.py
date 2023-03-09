@@ -1359,7 +1359,7 @@ PATHS = {
             'dns-none': KeyInfo(default=''),
             'dns-server': KeyInfo(default=''),
             'domain': KeyInfo(default=''),
-            'gateway': KeyInfo(automatically_computed_from=('address', )),
+            'gateway': KeyInfo(default=''),
             'netmask': KeyInfo(can_disable=True, remove_value=0),
             'next-server': KeyInfo(can_disable=True),
             'ntp-server': KeyInfo(default=''),
