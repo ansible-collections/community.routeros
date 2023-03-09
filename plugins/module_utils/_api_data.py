@@ -1361,7 +1361,7 @@ PATHS = {
             'domain': KeyInfo(default=''),
             'gateway': KeyInfo(automatically_computed_from=('address', )),
             'netmask': KeyInfo(can_disable=True, remove_value=0),
-            'next-server': KeyInfo(default=''),
+            'next-server': KeyInfo(can_disable=True),
             'ntp-server': KeyInfo(default=''),
             'wins-server': KeyInfo(default=''),
         },
