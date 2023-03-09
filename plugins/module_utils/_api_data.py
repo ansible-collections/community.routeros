@@ -1356,7 +1356,7 @@ PATHS = {
             'comment': KeyInfo(can_disable=True, remove_value=''),
             'dhcp-option': KeyInfo(default=''),
             'dhcp-option-set': KeyInfo(default=''),
-            'dns-none': KeyInfo(default=''),
+            'dns-none': KeyInfo(default=False),
             'dns-server': KeyInfo(default=''),
             'domain': KeyInfo(default=''),
             'gateway': KeyInfo(default=''),
