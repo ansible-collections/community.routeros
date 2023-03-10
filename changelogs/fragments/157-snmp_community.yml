@@ -1,0 +1,2 @@
+minor_changes:
+  - api_modify - support API paths ``snmp community`` (https://github.com/ansible-collections/community.routeros/pull/153).
