@@ -1,2 +1,2 @@
 minor_changes:
-  - api_modify - add support to disable ipv6 in API paths ``ipv6 settings`` (https://github.com/ansible-collections/community.routeros/pull/158).
+  - api_modify - add support to disable IPv6 in API paths ``ipv6 settings`` (https://github.com/ansible-collections/community.routeros/pull/158).
