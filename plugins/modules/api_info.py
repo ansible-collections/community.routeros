@@ -154,6 +154,7 @@ options:
         - routing rip
         - routing ripng
         - snmp
+        - snmp community
         - system clock
         - system clock manual
         - system identity
