@@ -1086,6 +1086,7 @@ PATHS = {
         fields={
             'accept-redirects': KeyInfo(default='yes-if-forwarding-disabled'),
             'accept-router-advertisements': KeyInfo(default='yes-if-forwarding-disabled'),
+            'disable-ipv6': KeyInfo(default=False),
             'forward': KeyInfo(default=True),
             'max-neighbor-entries': KeyInfo(default=8192),
         },
