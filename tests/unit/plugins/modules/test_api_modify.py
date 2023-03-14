@@ -2336,7 +2336,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
         self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
-            
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
     def test_sync_list_stratified_modify_3(self):
