@@ -248,6 +248,44 @@ START_INTERFACE_GRE = [
 
 START_INTERFACE_GRE_OLD_DATA = massage_expected_result_data(START_INTERFACE_GRE, ('interface', 'gre'))
 
+START_IP_FIREWALL_FILTER = [
+    {
+        '.id': '*1',
+        'comment': 'defconf',
+        'chain': 'input',
+        'action': 'drop',
+        'in-interface': 'eth1',
+        'log': 'no',
+        'log-prefix': '',
+    },
+    {
+        '.id': '*A',
+        'chain': 'input',
+        'action': 'accept',
+        'in-interface': 'eth2',
+        'log': 'no',
+        'log-prefix': '',
+    },
+    {
+        '.id': '*7',
+        'chain': 'input',
+        'action': 'drop',
+        'in-interface': 'eth3',
+        'log': 'no',
+        'log-prefix': '',
+    },
+    {
+        '.id': '*8',
+        'chain': 'forward',
+        'action': 'drop',
+        'in-interface': 'Wan',
+        'log': 'no',
+        'log-prefix': '',
+    },
+]
+
+START_IP_FIREWALL_FILTER_OLD_DATA = massage_expected_result_data(START_IP_FIREWALL_FILTER, ('ip', 'firewall', 'filter'), remove_dynamic=True)
+
 
 class TestRouterosApiModifyModule(ModuleTestCase):
 
@@ -1834,3 +1872,1021 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_INTERFACE_GRE_OLD_DATA)
         self.assertEqual(result['new_data'], START_INTERFACE_GRE_OLD_DATA)
+    
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_idempotent(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        '.id': 'bam',
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'forward',
+                        'action': 'drop',
+                        'in-interface': 'Wan',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_idempotent_2(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        '!comment': None,
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'comment': '',
+                        'action': 'drop',
+                        'in-interface': 'eth3',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'forward',
+                        'action': 'drop',
+                        'in-interface': 'Wan',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_idempotent_3(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
+    def test_sync_list_stratified_add(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth3',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth4',
+                        'log': 'yes',
+                        'log-prefix': 'Test -',
+                    },
+                ],
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'comment': 'defconf',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*7',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth3',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*NEW1',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth4',
+                'log': 'yes',
+                'log-prefix': 'Test -',
+            },
+        ])
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
+    def test_sync_list_stratified_modify_1(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'yes',
+                        'log-prefix': 'Test -',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth3',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'comment': 'defconf',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*7',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth3',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*NEW1',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'yes',
+                'log-prefix': 'Test -',
+            },
+        ])
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_modify_1_check(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'yes',
+                        'log-prefix': 'Test -',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth3',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_stratified': True,
+                '_ansible_check_mode': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'comment': 'defconf',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*7',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth3',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'yes',
+                'log-prefix': 'Test -',
+            },
+        ])
+    
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
+    def test_sync_list_stratified_modify_2(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth3',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_modify_2_check(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth3',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+                '_ansible_check_mode': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+            
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
+    def test_sync_list_stratified_modify_3(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+        ])
+    
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_modify_3_check(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+                '_ansible_check_mode': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+        ])
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
+    def test_sync_list_stratified_modify_4(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'chain': 'input',
+                        '!comment': None,
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'out-interface': 'eth1',
+                        'log': 'yes',
+                        'log-prefix': 'Test-',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    }
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*7',
+                'chain': 'input',
+                'action': 'accept',
+                'out-interface': 'eth1',
+                'log': 'yes',
+                'log-prefix': 'Test-',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            
+        ])
+    
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_modify_4_check(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'chain': 'input',
+                        '!comment': None,
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'out-interface': 'eth1',
+                        'log': 'yes',
+                        'log-prefix': 'Test-',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    }
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+                '_ansible_check_mode': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*7',
+                'chain': 'input',
+                'action': 'accept',
+                'out-interface': 'eth1',
+                'log': 'yes',
+                'log-prefix': 'Test-',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+        ])
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
+    def test_sync_list_stratified_modify_5(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'chain': 'input',
+                        'comment': 'Test4',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'out-interface': 'eth1',
+                        'log': 'yes',
+                        'log-prefix': 'Test-',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    }
+                ],
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'comment': 'defconf',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*7',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth3',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*NEW1',
+                'chain': 'input',
+                'comment': 'Test4',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*NEW2',
+                'chain': 'input',
+                'action': 'accept',
+                'out-interface': 'eth1',
+                'log': 'yes',
+                'log-prefix': 'Test-',
+            },
+            
+        ])
+    
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_modify_5_check(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'chain': 'input',
+                        'comment': 'Test4',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'out-interface': 'eth1',
+                        'log': 'yes',
+                        'log-prefix': 'Test-',
+                    },
+                    {
+                        'chain': 'input',
+                        'action': 'accept',
+                        'in-interface': 'eth2',
+                        'log': 'no',
+                        'log-prefix': '',
+                    }
+                ],
+                'handle_stratified': True,
+                '_ansible_check_mode': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'comment': 'defconf',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*A',
+                'chain': 'input',
+                'action': 'accept',
+                'in-interface': 'eth2',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*7',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth3',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                'chain': 'input',
+                'comment': 'Test4',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                'chain': 'input',
+                'action': 'accept',
+                'out-interface': 'eth1',
+                'log': 'yes',
+                'log-prefix': 'Test-',
+            },
+        ])
+        
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
+    def test_sync_list_stratified_delete(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'comment': 'defconf',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+        ])
+    
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
+    def test_sync_list_stratified_delete_check(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'data': [
+                    {
+                        'comment': 'defconf',
+                        'chain': 'input',
+                        'action': 'drop',
+                        'in-interface': 'eth1',
+                        'log': 'no',
+                        'log-prefix': '',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'handle_stratified': True,
+                '_ansible_check_mode': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
+        self.assertEqual(result['new_data'], [
+            {
+                '.id': '*1',
+                'comment': 'defconf',
+                'chain': 'input',
+                'action': 'drop',
+                'in-interface': 'eth1',
+                'log': 'no',
+                'log-prefix': '',
+            },
+            {
+                '.id': '*8',
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'Wan',
+                'log': 'no',
+                'log-prefix': '',
+            },
+        ])
