@@ -1872,7 +1872,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_INTERFACE_GRE_OLD_DATA)
         self.assertEqual(result['new_data'], START_INTERFACE_GRE_OLD_DATA)
-    
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_idempotent(self):
@@ -1914,7 +1914,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
         self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_idempotent_2(self):
@@ -1966,7 +1966,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
         self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_idempotent_3(self):
@@ -1993,7 +1993,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
         self.assertEqual(result['new_data'], START_IP_FIREWALL_FILTER_OLD_DATA)
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
     def test_sync_list_stratified_add(self):
@@ -2083,7 +2083,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': 'Test -',
             },
         ])
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
     def test_sync_list_stratified_modify_1(self):
@@ -2166,7 +2166,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': 'Test -',
             },
         ])
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_modify_1_check(self):
@@ -2249,7 +2249,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': 'Test -',
             },
         ])
-    
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
     def test_sync_list_stratified_modify_2(self):
@@ -2396,7 +2396,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': '',
             },
         ])
-    
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_modify_3_check(self):
@@ -2457,7 +2457,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': '',
             },
         ])
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
     def test_sync_list_stratified_modify_4(self):
@@ -2532,9 +2532,8 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log': 'no',
                 'log-prefix': '',
             },
-            
         ])
-    
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_modify_4_check(self):
@@ -2611,7 +2610,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': '',
             },
         ])
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
     def test_sync_list_stratified_modify_5(self):
@@ -2702,9 +2701,8 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log': 'yes',
                 'log-prefix': 'Test-',
             },
-            
         ])
-    
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_modify_5_check(self):
@@ -2795,7 +2793,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': 'Test-',
             },
         ])
-        
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER))
     def test_sync_list_stratified_delete(self):
@@ -2842,7 +2840,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'log-prefix': '',
             },
         ])
-    
+
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'firewall', 'filter'), START_IP_FIREWALL_FILTER, read_only=True))
     def test_sync_list_stratified_delete_check(self):

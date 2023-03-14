@@ -551,10 +551,10 @@ def sync_list(module, api, path, path_info):
     handle_absent_entries = module.params['handle_absent_entries']
     handle_entries_content = module.params['handle_entries_content']
     handle_stratified = module.params['handle_stratified']
-    
-    if handle_stratified and path_info.stratify_keys is None: 
+
+    if handle_stratified and path_info.stratify_keys is None:
         module.fail_json('For this path, handle_stratified cannot be True')
-        
+
     if handle_absent_entries == 'remove':
         if handle_entries_content == 'ignore':
             module.fail_json('For this path, handle_absent_entries=remove cannot be combined with handle_entries_content=ignore')
