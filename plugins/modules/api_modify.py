@@ -542,6 +542,22 @@ def get_api_data(api_path, path_info):
     return entries
 
 
+def prepare_for_add(entry, path_info):
+    new_entry = {}
+    for k, v in entry.items():
+        if k.startswith('!'):
+            real_k = k[1:]
+            remove_value = path_info.fields[real_k].remove_value
+            if remove_value is not None:
+                k = real_k
+                v = remove_value
+        else:
+            if v is None:
+                v = path_info.fields[k].remove_value
+        new_entry[k] = v
+    return new_entry
+
+
 def sync_list(module, api, path, path_info):
     handle_absent_entries = module.params['handle_absent_entries']
     handle_entries_content = module.params['handle_entries_content']
@@ -661,7 +677,7 @@ def sync_list(module, api, path, path_info):
                 )
         for entry in create_list:
             try:
-                entry['.id'] = api_path.add(**entry)
+                entry['.id'] = api_path.add(**prepare_for_add(entry, path_info))
             except (LibRouterosError, UnicodeEncodeError) as e:
                 module.fail_json(
                     msg='Error while creating entry: {error}'.format(
@@ -850,7 +866,7 @@ def sync_with_primary_keys(module, api, path, path_info):
                 )
         for entry in create_list:
             try:
-                entry['.id'] = api_path.add(**entry)
+                entry['.id'] = api_path.add(**prepare_for_add(entry, path_info))
                 # Store ID for primary keys
                 pks = tuple(entry[primary_key] for primary_key in primary_keys)
                 id_by_key[pks] = entry['.id']

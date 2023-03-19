@@ -89,7 +89,48 @@ START_IP_ADDRESS = [
 
 START_IP_ADDRESS_OLD_DATA = massage_expected_result_data(START_IP_ADDRESS, ('ip', 'address'))
 
-START_IP_DHCP_SEVER_LEASE = [
+START_IP_DHCP_CLIENT = [
+    {
+        "!comment": None,
+        "!script": None,
+        ".id": "*1",
+        "add-default-route": True,
+        "default-route-distance": 1,
+        "dhcp-options": "hostname,clientid",
+        "disabled": False,
+        "interface": "ether1",
+        "use-peer-dns": True,
+        "use-peer-ntp": True,
+    },
+    {
+        "!comment": None,
+        "!dhcp-options": None,
+        "!script": None,
+        ".id": "*2",
+        "add-default-route": True,
+        "default-route-distance": 1,
+        "disabled": False,
+        "interface": "ether2",
+        "use-peer-dns": True,
+        "use-peer-ntp": True,
+    },
+    {
+        "!comment": None,
+        "!script": None,
+        ".id": "*3",
+        "add-default-route": True,
+        "default-route-distance": 1,
+        "dhcp-options": "hostname",
+        "disabled": False,
+        "interface": "ether3",
+        "use-peer-dns": True,
+        "use-peer-ntp": True,
+    },
+]
+
+START_IP_DHCP_CLIENT_OLD_DATA = massage_expected_result_data(START_IP_DHCP_CLIENT, ('ip', 'dhcp-client'))
+
+START_IP_DHCP_SERVER_LEASE = [
     {
         '.id': '*1',
         'address': '192.168.88.2',
@@ -155,7 +196,7 @@ START_IP_DHCP_SEVER_LEASE = [
     },
 ]
 
-START_IP_DHCP_SEVER_LEASE_OLD_DATA = massage_expected_result_data(START_IP_DHCP_SEVER_LEASE, ('ip', 'dhcp-server', 'lease'))
+START_IP_DHCP_SERVER_LEASE_OLD_DATA = massage_expected_result_data(START_IP_DHCP_SERVER_LEASE, ('ip', 'dhcp-server', 'lease'))
 
 START_INTERFACE_LIST = [
     {
@@ -1729,7 +1770,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
-           new=create_fake_path(('ip', 'dhcp-server', 'lease'), START_IP_DHCP_SEVER_LEASE, read_only=True))
+           new=create_fake_path(('ip', 'dhcp-server', 'lease'), START_IP_DHCP_SERVER_LEASE, read_only=True))
     def test_absent_value(self):
         with self.assertRaises(AnsibleExitJson) as exc:
             args = self.config_module_args.copy()
@@ -1769,8 +1810,103 @@ class TestRouterosApiModifyModule(ModuleTestCase):
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
-        self.assertEqual(result['old_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)
-        self.assertEqual(result['new_data'], START_IP_DHCP_SEVER_LEASE_OLD_DATA)
+        self.assertEqual(result['old_data'], START_IP_DHCP_SERVER_LEASE_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_DHCP_SERVER_LEASE_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'dhcp-client'), START_IP_DHCP_CLIENT, read_only=True))
+    def test_default_remove_combination_idempotent(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip dhcp-client',
+                'data': [
+                    {
+                        'interface': 'ether1',
+                    },
+                    {
+                        'interface': 'ether2',
+                        'dhcp-options': None,
+                    },
+                    {
+                        'interface': 'ether3',
+                        'dhcp-options': 'hostname',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'ensure_order': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_DHCP_CLIENT_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_DHCP_CLIENT_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'dhcp-client'), []))
+    def test_default_remove_combination_create(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip dhcp-client',
+                'data': [
+                    {
+                        'interface': 'ether1',
+                    },
+                    {
+                        'interface': 'ether2',
+                        'dhcp-options': None,
+                    },
+                    {
+                        'interface': 'ether3',
+                        'dhcp-options': 'hostname',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'ensure_order': True,
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], True)
+        self.assertEqual(result['old_data'], [])
+        self.assertEqual(result['new_data'], [
+            {
+                ".id": "*NEW1",
+                "add-default-route": True,
+                "default-route-distance": 1,
+                "dhcp-options": "hostname,clientid",
+                "disabled": False,
+                "interface": "ether1",
+                "use-peer-dns": True,
+                "use-peer-ntp": True,
+            },
+            {
+                # "!dhcp-options": None,
+                ".id": "*NEW2",
+                "add-default-route": True,
+                "default-route-distance": 1,
+                "disabled": False,
+                "interface": "ether2",
+                "use-peer-dns": True,
+                "use-peer-ntp": True,
+            },
+            {
+                ".id": "*NEW3",
+                "add-default-route": True,
+                "default-route-distance": 1,
+                "dhcp-options": "hostname",
+                "disabled": False,
+                "interface": "ether3",
+                "use-peer-dns": True,
+                "use-peer-ntp": True,
+            },
+        ])
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('interface', 'list'), START_INTERFACE_LIST, read_only=True))

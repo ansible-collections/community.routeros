@@ -118,9 +118,9 @@ class Or(object):
         return repr(self.args)
 
 
-def _normalize_entry(entry, path_info):
+def _normalize_entry(entry, path_info, on_create=False):
     for key, data in path_info.fields.items():
-        if key not in entry and data.default is not None and not data.can_disable:
+        if key not in entry and data.default is not None and (not data.can_disable or on_create):
             entry[key] = data.default
         if data.can_disable:
             if key in entry and entry[key] in (None, data.remove_value):
@@ -188,7 +188,7 @@ class Path(object):
             '.id': id,
         }
         entry.update(kwargs)
-        _normalize_entry(entry, self._path_info)
+        _normalize_entry(entry, self._path_info, on_create=True)
         self._values.append(entry)
         return id
 
