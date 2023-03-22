@@ -105,13 +105,13 @@ def to_commands(module, commands):
 
 def should_add_leading_space(module):
     """Determines whether adding a leading space to the command is needed
-    to workaround prompt bug in 6.49 <= ROS <7"""
+    to workaround prompt bug in 6.49 <= ROS < 7.2"""
     capabilities = get_capabilities(module)
     network_os_version = capabilities.get('device_info',{}).get('network_os_version')
     if network_os_version is None:
         return False
     version = LooseVersion(network_os_version)
-    return (version >= LooseVersion('6.49')) and (version < LooseVersion('7'))
+    return (version >= LooseVersion('6.49')) and (version < LooseVersion('7.2'))
 
 def run_commands(module, commands, check_rc=True):
     responses = list()
