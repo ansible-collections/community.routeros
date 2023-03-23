@@ -1,3 +1,0 @@
-minor_changes:
-  - api_modify - add support for ``trap-interfaces`` in API path ``snmp`` (https://github.com/ansible-collections/community.routeros/pull/159).
-  - api_modify - add support for API path ``snmp community`` (https://github.com/ansible-collections/community.routeros/pull/159).

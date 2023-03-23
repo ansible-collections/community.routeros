@@ -1,2 +1,0 @@
-minor_changes:
-  - api_modify - support API paths ``ip firewall layer7-protocol`` (https://github.com/ansible-collections/community.routeros/pull/153).

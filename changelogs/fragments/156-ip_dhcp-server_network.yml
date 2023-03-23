@@ -1,2 +1,0 @@
-minor_changes:
-  - api_modify - adapt data for API paths ``ip dhcp-server network`` (https://github.com/ansible-collections/community.routeros/pull/156).

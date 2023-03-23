@@ -1,3 +1,0 @@
-bugfixes:
-  - "api_info, api_modify - fix default and remove behavior for ``dhcp-options`` in path ``ip dhcp-client`` (https://github.com/ansible-collections/community.routeros/issues/148, https://github.com/ansible-collections/community.routeros/pull/154)."
-  - "api_modify - fix handling of disabled keys on creation (https://github.com/ansible-collections/community.routeros/pull/154)."
