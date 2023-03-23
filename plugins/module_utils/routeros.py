@@ -113,6 +113,7 @@ def should_add_leading_space(module):
         return False
     return LooseVersion('6.49') <= LooseVersion(network_os_version) < LooseVersion('7.2')
 
+
 def run_commands(module, commands, check_rc=True):
     responses = list()
     connection = get_connection(module)
