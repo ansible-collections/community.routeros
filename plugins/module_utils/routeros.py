@@ -103,6 +103,7 @@ def to_commands(module, commands):
     transform = ComplexList(spec, module)
     return transform(commands)
 
+
 def should_add_leading_space(module):
     """Determines whether adding a leading space to the command is needed
     to workaround prompt bug in 6.49 <= ROS < 7.2"""
