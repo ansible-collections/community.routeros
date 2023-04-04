@@ -32,6 +32,7 @@ jobs:
           - stable-2.12
           - stable-2.13
           - stable-2.14
+          - stable-2.15
           - devel
     # Ansible-test on various stable branches does not yet work well with cgroups v2.
     # Since ubuntu-latest now uses Ubuntu 22.04, we need to fall back to the ubuntu-20.04
@@ -75,6 +76,7 @@ jobs:
           - stable-2.12
           - stable-2.13
           - stable-2.14
+          - stable-2.15
           - devel
 
     steps:
@@ -127,17 +129,14 @@ jobs:
           # 2.12
           - ansible: stable-2.12
             python: 3.8
-          - ansible: stable-2.12
-            python: "3.10"
           # 2.13
-          - ansible: stable-2.13
-            python: 3.8
           - ansible: stable-2.13
             python: "3.10"
           # 2.14
           - ansible: stable-2.14
-            python: 3.9
-          - ansible: stable-2.14
+            python: "3.9"
+          # 2.15
+          - ansible: stable-2.15
             python: "3.11"
 
     steps:
