@@ -103,11 +103,11 @@ options:
         - ip firewall address-list
         - ip firewall connection tracking
         - ip firewall filter
+        - ip firewall layer7-protocol
         - ip firewall mangle
         - ip firewall nat
         - ip firewall raw
         - ip firewall service-port
-        - ip firewall layer7-protocol
         - ip hotspot service-port
         - ip ipsec identity
         - ip ipsec peer
