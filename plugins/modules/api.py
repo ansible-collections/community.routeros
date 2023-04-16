@@ -16,6 +16,7 @@ short_description: Ansible module for RouterOS API
 description:
   - Ansible module for RouterOS API with the Python C(librouteros) library.
   - This module can add, remove, update, query and execute arbitrary command in RouterOS via API.
+  - M(foo).
 notes:
   - I(add), I(remove), I(update), I(cmd) and I(query) are mutually exclusive.
   - Use the M(community.routeros.api_modify) and M(community.routeros.api_find_and_modify) modules
