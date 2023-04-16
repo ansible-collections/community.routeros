@@ -4,5 +4,5 @@
         "docs/docsite/rst/api-guide.rst",
         "plugins/modules/"
     ],
-    "output": "path-line-column-message",
+    "output": "path-line-column-message"
 }
