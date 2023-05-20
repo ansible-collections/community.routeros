@@ -15,8 +15,8 @@
   set_fact:
     test: >-
       {{ 'a="' | community.routeros.split }}
-  ignore_errors: true
   register: result
+  failed_when: result is not failed
 
 - name: "Verify split filter error handling"
   assert:
