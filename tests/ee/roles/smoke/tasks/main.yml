@@ -16,7 +16,11 @@
   assert:
     that:
       - result is failed
-      - "'Error while connecting: [Errno 111] Connection refused' == result.msg"
+      - result.msg in potential_errors
+  vars:
+    potential_errors:
+      - "Error while connecting: [Errno 111] Connection refused"
+      - "Error while connecting: [Errno 99] Cannot assign requested address"
 
 - name: Run command module
   community.routeros.command:
