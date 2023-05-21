@@ -1,4 +1,0 @@
-integration_tests_dependencies:
-- ansible.netcommon
-unit_tests_dependencies:
-- ansible.netcommon
