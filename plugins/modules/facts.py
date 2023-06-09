@@ -391,7 +391,7 @@ class Interfaces(FactsBase):
         for line in data.split('\n'):
             if len(line) == 0 or line[:5] == 'Flags':
                 continue
-            elif not re.match(self.WRAPPED_LINE_RE, line):
+            elif not preprocessed or not re.match(self.WRAPPED_LINE_RE, line):
                 preprocessed.append(line)
             else:
                 preprocessed[-1] += line
@@ -468,7 +468,7 @@ class Routing(FactsBase):
         for line in data.split('\n'):
             if len(line) == 0 or line[:5] == 'Flags':
                 continue
-            elif not re.match(self.WRAPPED_LINE_RE, line):
+            elif not preprocessed or not re.match(self.WRAPPED_LINE_RE, line):
                 preprocessed.append(line)
             else:
                 preprocessed[-1] += line
