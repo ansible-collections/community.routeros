@@ -5,6 +5,19 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v2.8.1
+======
+
+Release Summary
+---------------
+
+Bugfix release.
+
+Bugfixes
+--------
+
+- facts - do not crash in CLI output preprocessing in unexpected situations during line unwrapping (https://github.com/ansible-collections/community.routeros/issues/170, https://github.com/ansible-collections/community.routeros/pull/177).
+
 v2.8.0
 ======
 
