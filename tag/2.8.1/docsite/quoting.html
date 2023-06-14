@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to quote and unquote commands and arguments &mdash; Community.Routeros Collection  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/antsibull-minimal.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/images/Ansible-Mark-RGB_Black.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="community.routeros.api module – Ansible module for RouterOS API" href="../api_module.html" />
+    <link rel="prev" title="How to connect to RouterOS devices with SSH" href="ssh-guide.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://ansible-collections.github.io/community.routeros/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Community.Routeros Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Community.Routeros Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api-guide.html">How to connect to RouterOS devices with the RouterOS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh-guide.html">How to connect to RouterOS devices with SSH</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to quote and unquote commands and arguments</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_module.html">community.routeros.api module – Ansible module for RouterOS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_facts_module.html">community.routeros.api_facts module – Collect facts from remote devices running MikroTik RouterOS using the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_find_and_modify_module.html">community.routeros.api_find_and_modify module – Find and modify information using the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_info_module.html">community.routeros.api_info module – Retrieve information from API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_modify_module.html">community.routeros.api_modify module – Modify data at paths with API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_module.html">community.routeros.command module – Run commands on remote devices running MikroTik RouterOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../facts_module.html">community.routeros.facts module – Collect facts from remote devices running MikroTik RouterOS</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../routeros_cliconf.html">community.routeros.routeros cliconf – Use routeros cliconf to run command on MikroTik RouterOS platform</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../join_filter.html">community.routeros.join filter – Join a list of arguments to a command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../list_to_dict_filter.html">community.routeros.list_to_dict filter – Convert a list of arguments to a dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quote_argument_filter.html">community.routeros.quote_argument filter – Quote an argument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quote_argument_value_filter.html">community.routeros.quote_argument_value filter – Quote an argument value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../split_filter.html">community.routeros.split filter – Split a command into arguments</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Community.Routeros Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">How to quote and unquote commands and arguments</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="how-to-quote-and-unquote-commands-and-arguments">
+<span id="ansible-collections-community-routeros-docsite-quoting"></span><h1>How to quote and unquote commands and arguments<a class="headerlink" href="#how-to-quote-and-unquote-commands-and-arguments" title="Permalink to this heading"></a></h1>
+<p>When using the <a class="reference internal" href="../command_module.html#ansible-collections-community-routeros-command-module"><span class="std std-ref">community.routeros.command module</span></a> or the <a class="reference internal" href="../api_module.html#ansible-collections-community-routeros-api-module"><span class="std std-ref">community.routeros.api module</span></a> modules, you need to pass text data in quoted form. While in some cases quoting is not needed (when passing IP addresses or names without spaces, for example), in other cases it is required, like when passing a comment which contains a space.</p>
+<p>The community.routeros collection provides a set of Jinja2 filter plugins which helps you with these tasks:</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="../quote_argument_value_filter.html#ansible-collections-community-routeros-quote-argument-value-filter"><span class="std std-ref">community.routeros.quote_argument_value filter</span></a> quotes an argument value: <code class="docutils literal notranslate"><span class="pre">'this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">&quot;comment&quot;'</span> <span class="pre">|</span> <span class="pre">community.routeros.quote_argument_value</span> <span class="pre">==</span> <span class="pre">'&quot;this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">\\&quot;comment\\&quot;&quot;'</span></code>.</p></li>
+<li><p>The <a class="reference internal" href="../quote_argument_filter.html#ansible-collections-community-routeros-quote-argument-filter"><span class="std std-ref">community.routeros.quote_argument filter</span></a> quotes an argument with or without a value: <code class="docutils literal notranslate"><span class="pre">'comment=this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">&quot;comment&quot;'</span> <span class="pre">|</span> <span class="pre">community.routeros.quote_argument</span> <span class="pre">==</span> <span class="pre">'comment=&quot;this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">\\&quot;comment\\&quot;&quot;'</span></code>.</p></li>
+<li><p>The <a class="reference internal" href="../join_filter.html#ansible-collections-community-routeros-join-filter"><span class="std std-ref">community.routeros.join filter</span></a> quotes a list of arguments and joins them to one string: <code class="docutils literal notranslate"><span class="pre">['foo=bar',</span> <span class="pre">'comment=foo</span> <span class="pre">is</span> <span class="pre">bar']</span> <span class="pre">|</span> <span class="pre">community.routeros.join</span> <span class="pre">==</span> <span class="pre">'foo=bar</span> <span class="pre">comment=&quot;foo</span> <span class="pre">is</span> <span class="pre">bar&quot;'</span></code>.</p></li>
+<li><p>The <a class="reference internal" href="../split_filter.html#ansible-collections-community-routeros-split-filter"><span class="std std-ref">community.routeros.split filter</span></a> splits a command into a list of arguments (with or without values): <code class="docutils literal notranslate"><span class="pre">'foo=bar</span> <span class="pre">comment=&quot;foo</span> <span class="pre">is</span> <span class="pre">bar&quot;'</span> <span class="pre">|</span> <span class="pre">community.routeros.split</span> <span class="pre">==</span> <span class="pre">['foo=bar',</span> <span class="pre">'comment=foo</span> <span class="pre">is</span> <span class="pre">bar']</span></code></p></li>
+<li><p>The <a class="reference internal" href="../list_to_dict_filter.html#ansible-collections-community-routeros-list-to-dict-filter"><span class="std std-ref">community.routeros.list_to_dict filter</span></a> splits a list of arguments with values into a dictionary: <code class="docutils literal notranslate"><span class="pre">['foo=bar',</span> <span class="pre">'comment=foo</span> <span class="pre">is</span> <span class="pre">bar']</span> <span class="pre">|</span> <span class="pre">community.routeros.list_to_dict</span> <span class="pre">==</span> <span class="pre">{'foo':</span> <span class="pre">'bar',</span> <span class="pre">'comment':</span> <span class="pre">'foo</span> <span class="pre">is</span> <span class="pre">bar'}</span></code>. It has two optional arguments: <code class="docutils literal notranslate"><span class="pre">require_assignment</span></code> (default value <code class="docutils literal notranslate"><span class="pre">true</span></code>) allows to accept arguments without values when set to <code class="docutils literal notranslate"><span class="pre">false</span></code>; and <code class="docutils literal notranslate"><span class="pre">skip_empty_values</span></code> (default value <code class="docutils literal notranslate"><span class="pre">false</span></code>) allows to skip arguments whose value is empty.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ssh-guide.html" class="btn btn-neutral float-left" title="How to connect to RouterOS devices with SSH" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_module.html" class="btn btn-neutral float-right" title="community.routeros.api module – Ansible module for RouterOS API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Community.Routeros Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
