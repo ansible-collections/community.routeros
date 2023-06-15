@@ -1,0 +1,2 @@
+bugfixes:
+  - community.routeros.api_modify - fix missing parameter ``tls`` for ``/tool/e-mail``. The error ``FAILED! => {"changed": false, "msg": "Unknown key \"tls\"."}`` was raised (https://github.com/ansible-collections/community.routeros/issues/179).
