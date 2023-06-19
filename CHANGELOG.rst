@@ -5,6 +5,19 @@ Community RouterOS Release Notes
 .. contents:: Topics
 
 
+v2.8.2
+======
+
+Release Summary
+---------------
+
+Bugfix release.
+
+Bugfixes
+--------
+
+- api_modify, api_info - add missing parameter ``tls`` for the ``tool e-mail`` path (https://github.com/ansible-collections/community.routeros/issues/179, https://github.com/ansible-collections/community.routeros/pull/180).
+
 v2.8.1
 ======
 

@@ -436,3 +436,14 @@ releases:
     - 177-facts-parsing.yml
     - 2.8.1.yml
     release_date: '2023-06-14'
+  2.8.2:
+    changes:
+      bugfixes:
+      - api_modify, api_info - add missing parameter ``tls`` for the ``tool e-mail``
+        path (https://github.com/ansible-collections/community.routeros/issues/179,
+        https://github.com/ansible-collections/community.routeros/pull/180).
+      release_summary: Bugfix release.
+    fragments:
+    - 180-fix-tls-in-tool-email.yml
+    - 2.8.2.yml
+    release_date: '2023-06-19'
