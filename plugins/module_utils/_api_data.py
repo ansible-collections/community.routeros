@@ -2451,6 +2451,7 @@ PATHS = {
             'password': KeyInfo(default=''),
             'port': KeyInfo(default=25),
             'start-tls': KeyInfo(default=False),
+            'tls': KeyInfo(default=False),
             'user': KeyInfo(default=''),
         },
     ),
