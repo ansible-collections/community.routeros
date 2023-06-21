@@ -109,7 +109,6 @@ jobs:
         ansible:
           - devel
         python:
-          - 3.9
           - "3.10"
           - "3.11"
         include:
@@ -134,10 +133,10 @@ jobs:
             python: "3.10"
           # 2.14
           - ansible: stable-2.14
-            python: "3.9"
+            python: "3.11"
           # 2.15
           - ansible: stable-2.15
-            python: "3.11"
+            python: "3.9"
 
     steps:
       - name: >-
