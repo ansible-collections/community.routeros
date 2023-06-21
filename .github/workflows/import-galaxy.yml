@@ -30,7 +30,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
       - name: Install ansible-core
         run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
@@ -71,7 +71,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
       - name: Install ansible-core
         run: pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
