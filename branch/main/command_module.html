@@ -179,7 +179,7 @@
 <div class="ansibleOptionAnchor" id="parameter-commands"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-command-module-parameter-commands"><strong>commands</strong></p>
 <a class="ansibleOptionLink" href="#parameter-commands" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>List of commands to send to the remote RouterOS device over the configured provider. The resulting output from the command is returned. If the <em>wait_for</em> argument is provided, the module is not returned until the condition is satisfied or the number of retries has expired.</p>
+<td><div class="ansible-option-cell"><p>List of commands to send to the remote RouterOS device over the configured provider. The resulting output from the command is returned. If the <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-command-module-parameter-wait-for"><span class="std std-ref"><span class="pre">wait_for</span></span></a></strong></code> argument is provided, the module is not returned until the condition is satisfied or the number of retries has expired.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -194,7 +194,7 @@
 <div class="ansibleOptionAnchor" id="parameter-match"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-command-module-parameter-match"><strong>match</strong></p>
 <a class="ansibleOptionLink" href="#parameter-match" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>The <em>match</em> argument is used in conjunction with the <em>wait_for</em> argument to specify the match policy.  Valid values are <code class="docutils literal notranslate"><span class="pre">all</span></code> or <code class="docutils literal notranslate"><span class="pre">any</span></code>.  If the value is set to <code class="docutils literal notranslate"><span class="pre">all</span></code> then all conditionals in the wait_for must be satisfied.  If the value is set to <code class="docutils literal notranslate"><span class="pre">any</span></code> then only one of the values must be satisfied.</p>
+<td><div class="ansible-option-cell"><p>The <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-command-module-parameter-match"><span class="std std-ref"><span class="pre">match</span></span></a></strong></code> argument is used in conjunction with the <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-command-module-parameter-wait-for"><span class="std std-ref"><span class="pre">wait_for</span></span></a></strong></code> argument to specify the match policy.  Valid values are <code class="ansible-value docutils literal notranslate"><span class="pre">all</span></code> or <code class="ansible-value docutils literal notranslate"><span class="pre">any</span></code>.  If the value is set to <code class="ansible-value docutils literal notranslate"><span class="pre">all</span></code> then all conditionals in the wait_for must be satisfied.  If the value is set to <code class="ansible-value docutils literal notranslate"><span class="pre">any</span></code> then only one of the values must be satisfied.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;any&quot;</span></code></p></li>
@@ -206,7 +206,7 @@
 <div class="ansibleOptionAnchor" id="parameter-retries"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-command-module-parameter-retries"><strong>retries</strong></p>
 <a class="ansibleOptionLink" href="#parameter-retries" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Specifies the number of retries a command should by tried before it is considered failed. The command is run on the target device every retry and evaluated against the <em>wait_for</em> conditions.</p>
+<td><div class="ansible-option-cell"><p>Specifies the number of retries a command should by tried before it is considered failed. The command is run on the target device every retry and evaluated against the <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-command-module-parameter-wait-for"><span class="std std-ref"><span class="pre">wait_for</span></span></a></strong></code> conditions.</p>
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">10</span></code></p>
 </div></td>
 </tr>

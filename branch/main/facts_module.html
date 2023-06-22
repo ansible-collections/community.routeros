@@ -176,8 +176,8 @@
 <div class="ansibleOptionAnchor" id="parameter-gather_subset"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-facts-module-parameter-gather-subset"><strong>gather_subset</strong></p>
 <a class="ansibleOptionLink" href="#parameter-gather_subset" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">hardware</span></code>, <code class="docutils literal notranslate"><span class="pre">config</span></code>, <code class="docutils literal notranslate"><span class="pre">interfaces</span></code>, and <code class="docutils literal notranslate"><span class="pre">routing</span></code>.</p>
-<p>Can specify a list of values to include a larger subset. Values can also be used with an initial <code class="docutils literal notranslate"><span class="pre">!</span></code> to specify that a specific subset should not be collected.</p>
+<td><div class="ansible-option-cell"><p>When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include <code class="ansible-value docutils literal notranslate"><span class="pre">all</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">hardware</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">config</span></code>, <code class="ansible-value docutils literal notranslate"><span class="pre">interfaces</span></code>, and <code class="ansible-value docutils literal notranslate"><span class="pre">routing</span></code>.</p>
+<p>Can specify a list of values to include a larger subset. Values can also be used with an initial <code class="ansible-value docutils literal notranslate"><span class="pre">!</span></code> to specify that a specific subset should not be collected.</p>
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[&quot;!config&quot;]</span></code></p>
 </div></td>
 </tr>
@@ -274,7 +274,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_all_ipv4_addresses" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>All IPv4 addresses configured on the device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">interfaces</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">interfaces</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -282,7 +282,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_all_ipv6_addresses" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>All IPv6 addresses configured on the device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">interfaces</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">interfaces</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -290,7 +290,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_arch" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The CPU architecture of the device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">default</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">default</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -298,7 +298,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_bgp_instance" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>A dictionary with BGP instance information.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">routing</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">routing</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -306,7 +306,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_bgp_peer" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>A dictionary with BGP peer information.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">routing</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">routing</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -314,7 +314,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_bgp_vpnv4_route" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>A dictionary with BGP vpnv4 route information.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">routing</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">routing</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -322,7 +322,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_config" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The current active config from the device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">config</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">config</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -332,7 +332,7 @@
 </div></td>
 <td><div class="ansible-option-cell"><p>The current active config from the device in minimal form.</p>
 <p>This value is idempotent in the sense that if the facts module is run twice and the device’s config was not changed between the runs, the value is identical. This is achieved by running <code class="docutils literal notranslate"><span class="pre">/export</span></code> and stripping the timestamp from the comment in the first line.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">config</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">config</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -340,7 +340,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_cpu_load" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Current CPU load.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">default</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">default</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -356,7 +356,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_hostname" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The configured hostname of the device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">default</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">default</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -364,7 +364,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_interfaces" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>A hash of all interfaces running on the system.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">interfaces</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">interfaces</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -372,7 +372,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_memfree_mb" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The available free memory on the remote device in MiB.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">hardware</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">hardware</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -380,7 +380,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_memtotal_mb" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The total memory on the remote device in MiB.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">hardware</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">hardware</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -388,7 +388,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_model" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The model name returned from the device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">default</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">default</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -396,7 +396,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_neighbors" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The list of neighbors from the remote device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">interfaces</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">interfaces</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -404,7 +404,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_ospf_instance" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>A dictionary with OSPF instances.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">routing</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">routing</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -412,7 +412,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_ospf_neighbor" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>A dictionary with OSPF neighbors.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">routing</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">routing</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -420,7 +420,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_route" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>A dictionary for routes in all routing tables.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">routing</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">routing</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -428,7 +428,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_serialnum" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The serial number of the remote device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">default</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">default</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -436,7 +436,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_spacefree_mb" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The available disk space on the remote device in MiB.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">hardware</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">hardware</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -444,7 +444,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_spacetotal_mb" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The total disk space on the remote device in MiB.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">hardware</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">hardware</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
@@ -452,7 +452,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_uptime" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The uptime of the device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">default</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">default</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -460,7 +460,7 @@
 <a class="ansibleOptionLink" href="#return-ansible_facts/ansible_net_version" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The operating system version running on the remote device.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <em>gather_subset</em> contains <code class="docutils literal notranslate"><span class="pre">default</span></code></p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-facts-module-parameter-gather-subset"><span class="std std-ref"><span class="pre">gather_subset</span></span></a></strong></code> contains <code class="ansible-value docutils literal notranslate"><span class="pre">default</span></code></p>
 </div></td>
 </tr>
 </tbody>

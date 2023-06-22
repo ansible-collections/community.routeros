@@ -196,7 +196,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p><span class="ansible-option-versionadded">added in community.routeros 1.2.0</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>PEM formatted file that contains a CA certificate to be used for certificate validation.</p>
-<p>See also <em>validate_cert_hostname</em>. Only used when <em>tls=true</em> and <em>validate_certs=true</em>.</p>
+<p>See also <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-validate-cert-hostname"><span class="std std-ref"><span class="pre">validate_cert_hostname</span></span></a></strong></code>. Only used when <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-tls"><span class="std std-ref"><span class="pre">tls=true</span></span></a></code> and <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-validate-certs"><span class="std std-ref"><span class="pre">validate_certs=true</span></span></a></code>.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -214,7 +214,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p><span class="ansible-option-versionadded">added in community.routeros 2.1.0</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Use the specified encoding when communicating with the RouterOS device.</p>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">ASCII</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">UTF-8</span></code> requires librouteros 3.2.1 or newer.</p>
+<p>Default is <code class="ansible-value docutils literal notranslate"><span class="pre">ASCII</span></code>. Note that <code class="ansible-value docutils literal notranslate"><span class="pre">UTF-8</span></code> requires librouteros 3.2.1 or newer.</p>
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;ASCII&quot;</span></code></p>
 </div></td>
 </tr>
@@ -222,8 +222,8 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <div class="ansibleOptionAnchor" id="parameter-ensure_order"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-ensure-order"><strong>ensure_order</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ensure_order" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Whether to ensure the same order of the config as present in <em>data</em>.</p>
-<p>Requires <em>handle_absent_entries=remove</em>.</p>
+<td><div class="ansible-option-cell"><p>Whether to ensure the same order of the config as present in <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-data"><span class="std std-ref"><span class="pre">data</span></span></a></strong></code>.</p>
+<p>Requires <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-handle-absent-entries"><span class="std std-ref"><span class="pre">handle_absent_entries=remove</span></span></a></code>.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
@@ -236,9 +236,9 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <a class="ansibleOptionLink" href="#parameter-force_no_cert" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 <p><span class="ansible-option-versionadded">added in community.routeros 2.4.0</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to connect without a certificate when <em>tls=true</em>.</p>
-<p>See also <em>validate_certs</em>.</p>
-<p><strong>Note:</strong> this forces the use of anonymous Diffie-Hellman (ADH) ciphers. The protocol is susceptible to Man-in-the-Middle attacks, because the keys used in the exchange are not authenticated. Instead of simply connecting without a certificate to “make things work” have a look at <em>validate_certs</em> and <em>ca_path</em>.</p>
+<td><div class="ansible-option-cell"><p>Set to <code class="ansible-value docutils literal notranslate"><span class="pre">true</span></code> to connect without a certificate when <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-tls"><span class="std std-ref"><span class="pre">tls=true</span></span></a></code>.</p>
+<p>See also <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-validate-certs"><span class="std std-ref"><span class="pre">validate_certs</span></span></a></strong></code>.</p>
+<p><strong>Note:</strong> this forces the use of anonymous Diffie-Hellman (ADH) ciphers. The protocol is susceptible to Man-in-the-Middle attacks, because the keys used in the exchange are not authenticated. Instead of simply connecting without a certificate to “make things work” have a look at <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-validate-certs"><span class="std std-ref"><span class="pre">validate_certs</span></span></a></strong></code> and <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-ca-path"><span class="std std-ref"><span class="pre">ca_path</span></span></a></strong></code>.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
@@ -250,9 +250,9 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <div class="ansibleOptionAnchor" id="parameter-handle_absent_entries"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-handle-absent-entries"><strong>handle_absent_entries</strong></p>
 <a class="ansibleOptionLink" href="#parameter-handle_absent_entries" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>How to handle entries that are present in the current config, but not in <em>data</em>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">ignore</span></code> ignores them.</p>
-<p><code class="docutils literal notranslate"><span class="pre">remove</span></code> removes them.</p>
+<td><div class="ansible-option-cell"><p>How to handle entries that are present in the current config, but not in <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-data"><span class="std std-ref"><span class="pre">data</span></span></a></strong></code>.</p>
+<p><code class="ansible-value docutils literal notranslate"><span class="pre">ignore</span></code> ignores them.</p>
+<p><code class="ansible-value docutils literal notranslate"><span class="pre">remove</span></code> removes them.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">&quot;ignore&quot;</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
@@ -264,10 +264,10 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <div class="ansibleOptionAnchor" id="parameter-handle_entries_content"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-handle-entries-content"><strong>handle_entries_content</strong></p>
 <a class="ansibleOptionLink" href="#parameter-handle_entries_content" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>For a single entry in <em>data</em>, this describes how to handle fields that are not mentioned in that entry, but appear in the actual config.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">ignore</span></code>, they are not modified.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">remove</span></code>, they are removed. If at least one cannot be removed, the module will fail.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">remove_as_much_as_possible</span></code>, all that can be removed will be removed. The ones that cannot be removed will be kept.</p>
+<td><div class="ansible-option-cell"><p>For a single entry in <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-data"><span class="std std-ref"><span class="pre">data</span></span></a></strong></code>, this describes how to handle fields that are not mentioned in that entry, but appear in the actual config.</p>
+<p>If <code class="ansible-value docutils literal notranslate"><span class="pre">ignore</span></code>, they are not modified.</p>
+<p>If <code class="ansible-value docutils literal notranslate"><span class="pre">remove</span></code>, they are removed. If at least one cannot be removed, the module will fail.</p>
+<p>If <code class="ansible-value docutils literal notranslate"><span class="pre">remove_as_much_as_possible</span></code>, all that can be removed will be removed. The ones that cannot be removed will be kept.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">&quot;ignore&quot;</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
@@ -295,7 +295,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <a class="ansibleOptionLink" href="#parameter-path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Path to query.</p>
-<p>An example value is <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">address</span></code>. This is equivalent to running modification commands in <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">address</span></code> in the RouterOS CLI.</p>
+<p>An example value is <code class="ansible-value docutils literal notranslate"><span class="pre">ip</span> <span class="pre">address</span></code>. This is equivalent to running modification commands in <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">address</span></code> in the RouterOS CLI.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">aaa&quot;</span></code></p></li>
@@ -447,8 +447,8 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <div class="ansibleOptionAnchor" id="parameter-port"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-port"><strong>port</strong></p>
 <a class="ansibleOptionLink" href="#parameter-port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>RouterOS api port. If <em>tls</em> is set, port will apply to TLS/SSL connection.</p>
-<p>Defaults are <code class="docutils literal notranslate"><span class="pre">8728</span></code> for the HTTP API, and <code class="docutils literal notranslate"><span class="pre">8729</span></code> for the HTTPS API.</p>
+<td><div class="ansible-option-cell"><p>RouterOS api port. If <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-tls"><span class="std std-ref"><span class="pre">tls</span></span></a></strong></code> is set, port will apply to TLS/SSL connection.</p>
+<p>Defaults are <code class="ansible-value docutils literal notranslate"><span class="pre">8728</span></code> for the HTTP API, and <code class="ansible-value docutils literal notranslate"><span class="pre">8729</span></code> for the HTTPS API.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -486,8 +486,8 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <a class="ansibleOptionLink" href="#parameter-validate_cert_hostname" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 <p><span class="ansible-option-versionadded">added in community.routeros 1.2.0</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to validate hostnames in certificates.</p>
-<p>See also <em>validate_certs</em>. Only used when <em>tls=true</em> and <em>validate_certs=true</em>.</p>
+<td><div class="ansible-option-cell"><p>Set to <code class="ansible-value docutils literal notranslate"><span class="pre">true</span></code> to validate hostnames in certificates.</p>
+<p>See also <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-validate-certs"><span class="std std-ref"><span class="pre">validate_certs</span></span></a></strong></code>. Only used when <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-tls"><span class="std std-ref"><span class="pre">tls=true</span></span></a></code> and <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-validate-certs"><span class="std std-ref"><span class="pre">validate_certs=true</span></span></a></code>.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
@@ -500,9 +500,9 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <a class="ansibleOptionLink" href="#parameter-validate_certs" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 <p><span class="ansible-option-versionadded">added in community.routeros 1.2.0</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Set to <code class="docutils literal notranslate"><span class="pre">false</span></code> to skip validation of TLS certificates.</p>
-<p>See also <em>validate_cert_hostname</em>. Only used when <em>tls=true</em>.</p>
-<p><strong>Note:</strong> instead of simply deactivating certificate validations to “make things work”, please consider creating your own CA certificate and using it to sign certificates used for your router. You can tell the module about your CA certificate with the <em>ca_path</em> option.</p>
+<td><div class="ansible-option-cell"><p>Set to <code class="ansible-value docutils literal notranslate"><span class="pre">false</span></code> to skip validation of TLS certificates.</p>
+<p>See also <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-validate-cert-hostname"><span class="std std-ref"><span class="pre">validate_cert_hostname</span></span></a></strong></code>. Only used when <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-tls"><span class="std std-ref"><span class="pre">tls=true</span></span></a></code>.</p>
+<p><strong>Note:</strong> instead of simply deactivating certificate validations to “make things work”, please consider creating your own CA certificate and using it to sign certificates used for your router. You can tell the module about your CA certificate with the <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-ca-path"><span class="std std-ref"><span class="pre">ca_path</span></span></a></strong></code> option.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
