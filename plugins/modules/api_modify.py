@@ -42,7 +42,7 @@ options:
   path:
     description:
       - Path to query.
-      - An example value is C(ip address). This is equivalent to running modification commands in C(/ip address) in the RouterOS CLI.
+      - An example value is V(ip address). This is equivalent to running modification commands in C(/ip address) in the RouterOS CLI.
     required: true
     type: str
     choices:
@@ -200,15 +200,15 @@ options:
     elements: dict
   ensure_order:
     description:
-      - Whether to ensure the same order of the config as present in I(data).
-      - Requires I(handle_absent_entries=remove).
+      - Whether to ensure the same order of the config as present in O(data).
+      - Requires O(handle_absent_entries=remove).
     type: bool
     default: false
   handle_absent_entries:
     description:
-      - How to handle entries that are present in the current config, but not in I(data).
-      - C(ignore) ignores them.
-      - C(remove) removes them.
+      - How to handle entries that are present in the current config, but not in O(data).
+      - V(ignore) ignores them.
+      - V(remove) removes them.
     type: str
     choices:
       - ignore
@@ -216,11 +216,11 @@ options:
     default: ignore
   handle_entries_content:
     description:
-      - For a single entry in I(data), this describes how to handle fields that are not mentioned
+      - For a single entry in O(data), this describes how to handle fields that are not mentioned
         in that entry, but appear in the actual config.
-      - If C(ignore), they are not modified.
-      - If C(remove), they are removed. If at least one cannot be removed, the module will fail.
-      - If C(remove_as_much_as_possible), all that can be removed will be removed. The ones that
+      - If V(ignore), they are not modified.
+      - If V(remove), they are removed. If at least one cannot be removed, the module will fail.
+      - If V(remove_as_much_as_possible), all that can be removed will be removed. The ones that
         cannot be removed will be kept.
     type: str
     choices:

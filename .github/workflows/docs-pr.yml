@@ -32,6 +32,8 @@ jobs:
       init-extra-html-theme-options: |
         documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
       render-file-line: '> * `$<status>` [$<path_tail>](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr/${{ github.event.number }}/$<path_tail>)'
+      provide-link-targets: |
+        ansible_collections.ansible.netcommon.network_cli_connection__parameter-ssh_type
 
   publish-docs-gh-pages:
     # for now we won't run this on forks

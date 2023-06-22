@@ -21,7 +21,7 @@ description:
     or change multiple entries in different ways in one step.
 notes:
   - "If you want to change values based on their old values (like change all comments 'foo' to 'bar') and make sure that
-     there are at least N such values, you can use I(require_matches_min=N) together with I(allow_no_matches=true).
+     there are at least N such values, you can use O(require_matches_min=N) together with O(allow_no_matches=true).
      This will make the module fail if there are less than N such entries, but not if there is no match. The latter case
      is needed for idempotency of the task: once the values have been changed, there should be no further match."
 extends_documentation_fragment:
@@ -40,21 +40,21 @@ options:
   path:
     description:
       - Path to query.
-      - An example value is C(ip address). This is equivalent to running C(/ip address) in the RouterOS CLI.
+      - An example value is V(ip address). This is equivalent to running C(/ip address) in the RouterOS CLI.
     required: true
     type: str
   find:
     description:
       - Fields to search for.
-      - The module will only consider entries in the given I(path) that match all fields provided here.
-      - Use YAML C(~), or prepend keys with C(!), to specify an unset value.
+      - The module will only consider entries in the given O(path) that match all fields provided here.
+      - Use YAML V(~), or prepend keys with V(!), to specify an unset value.
       - Note that if the dictionary specified here is empty, every entry in the path will be matched.
     required: true
     type: dict
   values:
     description:
-      - On all entries matching the conditions in I(find), set the keys of this option to the values specified here.
-      - Use YAML C(~), or prepend keys with C(!), to specify to unset a value.
+      - On all entries matching the conditions in O(find), set the keys of this option to the values specified here.
+      - Use YAML V(~), or prepend keys with V(!), to specify to unset a value.
     required: true
     type: dict
   require_matches_min:
@@ -72,7 +72,7 @@ options:
   allow_no_matches:
     description:
       - Whether to allow that no match is found.
-      - If not specified, this value is induced from whether I(require_matches_min) is 0 or larger.
+      - If not specified, this value is induced from whether O(require_matches_min) is 0 or larger.
     type: bool
 seealso:
   - module: community.routeros.api
@@ -146,7 +146,7 @@ new_data:
     returned: success
 match_count:
     description:
-      - The number of entries that matched the criteria in I(find).
+      - The number of entries that matched the criteria in O(find).
     sample: 1
     type: int
     returned: success

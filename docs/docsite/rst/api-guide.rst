@@ -105,11 +105,11 @@ Here all three tasks will use the options set for the module defaults group.
 Setting up encryption
 ---------------------
 
-It is recommended to always use ``tls: true`` when connecting with the API, even if you are only connecting to the device through a trusted network. The following options control how TLS/SSL is used:
+It is recommended to always use :ansopt:`tls=true` when connecting with the API, even if you are only connecting to the device through a trusted network. The following options control how TLS/SSL is used:
 
-:force_no_cert: Setting to ``true`` connects to the device without a certificate. **This is discouraged to use in production and is susceptible to Man-in-the-Middle attacks**, but might be useful when setting the device up. The default value is ``false``.
-:validate_certs: Setting to ``false`` disables any certificate validation. **This is discouraged to use in production**, but is needed when setting the device up. The default value is ``true``.
-:validate_cert_hostname: Setting to ``false`` (default) disables hostname verification during certificate validation. This is needed if the hostnames specified in the certificate do not match the hostname used for connecting (usually the device's IP). It is recommended to set up the certificate correctly and set this to ``true``; the default ``false`` is chosen for backwards compatibility to an older version of the module.
+:force_no_cert: Setting to :ansval:`true` connects to the device without a certificate. **This is discouraged to use in production and is susceptible to Man-in-the-Middle attacks**, but might be useful when setting the device up. The default value is :ansval:`false`.
+:validate_certs: Setting to :ansval:`false` disables any certificate validation. **This is discouraged to use in production**, but is needed when setting the device up. The default value is :ansval:`true`.
+:validate_cert_hostname: Setting to :ansval:`false` (default) disables hostname verification during certificate validation. This is needed if the hostnames specified in the certificate do not match the hostname used for connecting (usually the device's IP). It is recommended to set up the certificate correctly and set this to :ansval:`true`; the default :ansval:`false` is chosen for backwards compatibility to an older version of the module.
 :ca_path: If you are not using a commerically trusted CA certificate to sign your device's certificate, or have not included your CA certificate in Python's truststore, you need to point this option to the CA certificate.
 
 We recommend to create a CA certificate that is used to sign the certificates for your RouterOS devices, and have the certificates include the correct hostname(s), including the IP of the device. That way, you can fully enable TLS and be sure that you always talk to the correct device.

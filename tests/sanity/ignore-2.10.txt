@@ -1,3 +1,6 @@
+docs/docsite/rst/api-guide.rst rstcheck
+docs/docsite/rst/quoting.rst rstcheck
+docs/docsite/rst/ssh-guide.rst rstcheck
 update-docs.py compile-2.6
 update-docs.py compile-2.7
 update-docs.py compile-3.5
