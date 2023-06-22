@@ -98,25 +98,29 @@ options:
           attribute:
             description:
               - The attribute to match. Must be part of O(extended_query.attributes).
-              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is), and O(extended_query.where[].value) have to be specified.
+              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is),
+                and O(extended_query.where[].value) have to be specified.
             type: str
           is:
             description:
               - The operator to use for matching.
               - For equality use V(==) or V(eq). For less use V(<) or V(less). For more use V(>) or V(more).
               - Use V(in) to check whether the value is part of a list. In that case, O(extended_query.where[].value) must be a list.
-              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is), and O(extended_query.where[].value) have to be specified.
+              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is),
+                and O(extended_query.where[].value) have to be specified.
             type: str
             choices: ["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]
           value:
             description:
               - The value to compare to. Must be a list for O(extended_query.where[].is=in).
-              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is), and O(extended_query.where[].value) have to be specified.
+              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is),
+                and O(extended_query.where[].value) have to be specified.
             type: raw
           or:
             description:
               - A list of conditions so that at least one of them has to match.
-              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is), and O(extended_query.where[].value) have to be specified.
+              - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is),
+                and O(extended_query.where[].value) have to be specified.
             type: list
             elements: dict
             suboptions:
