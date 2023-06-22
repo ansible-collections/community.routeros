@@ -12,18 +12,18 @@ DOCUMENTATION:
   options:
     _input:
       description:
-        - A list of assignments. Can be the result of the C(community.routeros.split) filter.
+        - A list of assignments. Can be the result of the P(community.routeros.split#filter) filter.
       type: list
       elements: string
       required: true
     require_assignment:
       description:
-        - Allows to accept arguments without values when set to C(false).
+        - Allows to accept arguments without values when set to V(false).
       type: boolean
       default: true
     skip_empty_values:
       description:
-        - Allows to skip arguments whose value is empty when set to C(true).
+        - Allows to skip arguments whose value is empty when set to V(true).
       type: boolean
       default: false
   author:

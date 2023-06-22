@@ -40,7 +40,7 @@ options:
     description:
       - List of commands to send to the remote RouterOS device over the
         configured provider. The resulting output from the command
-        is returned. If the I(wait_for) argument is provided, the
+        is returned. If the O(wait_for) argument is provided, the
         module is not returned until the condition is satisfied or
         the number of retries has expired.
     required: true
@@ -57,11 +57,11 @@ options:
     elements: str
   match:
     description:
-      - The I(match) argument is used in conjunction with the
-        I(wait_for) argument to specify the match policy.  Valid
-        values are C(all) or C(any).  If the value is set to C(all)
+      - The O(match) argument is used in conjunction with the
+        O(wait_for) argument to specify the match policy.  Valid
+        values are V(all) or V(any).  If the value is set to V(all)
         then all conditionals in the wait_for must be satisfied.  If
-        the value is set to C(any) then only one of the values must be
+        the value is set to V(any) then only one of the values must be
         satisfied.
     default: all
     choices: ['any', 'all']
@@ -71,7 +71,7 @@ options:
       - Specifies the number of retries a command should by tried
         before it is considered failed. The command is run on the
         target device every retry and evaluated against the
-        I(wait_for) conditions.
+        O(wait_for) conditions.
     default: 10
     type: int
   interval:

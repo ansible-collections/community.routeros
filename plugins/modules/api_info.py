@@ -18,9 +18,9 @@ version_added: 2.2.0
 description:
   - Allows to retrieve information for a path using the API.
   - This can be used to backup a path to restore it with the M(community.routeros.api_modify) module.
-  - Entries are normalized, dynamic and builtin entries are not returned. Use the I(handle_disabled) and
-    I(hide_defaults) options to control normalization, the I(include_dynamic) and I(include_builtin) options to also return
-    dynamic resp. builtin entries, and use I(unfiltered) to return all fields including counters.
+  - Entries are normalized, dynamic and builtin entries are not returned. Use the O(handle_disabled) and
+    O(hide_defaults) options to control normalization, the O(include_dynamic) and O(include_builtin) options to also return
+    dynamic resp. builtin entries, and use O(unfiltered) to return all fields including counters.
   - B(Note) that this module is still heavily in development, and only supports B(some) paths.
     If you want to support new paths, or think you found problems with existing paths, please first
     L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
@@ -37,7 +37,7 @@ options:
   path:
     description:
       - Path to query.
-      - An example value is C(ip address). This is equivalent to running C(/ip address print) in the RouterOS CLI.
+      - An example value is V(ip address). This is equivalent to running C(/ip address print) in the RouterOS CLI.
     required: true
     type: str
     choices:
@@ -194,9 +194,9 @@ options:
   handle_disabled:
     description:
       - How to handle unset values.
-      - C(exclamation) prepends the keys with C(!) in the output with value C(null).
-      - C(null-value) uses the regular key with value C(null).
-      - C(omit) omits these values from the result.
+      - V(exclamation) prepends the keys with V(!) in the output with value V(null).
+      - V(null-value) uses the regular key with value V(null).
+      - V(omit) omits these values from the result.
     type: str
     choices:
       - exclamation
@@ -212,14 +212,14 @@ options:
     description:
       - Whether to include dynamic values.
       - By default, they are not returned, and the C(dynamic) keys are omitted.
-      - If set to C(true), they are returned as well, and the C(dynamic) keys are returned as well.
+      - If set to V(true), they are returned as well, and the C(dynamic) keys are returned as well.
     type: bool
     default: false
   include_builtin:
     description:
       - Whether to include builtin values.
       - By default, they are not returned, and the C(builtin) keys are omitted.
-      - If set to C(true), they are returned as well, and the C(builtin) keys are returned as well.
+      - If set to V(true), they are returned as well, and the C(builtin) keys are returned as well.
     type: bool
     default: false
     version_added: 2.4.0
