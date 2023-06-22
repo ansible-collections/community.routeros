@@ -28,7 +28,7 @@ jobs:
     uses: ansible-community/github-docs-build/.github/workflows/_shared-docs-build-push.yml@main
     with:
       collection-name: community.routeros
-      init-lenient: false
+      init-lenient: true
       init-fail-on-error: true
       squash-hierarchy: true
       init-project: Community.Routeros Collection
