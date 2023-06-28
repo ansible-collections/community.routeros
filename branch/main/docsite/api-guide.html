@@ -222,7 +222,7 @@
 </section>
 <section id="setting-up-encryption">
 <h2>Setting up encryption<a class="headerlink" href="#setting-up-encryption" title="Permalink to this heading"></a></h2>
-<p>It is recommended to always use <code class="ansible-option-value docutils literal notranslate"><span class="pre">tls=true</span></code> when connecting with the API, even if you are only connecting to the device through a trusted network. The following options control how TLS/SSL is used:</p>
+<p>It is recommended to always use <code class="ansible-option-value docutils literal notranslate"><span><span class="pre">tls=true</span></span></code> when connecting with the API, even if you are only connecting to the device through a trusted network. The following options control how TLS/SSL is used:</p>
 <dl class="field-list simple">
 <dt class="field-odd">force_no_cert<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Setting to <code class="ansible-value docutils literal notranslate"><span class="pre">true</span></code> connects to the device without a certificate. <strong>This is discouraged to use in production and is susceptible to Man-in-the-Middle attacks</strong>, but might be useful when setting the device up. The default value is <code class="ansible-value docutils literal notranslate"><span class="pre">false</span></code>.</p>
