@@ -2280,6 +2280,7 @@ PATHS = {
             'contact': KeyInfo(default=''),
             'enabled': KeyInfo(default=False),
             'engine-id': KeyInfo(default=''),
+            'engine-id-suffix': KeyInfo(default=''),
             'location': KeyInfo(default=''),
             'src-address': KeyInfo(default='::'),
             'trap-community': KeyInfo(default='public'),
