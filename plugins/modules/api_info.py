@@ -123,6 +123,7 @@ options:
         - ip tftp settings
         - ip traffic-flow
         - ip traffic-flow ipfix
+        - ip traffic-flow target
         - ip upnp
         - ipv6 address
         - ipv6 dhcp-client
