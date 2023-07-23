@@ -1846,6 +1846,20 @@ PATHS = {
             'udp-length': KeyInfo(default=True),
         },
     ),
+    ('ip', 'traffic-flow', 'target'): APIData(
+        single_value=True,
+        fully_understood=True,
+        fields={
+            'address': KeyInfo(),
+            'disabled': KeyInfo(default=False),
+            'dst-address': KeyInfo(),
+            'port': KeyInfo(default=2055),
+            'src-address': KeyInfo(),
+            'v9-template-refresh': KeyInfo(default=20),
+            'v9-template-timeout': KeyInfo(),
+            'version': KeyInfo(),
+        },
+    ),
     ('ip', 'upnp'): APIData(
         single_value=True,
         fully_understood=True,
