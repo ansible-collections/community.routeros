@@ -49,9 +49,11 @@ options:
     # BEGIN PATH LIST
         - caps-man aaa
         - caps-man access-list
+        - caps-man channel
         - caps-man configuration
         - caps-man datapath
         - caps-man manager
+        - caps-man manager interface
         - caps-man provisioning
         - caps-man security
         - certificate settings
