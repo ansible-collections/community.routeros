@@ -481,3 +481,22 @@ releases:
     - 2.8.3.yml
     - semantic-markup.yml
     release_date: '2023-06-27'
+  2.9.0:
+    changes:
+      bugfixes:
+      - api_modify, api_info - add missing parameter ``engine-id-suffix`` for the
+        ``snmp`` path (https://github.com/ansible-collections/community.routeros/issues/189,
+        https://github.com/ansible-collections/community.routeros/pull/190).
+      minor_changes:
+      - api_info, api_modify - add path ``caps-man channel`` and enable path ``caps-man
+        manager interface`` (https://github.com/ansible-collections/community.routeros/issues/193,
+        https://github.com/ansible-collections/community.routeros/pull/194).
+      - api_info, api_modify - add path ``ip traffic-flow target`` (https://github.com/ansible-collections/community.routeros/issues/191,
+        https://github.com/ansible-collections/community.routeros/pull/192).
+      release_summary: Bugfix and feature release.
+    fragments:
+    - 180-fix-engine-id-suffix-in-snmp.yml
+    - 192-add-ip_traffic-flow_target-path.yml
+    - 194-add-caps-man_channel-and-caps-man_manager_interface.yml
+    - 2.9.0.yml
+    release_date: '2023-08-15'
