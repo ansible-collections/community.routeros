@@ -600,6 +600,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -607,6 +608,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -614,6 +616,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*NEW1',
@@ -621,6 +624,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry 2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -661,6 +665,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -668,6 +673,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -675,6 +681,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*NEW1',
@@ -682,6 +689,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry 2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -723,6 +731,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -730,6 +739,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -737,6 +747,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 'name': 'router',
@@ -782,6 +793,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -789,6 +801,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry 2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -796,6 +809,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -838,6 +852,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -845,6 +860,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry 2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -852,6 +868,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -894,6 +911,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -901,6 +919,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*NEW1',
@@ -908,6 +927,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'cname': 'router.com.',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -951,6 +971,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -958,6 +979,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 'name': 'router',
@@ -1003,6 +1025,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -1011,6 +1034,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry 2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -1018,6 +1042,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -1060,6 +1085,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -1068,6 +1094,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry 2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -1075,6 +1102,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -1109,6 +1137,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -1144,6 +1173,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -1190,6 +1220,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*NEW1',
@@ -1197,6 +1228,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'bar',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -1204,6 +1236,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*1',
@@ -1212,6 +1245,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 
@@ -1259,6 +1293,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.2',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 'name': 'foo',
@@ -1270,6 +1305,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'text': 'Router Text Entry',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*1',
@@ -1278,6 +1314,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'address': '192.168.88.1',
                 'ttl': '1d',
                 'disabled': False,
+                'match-subdomain': False,
             },
         ])
 

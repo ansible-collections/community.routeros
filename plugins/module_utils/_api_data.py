@@ -1408,10 +1408,12 @@ PATHS = {
         mutually_exclusive=[['name', 'regexp']],
         fields={
             'address': KeyInfo(),
+            'address-list': KeyInfo(),
             'cname': KeyInfo(),
             'comment': KeyInfo(can_disable=True, remove_value=''),
             'disabled': KeyInfo(default=False),
             'forward-to': KeyInfo(),
+            'match-subdomain': KeyInfo(default=False),
             'mx-exchange': KeyInfo(),
             'mx-preference': KeyInfo(),
             'name': KeyInfo(),
