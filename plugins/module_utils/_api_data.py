@@ -1020,6 +1020,7 @@ PATHS = {
         fields={
             'discover-interface-list': KeyInfo(),
             'lldp-med-net-policy-vlan': KeyInfo(default='disabled'),
+            'mode': KeyInfo(default='tx-and-rx'),
             'protocol': KeyInfo(default='cdp,lldp,mndp'),
         },
     ),
