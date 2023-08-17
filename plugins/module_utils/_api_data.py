@@ -561,6 +561,30 @@ PATHS = {
             'use-radius': KeyInfo(default=False),
         },
     ),
+    ('routing', 'filter', 'rule'): APIData(
+        fully_understood=True,
+        fields={
+            'chain': KeyInfo(required=True),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(can_disable=True),
+            'rule': KeyInfo(can_disable=True),
+        },
+    ),
+    ('routing', 'filter', 'select-rule'): APIData(
+        fully_understood=True,
+        fields={
+            'chain': KeyInfo(required=True),
+            'comment': KeyInfo(can_disable=True, remove_value=''),
+            'disabled': KeyInfo(can_disable=True),
+            'do-group-num': KeyInfo(can_disable=True),
+            'do-group-prfx': KeyInfo(can_disable=True),
+            'do-jump': KeyInfo(can_disable=True),
+            'do-select-num': KeyInfo(can_disable=True),
+            'do-select-prfx': KeyInfo(can_disable=True),
+            'do-take': KeyInfo(can_disable=True),
+            'do-where': KeyInfo(can_disable=True),
+        },
+    ),
     ('routing', 'ospf', 'instance'): APIData(
         fully_understood=True,
         primary_keys=('name', ),

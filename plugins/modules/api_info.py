@@ -147,6 +147,8 @@ options:
         - queue tree
         - radius incoming
         - routing bgp instance
+        - routing filter rule
+        - routing filter select-rule
         - routing mme
         - routing ospf area
         - routing ospf area range
