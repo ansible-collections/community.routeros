@@ -2594,6 +2594,14 @@ PATHS = {
             'use-radius': KeyInfo(default=False),
         },
     ),
+    ('user', 'settings'): APIData(
+        single_value=True,
+        fully_understood=True,
+        fields={
+            'minimum-categories': KeyInfo(),
+            'minimum-password-length': KeyInfo(),
+        },
+    ),
     ('queue', 'interface'): APIData(
         primary_keys=('interface', ),
         fully_understood=True,
