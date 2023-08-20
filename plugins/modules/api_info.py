@@ -191,6 +191,7 @@ options:
         - tool traffic-generator
         - user aaa
         - user group
+        - user settings
     # END PATH LIST
   unfiltered:
     description:
