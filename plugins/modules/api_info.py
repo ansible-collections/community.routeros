@@ -72,6 +72,7 @@ options:
         - interface list
         - interface list member
         - interface ovpn-server server
+        - interface ppp-client
         - interface pppoe-client
         - interface pptp-server server
         - interface sstp-server server
