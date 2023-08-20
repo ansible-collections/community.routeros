@@ -304,6 +304,7 @@ PATHS = {
         fields={
             'add-default-route': KeyInfo(default=True),
             'allow': KeyInfo(default='pap,chap,mschap1,mschap2'),
+            'apn': KeyInfo(default='internet'),
             'comment': KeyInfo(can_disable=True, remove_value=''),
             'data-channel': KeyInfo(default=0),
             'default-route-distance': KeyInfo(default=1),
@@ -323,7 +324,6 @@ PATHS = {
             'pin': KeyInfo(default=''),
             'port': KeyInfo(),
             'profile': KeyInfo(default='default'),
-            'running': KeyInfo(default=False),
             'use-peer-dns': KeyInfo(default=True),
             'user': KeyInfo(default=''),
         },
