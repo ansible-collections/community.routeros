@@ -79,6 +79,7 @@ options:
         - interface vrrp
         - interface wireguard
         - interface wireguard peers
+        - interface wireless
         - interface wireless align
         - interface wireless cap
         - interface wireless sniffer
