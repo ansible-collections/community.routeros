@@ -389,6 +389,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -397,6 +398,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -406,6 +408,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
         ])
         self.assertEqual(result['diff']['before']['values'], [
@@ -416,6 +419,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
         ])
         self.assertEqual(result['diff']['after']['values'], [
@@ -427,6 +431,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
         ])
         self.assertEqual(result['match_count'], 1)
@@ -459,6 +464,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -467,6 +473,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -475,6 +482,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
         ])
         self.assertEqual('diff' in result, False)
@@ -508,6 +516,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -516,6 +525,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -524,6 +534,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
         ])
         self.assertEqual(result['match_count'], 3)
@@ -556,6 +567,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*A',
@@ -564,6 +576,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
             {
                 '.id': '*7',
@@ -572,6 +585,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'ttl': '1d',
                 'disabled': False,
                 'dynamic': False,
+                'match-subdomain': False,
             },
         ])
         self.assertEqual(result['match_count'], 3)
