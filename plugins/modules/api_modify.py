@@ -88,6 +88,7 @@ options:
         - interface wireless
         - interface wireless align
         - interface wireless cap
+        - interface wireless security-profiles
         - interface wireless sniffer
         - interface wireless snooper
         - ip accounting
