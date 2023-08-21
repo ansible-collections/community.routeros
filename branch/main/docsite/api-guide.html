@@ -14,11 +14,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7f41d439"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="How to connect to RouterOS devices with SSH" href="ssh-guide.html" />
@@ -134,7 +134,7 @@
            <div itemprop="articleBody">
              
   <section id="how-to-connect-to-routeros-devices-with-the-routeros-api">
-<span id="ansible-collections-community-routeros-docsite-api-guide"></span><h1>How to connect to RouterOS devices with the RouterOS API<a class="headerlink" href="#how-to-connect-to-routeros-devices-with-the-routeros-api" title="Permalink to this heading"></a></h1>
+<span id="ansible-collections-community-routeros-docsite-api-guide"></span><h1>How to connect to RouterOS devices with the RouterOS API<a class="headerlink" href="#how-to-connect-to-routeros-devices-with-the-routeros-api" title="Link to this heading"></a></h1>
 <p>You can use the <a class="reference internal" href="../api_module.html#ansible-collections-community-routeros-api-module"><span class="std std-ref">community.routeros.api module</span></a> to connect to a RouterOS device with the RouterOS API. More specific module to modify certain entries are the <a class="reference internal" href="../api_modify_module.html#ansible-collections-community-routeros-api-modify-module"><span class="std std-ref">community.routeros.api_modify</span></a> and <a class="reference internal" href="../api_find_and_modify_module.html#ansible-collections-community-routeros-api-find-and-modify-module"><span class="std std-ref">community.routeros.api_find_and_modify</span></a> modules. The <a class="reference internal" href="../api_info_module.html#ansible-collections-community-routeros-api-info-module"><span class="std std-ref">community.routeros.api_info module</span></a> allows to retrieve information on specific predefined paths that can be used as input for the <code class="docutils literal notranslate"><span class="pre">community.routeros.api_modify</span></code> module, and the <a class="reference internal" href="../api_facts_module.html#ansible-collections-community-routeros-api-facts-module"><span class="std std-ref">community.routeros.api_facts module</span></a> allows to retrieve Ansible facts using the RouterOS API.</p>
 <p>No special setup is needed; the module needs to be run on a host that can connect to the device’s API. The most common case is that the module is run on <code class="docutils literal notranslate"><span class="pre">localhost</span></code>, either by using <code class="docutils literal notranslate"><span class="pre">hosts:</span> <span class="pre">localhost</span></code> in the playbook, or by using <code class="docutils literal notranslate"><span class="pre">delegate_to:</span> <span class="pre">localhost</span></code> for the task. The following example shows how to run the equivalent of <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">address</span> <span class="pre">print</span></code>:</p>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
@@ -183,7 +183,7 @@
 </div>
 <p>Check out the documenation of the <a class="reference internal" href="../api_module.html#ansible-collections-community-routeros-api-module"><span class="std std-ref">community.routeros.api module</span></a> for details on the options.</p>
 <section id="using-the-community-routeros-api-module-defaults-group">
-<h2>Using the <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> module defaults group<a class="headerlink" href="#using-the-community-routeros-api-module-defaults-group" title="Permalink to this heading"></a></h2>
+<h2>Using the <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> module defaults group<a class="headerlink" href="#using-the-community-routeros-api-module-defaults-group" title="Link to this heading"></a></h2>
 <p>To avoid having to specify common parameters for all the API based modules in every task, you can use the <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> module defaults group:</p>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RouterOS test with API</span>
@@ -221,7 +221,7 @@
 <p>Here all three tasks will use the options set for the module defaults group.</p>
 </section>
 <section id="setting-up-encryption">
-<h2>Setting up encryption<a class="headerlink" href="#setting-up-encryption" title="Permalink to this heading"></a></h2>
+<h2>Setting up encryption<a class="headerlink" href="#setting-up-encryption" title="Link to this heading"></a></h2>
 <p>It is recommended to always use <code class="ansible-option-value docutils literal notranslate"><span><span class="pre">tls=true</span></span></code> when connecting with the API, even if you are only connecting to the device through a trusted network. The following options control how TLS/SSL is used:</p>
 <dl class="field-list simple">
 <dt class="field-odd">force_no_cert<span class="colon">:</span></dt>
@@ -239,11 +239,11 @@
 </dl>
 <p>We recommend to create a CA certificate that is used to sign the certificates for your RouterOS devices, and have the certificates include the correct hostname(s), including the IP of the device. That way, you can fully enable TLS and be sure that you always talk to the correct device.</p>
 <section id="setting-up-a-pki">
-<h3>Setting up a PKI<a class="headerlink" href="#setting-up-a-pki" title="Permalink to this heading"></a></h3>
+<h3>Setting up a PKI<a class="headerlink" href="#setting-up-a-pki" title="Link to this heading"></a></h3>
 <p>Please follow the instructions in the <code class="docutils literal notranslate"><span class="pre">community.crypto</span></code> <a class="reference external" href="https://docs.ansible.com/ansible/devel/collections/community/crypto/docsite/guide_ownca.html#ansible-collections-community-crypto-docsite-guide-ownca" title="(in Ansible vdevel)"><span>How to create a small CA</span></a> guide to set up a CA certificate and sign a certificate for your router. You should add a Subject Alternative Name for the IP address (for example <code class="docutils literal notranslate"><span class="pre">IP:192.168.1.1</span></code>) and - if available - for the DNS name (for example <code class="docutils literal notranslate"><span class="pre">DNS:router.local</span></code>) to the certificate.</p>
 </section>
 <section id="installing-a-certificate-on-a-mikrotik-router">
-<h3>Installing a certificate on a MikroTik router<a class="headerlink" href="#installing-a-certificate-on-a-mikrotik-router" title="Permalink to this heading"></a></h3>
+<h3>Installing a certificate on a MikroTik router<a class="headerlink" href="#installing-a-certificate-on-a-mikrotik-router" title="Link to this heading"></a></h3>
 <p>Installing the certificate is best done with the SSH connection. (See the <a class="reference internal" href="ssh-guide.html#ansible-collections-community-routeros-docsite-ssh-guide"><span class="std std-ref">How to connect to RouterOS devices with SSH</span></a> guide for more information.) Once the certificate has been installed, and the HTTPS API enabled, it’s easier to work with the API, since it has a quite a few less problems, and returns data as JSON objects instead of text you first have to parse.</p>
 <p>First you have to convert the certificate and its private key to a <a class="reference external" href="https://en.wikipedia.org/wiki/PKCS_12">PKCS #12 bundle</a>. This can be done with the <a class="reference external" href="https://docs.ansible.com/ansible/devel/collections/community/crypto/openssl_pkcs12_module.html#ansible-collections-community-crypto-openssl-pkcs12-module" title="(in Ansible vdevel)"><span class="xref std std-ref">community.crypto.openssl_pkcs12</span></a>. The following playbook assumes that the certificate is available as <code class="docutils literal notranslate"><span class="pre">keys/{{</span> <span class="pre">inventory_hostname</span> <span class="pre">}}.pem</span></code>, and its private key is available as <code class="docutils literal notranslate"><span class="pre">keys/{{</span> <span class="pre">inventory_hostname</span> <span class="pre">}}.key</span></code>. It generates a random passphrase to protect the PKCS#12 file.</p>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>

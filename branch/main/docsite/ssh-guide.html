@@ -14,11 +14,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7f41d439"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="How to quote and unquote commands and arguments" href="quoting.html" />
@@ -131,7 +131,7 @@
            <div itemprop="articleBody">
              
   <section id="how-to-connect-to-routeros-devices-with-ssh">
-<span id="ansible-collections-community-routeros-docsite-ssh-guide"></span><h1>How to connect to RouterOS devices with SSH<a class="headerlink" href="#how-to-connect-to-routeros-devices-with-ssh" title="Permalink to this heading"></a></h1>
+<span id="ansible-collections-community-routeros-docsite-ssh-guide"></span><h1>How to connect to RouterOS devices with SSH<a class="headerlink" href="#how-to-connect-to-routeros-devices-with-ssh" title="Link to this heading"></a></h1>
 <p>The collection offers two modules to connect to RouterOS devies with SSH:</p>
 <ul class="simple">
 <li><p>The <a class="reference internal" href="../facts_module.html#ansible-collections-community-routeros-facts-module"><span class="std std-ref">community.routeros.facts module</span></a> gathers facts about a RouterOS device;</p></li>
@@ -139,7 +139,7 @@
 </ul>
 <p>The modules need the <a class="reference external" href="https://docs.ansible.com/ansible/devel/collections/ansible/netcommon/network_cli_connection.html#ansible-collections-ansible-netcommon-network-cli-connection" title="(in Ansible vdevel)"><span class="xref std std-ref">ansible.netcommon.network_cli connection plugin</span></a> for this.</p>
 <section id="important-notes">
-<h2>Important notes<a class="headerlink" href="#important-notes" title="Permalink to this heading"></a></h2>
+<h2>Important notes<a class="headerlink" href="#important-notes" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>The SSH-based modules do not support arbitrary symbols in the router’s identity. If you are having trouble connecting to your device, please make sure that your MikroTik’s identity contains only alphanumeric characters and dashes. Also make sure that the identity string is not longer than 19 characters (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/31">see issue for details</a>). Similar problems can happen for unsupported characters in your username.</p></li>
 <li><p>The <a class="reference internal" href="../command_module.html#ansible-collections-community-routeros-command-module"><span class="std std-ref">community.routeros.command module</span></a> does not support nesting commands and expects every command to start with a forward slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>). Running the following command will produce an error:</p>
@@ -155,7 +155,7 @@
 </ol>
 </section>
 <section id="setting-up-an-inventory">
-<h2>Setting up an inventory<a class="headerlink" href="#setting-up-an-inventory" title="Permalink to this heading"></a></h2>
+<h2>Setting up an inventory<a class="headerlink" href="#setting-up-an-inventory" title="Link to this heading"></a></h2>
 <p>An example inventory <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file for a RouterOS device is as follows:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[routers]</span>
 <span class="na">router ansible_host</span><span class="o">=</span><span class="s">192.168.2.1</span>
@@ -170,7 +170,7 @@
 <p>This tells Ansible that you have a RouterOS device called <code class="docutils literal notranslate"><span class="pre">router</span></code> with IP <code class="docutils literal notranslate"><span class="pre">192.168.2.1</span></code>. Ansible should use the <a class="reference external" href="https://docs.ansible.com/ansible/devel/collections/ansible/netcommon/network_cli_connection.html#ansible-collections-ansible-netcommon-network-cli-connection" title="(in Ansible vdevel)"><span class="xref std std-ref">ansible.netcommon.network_cli connection plugin</span></a> together with the the <a class="reference internal" href="../routeros_cliconf.html#ansible-collections-community-routeros-routeros-cliconf"><span class="std std-ref">community.routeros.routeros cliconf plugin</span></a>. The credentials are stored as <code class="docutils literal notranslate"><span class="pre">ansible_user</span></code> and <code class="docutils literal notranslate"><span class="pre">ansible_ssh_pass</span></code> in the inventory.</p>
 </section>
 <section id="connecting-to-the-device">
-<h2>Connecting to the device<a class="headerlink" href="#connecting-to-the-device" title="Permalink to this heading"></a></h2>
+<h2>Connecting to the device<a class="headerlink" href="#connecting-to-the-device" title="Link to this heading"></a></h2>
 <p>With the above inventory, you can use the following playbook to execute <code class="docutils literal notranslate"><span class="pre">/system</span> <span class="pre">resource</span> <span class="pre">print</span></code> on the device</p>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RouterOS test with network_cli connection</span>
