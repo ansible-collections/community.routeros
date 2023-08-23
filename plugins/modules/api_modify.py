@@ -142,6 +142,7 @@ options:
         - ipv6 firewall address-list
         - ipv6 firewall filter
         - ipv6 firewall mangle
+        - ipv6 firewall nat
         - ipv6 firewall raw
         - ipv6 nd
         - ipv6 nd prefix default
