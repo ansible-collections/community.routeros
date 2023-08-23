@@ -86,6 +86,7 @@ options:
         - interface wireless security-profiles
         - interface wireless sniffer
         - interface wireless snooper
+        - iot modbus
         - ip accounting
         - ip accounting web-access
         - ip address

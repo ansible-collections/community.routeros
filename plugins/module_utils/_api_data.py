@@ -1423,6 +1423,16 @@ PATHS = {
             'receive-errors': KeyInfo(default=False),
         },
     ),
+    ('iot', 'modbus'): APIData(
+        single_value=True,
+        fully_understood=True,
+        fields={
+            'disabled': KeyInfo(default=True),
+            'hardware-port': KeyInfo(default='modbus'),
+            'tcp-port': KeyInfo(default=502),
+            'timeout': KeyInfo(default=1000),
+        },
+    ),
     ('ip', 'accounting'): APIData(
         single_value=True,
         fully_understood=True,
