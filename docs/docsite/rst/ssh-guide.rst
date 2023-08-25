@@ -33,6 +33,8 @@ Important notes
 
 4. Finally, the :ref:`ansible.netcommon.network_cli connection plugin <ansible_collections.ansible.netcommon.network_cli_connection>` uses `paramiko <https://pypi.org/project/paramiko/>`_ by default to connect to devices with SSH. You can set its :ansopt:`ansible.netcommon.network_cli#connection:ssh_type` option to :ansval:`libssh` to use `ansible-pylibssh <https://pypi.org/project/ansible-pylibssh/>`_ instead, which offers Python bindings to libssh. See its documentation for details.
 
+5. User is **not allowed** to login via SSH by password to modern Mikrotik if SSH key for the user is added!
+
 Setting up an inventory
 -----------------------
 
