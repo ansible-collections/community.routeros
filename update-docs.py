@@ -9,7 +9,12 @@
 Updates DOCUMENTATION of modules using module_utils._api_data with the correct list of supported paths.
 '''
 
-from plugins.module_utils._api_data import (
+import sys
+
+# Ensure that we can import things from ansible_collections
+sys.path.append('../../..')
+
+from ansible_collections.community.routeros.plugins.module_utils._api_data import (
     PATHS,
     join_path,
 )

@@ -97,6 +97,7 @@ def _ros_api_connect(module, username, password, host, port, use_tls, force_no_c
 
 
 def create_api(module):
+    """Create an API object."""
     return _ros_api_connect(
         module,
         module.params['username'],
@@ -111,3 +112,9 @@ def create_api(module):
         module.params['encoding'],
         module.params['timeout'],
     )
+
+
+def get_api_version(api):
+    """Given an API object, query the system's version."""
+    system_info = list(api.path().join('system', 'resource'))[0]
+    return system_info['version'].split(' ', 1)[0]

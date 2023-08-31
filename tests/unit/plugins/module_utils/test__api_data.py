@@ -10,7 +10,7 @@ __metaclass__ = type
 import pytest
 
 from ansible_collections.community.routeros.plugins.module_utils._api_data import (
-    APIData,
+    VersionedAPIData,
     KeyInfo,
     split_path,
     join_path,
@@ -19,7 +19,7 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 
 def test_api_data_errors():
     with pytest.raises(ValueError) as exc:
-        APIData()
+        VersionedAPIData()
     assert exc.value.args[0] == 'fields must be provided'
 
     values = [
@@ -33,39 +33,39 @@ def test_api_data_errors():
     for index, (param, param_value) in enumerate(values):
         for param2, param2_value in values[index + 1:]:
             with pytest.raises(ValueError) as exc:
-                APIData(**{param: param_value, param2: param2_value})
+                VersionedAPIData(**{param: param_value, param2: param2_value})
             assert exc.value.args[0] == 'primary_keys, stratify_keys, has_identifier, single_value, and unknown_mechanism are mutually exclusive'
 
     with pytest.raises(ValueError) as exc:
-        APIData(unknown_mechanism=True, fully_understood=True)
+        VersionedAPIData(unknown_mechanism=True, fully_understood=True)
     assert exc.value.args[0] == 'unknown_mechanism and fully_understood cannot be combined'
 
     with pytest.raises(ValueError) as exc:
-        APIData(unknown_mechanism=True, fixed_entries=True)
+        VersionedAPIData(unknown_mechanism=True, fixed_entries=True)
     assert exc.value.args[0] == 'fixed_entries can only be used with primary_keys'
 
     with pytest.raises(ValueError) as exc:
-        APIData(primary_keys=['foo'], fields={})
+        VersionedAPIData(primary_keys=['foo'], fields={})
     assert exc.value.args[0] == 'Primary key foo must be in fields!'
 
     with pytest.raises(ValueError) as exc:
-        APIData(stratify_keys=['foo'], fields={})
+        VersionedAPIData(stratify_keys=['foo'], fields={})
     assert exc.value.args[0] == 'Stratify key foo must be in fields!'
 
     with pytest.raises(ValueError) as exc:
-        APIData(required_one_of=['foo'], fields={})
+        VersionedAPIData(required_one_of=['foo'], fields={})
     assert exc.value.args[0] == 'Require one of element at index #1 must be a list!'
 
     with pytest.raises(ValueError) as exc:
-        APIData(required_one_of=[['foo']], fields={})
+        VersionedAPIData(required_one_of=[['foo']], fields={})
     assert exc.value.args[0] == 'Require one of key foo must be in fields!'
 
     with pytest.raises(ValueError) as exc:
-        APIData(mutually_exclusive=['foo'], fields={})
+        VersionedAPIData(mutually_exclusive=['foo'], fields={})
     assert exc.value.args[0] == 'Mutually exclusive element at index #1 must be a list!'
 
     with pytest.raises(ValueError) as exc:
-        APIData(mutually_exclusive=[['foo']], fields={})
+        VersionedAPIData(mutually_exclusive=[['foo']], fields={})
     assert exc.value.args[0] == 'Mutually exclusive key foo must be in fields!'
 
 

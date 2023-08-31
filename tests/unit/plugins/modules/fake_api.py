@@ -9,6 +9,9 @@ __metaclass__ = type
 from ansible_collections.community.routeros.plugins.module_utils._api_data import PATHS
 
 
+FAKE_ROS_VERSION = '7.0.0'
+
+
 class FakeLibRouterosError(Exception):
     def __init__(self, message):
         self.message = message
@@ -16,7 +19,7 @@ class FakeLibRouterosError(Exception):
 
 
 class TrapError(FakeLibRouterosError):
-    def __init__(self, message="failure: already have interface with such name"):
+    def __init__(self, message='failure: already have interface with such name'):
         super(TrapError, self).__init__(message)
 
 
@@ -133,7 +136,9 @@ def _normalize_entry(entry, path_info, on_create=False):
 
 
 def massage_expected_result_data(values, path, keep_all=False, remove_dynamic=False, remove_builtin=False):
-    path_info = PATHS[path]
+    versioned_path_info = PATHS[path]
+    versioned_path_info.provide_version(FAKE_ROS_VERSION)
+    path_info = versioned_path_info.get_data()
     if remove_dynamic:
         values = [entry for entry in values if not entry.get('dynamic', False)]
     if remove_builtin:
@@ -155,7 +160,9 @@ def massage_expected_result_data(values, path, keep_all=False, remove_dynamic=Fa
 class Path(object):
     def __init__(self, path, initial_values, read_only=False):
         self._path = path
-        self._path_info = PATHS[path]
+        versioned_path_info = PATHS[path]
+        versioned_path_info.provide_version(FAKE_ROS_VERSION)
+        self._path_info = versioned_path_info.get_data()
         self._values = [entry.copy() for entry in initial_values]
         for entry in self._values:
             _normalize_entry(entry, self._path_info)
