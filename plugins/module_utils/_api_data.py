@@ -1287,10 +1287,12 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.7', '>=')], 'mode', KeyInfo(default='tx-and-rx')),
+            ],
             fields={
                 'discover-interface-list': KeyInfo(),
                 'lldp-med-net-policy-vlan': KeyInfo(default='disabled'),
-                'mode': KeyInfo(default='tx-and-rx'),
                 'protocol': KeyInfo(default='cdp,lldp,mndp'),
             },
         ),
