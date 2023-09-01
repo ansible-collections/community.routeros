@@ -37,7 +37,7 @@ class APIData(object):
         self.unversioned = unversioned
         self.versioned = versioned
         if self.unversioned is not None:
-            self.needs_version = False
+            self.needs_version = self.unversioned.needs_version
             self.fully_understood = self.unversioned.fully_understood
         else:
             self.needs_version = self.versioned is not None
@@ -47,30 +47,35 @@ class APIData(object):
                 if unversioned.fully_understood:
                     self.fully_understood = True
                     break
+        self._current = None if self.needs_version else self.unversioned
 
     def provide_version(self, version):
         if not self.needs_version:
             return self.unversioned.fully_understood
         api_version = LooseVersion(version)
-        for other_version, comparator, unversioned in self.versioned:
+        if self.unversioned is not None:
+            self._current = self.unversioned.specialize_for_version(api_version)
+            return self._current.fully_understood
+        for other_version, comparator, data in self.versioned:
             if other_version == '*' and comparator == '*':
-                self.unversioned = unversioned
-                return self.unversioned.fully_supported
+                self._current = data.specialize_for_version(api_version)
+                return self._current.fully_supported
             other_api_version = LooseVersion(other_version)
             if _compare(api_version, other_api_version, comparator):
-                self.unversioned = unversioned
-                return self.unversioned.fully_supported
-        self.unversioned = None
+                self._current = data.specialize_for_version(api_version)
+                return self._current.fully_supported
+        self._current = None
         return False
 
     def get_data(self):
-        if self.unversioned is None:
+        if self._current is None:
             raise ValueError('either provide_version() was not called or it returned False')
-        return self.unversioned
+        return self._current
 
 
 class VersionedAPIData(object):
-    def __init__(self, primary_keys=None,
+    def __init__(self,
+                 primary_keys=None,
                  stratify_keys=None,
                  required_one_of=None,
                  mutually_exclusive=None,
@@ -79,7 +84,8 @@ class VersionedAPIData(object):
                  unknown_mechanism=False,
                  fully_understood=False,
                  fixed_entries=False,
-                 fields=None):
+                 fields=None,
+                 versioned_fields=None):
         if sum([primary_keys is not None, stratify_keys is not None, has_identifier, single_value, unknown_mechanism]) > 1:
             raise ValueError('primary_keys, stratify_keys, has_identifier, single_value, and unknown_mechanism are mutually exclusive')
         if unknown_mechanism and fully_understood:
@@ -98,6 +104,17 @@ class VersionedAPIData(object):
         if fields is None:
             raise ValueError('fields must be provided')
         self.fields = fields
+        if versioned_fields is not None:
+            if not isinstance(versioned_fields, list):
+                raise ValueError('unversioned_fields must be a list')
+            for conditions, name, field in versioned_fields:
+                if not isinstance(conditions, (tuple, list)):
+                    raise ValueError('conditions must be a list or tuple')
+                if not isinstance(field, KeyInfo):
+                    raise ValueError('field must be a KeyInfo object')
+                if name in fields:
+                    raise ValueError('"{name}" appears both in fields and versioned_fields'.format(name=name))
+        self.versioned_fields = versioned_fields or []
         if primary_keys:
             for pk in primary_keys:
                 if pk not in fields:
@@ -120,6 +137,35 @@ class VersionedAPIData(object):
                 for ek in exclusive_list:
                     if ek not in fields:
                         raise ValueError('Mutually exclusive key {ek} must be in fields!'.format(ek=ek))
+        self.needs_version = len(self.versioned_fields) > 0
+
+    def specialize_for_version(self, api_version):
+        fields = self.fields.copy()
+        for conditions, name, field in self.versioned_fields:
+            matching = True
+            for other_version, comparator in conditions:
+                other_api_version = LooseVersion(other_version)
+                if not _compare(api_version, other_api_version, comparator):
+                    matching = False
+                    break
+            if matching:
+                if name in fields:
+                    raise ValueError(
+                        'Internal error: field "{field}" already exists for {version}'.format(field=name, version=api_version)
+                    )
+                fields[name] = field
+        return VersionedAPIData(
+            primary_keys=self.primary_keys,
+            stratify_keys=self.stratify_keys,
+            required_one_of=self.required_one_of,
+            mutually_exclusive=self.mutually_exclusive,
+            has_identifier=self.has_identifier,
+            single_value=self.single_value,
+            unknown_mechanism=self.unknown_mechanism,
+            fully_understood=self.fully_understood,
+            fixed_entries=self.fixed_entries,
+            fields=fields,
+        )
 
 
 class KeyInfo(object):
@@ -1241,10 +1287,12 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.7', '>=')], 'mode', KeyInfo(default='tx-and-rx')),
+            ],
             fields={
                 'discover-interface-list': KeyInfo(),
                 'lldp-med-net-policy-vlan': KeyInfo(default='disabled'),
-                'mode': KeyInfo(default='tx-and-rx'),
                 'protocol': KeyInfo(default='cdp,lldp,mndp'),
             },
         ),
@@ -1797,14 +1845,16 @@ PATHS = {
             fully_understood=True,
             required_one_of=[['name', 'regexp']],
             mutually_exclusive=[['name', 'regexp']],
+            versioned_fields=[
+                ([('7.5', '>=')], 'address-list', KeyInfo()),
+                ([('7.5', '>=')], 'match-subdomain', KeyInfo(default=False)),
+            ],
             fields={
                 'address': KeyInfo(),
-                'address-list': KeyInfo(),
                 'cname': KeyInfo(),
                 'comment': KeyInfo(can_disable=True, remove_value=''),
                 'disabled': KeyInfo(default=False),
                 'forward-to': KeyInfo(),
-                'match-subdomain': KeyInfo(default=False),
                 'mx-exchange': KeyInfo(),
                 'mx-preference': KeyInfo(),
                 'name': KeyInfo(),

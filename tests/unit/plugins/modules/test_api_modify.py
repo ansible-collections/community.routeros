@@ -8,7 +8,7 @@ __metaclass__ = type
 
 from ansible_collections.community.routeros.tests.unit.compat.mock import patch, MagicMock
 from ansible_collections.community.routeros.tests.unit.plugins.modules.fake_api import (
-    FakeLibRouterosError, fake_ros_api, massage_expected_result_data, create_fake_path,
+    FAKE_ROS_VERSION, FakeLibRouterosError, fake_ros_api, massage_expected_result_data, create_fake_path,
 )
 from ansible_collections.community.routeros.tests.unit.plugins.modules.utils import set_module_args, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
 from ansible_collections.community.routeros.plugins.modules import api_modify
@@ -302,6 +302,10 @@ class TestRouterosApiModifyModule(ModuleTestCase):
             'ansible_collections.community.routeros.plugins.modules.api_modify.create_api',
             MagicMock(new=fake_ros_api))
         self.patch_create_api.start()
+        self.patch_get_api_version = patch(
+            'ansible_collections.community.routeros.plugins.modules.api_modify.get_api_version',
+            MagicMock(return_value=FAKE_ROS_VERSION))
+        self.patch_get_api_version.start()
         self.config_module_args = {
             'username': 'admin',
             'password': 'pаss',
@@ -309,6 +313,7 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         }
 
     def tearDown(self):
+        self.patch_get_api_version.stop()
         self.patch_create_api.stop()
 
     def test_module_fail_when_required_args_missing(self):
