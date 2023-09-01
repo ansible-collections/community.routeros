@@ -2551,6 +2551,9 @@ PATHS = {
         single_value=True,
         fully_understood=True,
         fields={
+            'date': KeyInfo(),
+            'gmt-offset': KeyInfo(),
+            'time': KeyInfo(),
             'time-zone-autodetect': KeyInfo(default=True),
             'time-zone-name': KeyInfo(default='manual'),
         },
