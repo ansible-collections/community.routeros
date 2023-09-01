@@ -331,6 +331,7 @@ from ansible_collections.community.routeros.plugins.module_utils.api import (
     api_argument_spec,
     check_has_library,
     create_api,
+    get_api_version,
 )
 
 from ansible_collections.community.routeros.plugins.module_utils._api_data import (
@@ -1003,8 +1004,23 @@ def get_backend(path_info):
     return None
 
 
+def has_backend(versioned_path_info):
+    if not versioned_path_info.fully_understood:
+        return False
+
+    if versioned_path_info.unversioned is not None:
+        return get_backend(versioned_path_info.unversioned) is not None
+
+    if versioned_path_info.versioned is not None:
+        for dummy, dummy, unversioned in versioned_path_info.versioned:
+            if get_backend(unversioned) is not None:
+                return True
+
+    return False
+
+
 def main():
-    path_choices = sorted([join_path(path) for path, path_info in PATHS.items() if get_backend(path_info) is not None])
+    path_choices = sorted([join_path(path) for path, versioned_path_info in PATHS.items() if has_backend(versioned_path_info)])
     module_args = dict(
         path=dict(type='str', required=True, choices=path_choices),
         data=dict(type='list', elements='dict', required=True),
@@ -1029,7 +1045,13 @@ def main():
     api = create_api(module)
 
     path = split_path(module.params['path'])
-    path_info = PATHS.get(tuple(path))
+    versioned_path_info = PATHS.get(tuple(path))
+    if versioned_path_info.needs_version:
+        api_version = get_api_version(api)
+        if not versioned_path_info.provide_version(api_version):
+            module.fail_json(msg='Path /{path} is not supported for API version {api_version}'.format(path='/'.join(path), api_version=api_version))
+    path_info = versioned_path_info.get_data()
+
     backend = get_backend(path_info)
     if path_info is None or backend is None:
         module.fail_json(msg='Path /{path} is not yet supported'.format(path='/'.join(path)))

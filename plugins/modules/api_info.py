@@ -282,6 +282,7 @@ from ansible_collections.community.routeros.plugins.module_utils.api import (
     api_argument_spec,
     check_has_library,
     create_api,
+    get_api_version,
 )
 
 from ansible_collections.community.routeros.plugins.module_utils._api_data import (
@@ -324,9 +325,14 @@ def main():
     api = create_api(module)
 
     path = split_path(module.params['path'])
-    path_info = PATHS.get(tuple(path))
-    if path_info is None:
+    versioned_path_info = PATHS.get(tuple(path))
+    if versioned_path_info is None:
         module.fail_json(msg='Path /{path} is not yet supported'.format(path='/'.join(path)))
+    if versioned_path_info.needs_version:
+        api_version = get_api_version(api)
+        if not versioned_path_info.provide_version(api_version):
+            module.fail_json(msg='Path /{path} is not supported for API version {api_version}'.format(path='/'.join(path), api_version=api_version))
+    path_info = versioned_path_info.get_data()
 
     handle_disabled = module.params['handle_disabled']
     hide_defaults = module.params['hide_defaults']
