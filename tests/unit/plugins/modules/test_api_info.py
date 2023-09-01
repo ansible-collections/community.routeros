@@ -7,7 +7,9 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 from ansible_collections.community.routeros.tests.unit.compat.mock import patch, MagicMock
-from ansible_collections.community.routeros.tests.unit.plugins.modules.fake_api import FakeLibRouterosError, Key, fake_ros_api
+from ansible_collections.community.routeros.tests.unit.plugins.modules.fake_api import (
+    FAKE_ROS_VERSION, FakeLibRouterosError, Key, fake_ros_api,
+)
 from ansible_collections.community.routeros.tests.unit.plugins.modules.utils import set_module_args, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
 from ansible_collections.community.routeros.plugins.modules import api_info
 
@@ -22,6 +24,10 @@ class TestRouterosApiInfoModule(ModuleTestCase):
         self.module.check_has_library = MagicMock()
         self.patch_create_api = patch('ansible_collections.community.routeros.plugins.modules.api_info.create_api', MagicMock(new=fake_ros_api))
         self.patch_create_api.start()
+        self.patch_get_api_version = patch(
+            'ansible_collections.community.routeros.plugins.modules.api_info.get_api_version',
+            MagicMock(return_value=FAKE_ROS_VERSION))
+        self.patch_get_api_version.start()
         self.module.Key = MagicMock(new=Key)
         self.config_module_args = {
             'username': 'admin',
@@ -30,6 +36,7 @@ class TestRouterosApiInfoModule(ModuleTestCase):
         }
 
     def tearDown(self):
+        self.patch_get_api_version.stop()
         self.patch_create_api.stop()
 
     def test_module_fail_when_required_args_missing(self):

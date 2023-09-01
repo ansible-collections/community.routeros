@@ -9,7 +9,7 @@ __metaclass__ = type
 from ansible_collections.community.routeros.plugins.module_utils._api_data import PATHS
 
 
-FAKE_ROS_VERSION = '7.0.0'
+FAKE_ROS_VERSION = '7.5.0'
 
 
 class FakeLibRouterosError(Exception):
