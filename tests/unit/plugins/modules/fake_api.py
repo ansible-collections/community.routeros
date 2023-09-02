@@ -169,8 +169,16 @@ class Path(object):
         self._new_id_counter = 0
         self._read_only = read_only
 
+    def _sanitize(self, entry):
+        entry = entry.copy()
+        for field, field_info in self._path_info.fields.items():
+            if field in entry:
+                if field_info.write_only:
+                    del entry[field]
+        return entry
+
     def __iter__(self):
-        return [entry.copy() for entry in self._values].__iter__()
+        return [self._sanitize(entry) for entry in self._values].__iter__()
 
     def _find_id(self, id, required=False):
         for index, entry in enumerate(self._values):
@@ -194,7 +202,15 @@ class Path(object):
         entry = {
             '.id': id,
         }
-        entry.update(kwargs)
+        for field, value in kwargs.items():
+            if field.startswith('!'):
+                field = field[1:]
+            if field not in self._path_info.fields:
+                raise ValueError('Trying to set unknown field "{field}"'.format(field=field))
+            field_info = self._path_info.fields[field]
+            if field_info.read_only:
+                raise ValueError('Trying to set read-only field "{field}"'.format(field=field))
+            entry[field] = value
         _normalize_entry(entry, self._path_info, on_create=True)
         self._values.append(entry)
         return id
@@ -223,6 +239,16 @@ class Path(object):
         entry = self._values[index]
         if entry.get('dynamic', False) or entry.get('builtin', False):
             raise Exception('Trying to update a dynamic or builtin entry')
+        for field in kwargs:
+            if field == '.id':
+                continue
+            if field.startswith('!'):
+                field = field[1:]
+            if field not in self._path_info.fields:
+                raise ValueError('Trying to update unknown field "{field}"'.format(field=field))
+            field_info = self._path_info.fields[field]
+            if field_info.read_only:
+                raise ValueError('Trying to update read-only field "{field}"'.format(field=field))
         entry.update(kwargs)
         _normalize_entry(entry, self._path_info)
 

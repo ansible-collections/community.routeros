@@ -169,7 +169,16 @@ class VersionedAPIData(object):
 
 
 class KeyInfo(object):
-    def __init__(self, _dummy=None, can_disable=False, remove_value=None, absent_value=None, default=None, required=False, automatically_computed_from=None):
+    def __init__(self,
+                 _dummy=None,
+                 can_disable=False,
+                 remove_value=None,
+                 absent_value=None,
+                 default=None,
+                 required=False,
+                 automatically_computed_from=None,
+                 read_only=False,
+                 write_only=False):
         if _dummy is not None:
             raise ValueError('KeyInfo() does not have positional arguments')
         if sum([required, default is not None or can_disable, automatically_computed_from is not None]) > 1:
@@ -180,12 +189,16 @@ class KeyInfo(object):
             raise ValueError('remove_value can only be specified if can_disable=True')
         if absent_value is not None and any([default is not None, automatically_computed_from is not None, can_disable]):
             raise ValueError('absent_value can not be combined with default, automatically_computed_from, can_disable=True, or absent_value')
+        if read_only and write_only:
+            raise ValueError('read_only and write_only cannot be used at the same time')
         self.can_disable = can_disable
         self.remove_value = remove_value
         self.automatically_computed_from = automatically_computed_from
         self.default = default
         self.required = required
         self.absent_value = absent_value
+        self.read_only = read_only
+        self.write_only = write_only
 
 
 def split_path(path):
