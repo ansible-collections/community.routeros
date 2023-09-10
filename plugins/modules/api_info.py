@@ -189,6 +189,7 @@ options:
         - tool mac-server
         - tool mac-server mac-winbox
         - tool mac-server ping
+        - tool netwatch
         - tool romon
         - tool sms
         - tool sniffer

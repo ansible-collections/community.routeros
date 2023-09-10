@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add support for the ``tool netwatch`` path in RouterOS 7 (https://github.com/ansible-collections/community.routeros/pull/216).
