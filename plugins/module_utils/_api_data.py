@@ -939,6 +939,19 @@ PATHS = {
             },
         ),
     ),
+    ('routing', 'table'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'name': KeyInfo(required=True),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(can_disable=True),
+                    'fib': KeyInfo(),
+                },
+            )),
+        ],
+    ),
     ('snmp', 'community'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
