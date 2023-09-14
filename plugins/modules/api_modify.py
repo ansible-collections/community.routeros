@@ -240,6 +240,11 @@ options:
       - remove
       - remove_as_much_as_possible
     default: ignore
+  handle_stratified:
+    description:
+        - TODO
+    type: bool
+    default: false
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -574,6 +579,11 @@ def prepare_for_add(entry, path_info):
 def sync_list(module, api, path, path_info):
     handle_absent_entries = module.params['handle_absent_entries']
     handle_entries_content = module.params['handle_entries_content']
+    handle_stratified = module.params['handle_stratified']
+
+    if handle_stratified and path_info.stratify_keys is None:
+        module.fail_json('For this path, handle_stratified cannot be True')
+
     if handle_absent_entries == 'remove':
         if handle_entries_content == 'ignore':
             module.fail_json('For this path, handle_absent_entries=remove cannot be combined with handle_entries_content=ignore')
@@ -643,7 +653,7 @@ def sync_list(module, api, path, path_info):
             new_data.extend(unmatched_old_entries)
 
     for key, entries in stratified_old_data.items():
-        if handle_absent_entries == 'remove':
+        if handle_absent_entries == 'remove' and not handle_stratified:
             remove_list.extend(entry['.id'] for index, entry in entries)
         else:
             new_data.extend(entries)
@@ -1027,6 +1037,7 @@ def main():
         data=dict(type='list', elements='dict', required=True),
         handle_absent_entries=dict(type='str', choices=['ignore', 'remove'], default='ignore'),
         handle_entries_content=dict(type='str', choices=['ignore', 'remove', 'remove_as_much_as_possible'], default='ignore'),
+        handle_stratified=dict(type='bool', default=False),
         ensure_order=dict(type='bool', default=False),
     )
     module_args.update(api_argument_spec())
