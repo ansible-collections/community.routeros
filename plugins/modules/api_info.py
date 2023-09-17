@@ -235,6 +235,13 @@ options:
     type: bool
     default: false
     version_added: 2.4.0
+  include_read_only:
+    description:
+      - Whether to include read-only fields.
+      - By default, they are not returned.
+    type: bool
+    default: false
+    version_added: 2.10.0
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -314,6 +321,7 @@ def main():
         hide_defaults=dict(type='bool', default=True),
         include_dynamic=dict(type='bool', default=False),
         include_builtin=dict(type='bool', default=False),
+        include_read_only=dict(type='bool', default=False),
     )
     module_args.update(api_argument_spec())
 
@@ -339,6 +347,7 @@ def main():
     hide_defaults = module.params['hide_defaults']
     include_dynamic = module.params['include_dynamic']
     include_builtin = module.params['include_builtin']
+    include_read_only = module.params['include_read_only']
     try:
         api_path = compose_api_path(api, path)
 
@@ -362,7 +371,10 @@ def main():
                     if k not in path_info.fields:
                         entry.pop(k)
             if handle_disabled != 'omit':
-                for k in path_info.fields:
+                for k, field_info in path_info.fields.items():
+                    if field_info.write_only:
+                        entry.pop(k, None)
+                        continue
                     if k not in entry:
                         if handle_disabled == 'exclamation':
                             k = '!%s' % k
@@ -373,6 +385,8 @@ def main():
                         entry.pop(k)
                 if field_info.absent_value and k not in entry:
                     entry[k] = field_info.absent_value
+                if not include_read_only and k in entry and field_info.read_only:
+                    entry.pop(k)
             result.append(entry)
 
         module.exit_json(result=result)

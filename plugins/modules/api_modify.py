@@ -24,6 +24,10 @@ description:
   - B(Note) that this module is still heavily in development, and only supports B(some) paths.
     If you want to support new paths, or think you found problems with existing paths, please first
     L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
+notes:
+  - If write-only fields are present in the path, the module is B(not idempotent) in a strict sense,
+    since it is not able to verify the current value of these fields. The behavior the module should
+    assume can be controlled with the O(handle_write_only) option.
 requirements:
   - Needs L(ordereddict,https://pypi.org/project/ordereddict) for Python 2.6
 extends_documentation_fragment:
@@ -234,12 +238,42 @@ options:
       - If V(remove), they are removed. If at least one cannot be removed, the module will fail.
       - If V(remove_as_much_as_possible), all that can be removed will be removed. The ones that
         cannot be removed will be kept.
+      - Note that V(remove) and V(remove_as_much_as_possible) do not apply to write-only fields.
     type: str
     choices:
       - ignore
       - remove
       - remove_as_much_as_possible
     default: ignore
+  handle_read_only:
+    description:
+      - How to handle values passed in for read-only fields.
+      - If V(ignore), they are not passed to the API.
+      - If V(validate), the values are not passed for creation, and for updating they are compared to the value returned for the object.
+        If they differ, the module fails.
+      - If V(error), the module will fail if read-only fields are provided.
+    type: str
+    choices:
+      - ignore
+      - validate
+      - error
+    default: error
+    version_added: 2.10.0
+  handle_write_only:
+    description:
+      - How to handle values passed in for write-only fields.
+      - If V(create_only), they are passed on creation, and ignored for updating.
+      - If V(always_update), they are always passed to the API. This means that if such a value is present,
+        the module will always result in C(changed) since there is no way to validate whether the value
+        actually changed.
+      - If V(error), the module will fail if write-only fields are provided.
+    type: str
+    choices:
+      - create_only
+      - always_update
+      - error
+    default: create_only
+    version_added: 2.10.0
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -386,6 +420,18 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
             continue
         if k not in old_entry and path_info.fields[k].default == v and not path_info.fields[k].can_disable:
             continue
+        key_info = path_info.fields[k]
+        if key_info.read_only:
+            # handle_read_only must be 'validate'
+            if old_entry.get(k) != v:
+                module.fail_json(
+                    msg='Read-only key "{key}" has value "{old_value}", but should have new value "{new_value}"{for_text}.'.format(
+                        key=k, old_value=old_entry.get(k), new_value=v, for_text=for_text))
+            continue
+        if key_info.write_only:
+            if module.params['handle_write_only'] == 'create_only':
+                # do not update this value
+                continue
         if k not in old_entry or old_entry[k] != v:
             modifications[k] = v
             updated_entry[k] = v
@@ -454,6 +500,18 @@ def essentially_same_weight(old_entry, new_entry, path_info, module):
     return weight
 
 
+def remove_read_only(entry, path_info):
+    to_remove = []
+    for real_k, v in entry.items():
+        k = real_k
+        if k.startswith('!'):
+            k = k[1:]
+        if path_info.fields[k].read_only:
+            to_remove.append(real_k)
+    for k in to_remove:
+        entry.pop(k)
+
+
 def format_pk(primary_keys, values):
     return ', '.join('{pk}="{value}"'.format(pk=pk, value=value) for pk, value in zip(primary_keys, values))
 
@@ -461,6 +519,7 @@ def format_pk(primary_keys, values):
 def polish_entry(entry, path_info, module, for_text):
     if '.id' in entry:
         entry.pop('.id')
+    to_remove = []
     for key, value in entry.items():
         real_key = key
         disabled_key = False
@@ -480,6 +539,16 @@ def polish_entry(entry, path_info, module, for_text):
         elif value is None:
             if not key_info.can_disable:
                 module.fail_json(msg='Key "{key}" must not be disabled (value null/~/None){for_text}.'.format(key=key, for_text=for_text))
+        if key_info.read_only:
+            if module.params['handle_read_only'] == 'error':
+                module.fail_json(msg='Key "{key}" is read-only{for_text}, and handle_read_only=error.'.format(key=key, for_text=for_text))
+            if module.params['handle_read_only'] == 'ignore':
+                to_remove.append(real_key)
+        if key_info.write_only:
+            if module.params['handle_write_only'] == 'error':
+                module.fail_json(msg='Key "{key}" is write-only{for_text}, and handle_write_only=error.'.format(key=key, for_text=for_text))
+    for key in to_remove:
+        entry.pop(key)
     for key, field_info in path_info.fields.items():
         if field_info.required and key not in entry:
             module.fail_json(msg='Key "{key}" must be present{for_text}.'.format(key=key, for_text=for_text))
@@ -635,6 +704,7 @@ def sync_list(module, api, path, path_info):
                 new_data.append((old_index, updated_entry))
                 new_entry['.id'] = old_entry['.id']
             else:
+                remove_read_only(new_entry, path_info)
                 create_list.append(new_entry)
 
         if handle_absent_entries == 'remove':
@@ -827,6 +897,7 @@ def sync_with_primary_keys(module, api, path, path_info):
                     for primary_key in primary_keys
                 ]),
             ))
+        remove_read_only(new_entry, path_info)
         create_list.append(new_entry)
         new_entry = new_entry.copy()
         for key in list(new_entry):
@@ -1028,6 +1099,8 @@ def main():
         handle_absent_entries=dict(type='str', choices=['ignore', 'remove'], default='ignore'),
         handle_entries_content=dict(type='str', choices=['ignore', 'remove', 'remove_as_much_as_possible'], default='ignore'),
         ensure_order=dict(type='bool', default=False),
+        handle_read_only=dict(type='str', default='error', choices=['ignore', 'validate', 'error']),
+        handle_write_only=dict(type='str', default='create_only', choices=['create_only', 'always_update', 'error']),
     )
     module_args.update(api_argument_spec())
 

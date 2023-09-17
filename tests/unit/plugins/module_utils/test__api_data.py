@@ -99,6 +99,10 @@ def test_key_info_errors():
         KeyInfo(remove_value='')
     assert exc.value.args[0] == 'remove_value can only be specified if can_disable=True'
 
+    with pytest.raises(ValueError) as exc:
+        KeyInfo(read_only=True, write_only=True)
+    assert exc.value.args[0] == 'read_only and write_only cannot be used at the same time'
+
 
 SPLITTED_PATHS = [
     ('', [], ''),
