@@ -59,11 +59,11 @@ class APIData(object):
         for other_version, comparator, data in self.versioned:
             if other_version == '*' and comparator == '*':
                 self._current = data.specialize_for_version(api_version)
-                return self._current.fully_supported
+                return self._current.fully_understood
             other_api_version = LooseVersion(other_version)
             if _compare(api_version, other_api_version, comparator):
                 self._current = data.specialize_for_version(api_version)
-                return self._current.fully_supported
+                return self._current.fully_understood
         self._current = None
         return False
 
