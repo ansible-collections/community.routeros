@@ -370,7 +370,10 @@ def main():
                     if k not in path_info.fields:
                         entry.pop(k)
             if handle_disabled != 'omit':
-                for k in path_info.fields:
+                for k, field_info in path_info.fields.items():
+                    if field_info.write_only:
+                        entry.pop(k, None)
+                        continue
                     if k not in entry:
                         if handle_disabled == 'exclamation':
                             k = '!%s' % k
