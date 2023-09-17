@@ -287,13 +287,27 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-include_read_only"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-include-read-only"><strong>include_read_only</strong></p>
+<a class="ansibleOptionLink" href="#parameter-include_read_only" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+<p><span class="ansible-option-versionadded">added in community.routeros 2.10.0</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Whether to include read-only fields.</p>
+<p>By default, they are not returned.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-password"><strong>password</strong></p>
 <a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>RouterOS user password.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-path"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-path"><strong>path</strong></p>
 <a class="ansibleOptionLink" href="#parameter-path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -458,7 +472,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-port"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-port"><strong>port</strong></p>
 <a class="ansibleOptionLink" href="#parameter-port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -466,7 +480,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p>Defaults are <code class="ansible-value docutils literal notranslate"><span class="pre">8728</span></code> for the HTTP API, and <code class="ansible-value docutils literal notranslate"><span class="pre">8729</span></code> for the HTTPS API.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-timeout"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-timeout"><strong>timeout</strong></p>
 <a class="ansibleOptionLink" href="#parameter-timeout" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 <p><span class="ansible-option-versionadded">added in community.routeros 2.3.0</span></p>
@@ -475,7 +489,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">10</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-tls"></div>
 <div class="ansibleOptionAnchor" id="parameter-ssl"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-tls"><span id="ansible-collections-community-routeros-api-info-module-parameter-ssl"></span><strong>tls</strong></p>
 <a class="ansibleOptionLink" href="#parameter-tls" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: ssl</span></p>
@@ -489,7 +503,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-unfiltered"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-unfiltered"><strong>unfiltered</strong></p>
 <a class="ansibleOptionLink" href="#parameter-unfiltered" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -502,14 +516,14 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-username"><strong>username</strong></p>
 <a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>RouterOS login user.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-validate_cert_hostname"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-validate-cert-hostname"><strong>validate_cert_hostname</strong></p>
 <a class="ansibleOptionLink" href="#parameter-validate_cert_hostname" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 <p><span class="ansible-option-versionadded">added in community.routeros 1.2.0</span></p>
@@ -523,7 +537,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-validate_certs"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-validate-certs"><strong>validate_certs</strong></p>
 <a class="ansibleOptionLink" href="#parameter-validate_certs" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 <p><span class="ansible-option-versionadded">added in community.routeros 1.2.0</span></p>
