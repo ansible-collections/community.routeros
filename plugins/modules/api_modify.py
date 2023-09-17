@@ -157,6 +157,7 @@ options:
         - mpls ldp
         - port firmware
         - ppp aaa
+        - ppp profile
         - queue interface
         - queue tree
         - radius incoming
