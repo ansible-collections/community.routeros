@@ -3467,6 +3467,28 @@ PATHS = {
             },
         ),
     ),
+    ('routing', 'bgp', 'connection'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'as': KeyInfo(),
+                'name': KeyInfo(required=True),
+                'connect': KeyInfo(default=True),
+                'listen': KeyInfo(default=True),
+                'local.address': KeyInfo(),
+                'local.port': KeyInfo(),
+                'local.role': KeyInfo(required=True),
+                'local.ttl': KeyInfo(),
+                'remote.address': KeyInfo(required=True),
+                'remote.port': KeyInfo(),
+                'remote.as': KeyInfo(),
+                'remote.allowed-as': KeyInfo(),
+                'remote.ttl': KeyInfo(),
+                'tcp-md5-key': KeyInfo(),
+                'templates': KeyInfo(),
+            },
+        ),
+    ),
     ('routing', 'bgp', 'instance'): APIData(
         unversioned=VersionedAPIData(
             fixed_entries=True,
