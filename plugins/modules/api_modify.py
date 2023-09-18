@@ -204,6 +204,7 @@ options:
         - tool sms
         - tool sniffer
         - tool traffic-generator
+        - user
         - user aaa
         - user group
         - user settings

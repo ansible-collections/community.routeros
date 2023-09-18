@@ -3282,6 +3282,20 @@ PATHS = {
             },
         ),
     ),
+    ('user',): APIData(
+        unversioned=VersionedAPIData(
+            primary_keys=('name', ),
+            fully_understood=True,
+            fields={
+                'address': KeyInfo(),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'disabled': KeyInfo(default=False),
+                'group': KeyInfo(),
+                'name': KeyInfo(),
+                'password': KeyInfo(write_only=True),
+            },
+        ),
+    ),
     ('user', 'aaa'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
