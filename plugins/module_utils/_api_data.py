@@ -2840,6 +2840,18 @@ PATHS = {
             },
         ),
     ),
+    ('routing', 'id'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'disabled': KeyInfo(default=False),
+                'id': KeyInfo(),
+                'name': KeyInfo(),
+                'select-dynamic-id': KeyInfo(),
+                'select-from-vrf': KeyInfo(),
+            },
+        ),
+    ),
     ('routing', 'bfd', 'interface'): APIData(
         unversioned=VersionedAPIData(
             unknown_mechanism=True,

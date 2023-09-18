@@ -155,6 +155,7 @@ options:
         - routing bgp instance
         - routing filter rule
         - routing filter select-rule
+        - routing id
         - routing mme
         - routing ospf area
         - routing ospf area range
