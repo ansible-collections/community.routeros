@@ -2920,8 +2920,6 @@ PATHS = {
             fields={
                 'contact': KeyInfo(default=''),
                 'enabled': KeyInfo(default=False),
-                'engine-id': KeyInfo(default=''),
-                'engine-id-suffix': KeyInfo(default=''),
                 'location': KeyInfo(default=''),
                 'src-address': KeyInfo(default='::'),
                 'trap-community': KeyInfo(default='public'),
@@ -2930,6 +2928,11 @@ PATHS = {
                 'trap-version': KeyInfo(default=1),
                 'trap-interfaces': KeyInfo(default=''),
             },
+            versioned_fields=[
+                ([('7.10', '<')], 'engine-id', KeyInfo(default='')),
+                ([('7.10', '>=')], 'engine-id', KeyInfo(read_only=True)),
+                ([('7.10', '>=')], 'engine-id-suffix', KeyInfo(default='')),
+            ],
         ),
     ),
     ('system', 'clock'): APIData(
