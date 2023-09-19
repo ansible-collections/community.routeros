@@ -108,6 +108,8 @@ options:
         - ip dhcp-server config
         - ip dhcp-server lease
         - ip dhcp-server network
+        - ip dhcp-server option
+        - ip dhcp-server option sets
         - ip dns
         - ip dns static
         - ip firewall address-list
