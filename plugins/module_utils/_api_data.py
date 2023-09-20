@@ -2818,6 +2818,20 @@ PATHS = {
             },
         ),
     ),
+    ('port', 'remote-access'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'allowed-addresses': KeyInfo(default='0.0.0.0/0'),
+                'channel': KeyInfo(default=0),
+                'disabled': KeyInfo(default=False),
+                'log-file': KeyInfo(default=""),
+                'port': KeyInfo(required=True),
+                'protocol': KeyInfo(default='rfc2217'),
+                'tcp-port': KeyInfo(default=0),
+            },
+        ),
+    ),
     ('ppp', 'aaa'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,

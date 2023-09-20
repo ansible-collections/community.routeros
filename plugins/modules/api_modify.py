@@ -156,6 +156,7 @@ options:
         - mpls
         - mpls ldp
         - port firmware
+        - port remote-access
         - ppp aaa
         - ppp profile
         - queue interface
