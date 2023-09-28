@@ -276,8 +276,8 @@ releases:
         in bytes (those will still appear as human readable in the ROS CLI) (https://github.com/ansible-collections/community.routeros/pull/131).
       - api_modify, api_info - ``routing ospf area``, ``routing ospf area range``,
         ``routing ospf instance``, ``routing ospf interface-template`` paths are not
-        fully implemeted for ROS6 due to the significat changes between ROS6 and ROS7
-        (https://github.com/ansible-collections/community.routeros/pull/131).
+        fully implemented for ROS6 due to the significant changes between ROS6 and
+        ROS7 (https://github.com/ansible-collections/community.routeros/pull/131).
       minor_changes:
       - api* modules - Add new option ``force_no_cert`` to connect with ADH ciphers
         (https://github.com/ansible-collections/community.routeros/pull/124).
