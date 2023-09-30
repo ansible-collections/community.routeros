@@ -95,6 +95,11 @@ options:
         - interface wireless security-profiles
         - interface wireless sniffer
         - interface wireless snooper
+        - interface wifiwave2
+        - interface wifiwave2 channel
+        - interface wifiwave2 configuration
+        - interface wifiwave2 datapath
+        - interface wifiwave2 security
         - iot modbus
         - ip accounting
         - ip accounting web-access
