@@ -3156,6 +3156,33 @@ PATHS = {
             },
         ),
     ),
+    ('tool', 'graphing', 'interface'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'allow-address': KeyInfo(default='0.0.0.0/0'),
+                    'interface': KeyInfo(default='all'),
+                    'store-on-disk': KeyInfo(default=True),
+                },
+            )),
+        ],
+    ),
+    ('tool', 'graphing', 'resource'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'allow-address': KeyInfo(default='0.0.0.0/0'),
+                    'store-on-disk': KeyInfo(default=True),
+                },
+            )),
+        ],
+    ),
     ('tool', 'mac-server'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,

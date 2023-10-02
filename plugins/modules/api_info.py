@@ -188,6 +188,8 @@ options:
         - tool bandwidth-server
         - tool e-mail
         - tool graphing
+        - tool graphing interface
+        - tool graphing resource
         - tool mac-server
         - tool mac-server mac-winbox
         - tool mac-server ping
