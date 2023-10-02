@@ -2393,6 +2393,18 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'upnp', 'interfaces'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('interface', 'type'),
+            fields={
+                'disabled': KeyInfo(default=False),
+                'interface': KeyInfo(),
+                'type': KeyInfo(),
+                'forced-ip': KeyInfo(can_disable=True),
+            },
+        ),
+    ),
     ('ipv6', 'dhcp-client'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,

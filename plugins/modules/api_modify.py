@@ -140,6 +140,7 @@ options:
         - ip traffic-flow ipfix
         - ip traffic-flow target
         - ip upnp
+        - ip upnp interfaces
         - ipv6 address
         - ipv6 dhcp-client
         - ipv6 dhcp-server
