@@ -1,0 +1,2 @@
+minor_changes:
+  - api_modify, api_info - support API paths ``routing id``, ``routing bgp connection`` (https://github.com/ansible-collections/community.routeros/pull/220).
