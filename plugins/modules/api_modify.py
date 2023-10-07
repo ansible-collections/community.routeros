@@ -142,6 +142,7 @@ options:
         - ip traffic-flow ipfix
         - ip traffic-flow target
         - ip upnp
+        - ip upnp interfaces
         - ipv6 address
         - ipv6 dhcp-client
         - ipv6 dhcp-server
@@ -199,6 +200,8 @@ options:
         - tool bandwidth-server
         - tool e-mail
         - tool graphing
+        - tool graphing interface
+        - tool graphing resource
         - tool mac-server
         - tool mac-server mac-winbox
         - tool mac-server ping

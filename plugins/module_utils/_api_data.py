@@ -2415,6 +2415,18 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'upnp', 'interfaces'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('interface', 'type'),
+            fields={
+                'disabled': KeyInfo(default=False),
+                'interface': KeyInfo(),
+                'type': KeyInfo(),
+                'forced-ip': KeyInfo(can_disable=True),
+            },
+        ),
+    ),
     ('ipv6', 'dhcp-client'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
@@ -3179,6 +3191,33 @@ PATHS = {
                 'store-every': KeyInfo(default='5min'),
             },
         ),
+    ),
+    ('tool', 'graphing', 'interface'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'allow-address': KeyInfo(default='0.0.0.0/0'),
+                    'interface': KeyInfo(default='all'),
+                    'store-on-disk': KeyInfo(default=True),
+                },
+            )),
+        ],
+    ),
+    ('tool', 'graphing', 'resource'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'allow-address': KeyInfo(default='0.0.0.0/0'),
+                    'store-on-disk': KeyInfo(default=True),
+                },
+            )),
+        ],
     ),
     ('tool', 'mac-server'): APIData(
         unversioned=VersionedAPIData(
