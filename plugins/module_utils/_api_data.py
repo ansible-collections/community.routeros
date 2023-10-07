@@ -1847,6 +1847,28 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'dhcp-server', 'option'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('name',),
+            fields={
+                'code': KeyInfo(required=True),
+                'name': KeyInfo(),
+                'value': KeyInfo(default=''),
+                'force': KeyInfo(),
+            },
+        ),
+    ),
+    ('ip', 'dhcp-server', 'option', 'sets'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('name',),
+            fields={
+                'name': KeyInfo(required=True),
+                'options': KeyInfo(),
+            },
+        ),
+    ),
     ('ip', 'dns'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
