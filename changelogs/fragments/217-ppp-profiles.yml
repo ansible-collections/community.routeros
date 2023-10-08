@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - finalize fields for the ``ppp profile`` path and enable it (https://github.com/ansible-collections/community.routeros/pull/217).

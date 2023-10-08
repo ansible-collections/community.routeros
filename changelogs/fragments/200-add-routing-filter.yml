@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - add support for the ``routing filter rule`` and ``routing filter select-rule`` paths (https://github.com/ansible-collections/community.routeros/pull/200).

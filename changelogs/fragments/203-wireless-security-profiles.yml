@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - finalize fields for the ``interface wireless security-profiles`` path and enable it (https://github.com/ansible-collections/community.routeros/pull/203).
