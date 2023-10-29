@@ -224,7 +224,7 @@ EXAMPLES = '''
   ansible.builtin.debug:
     msg: '{{ extended_queryout }}'
 
-- name: Update example - ether2 ip addres with ".id = *14"
+- name: Update example - ether2 ip address with ".id = *14"
   community.routeros.api:
     hostname: "{{ hostname }}"
     password: "{{ password }}"

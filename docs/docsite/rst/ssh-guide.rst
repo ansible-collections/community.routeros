@@ -10,17 +10,17 @@ How to connect to RouterOS devices with SSH
 
 The collection offers two modules to connect to RouterOS devies with SSH:
 
-- The :ref:`community.routeros.facts module <ansible_collections.community.routeros.facts_module>` gathers facts about a RouterOS device;
-- The :ref:`community.routeros.command module <ansible_collections.community.routeros.command_module>` executes commands on a RouterOS device.
+- The :ansplugin:`community.routeros.facts module <community.routeros.facts#module>` gathers facts about a RouterOS device;
+- The :ansplugin:`community.routeros.command module <community.routeros.command#module>` executes commands on a RouterOS device.
 
-The modules need the :ref:`ansible.netcommon.network_cli connection plugin <ansible_collections.ansible.netcommon.network_cli_connection>` for this.
+The modules need the :ansplugin:`ansible.netcommon.network_cli connection plugin <ansible.netcommon.network_cli#connection>` for this.
 
 Important notes
 ---------------
 
 1. The SSH-based modules do not support arbitrary symbols in the router's identity. If you are having trouble connecting to your device, please make sure that your MikroTik's identity contains only alphanumeric characters and dashes. Also make sure that the identity string is not longer than 19 characters (`see issue for details <https://github.com/ansible-collections/community.routeros/issues/31>`__). Similar problems can happen for unsupported characters in your username.
 
-2. The :ref:`community.routeros.command module <ansible_collections.community.routeros.command_module>` does not support nesting commands and expects every command to start with a forward slash (``/``). Running the following command will produce an error:
+2. The :ansplugin:`community.routeros.command module <community.routeros.command#module>` does not support nesting commands and expects every command to start with a forward slash (``/``). Running the following command will produce an error:
 
    .. code-block:: yaml+jinja
 
@@ -29,9 +29,9 @@ Important notes
              - /ip
              - print
 
-3. When using the :ref:`community.routeros.command module <ansible_collections.community.routeros.command_module>` module, make sure to not specify too long commands. Alternatively, add something like ``+cet512w`` to the username (replace ``admin`` with ``admin+cet512w``) to tell RouterOS to not wrap before 512 characters in a line (`see issue for details <https://github.com/ansible-collections/community.routeros/issues/6>`__).
+3. When using the :ansplugin:`community.routeros.command module <community.routeros.command#module>` module, make sure to not specify too long commands. Alternatively, add something like ``+cet512w`` to the username (replace ``admin`` with ``admin+cet512w``) to tell RouterOS to not wrap before 512 characters in a line (`see issue for details <https://github.com/ansible-collections/community.routeros/issues/6>`__).
 
-4. The :ref:`ansible.netcommon.network_cli connection plugin <ansible_collections.ansible.netcommon.network_cli_connection>` uses `paramiko <https://pypi.org/project/paramiko/>`_ by default to connect to devices with SSH. You can set its :ansopt:`ansible.netcommon.network_cli#connection:ssh_type` option to :ansval:`libssh` to use `ansible-pylibssh <https://pypi.org/project/ansible-pylibssh/>`_ instead, which offers Python bindings to libssh. See its documentation for details.
+4. The :ansplugin:`ansible.netcommon.network_cli connection plugin <ansible.netcommon.network_cli#connection>` uses `paramiko <https://pypi.org/project/paramiko/>`_ by default to connect to devices with SSH. You can set its :ansopt:`ansible.netcommon.network_cli#connection:ssh_type` option to :ansval:`libssh` to use `ansible-pylibssh <https://pypi.org/project/ansible-pylibssh/>`_ instead, which offers Python bindings to libssh. See its documentation for details.
 
 5. User is **not allowed** to login via SSH by password to modern Mikrotik if SSH key for the user is added!
 
@@ -51,7 +51,7 @@ An example inventory ``hosts`` file for a RouterOS device is as follows:
     ansible_user=admin
     ansible_ssh_pass=test1234
 
-This tells Ansible that you have a RouterOS device called ``router`` with IP ``192.168.2.1``. Ansible should use the :ref:`ansible.netcommon.network_cli connection plugin <ansible_collections.ansible.netcommon.network_cli_connection>` together with the the :ref:`community.routeros.routeros cliconf plugin <ansible_collections.community.routeros.routeros_cliconf>`. The credentials are stored as ``ansible_user`` and ``ansible_ssh_pass`` in the inventory.
+This tells Ansible that you have a RouterOS device called ``router`` with IP ``192.168.2.1``. Ansible should use the :ansplugin:`ansible.netcommon.network_cli connection plugin <ansible.netcommon.network_cli#connection>` together with the the :ansplugin:`community.routeros.routeros cliconf plugin <community.routeros.routeros#cliconf>`. The credentials are stored as ``ansible_user`` and ``ansible_ssh_pass`` in the inventory.
 
 Connecting to the device
 ------------------------

@@ -104,7 +104,7 @@ def test_key_info_errors():
     assert exc.value.args[0] == 'read_only and write_only cannot be used at the same time'
 
 
-SPLITTED_PATHS = [
+SPLIT_PATHS = [
     ('', [], ''),
     ('  ip  ', ['ip'], 'ip'),
     ('ip', ['ip'], 'ip'),
@@ -112,7 +112,7 @@ SPLITTED_PATHS = [
 ]
 
 
-@pytest.mark.parametrize("joined_input, splitted, joined_output", SPLITTED_PATHS)
-def test_join_split_path(joined_input, splitted, joined_output):
-    assert split_path(joined_input) == splitted
-    assert join_path(splitted) == joined_output
+@pytest.mark.parametrize("joined_input, split, joined_output", SPLIT_PATHS)
+def test_join_split_path(joined_input, split, joined_output):
+    assert split_path(joined_input) == split
+    assert join_path(split) == joined_output

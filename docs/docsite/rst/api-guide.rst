@@ -8,7 +8,7 @@
 How to connect to RouterOS devices with the RouterOS API
 ========================================================
 
-You can use the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` to connect to a RouterOS device with the RouterOS API. More specific module to modify certain entries are the :ref:`community.routeros.api_modify <ansible_collections.community.routeros.api_modify_module>` and :ref:`community.routeros.api_find_and_modify <ansible_collections.community.routeros.api_find_and_modify_module>` modules. The :ref:`community.routeros.api_info module <ansible_collections.community.routeros.api_info_module>` allows to retrieve information on specific predefined paths that can be used as input for the ``community.routeros.api_modify`` module, and the :ref:`community.routeros.api_facts module <ansible_collections.community.routeros.api_facts_module>` allows to retrieve Ansible facts using the RouterOS API.
+You can use the :ansplugin:`community.routeros.api module <community.routeros.api#module>` to connect to a RouterOS device with the RouterOS API. More specific module to modify certain entries are the :ansplugin:`community.routeros.api_modify <community.routeros.api_modify#module>` and :ansplugin:`community.routeros.api_find_and_modify <community.routeros.api_find_and_modify#module>` modules. The :ansplugin:`community.routeros.api_info module <community.routeros.api_info#module>` allows to retrieve information on specific predefined paths that can be used as input for the :ansplugin:`community.routeros.api_modify <community.routeros.api_modify#module>` module, and the :ansplugin:`community.routeros.api_facts module <community.routeros.api_facts#module>` allows to retrieve Ansible facts using the RouterOS API.
 
 No special setup is needed; the module needs to be run on a host that can connect to the device's API. The most common case is that the module is run on ``localhost``, either by using ``hosts: localhost`` in the playbook, or by using ``delegate_to: localhost`` for the task. The following example shows how to run the equivalent of ``/ip address print``:
 
@@ -59,7 +59,7 @@ This results in the following output:
     PLAY RECAP *******************************************************************************************************
     localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
-Check out the documenation of the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` for details on the options.
+Check out the documentation of the :ansplugin:`community.routeros.api module <community.routeros.api#module>` for details on the options.
 
 Using the ``community.routeros.api`` module defaults group
 ----------------------------------------------------------
@@ -110,7 +110,7 @@ It is recommended to always use :ansopt:`tls=true` when connecting with the API,
 :force_no_cert: Setting to :ansval:`true` connects to the device without a certificate. **This is discouraged to use in production and is susceptible to Man-in-the-Middle attacks**, but might be useful when setting the device up. The default value is :ansval:`false`.
 :validate_certs: Setting to :ansval:`false` disables any certificate validation. **This is discouraged to use in production**, but is needed when setting the device up. The default value is :ansval:`true`.
 :validate_cert_hostname: Setting to :ansval:`false` (default) disables hostname verification during certificate validation. This is needed if the hostnames specified in the certificate do not match the hostname used for connecting (usually the device's IP). It is recommended to set up the certificate correctly and set this to :ansval:`true`; the default :ansval:`false` is chosen for backwards compatibility to an older version of the module.
-:ca_path: If you are not using a commerically trusted CA certificate to sign your device's certificate, or have not included your CA certificate in Python's truststore, you need to point this option to the CA certificate.
+:ca_path: If you are not using a commercially trusted CA certificate to sign your device's certificate, or have not included your CA certificate in Python's truststore, you need to point this option to the CA certificate.
 
 We recommend to create a CA certificate that is used to sign the certificates for your RouterOS devices, and have the certificates include the correct hostname(s), including the IP of the device. That way, you can fully enable TLS and be sure that you always talk to the correct device.
 
@@ -124,7 +124,7 @@ Installing a certificate on a MikroTik router
 
 Installing the certificate is best done with the SSH connection. (See the :ref:`ansible_collections.community.routeros.docsite.ssh-guide` guide for more information.) Once the certificate has been installed, and the HTTPS API enabled, it's easier to work with the API, since it has a quite a few less problems, and returns data as JSON objects instead of text you first have to parse.
 
-First you have to convert the certificate and its private key to a `PKCS #12 bundle <https://en.wikipedia.org/wiki/PKCS_12>`_. This can be done with the :ref:`community.crypto.openssl_pkcs12 <ansible_collections.community.crypto.openssl_pkcs12_module>`. The following playbook assumes that the certificate is available as ``keys/{{ inventory_hostname }}.pem``, and its private key is available as ``keys/{{ inventory_hostname }}.key``. It generates a random passphrase to protect the PKCS#12 file.
+First you have to convert the certificate and its private key to a `PKCS #12 bundle <https://en.wikipedia.org/wiki/PKCS_12>`_. This can be done with the :ansplugin:`community.crypto.openssl_pkcs12 <community.crypto.openssl_pkcs12#module>`. The following playbook assumes that the certificate is available as ``keys/{{ inventory_hostname }}.pem``, and its private key is available as ``keys/{{ inventory_hostname }}.key``. It generates a random passphrase to protect the PKCS#12 file.
 
 .. code-block:: yaml+jinja
 
@@ -186,7 +186,7 @@ First you have to convert the certificate and its private key to a `PKCS #12 bun
 
 The playbook also assumes that ``admin_network`` describes the network from which the HTTPS and API interface can be accessed. This can be for example ``192.168.1.0/24``.
 
-When this playbook completed successfully, you should be able to use the HTTPS admin interface (reachable in a browser from ``https://192.168.1.1/``, with the correct IP inserted), as well as the :ref:`community.routeros.api module <ansible_collections.community.routeros.api_module>` module with TLS and certificate validation enabled:
+When this playbook completed successfully, you should be able to use the HTTPS admin interface (reachable in a browser from ``https://192.168.1.1/``, with the correct IP inserted), as well as the :ansplugin:`community.routeros.api module <community.routeros.api#module>` module with TLS and certificate validation enabled:
 
 .. code-block:: yaml+jinja
 
