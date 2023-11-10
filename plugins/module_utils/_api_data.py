@@ -1563,7 +1563,7 @@ PATHS = {
                 'radio-name': KeyInfo(),
                 'rate-selection': KeyInfo(default='advanced'),
                 'rate-set': KeyInfo(default='default'),
-                'running': KeyInfo(default=False),
+                'running': KeyInfo(default=False, read_only=True),
                 'rx-chains': KeyInfo(default='0,1'),
                 'scan-list': KeyInfo(default='default'),
                 'secondary-frequency': KeyInfo(default=''),
