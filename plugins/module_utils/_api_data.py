@@ -3610,7 +3610,6 @@ PATHS = {
                 'output.no-early-cut': KeyInfo(),
                 'output.redistribute': KeyInfo(),
                 'output.remote-private-as': KeyInfo(),
-                'output.network': KeyInfo(),
                 'remote.address': KeyInfo(required=True),
                 'remote.port': KeyInfo(),
                 'remote.as': KeyInfo(),
