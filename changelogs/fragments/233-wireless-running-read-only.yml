@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - mark the ``interface wireless`` parameter ``running`` as read-only (https://github.com/ansible-collections/community.routeros/pull/233).
