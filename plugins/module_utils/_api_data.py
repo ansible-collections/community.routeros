@@ -1873,6 +1873,11 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.8', '>=')], 'doh-max-concurrent-queries', KeyInfo(default=50)),
+                ([('7.8', '>=')], 'doh-max-server-connections', KeyInfo(default=5)),
+                ([('7.8', '>=')], 'doh-timeout', KeyInfo(default='5s')),
+            ],
             fields={
                 'allow-remote-requests': KeyInfo(),
                 'cache-max-ttl': KeyInfo(default='1w'),
