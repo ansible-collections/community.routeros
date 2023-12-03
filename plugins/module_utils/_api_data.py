@@ -1495,6 +1495,86 @@ PATHS = {
             )),
         ],
     ),
+    ('interface', 'wifiwave2', 'aaa'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                primary_keys=('name', ),
+                fields={
+                    'called-format': KeyInfo(can_disable=True),
+                    'calling-format': KeyInfo(can_disable=True),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=True),
+                    'interim-update': KeyInfo(can_disable=True),
+                    'mac-caching': KeyInfo(can_disable=True),
+                    'name': KeyInfo(),
+                    'nas-identifier': KeyInfo(can_disable=True),
+                    'password-format': KeyInfo(can_disable=True),
+                    'username-format': KeyInfo(can_disable=True),
+                },
+            )),
+        ],
+    ),
+    ('interface', 'wifiwave2', 'access-list'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'action': KeyInfo(can_disable=True),
+                    'allow-signal-out-of-range': KeyInfo(can_disable=True),
+                    'client-isolation': KeyInfo(can_disable=True),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=True),
+                    'interface': KeyInfo(can_disable=True),
+                    'mac-address': KeyInfo(can_disable=True),
+                    'mac-address-mask': KeyInfo(can_disable=True),
+                    'passphrase': KeyInfo(can_disable=True),
+                    'radius-accounting': KeyInfo(can_disable=True),
+                    'signal-range': KeyInfo(can_disable=True),
+                    'ssid-regexp': KeyInfo(),
+                    'time': KeyInfo(can_disable=True),
+                    'vlan-id': KeyInfo(can_disable=True),
+                },
+            )),
+        ],
+    ),
+    ('interface', 'wifiwave2', 'cap'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                fields={
+                    'caps-man-addresses': KeyInfo(default=''),
+                    'caps-man-certificate-common-names': KeyInfo(default=''),
+                    'caps-man-names': KeyInfo(default=''),
+                    'certificate': KeyInfo(default='none'),
+                    'discovery-interfaces': KeyInfo(default=''),
+                    'enabled': KeyInfo(default=False),
+                    'lock-to-caps-man': KeyInfo(default=False),
+                    'slaves-datapath': KeyInfo(),
+                    'slaves-static': KeyInfo(),
+                },
+            )),
+        ],
+    ),
+    ('interface', 'wifiwave2', 'capsman'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                fields={
+                    'ca-certificate': KeyInfo(default=''),
+                    'certificate': KeyInfo(default='none'),
+                    'enabled': KeyInfo(default=False),
+                    'package-path': KeyInfo(default=''),
+                    'require-peer-certificate': KeyInfo(default=False),
+                    'upgrade-policy': KeyInfo(default='none'),
+                    'interfaces': KeyInfo(default=''),
+                },
+            )),
+        ],
+    ),
     ('interface', 'wifiwave2', 'channel'): APIData(
         versioned=[
             ('7.11', '>=', VersionedAPIData(
@@ -1556,7 +1636,68 @@ PATHS = {
                 },
             )),
         ],
-    ),    
+    ),
+    ('interface', 'wifiwave2', 'interworking'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('name', ),
+                fields={
+                    '3gpp-info': KeyInfo(),
+                    'authentication-types': KeyInfo(),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'connection-capabilities': KeyInfo(),
+                    'disabled': KeyInfo(default=False),
+                    'domain-names': KeyInfo(),
+                    'esr': KeyInfo(),
+                    'hessid': KeyInfo(),
+                    'hotspot20': KeyInfo(),
+                    'hotspot20-dgaf': KeyInfo(),
+                    'internet': KeyInfo(),
+                    'ipv4-availability': KeyInfo(),
+                    'ipv6-availability': KeyInfo(),
+                    'name': KeyInfo(),
+                    'network-type': KeyInfo(),
+                    'operational-classes': KeyInfo(),
+                    'operator-names': KeyInfo(),
+                    'realms': KeyInfo(),
+                    'roaming-ois': KeyInfo(),
+                    'uesa': KeyInfo(),
+                    'venue': KeyInfo(),
+                    'venue-names': KeyInfo(),
+                    'wan-at-capacity': KeyInfo(),
+                    'wan-downlink': KeyInfo(),
+                    'wan-downlink-load': KeyInfo(),
+                    'wan-measurement-duration': KeyInfo(),
+                    'wan-status': KeyInfo(),
+                    'wan-symmetric': KeyInfo(),
+                    'wan-uplink': KeyInfo(),
+                    'wan-uplink-load': KeyInfo(),
+                },
+            )),
+        ],
+    ),
+    ('interface', 'wifiwave2', 'provisioning'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('action', ),
+                fields={
+                    'action': KeyInfo(default='none'),
+                    'address-ranges': KeyInfo(),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'common-name-regexp': KeyInfo(),
+                    'disabled': KeyInfo(default=False),
+                    'identity-regexp': KeyInfo(),
+                    'master-configuration': KeyInfo(),
+                    'name-format': KeyInfo(),
+                    'radio-mac': KeyInfo(),
+                    'slave-configurations': KeyInfo(),
+                    'supported-bands': KeyInfo(),
+                },
+            )),
+        ],
+    ),
     ('interface', 'wifiwave2', 'security'): APIData(
         versioned=[
             ('7.11', '>=', VersionedAPIData(
@@ -1594,6 +1735,22 @@ PATHS = {
                     'sae-max-failure-rate': KeyInfo(can_disable=True),
                     'sae-pwe': KeyInfo(default='both'),
                     'wps': KeyInfo(default='push-button'),
+                },
+            )),
+        ],
+    ),
+    ('interface', 'wifiwave2', 'security'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('name', ),
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'name': KeyInfo(),
+                    'neighbor-group': KeyInfo(),
+                    'rrm': KeyInfo(),
+                    'wnm': KeyInfo(),
                 },
             )),
         ],
