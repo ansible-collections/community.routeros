@@ -87,6 +87,18 @@ options:
         - interface sstp-server server
         - interface vlan
         - interface vrrp
+        - interface wifiwave2
+        - interface wifiwave2 aaa
+        - interface wifiwave2 access-list
+        - interface wifiwave2 cap
+        - interface wifiwave2 capsman
+        - interface wifiwave2 channel
+        - interface wifiwave2 configuration
+        - interface wifiwave2 datapath
+        - interface wifiwave2 interworking
+        - interface wifiwave2 provisioning
+        - interface wifiwave2 security
+        - interface wifiwave2 steering
         - interface wireguard
         - interface wireguard peers
         - interface wireless
@@ -95,11 +107,6 @@ options:
         - interface wireless security-profiles
         - interface wireless sniffer
         - interface wireless snooper
-        - interface wifiwave2
-        - interface wifiwave2 channel
-        - interface wifiwave2 configuration
-        - interface wifiwave2 datapath
-        - interface wifiwave2 security
         - iot modbus
         - ip accounting
         - ip accounting web-access

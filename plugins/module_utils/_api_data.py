@@ -1498,7 +1498,6 @@ PATHS = {
     ('interface', 'wifiwave2', 'aaa'): APIData(
         versioned=[
             ('7.11', '>=', VersionedAPIData(
-                single_value=True,
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
@@ -1739,7 +1738,7 @@ PATHS = {
             )),
         ],
     ),
-    ('interface', 'wifiwave2', 'security'): APIData(
+    ('interface', 'wifiwave2', 'steering'): APIData(
         versioned=[
             ('7.11', '>=', VersionedAPIData(
                 fully_understood=True,
