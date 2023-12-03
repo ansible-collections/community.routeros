@@ -619,24 +619,28 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'chain': 'input',
                 'comment': 'defconf',
                 'protocol': 'icmp',
+                'disabled': False,
             },
             {
                 '.id': '*3',
                 'action': 'accept',
                 'chain': 'input',
                 'comment': 'defconf',
+                'disabled': False,
             },
             {
                 '.id': '*4',
                 'action': 'accept',
                 'chain': 'input',
                 'comment': 'defconf',
+                'disabled': False,
             },
             {
                 '.id': '*7',
                 'action': 'drop',
                 'chain': 'input',
                 'comment': 'defconf',
+                'disabled': False,
                 'in-interface': 'wan',
             },
             {
@@ -645,6 +649,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'chain': 'forward',
                 'comment': 'defconf',
                 'connection-state': 'established',
+                'disabled': False,
             },
             {
                 '.id': '*9',
@@ -652,6 +657,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'chain': 'forward',
                 'comment': 'defconf',
                 'connection-state': 'related',
+                'disabled': False,
             },
             {
                 '.id': '*A',
@@ -659,6 +665,7 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'chain': 'forward',
                 'comment': 'defconf',
                 'connection-status': 'invalid',
+                'disabled': False,
             },
         ])
         self.assertEqual(result['match_count'], 3)
