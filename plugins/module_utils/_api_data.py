@@ -1470,7 +1470,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 required_one_of=[['default-name', 'master-interface']],
@@ -1497,7 +1497,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'aaa'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
@@ -1517,7 +1517,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'access-list'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
                     'action': KeyInfo(can_disable=True),
@@ -1540,7 +1540,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'cap'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 single_value=True,
                 fully_understood=True,
                 fields={
@@ -1559,7 +1559,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'capsman'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 single_value=True,
                 fully_understood=True,
                 fields={
@@ -1576,7 +1576,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'channel'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
@@ -1592,7 +1592,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'configuration'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
@@ -1620,7 +1620,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'datapath'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
@@ -1638,7 +1638,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'interworking'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
@@ -1678,7 +1678,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'provisioning'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('action', ),
                 fields={
@@ -1699,7 +1699,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'security'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
@@ -1740,7 +1740,7 @@ PATHS = {
     ),
     ('interface', 'wifiwave2', 'steering'): APIData(
         versioned=[
-            ('7.11', '>=', VersionedAPIData(
+            ('7.8', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
                 fields={
