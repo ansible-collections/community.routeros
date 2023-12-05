@@ -49,23 +49,31 @@ class APIData(object):
                     break
         self._current = None if self.needs_version else self.unversioned
 
+    def _select(self, data, api_version):
+        if data is None:
+            self._current = None
+            return False, None
+        if isinstance(data, str):
+            self._current = None
+            return False, data
+        self._current = data.specialize_for_version(api_version)
+        return self._current.fully_understood, None
+
     def provide_version(self, version):
         if not self.needs_version:
-            return self.unversioned.fully_understood
+            return self.unversioned.fully_understood, None
         api_version = LooseVersion(version)
         if self.unversioned is not None:
             self._current = self.unversioned.specialize_for_version(api_version)
-            return self._current.fully_understood
+            return self._current.fully_understood, None
         for other_version, comparator, data in self.versioned:
             if other_version == '*' and comparator == '*':
-                self._current = data.specialize_for_version(api_version)
-                return self._current.fully_understood
+                return self._select(data, api_version)
             other_api_version = LooseVersion(other_version)
             if _compare(api_version, other_api_version, comparator):
-                self._current = data.specialize_for_version(api_version)
-                return self._current.fully_understood
+                return self._select(data, api_version)
         self._current = None
-        return False
+        return False, None
 
     def get_data(self):
         if self._current is None:
