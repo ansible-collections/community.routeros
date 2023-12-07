@@ -350,8 +350,12 @@ def main():
         module.fail_json(msg='Path /{path} is not yet supported'.format(path='/'.join(path)))
     if versioned_path_info.needs_version:
         api_version = get_api_version(api)
-        if not versioned_path_info.provide_version(api_version):
-            module.fail_json(msg='Path /{path} is not supported for API version {api_version}'.format(path='/'.join(path), api_version=api_version))
+        supported, not_supported_msg = versioned_path_info.provide_version(api_version)
+        if not supported:
+            msg = 'Path /{path} is not supported for API version {api_version}'.format(path='/'.join(path), api_version=api_version)
+            if not_supported_msg:
+                msg = '{0}: {1}'.format(msg, not_supported_msg)
+            module.fail_json(msg=msg)
     path_info = versioned_path_info.get_data()
 
     handle_disabled = module.params['handle_disabled']
