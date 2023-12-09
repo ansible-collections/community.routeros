@@ -1108,7 +1108,7 @@ def has_backend(versioned_path_info):
 
     if versioned_path_info.versioned is not None:
         for dummy, dummy, unversioned in versioned_path_info.versioned:
-            if get_backend(unversioned) is not None:
+            if not isinstance(unversioned, str) and get_backend(unversioned) is not None:
                 return True
 
     return False
