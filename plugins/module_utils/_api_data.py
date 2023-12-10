@@ -1584,6 +1584,7 @@ PATHS = {
                 'supported-rates-b': KeyInfo(),
                 'tdma-period-size': KeyInfo(default=2),
                 'tx-chains': KeyInfo(),
+                'tx-power': KeyInfo(default=''),
                 'tx-power-mode': KeyInfo(default='default'),
                 'update-stats-interval': KeyInfo(default='disabled'),
                 'vlan-id': KeyInfo(default=1),
