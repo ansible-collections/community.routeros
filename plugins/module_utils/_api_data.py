@@ -44,7 +44,7 @@ class APIData(object):
             # Mark as 'fully understood' if it is for at least one version
             self.fully_understood = False
             for dummy, dummy, unversioned in self.versioned:
-                if not isinstance(unversioned, str) and unversioned.fully_understood:
+                if unversioned and not isinstance(unversioned, str) and unversioned.fully_understood:
                     self.fully_understood = True
                     break
         self._current = None if self.needs_version else self.unversioned
