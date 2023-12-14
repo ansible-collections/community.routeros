@@ -1,0 +1,2 @@
+minor_changes:
+  - api_modify, api_info - added support for ``interface wifiwave2`` (https://github.com/ansible-collections/community.routeros/pull/226).
