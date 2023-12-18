@@ -57,7 +57,7 @@ jobs:
         run: mkdir ./artifact && mv ./checkout/${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-*.tar.gz ./artifact
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-${{ github.sha }}
           path: ./artifact/
@@ -80,7 +80,7 @@ jobs:
         run: pip install galaxy-importer --disable-pip-version-check
 
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-${{ github.sha }}
 
