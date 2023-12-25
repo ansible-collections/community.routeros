@@ -80,6 +80,7 @@ options:
         - interface l2tp-server server
         - interface list
         - interface list member
+        - interface ovpn-client
         - interface ovpn-server server
         - interface ppp-client
         - interface pppoe-client
