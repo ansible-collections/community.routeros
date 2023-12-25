@@ -158,6 +158,7 @@ options:
         - radius incoming
         - routing bgp connection
         - routing bgp instance
+        - routing bgp template
         - routing filter rule
         - routing filter select-rule
         - routing id
