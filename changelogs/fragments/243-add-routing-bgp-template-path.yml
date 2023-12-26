@@ -1,2 +1,2 @@
 minor_changes:
-  - api_info, api_modify - add missing path "/routing bgp template" (https://github.com/ansible-collections/community.routeros/pull/243).
+  - api_info, api_modify - add missing path ``routing bgp template`` (https://github.com/ansible-collections/community.routeros/pull/243).
