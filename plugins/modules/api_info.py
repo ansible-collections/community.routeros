@@ -168,6 +168,7 @@ options:
         - ppp profile
         - queue interface
         - queue tree
+        - radius
         - radius incoming
         - routing bgp connection
         - routing bgp instance

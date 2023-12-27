@@ -3228,6 +3228,28 @@ PATHS = {
             },
         ),
     ),
+    ('radius', ): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'accounting-backup': KeyInfo(default=False),
+                'accounting-port': KeyInfo(default=1813),
+                'address': KeyInfo(default='0.0.0.0'),
+                'authentication-port': KeyInfo(default=1812),
+                'called-id': KeyInfo(),
+                'certificate': KeyInfo(),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'disabled': KeyInfo(default=False),
+                'domain': KeyInfo(),
+                'protocol': KeyInfo(default='udp'),
+                'realm': KeyInfo(),
+                'secret': KeyInfo(),
+                'service': KeyInfo(),
+                'src-address': KeyInfo(default='0.0.0.0'),
+                'timeout': KeyInfo(default='300ms'),
+            },
+        ),
+    ),
     ('radius', 'incoming'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
