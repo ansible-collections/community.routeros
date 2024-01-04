@@ -3652,7 +3652,7 @@ PATHS = {
         versioned=[
             ('7', '>=', VersionedAPIData(
                 fully_understood=True,
-                primary_keys=('name', ),
+                primary_keys=('host', ),
                 fields={
                     'certificate': KeyInfo(),
                     'check-certificate': KeyInfo(),
