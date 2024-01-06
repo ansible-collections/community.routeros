@@ -64,7 +64,7 @@ Check out the documentation of the :ansplugin:`community.routeros.api module <co
 Using the ``community.routeros.api`` module defaults group
 ----------------------------------------------------------
 
-To avoid having to specify common parameters for all the API based modules in every task, you can use the ``community.routeros.api`` module defaults group:
+To avoid having to specify common parameters for all the API based modules in every task, you can use the ``community.routeros.api`` :ref:`module defaults group <module_defaults_groups>`:
 
 .. code-block:: yaml+jinja
 
@@ -85,7 +85,7 @@ To avoid having to specify common parameters for all the API based modules in ev
           # If you are using your own PKI, specify the path to your CA certificate here:
           # ca_path: /path/to/ca-certificate.pem
       tasks:
-        - name: Gather facts"
+        - name: Gather facts
           community.routeros.api_facts:
 
         - name: Get "ip address print"
