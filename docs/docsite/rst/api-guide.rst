@@ -73,7 +73,7 @@ To avoid having to specify common parameters for all the API based modules in ev
       hosts: localhost
       gather_facts: false
       module_defaults:
-        group/community.routeros.api
+        group/community.routeros.api:
           hostname: 192.168.1.1
           password: admin
           username: test1234
