@@ -185,6 +185,7 @@ options:
         - routing pimsm interface-template
         - routing rip
         - routing ripng
+        - routing rule
         - routing table
         - snmp
         - snmp community

@@ -960,6 +960,24 @@ PATHS = {
             },
         ),
     ),
+    ('routing', 'rule'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'action': KeyInfo(can_disable=True),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'dst-address': KeyInfo(can_disable=True),
+                    'interface': KeyInfo(can_disable=True),
+                    'min-prefix': KeyInfo(can_disable=True),
+                    'routing-mark': KeyInfo(can_disable=True),
+                    'src-address': KeyInfo(can_disable=True),
+                    'table': KeyInfo(can_disable=True),
+                },
+            )),
+        ],
+    ),
     ('routing', 'table'): APIData(
         versioned=[
             ('7', '>=', VersionedAPIData(
