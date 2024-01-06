@@ -85,7 +85,7 @@ To avoid having to specify common parameters for all the API based modules in ev
           # If you are using your own PKI, specify the path to your CA certificate here:
           # ca_path: /path/to/ca-certificate.pem
       tasks:
-        - name: Gather facts"
+        - name: Gather facts
           community.routeros.api_facts:
 
         - name: Get "ip address print"
