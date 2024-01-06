@@ -184,7 +184,7 @@
 <p>Check out the documentation of the <a class="reference internal" href="../api_module.html#ansible-collections-community-routeros-api-module"><span class="std std-ref">community.routeros.api module</span></a> for details on the options.</p>
 <section id="using-the-community-routeros-api-module-defaults-group">
 <h2>Using the <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> module defaults group<a class="headerlink" href="#using-the-community-routeros-api-module-defaults-group" title="Link to this heading"></a></h2>
-<p>To avoid having to specify common parameters for all the API based modules in every task, you can use the <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> module defaults group:</p>
+<p>To avoid having to specify common parameters for all the API based modules in every task, you can use the <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> <a class="reference external" href="https://docs.ansible.com/ansible/devel/playbook_guide/playbooks_module_defaults.html#module-defaults-groups" title="(in Ansible vdevel)"><span class="xref std std-ref">module defaults group</span></a>:</p>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RouterOS test with API</span>
 <span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
@@ -202,7 +202,7 @@
 <span class="w">      </span><span class="c1"># If you are using your own PKI, specify the path to your CA certificate here:</span>
 <span class="w">      </span><span class="c1"># ca_path: /path/to/ca-certificate.pem</span>
 <span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gather facts&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gather facts</span>
 <span class="w">      </span><span class="nt">community.routeros.api_facts</span><span class="p">:</span>
 
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get &quot;ip address print&quot;</span>
