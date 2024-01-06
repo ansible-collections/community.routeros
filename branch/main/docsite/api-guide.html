@@ -190,12 +190,12 @@
 <span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
 <span class="w">  </span><span class="nt">gather_facts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">module_defaults</span><span class="p">:</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">group/community.routeros.api</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">hostname</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1234</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain"># The following options configure TLS/SSL.</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain"># Depending on your setup, these options need different values</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">group/community.routeros.api</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span>
+<span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1234</span>
+<span class="w">      </span><span class="c1"># The following options configure TLS/SSL.</span>
+<span class="w">      </span><span class="c1"># Depending on your setup, these options need different values:</span>
 <span class="w">      </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">      </span><span class="nt">validate_certs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">      </span><span class="nt">validate_cert_hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
