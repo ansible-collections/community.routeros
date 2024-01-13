@@ -1,16 +1,11 @@
 name: import-galaxy
-on:
+'on':
   # Run CI against all pushes (direct commits, also merged PRs) to main, and all Pull Requests
   push:
     branches:
       - main
       - stable-*
   pull_request:
-
-env:
-  # Adjust this to your collection
-  NAMESPACE: community
-  COLLECTION_NAME: routeros
 
 jobs:
   build-collection:
@@ -31,17 +26,40 @@ jobs:
         run: pip install https://github.com/ansible/ansible/archive/stable-2.12.tar.gz --disable-pip-version-check
 
       - name: Make sure galaxy.yml has version entry
-        run: >-
-          python -c
-          'import yaml ;
-          f = open("galaxy.yml", "rb") ;
-          data = yaml.safe_load(f) ;
-          f.close() ;
-          data["version"] = data.get("version") or "0.0.1" ;
-          f = open("galaxy.yml", "wb") ;
-          f.write(yaml.dump(data).encode("utf-8")) ;
-          f.close() ;
-          '
+        shell: python
+        id: collection-metadata
+        run: |
+          import os
+          import yaml
+
+          def set_output(name, value):
+              with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+                  f.write(f'{name}={value}{os.linesep}')
+
+          # Make sure galaxy.yml contains a version
+          with open('galaxy.yml', 'rb') as f:
+              data = yaml.safe_load(f) ;
+          data['version'] = data.get('version') or '0.0.1'
+          with open('galaxy.yml', 'w', encoding='utf-8') as f:
+              f.write(yaml.dump(data))
+
+          # Create Galaxy requirements file
+          if data.get('dependencies'):
+              reqs = dict(collections=[])
+              for collection, version in sorted(data['dependencies'].items()):
+                  reqs['collections'].append(dict(
+                      name=collection,
+                      source='https://galaxy.ansible.com',
+                      version=version,
+                  ))
+              with open('../requirements.yml', 'w', encoding='utf-8') as f:
+                  f.write(yaml.dump(reqs))
+
+          # Extract namespace and collection name
+          set_output('name', data['name'])
+          set_output('namespace', data['namespace'])
+          set_output('version', data['version'])
+          set_output('filename', f"{data['namespace']}-{data['name']}-{data['version']}.tar.gz")
         working-directory: ./checkout
 
       - name: Build collection
@@ -49,12 +67,19 @@ jobs:
         working-directory: ./checkout
 
       - name: Copy artifact into subdirectory
-        run: mkdir ./artifact && mv ./checkout/${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-*.tar.gz ./artifact
+        shell: bash
+        run: |
+          set -e
+          mkdir artifact
+          mv checkout/${{ steps.collection-metadata.outputs.filename }} artifact/
+          if [ -f requirements.yml ]; then
+            mv requirements.yml artifact/
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-${{ github.sha }}
+          name: collection-build-${{ github.sha }}
           path: ./artifact/
 
   import-galaxy:
@@ -77,7 +102,21 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-${{ github.sha }}
+          name: collection-build-${{ github.sha }}
+
+      - name: List files
+        shell: bash
+        run: |
+          ls -la
+
+      - name: Install collection dependencies
+        shell: bash
+        run: |
+          if [ -f requirements.yml ]; then
+            ansible-galaxy collection install --pre --requirements-file requirements.yml
+          else
+            echo "Collection has no dependencies."
+          fi
 
       - name: Run Galaxy importer
-        run: python -m galaxy_importer.main ${{ env.NAMESPACE }}-${{ env.COLLECTION_NAME }}-*.tar.gz
+        run: python -m galaxy_importer.main *-*-*.tar.gz
