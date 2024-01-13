@@ -34,9 +34,12 @@ jobs:
         run: pip install https://github.com/ansible/ansible/archive/stable-2.12.tar.gz --disable-pip-version-check
 
       - name: Install collection dependencies
-        run: git clone --depth=1 --single-branch https://github.com/ansible-collections/community.internal_test_tools.git ./ansible_collections/community/internal_test_tools
+        run: |
+          git clone --depth=1 --single-branch https://github.com/ansible-collections/community.internal_test_tools.git ./ansible_collections/community/internal_test_tools
+          git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ./ansible_collections/ansible/netcommon
+          git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ./ansible_collections/ansible/utils
         # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-        # run: ansible-galaxy collection install community.internal_test_tools -p .
+        # run: ansible-galaxy collection install community.internal_test_tools ansible.netcommon -p .
 
       - name: Run sanity tests
         run: ../../community/internal_test_tools/tools/run.py --color
