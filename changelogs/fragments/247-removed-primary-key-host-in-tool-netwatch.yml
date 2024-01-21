@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - removed ``host`` primary key in ``tool netwatch`` path (https://github.com/ansible-collections/community.routeros/pull/248).
