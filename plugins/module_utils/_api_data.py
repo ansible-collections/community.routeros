@@ -4117,10 +4117,10 @@ PATHS = {
     ),
     ('user', 'group'): APIData(
         unversioned=VersionedAPIData(
-            fixed_entries=True,
             primary_keys=('name', ),
             fully_understood=True,
             fields={
+                'comment': KeyInfo(can_disable=True, remove_value=''),
                 'name': KeyInfo(),
                 'policy': KeyInfo(),
                 'skin': KeyInfo(default='default'),
