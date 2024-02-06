@@ -727,15 +727,16 @@ PATHS = {
             },
         ),
     ),
-    ('ip', 'route', 'vrf'): APIData(
+    ('ip', 'vrf'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
-            primary_keys=('routing-mark', ),
+            primary_keys=('name', ),
             fields={
                 'comment': KeyInfo(can_disable=True, remove_value=''),
                 'disabled': KeyInfo(default=False),
                 'interfaces': KeyInfo(),
-                'routing-mark': KeyInfo(),
+                'name': KeyInfo(),
+                'numbers': KeyInfo(),
             },
         ),
     ),
