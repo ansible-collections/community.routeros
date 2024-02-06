@@ -736,7 +736,6 @@ PATHS = {
                 'disabled': KeyInfo(default=False),
                 'interfaces': KeyInfo(),
                 'name': KeyInfo(),
-                'numbers': KeyInfo(),
             },
         ),
     ),
