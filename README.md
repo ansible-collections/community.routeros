@@ -163,7 +163,7 @@ See [Ansible's dev guide](https://docs.ansible.com/ansible/devel/dev_guide/devel
 
 ## Release notes
 
-See the [changelog](https://github.com/ansible-collections/community.routeros/blob/main/CHANGELOG.rst).
+See the [changelog](https://github.com/ansible-collections/community.routeros/blob/main/CHANGELOG.md).
 
 ## Roadmap
 

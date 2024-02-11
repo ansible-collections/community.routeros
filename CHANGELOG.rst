@@ -4,7 +4,6 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
-
 v2.12.0
 =======
 
@@ -116,7 +115,6 @@ correctly. You should be still able to read it in most cases, but you need
 ansible-core 2.15 or later to see it as it is intended. Alternatively you can
 look at `the devel docsite <https://docs.ansible.com/ansible/devel/collections/community/routeros/>`__
 for the rendered HTML version of the documentation of the latest release.
-
 
 Known Issues
 ------------
@@ -471,7 +469,6 @@ Release Summary
 
 This is the first production (non-prerelease) release of ``community.routeros``.
 
-
 Bugfixes
 --------
 
@@ -497,7 +494,6 @@ Release Summary
 ---------------
 
 The ``community.routeros`` continues the work on the Ansible RouterOS modules from their state in ``community.network`` 1.2.0. The changes listed here are thus relative to the modules ``community.network.routeros_*``.
-
 
 Minor Changes
 -------------
