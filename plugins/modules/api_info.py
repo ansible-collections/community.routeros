@@ -135,6 +135,7 @@ options:
         - ip pool
         - ip proxy
         - ip route
+        - ip route vrf
         - ip vrf
         - ip service
         - ip settings
