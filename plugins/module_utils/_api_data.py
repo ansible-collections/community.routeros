@@ -727,17 +727,33 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'vrf'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('name', ),
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'interfaces': KeyInfo(),
+                    'name': KeyInfo(),
+                },
+            )),
+        ]
+    ),
     ('ip', 'route', 'vrf'): APIData(
-        unversioned=VersionedAPIData(
-            fully_understood=True,
-            primary_keys=('routing-mark', ),
-            fields={
-                'comment': KeyInfo(can_disable=True, remove_value=''),
-                'disabled': KeyInfo(default=False),
-                'interfaces': KeyInfo(),
-                'routing-mark': KeyInfo(),
-            },
-        ),
+        versioned=[
+            ('7', '<', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('routing-mark', ),
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'interfaces': KeyInfo(),
+                    'routing-mark': KeyInfo(),
+                },
+            )),
+        ],
     ),
     ('ip', 'dhcp-server'): APIData(
         unversioned=VersionedAPIData(
