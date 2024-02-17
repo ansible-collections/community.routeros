@@ -156,6 +156,7 @@ options:
         - ip traffic-flow target
         - ip upnp
         - ip upnp interfaces
+        - ip vrf
         - ipv6 address
         - ipv6 dhcp-client
         - ipv6 dhcp-server
