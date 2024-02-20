@@ -311,7 +311,7 @@ class Config(FactsBase):
         '/export',
     ]
 
-    RM_DATE_RE = re.compile(r'^# [a-z0-9/][a-z0-9/]* [0-9:]* by RouterOS')
+    RM_DATE_RE = re.compile(r'^# [a-z0-9/-][a-z0-9/-]* [0-9:]* by RouterOS')
 
     def populate(self):
         super(Config, self).populate()
