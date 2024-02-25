@@ -1,2 +1,0 @@
-bugfixes:
-  - facts - fix date not getting removed for idempotent config export (https://github.com/ansible-collections/community.routeros/pull/262).
