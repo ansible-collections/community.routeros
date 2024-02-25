@@ -1,2 +1,0 @@
-minor_changes:
-  - api_modify, api_info - add support for the ``ip vrf`` path in RouterOS 7  (https://github.com/ansible-collections/community.routeros/pull/259)

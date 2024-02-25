@@ -4,6 +4,25 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v2.13.0
+=======
+
+Release Summary
+---------------
+
+Bugfix and feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - make path ``user group`` modifiable and add ``comment`` attribute (https://github.com/ansible-collections/community.routeros/issues/256, https://github.com/ansible-collections/community.routeros/pull/257).
+- api_modify, api_info - add support for the ``ip vrf`` path in RouterOS 7  (https://github.com/ansible-collections/community.routeros/pull/259)
+
+Bugfixes
+--------
+
+- facts - fix date not getting removed for idempotent config export (https://github.com/ansible-collections/community.routeros/pull/262).
+
 v2.12.0
 =======
 

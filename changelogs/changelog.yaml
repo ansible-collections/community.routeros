@@ -307,6 +307,22 @@ releases:
     - 246-add-routing-rule-path.yml
     - 247-removed-primary-key-host-in-tool-netwatch.yml
     release_date: '2024-01-21'
+  2.13.0:
+    changes:
+      bugfixes:
+      - facts - fix date not getting removed for idempotent config export (https://github.com/ansible-collections/community.routeros/pull/262).
+      minor_changes:
+      - api_info, api_modify - make path ``user group`` modifiable and add ``comment``
+        attribute (https://github.com/ansible-collections/community.routeros/issues/256,
+        https://github.com/ansible-collections/community.routeros/pull/257).
+      - api_modify, api_info - add support for the ``ip vrf`` path in RouterOS 7  (https://github.com/ansible-collections/community.routeros/pull/259)
+      release_summary: Bugfix and feature release.
+    fragments:
+    - 2.13.0.yml
+    - 257-make-user_group-modifiable.yml
+    - 259-add-routeros7-support-for-ip-vrf.yml
+    - 262-fix-date-removal.yml
+    release_date: '2024-02-25'
   2.2.0:
     changes:
       bugfixes:
