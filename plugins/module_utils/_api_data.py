@@ -3508,6 +3508,9 @@ PATHS = {
             fully_understood=True,
             fields={
                 'channel': KeyInfo(default='stable'),
+                'installed-version': KeyInfo(read_only=True),
+                'latest-version': KeyInfo(read_only=True),
+                'status': KeyInfo(read_only=True),
             },
         ),
     ),
