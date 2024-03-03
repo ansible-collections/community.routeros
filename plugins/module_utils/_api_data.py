@@ -199,6 +199,8 @@ class KeyInfo(object):
             raise ValueError('absent_value can not be combined with default, automatically_computed_from, can_disable=True, or absent_value')
         if read_only and write_only:
             raise ValueError('read_only and write_only cannot be used at the same time')
+        if read_only and any([can_disable, remove_value is not None, absent_value is not None, default is not None, required]):
+            raise ValueError('read_only can not be combined with can_disable, remove_value, absent_value, default, or required')
         self.can_disable = can_disable
         self.remove_value = remove_value
         self.automatically_computed_from = automatically_computed_from
