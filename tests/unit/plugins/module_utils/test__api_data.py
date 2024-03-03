@@ -103,6 +103,10 @@ def test_key_info_errors():
         KeyInfo(read_only=True, write_only=True)
     assert exc.value.args[0] == 'read_only and write_only cannot be used at the same time'
 
+    with pytest.raises(ValueError) as exc:
+        KeyInfo(read_only=True, default=0)
+    assert exc.value.args[0] == 'read_only can not be combined with can_disable, remove_value, absent_value, default, or required'
+
 
 SPLIT_PATHS = [
     ('', [], ''),
