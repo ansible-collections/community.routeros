@@ -4,6 +4,17 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v1.2.2
+======
+
+Release Summary
+---------------
+
+End of Life release.
+
+The 1.x.y release train of the community.routeros collection is now End of Life.
+There will be no more 1.x.y releases. Please upgrade to community.routeros 2.x.y.
+Thanks to all contributors to the 1.x.y releases!
 
 v1.2.1
 ======
@@ -75,7 +86,6 @@ Release Summary
 
 This is the first production (non-prerelease) release of ``community.routeros``.
 
-
 Bugfixes
 --------
 
@@ -101,7 +111,6 @@ Release Summary
 ---------------
 
 The ``community.routeros`` continues the work on the Ansible RouterOS modules from their state in ``community.network`` 1.2.0. The changes listed here are thus relative to the modules ``community.network.routeros_*``.
-
 
 Minor Changes
 -------------

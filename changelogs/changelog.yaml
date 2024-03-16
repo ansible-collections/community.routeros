@@ -95,3 +95,20 @@ releases:
     - 43-sanity.yml
     - 68-fix-query-id-check.yml
     release_date: '2023-01-14'
+  1.2.2:
+    changes:
+      release_summary: 'End of Life release.
+
+
+        The 1.x.y release train of the community.routeros collection is now End of
+        Life.
+
+        There will be no more 1.x.y releases. Please upgrade to community.routeros
+        2.x.y.
+
+        Thanks to all contributors to the 1.x.y releases!
+
+        '
+    fragments:
+    - 1.2.2.yml
+    release_date: '2024-03-16'

@@ -1,6 +1,0 @@
-release_summary: |
-  End of Life release.
-
-  The 1.x.y release train of the community.routeros collection is now End of Life.
-  There will be no more 1.x.y releases. Please upgrade to community.routeros 2.x.y.
-  Thanks to all contributors to the 1.x.y releases!
