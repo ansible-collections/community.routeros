@@ -5,6 +5,8 @@ Provides modules for [Ansible](https://www.ansible.com/community) to manage [Mik
 
 You can find [documentation for the modules and plugins in this collection here](https://docs.ansible.com/ansible/devel/collections/community/routeros/).
 
+**COMMUNITY.ROUTEROS 1.x.y IS END OF LIFE. UPGRADE TO COMMUNITY.ROUTEROS 2.x.y!**
+
 ## Tested with Ansible
 
 Tested with the current Ansible 2.9, ansible-base 2.10, ansible-core 2.11 and ansible-core 2.12 releases. Ansible versions before 2.9.10 are not supported.
