@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - added support for ``interface wifi`` and its sub-paths (https://github.com/ansible-collections/community.routeros/pull/266).

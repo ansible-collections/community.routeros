@@ -323,6 +323,22 @@ releases:
     - 259-add-routeros7-support-for-ip-vrf.yml
     - 262-fix-date-removal.yml
     release_date: '2024-02-25'
+  2.14.0:
+    changes:
+      minor_changes:
+      - api_info, api_modify - add read-only fields ``installed-version``, ``latest-version``
+        and ``status`` in ``system package update`` (https://github.com/ansible-collections/community.routeros/pull/263).
+      - api_info, api_modify - added support for ``interface wifi`` and its sub-paths
+        (https://github.com/ansible-collections/community.routeros/pull/266).
+      - api_info, api_modify - remove default value for read-only ``running`` field
+        in ``interface wireless`` (https://github.com/ansible-collections/community.routeros/pull/264).
+      release_summary: Feature release.
+    fragments:
+    - 2.14.0.yml
+    - 263-sys-pkg-update.yml
+    - 264-wireless-running-default.yml
+    - 266-interface-wifi.yml
+    release_date: '2024-03-25'
   2.2.0:
     changes:
       bugfixes:

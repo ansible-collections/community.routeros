@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - remove default value for read-only ``running`` field in ``interface wireless`` (https://github.com/ansible-collections/community.routeros/pull/264).
