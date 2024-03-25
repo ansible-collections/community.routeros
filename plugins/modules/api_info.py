@@ -79,6 +79,18 @@ options:
         - interface sstp-server server
         - interface vlan
         - interface vrrp
+        - interface wifi
+        - interface wifi aaa
+        - interface wifi access-list
+        - interface wifi cap
+        - interface wifi capsman
+        - interface wifi channel
+        - interface wifi configuration
+        - interface wifi datapath
+        - interface wifi interworking
+        - interface wifi provisioning
+        - interface wifi security
+        - interface wifi steering
         - interface wifiwave2
         - interface wifiwave2 aaa
         - interface wifiwave2 access-list
