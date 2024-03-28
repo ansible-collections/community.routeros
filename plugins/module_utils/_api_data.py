@@ -1397,7 +1397,7 @@ PATHS = {
                 'comment': KeyInfo(can_disable=True, remove_value=''),
                 'disabled': KeyInfo(default=False),
                 'eui-64': KeyInfo(default=False),
-                'from-pool': KeyInfo(),
+                'from-pool': KeyInfo(default=''),
                 'interface': KeyInfo(required=True),
                 'no-dad': KeyInfo(default=False),
             },
