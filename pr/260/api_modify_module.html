@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<meta content="2.7.0" name="antsibull-docs" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="2.9.0" name="antsibull-docs" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>community.routeros.api_modify module – Modify data at paths with API &mdash; Community.Routeros Collection  documentation</title>
@@ -146,7 +146,7 @@
 <h1>community.routeros.api_modify module – Modify data at paths with API<a class="headerlink" href="#community-routeros-api-modify-module-modify-data-at-paths-with-api" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/community/routeros/">community.routeros collection</a> (version 2.12.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/community/routeros/">community.routeros collection</a> (version 2.14.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">community.routeros</span></code>.
@@ -375,6 +375,18 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">sstp-server</span> <span class="pre">server&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">vlan&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">vrrp&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">aaa&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">access-list&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">cap&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">capsman&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">channel&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">configuration&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">datapath&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">interworking&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">provisioning&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">security&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">steering&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifiwave2&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifiwave2</span> <span class="pre">aaa&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifiwave2</span> <span class="pre">access-list&quot;</span></code></p></li>
@@ -443,6 +455,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">traffic-flow</span> <span class="pre">target&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">upnp&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">upnp</span> <span class="pre">interfaces&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">vrf&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">address&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-client&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-server&quot;</span></code></p></li>
