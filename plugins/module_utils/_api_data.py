@@ -3602,20 +3602,35 @@ PATHS = {
         ),
     ),
     ('mpls', 'ldp'): APIData(
-        unversioned=VersionedAPIData(
-            single_value=True,
-            fully_understood=True,
-            fields={
-                'distribute-for-default-route': KeyInfo(default=False),
-                'enabled': KeyInfo(default=False),
-                'hop-limit': KeyInfo(default=255),
-                'loop-detect': KeyInfo(default=False),
-                'lsr-id': KeyInfo(default='0.0.0.0'),
-                'path-vector-limit': KeyInfo(default=255),
-                'transport-address': KeyInfo(default='0.0.0.0'),
-                'use-explicit-null': KeyInfo(default=False),
-            },
-        ),
+        versioned=[
+            ('7.1', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'distribute-for-default-route': KeyInfo(default=False),
+                    'enabled': KeyInfo(default=False),
+                    'hop-limit': KeyInfo(default=255),
+                    'loop-detect': KeyInfo(default=False),
+                    'lsr-id': KeyInfo(default='0.0.0.0'),
+                    'path-vector-limit': KeyInfo(default=255),
+                    'transport-addresses': KeyInfo(default='0.0.0.0'),
+                    'use-explicit-null': KeyInfo(default=False),
+                },
+            )),
+            ('7.1', '<', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                fields={
+                    'distribute-for-default-route': KeyInfo(default=False),
+                    'enabled': KeyInfo(default=False),
+                    'hop-limit': KeyInfo(default=255),
+                    'loop-detect': KeyInfo(default=False),
+                    'lsr-id': KeyInfo(default='0.0.0.0'),
+                    'path-vector-limit': KeyInfo(default=255),
+                    'transport-address': KeyInfo(default='0.0.0.0'),
+                    'use-explicit-null': KeyInfo(default=False),
+                },
+            )),
+        ],
     ),
     ('port', 'firmware'): APIData(
         unversioned=VersionedAPIData(
