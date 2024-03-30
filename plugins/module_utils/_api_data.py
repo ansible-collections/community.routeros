@@ -4259,7 +4259,7 @@ PATHS = {
                 'parent': KeyInfo(default='none'),
                 'priority': KeyInfo(default='8/8'),
                 'queue': KeyInfo(default='default-small/default-small'),
-                'target': KeyInfo(default=''),
+                'target': KeyInfo(required=True),
             },
         ),
     ),
