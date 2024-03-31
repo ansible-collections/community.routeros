@@ -3591,13 +3591,13 @@ PATHS = {
     ),
     ('mpls', 'interface'): APIData(
         unversioned=VersionedAPIData(
-            unknown_mechanism=True,
-            # primary_keys=('default', ),
+            fully_understood=True,
             fields={
-                'default': KeyInfo(),
-                'disabled': KeyInfo(),
-                'interface': KeyInfo(),
+                'disabled': KeyInfo(default=False),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'interface': KeyInfo(required=True),
                 'mpls-mtu': KeyInfo(),
+                'info': KeyInfo(can_disable=True),
             },
         ),
     ),
@@ -3614,6 +3614,47 @@ PATHS = {
                 'path-vector-limit': KeyInfo(default=255),
                 'transport-address': KeyInfo(default='0.0.0.0'),
                 'use-explicit-null': KeyInfo(default=False),
+            },
+        ),
+    ),
+    ('mpls', 'ldp', 'accept-filter'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'accept': KeyInfo(can_disable=True),
+                'disabled': KeyInfo(default=False),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'neighbor': KeyInfo(can_disable=True),
+                'prefix': KeyInfo(can_disable=True),
+                'vrf': KeyInfo(can_disable=True),
+            },
+        ),
+    ),
+    ('mpls', 'ldp', 'advertise-filter'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'advertise': KeyInfo(default=''),
+                'disabled': KeyInfo(default=False),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'neighbor': KeyInfo(),
+                'prefix': KeyInfo(),
+                'vrf': KeyInfo(),
+            },
+        ),
+    ),
+    ('mpls', 'ldp', 'interface'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'disabled': KeyInfo(default=False),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'accept-dynamic-neighbors': KeyInfo(can_disable=True),
+                'afi': KeyInfo(can_disable=True),
+                'hello-interval': KeyInfo(can_disable=True),
+                'hold-time': KeyInfo(can_disable=True),
+                'interface': KeyInfo(required=True),
+                'transport-addresses': KeyInfo(can_disable=True),
             },
         ),
     ),
