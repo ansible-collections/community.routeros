@@ -185,8 +185,8 @@ options:
         - mpls
         - mpls interface
         - mpls ldp
-        - mpls ldp accept filter
-        - mpls ldp advertise filter
+        - mpls ldp accept-filter
+        - mpls ldp advertise-filter
         - mpls ldp interface
         - port firmware
         - port remote-access
