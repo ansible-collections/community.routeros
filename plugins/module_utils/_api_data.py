@@ -1513,7 +1513,7 @@ PATHS = {
                 'max-mtu': KeyInfo(default='auto'),
                 'max-sessions': KeyInfo(default='unlimited'),
                 'mrru': KeyInfo(default='disabled'),
-                'one-session-per-host': KeyInfo(can_disable=True, remove_value=False),
+                'one-session-per-host': KeyInfo(default=False),
                 'pado-delay': KeyInfo(default=0),
                 'service-name': KeyInfo(default=''),
             },
