@@ -183,8 +183,11 @@ options:
         - queue tree
         - radius
         - radius incoming
+        - routing bgp aggregate
         - routing bgp connection
         - routing bgp instance
+        - routing bgp network
+        - routing bgp peer
         - routing bgp template
         - routing filter rule
         - routing filter select-rule
