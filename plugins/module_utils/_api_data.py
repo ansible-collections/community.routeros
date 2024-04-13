@@ -2557,6 +2557,22 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'dhcp-relay'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('name',),
+            fields={
+                'add-relay-info': KeyInfo(default=False),
+                'delay-threshold': KeyInfo(can_disable=True, remove_value='none'),
+                'dhcp-server': KeyInfo(required=True),
+                'disabled': KeyInfo(default=False),
+                'interface': KeyInfo(required=True),
+                'local-address': KeyInfo(can_disable=True, remove_value='0.0.0.0'),
+                'name': KeyInfo(),
+                'relay-info-remote-id': KeyInfo(),
+            },
+        ),
+    ),
     ('ip', 'dhcp-server', 'config'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
