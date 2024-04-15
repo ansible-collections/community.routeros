@@ -156,6 +156,7 @@ options:
         - ip pool
         - ip proxy
         - ip route
+        - ip route rule
         - ip route vrf
         - ip service
         - ip settings
