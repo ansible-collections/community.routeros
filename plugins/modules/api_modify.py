@@ -195,6 +195,7 @@ options:
         - routing bgp connection
         - routing bgp instance
         - routing bgp template
+        - routing filter
         - routing filter rule
         - routing filter select-rule
         - routing id
