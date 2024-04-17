@@ -75,6 +75,7 @@ options:
         - interface ovpn-server server
         - interface ppp-client
         - interface pppoe-client
+        - interface pppoe-server server
         - interface pptp-server server
         - interface sstp-server server
         - interface vlan
