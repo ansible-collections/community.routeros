@@ -3602,20 +3602,40 @@ PATHS = {
         ),
     ),
     ('mpls', 'ldp'): APIData(
-        unversioned=VersionedAPIData(
-            single_value=True,
-            fully_understood=True,
-            fields={
-                'distribute-for-default-route': KeyInfo(default=False),
-                'enabled': KeyInfo(default=False),
-                'hop-limit': KeyInfo(default=255),
-                'loop-detect': KeyInfo(default=False),
-                'lsr-id': KeyInfo(default='0.0.0.0'),
-                'path-vector-limit': KeyInfo(default=255),
-                'transport-address': KeyInfo(default='0.0.0.0'),
-                'use-explicit-null': KeyInfo(default=False),
-            },
-        ),
+        versioned=[
+            ('7.1', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('vrf', ),
+                fields={
+                    'afi': KeyInfo(can_disable=True),
+                    'distribute-for-default': KeyInfo(can_disable=True),
+                    'path-vector-limit': KeyInfo(can_disable=True),
+                    'vrf': KeyInfo(),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'hop-limit': KeyInfo(can_disable=True),
+                    'preferred-afi': KeyInfo(can_disable=True),
+                    'loop-detect': KeyInfo(can_disable=True),
+                    'transport-addresses': KeyInfo(can_disable=True),
+                    'disabled': KeyInfo(default=False),
+                    'lsr-id': KeyInfo(can_disable=True),
+                    'use-explicit-null': KeyInfo(can_disable=True),
+                },
+            )),
+            ('7.1', '<', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                fields={
+                    'distribute-for-default-route': KeyInfo(default=False),
+                    'enabled': KeyInfo(default=False),
+                    'hop-limit': KeyInfo(default=255),
+                    'loop-detect': KeyInfo(default=False),
+                    'lsr-id': KeyInfo(default='0.0.0.0'),
+                    'path-vector-limit': KeyInfo(default=255),
+                    'transport-address': KeyInfo(default='0.0.0.0'),
+                    'use-explicit-null': KeyInfo(default=False),
+                },
+            )),
+        ],
     ),
     ('port', 'firmware'): APIData(
         unversioned=VersionedAPIData(
