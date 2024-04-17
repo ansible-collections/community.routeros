@@ -192,6 +192,7 @@ options:
         - queue interface
         - queue simple
         - queue tree
+        - queue type
         - radius
         - radius incoming
         - routing bgp connection
