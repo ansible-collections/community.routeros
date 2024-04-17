@@ -4239,6 +4239,30 @@ PATHS = {
             },
         ),
     ),
+    ('queue', 'simple'): APIData(
+        unversioned=VersionedAPIData(
+            primary_keys=('name', ),
+            fully_understood=True,
+            fields={
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'dst': KeyInfo(can_disable=True, remove_value=''),
+                'time': KeyInfo(can_disable=True, remove_value=''),
+                'bucket-size': KeyInfo(default='0.1/0.1'),
+                'burst-limit': KeyInfo(default='0/0'),
+                'burst-threshold': KeyInfo(default='0/0'),
+                'burst-time': KeyInfo(default='0s/0s'),
+                'disabled': KeyInfo(default=False),
+                'limit-at': KeyInfo(default='0/0'),
+                'max-limit': KeyInfo(default='0/0'),
+                'name': KeyInfo(),
+                'packet-marks': KeyInfo(default=''),
+                'parent': KeyInfo(default='none'),
+                'priority': KeyInfo(default='8/8'),
+                'queue': KeyInfo(default='default-small/default-small'),
+                'target': KeyInfo(required=True),
+            },
+        ),
+    ),
     ('queue', 'tree'): APIData(
         unversioned=VersionedAPIData(
             primary_keys=('name', ),
