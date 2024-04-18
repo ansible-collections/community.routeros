@@ -729,6 +729,23 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'route', 'rule'): APIData(
+        versioned=[
+            ('7', '<', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'action': KeyInfo(default='lookup'),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'dst-address': KeyInfo(can_disable=True),
+                    'interface': KeyInfo(can_disable=True),
+                    'routing-mark': KeyInfo(can_disable=True),
+                    'src-address': KeyInfo(can_disable=True),
+                    'table': KeyInfo(default='main'),
+                },
+            )),
+        ],
+    ),
     ('ip', 'vrf'): APIData(
         versioned=[
             ('7', '>=', VersionedAPIData(
