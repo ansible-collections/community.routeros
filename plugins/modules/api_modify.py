@@ -207,6 +207,7 @@ options:
         - routing bgp network
         - routing bgp peer
         - routing bgp template
+        - routing filter
         - routing filter rule
         - routing filter select-rule
         - routing id
