@@ -130,6 +130,7 @@ options:
         - ip cloud advanced
         - ip dhcp-client
         - ip dhcp-client option
+        - ip dhcp-relay
         - ip dhcp-server
         - ip dhcp-server config
         - ip dhcp-server lease
