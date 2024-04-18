@@ -75,6 +75,7 @@ options:
         - interface ovpn-server server
         - interface ppp-client
         - interface pppoe-client
+        - interface pppoe-server server
         - interface pptp-server server
         - interface sstp-server server
         - interface vlan
@@ -175,13 +176,19 @@ options:
         - ipv6 route
         - ipv6 settings
         - mpls
+        - mpls interface
         - mpls ldp
+        - mpls ldp accept-filter
+        - mpls ldp advertise-filter
+        - mpls ldp interface
         - port firmware
         - port remote-access
         - ppp aaa
         - ppp profile
         - queue interface
+        - queue simple
         - queue tree
+        - queue type
         - radius
         - radius incoming
         - routing bgp connection
