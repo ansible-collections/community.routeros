@@ -339,6 +339,38 @@ releases:
     - 264-wireless-running-default.yml
     - 266-interface-wifi.yml
     release_date: '2024-03-25'
+  2.15.0:
+    changes:
+      minor_changes:
+      - api_info, api_modify - Add RouterOS 7.x support to ``/mpls ldp`` path (https://github.com/ansible-collections/community.routeros/pull/271).
+      - api_info, api_modify - add ``/ip route rule`` path for RouterOS 6.x (https://github.com/ansible-collections/community.routeros/pull/278).
+      - api_info, api_modify - add ``/routing filter`` path for RouterOS 6.x (https://github.com/ansible-collections/community.routeros/pull/279).
+      - api_info, api_modify - add default value for ``from-pool`` field in ``/ipv6
+        address`` (https://github.com/ansible-collections/community.routeros/pull/270).
+      - api_info, api_modify - add missing path ``/interface pppoe-server server``
+        (https://github.com/ansible-collections/community.routeros/pull/273).
+      - api_info, api_modify - add missing path ``/ip dhcp-relay`` (https://github.com/ansible-collections/community.routeros/pull/276).
+      - api_info, api_modify - add missing path ``/queue simple`` (https://github.com/ansible-collections/community.routeros/pull/269).
+      - api_info, api_modify - add missing path ``/queue type`` (https://github.com/ansible-collections/community.routeros/pull/274).
+      - api_info, api_modify - add missing paths ``/routing bgp aggregate``, ``/routing
+        bgp network`` and ``/routing bgp peer`` (https://github.com/ansible-collections/community.routeros/pull/277).
+      - api_info, api_modify - add support for paths ``/mpls interface``, ``/mpls
+        ldp accept-filter``, ``/mpls ldp advertise-filter`` and ``mpls ldp interface``
+        (https://github.com/ansible-collections/community.routeros/pull/272).
+      release_summary: Feature release.
+    fragments:
+    - 2.15.0.yml
+    - 269-add-queue_simple-path.yml
+    - 270_fix_ipv6_from_pool_default_value.yml
+    - 271-mpls_ldp_routeros_7_support.yml
+    - 272-additional_mpls_path_support.yml
+    - 273-add_interface_pppoe-server_support.yml
+    - 274-add_queue_type_path.yml
+    - 276-add_ip_dhcp-relay_path.yml
+    - 277-add_routing_bgp_paths.yml
+    - 278-add_ip_route_rule_path.yml
+    - 279-add_routing_filter_path.yml
+    release_date: '2024-04-20'
   2.2.0:
     changes:
       bugfixes:

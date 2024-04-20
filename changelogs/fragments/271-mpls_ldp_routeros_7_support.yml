@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - Add RouterOS 7.x support to ``/mpls ldp`` path (https://github.com/ansible-collections/community.routeros/pull/271).

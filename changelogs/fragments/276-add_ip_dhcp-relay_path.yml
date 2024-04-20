@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - add missing path ``/ip dhcp-relay`` (https://github.com/ansible-collections/community.routeros/pull/276).
