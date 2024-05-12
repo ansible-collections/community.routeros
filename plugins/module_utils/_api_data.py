@@ -4600,6 +4600,27 @@ PATHS = {
             },
         ),
     ),
+    ('ppp', 'secret'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('name', ),
+            fields={
+                'caller-id': KeyInfo(default=''),
+                'disabled': KeyInfo(default=False),
+                'ipv6-routes': KeyInfo(default=''),
+                'limit-bytes-in': KeyInfo(default=0),
+                'limit-bytes-out': KeyInfo(default=0),
+                'local-address': KeyInfo(can_disable=True),
+                'name': KeyInfo(required=True),
+                'password': KeyInfo(),
+                'profile': KeyInfo(default='default'),
+                'remote-address': KeyInfo(can_disable=True),
+                'remote-ipv6-prefix': KeyInfo(can_disable=True),
+                'routes': KeyInfo(can_disable=True),
+                'service': KeyInfo(default='any'),
+            },
+        ),
+    ),
     ('routing', 'bgp', 'aggregate'): APIData(
         unversioned=VersionedAPIData(
             primary_keys=('prefix',),
