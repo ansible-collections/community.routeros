@@ -1,2 +1,2 @@
 minor_changes:
-  - api - minor changes ``/interface ethernet`` path fields (https://github.com/ansible-collections/community.routeros/pull/288).
+  - api_info, api_modify - minor changes ``/interface ethernet`` path fields (https://github.com/ansible-collections/community.routeros/pull/288).
