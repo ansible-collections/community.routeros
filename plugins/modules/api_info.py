@@ -186,6 +186,7 @@ options:
         - port remote-access
         - ppp aaa
         - ppp profile
+        - ppp secret
         - queue interface
         - queue simple
         - queue tree
