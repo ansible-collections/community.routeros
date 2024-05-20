@@ -396,8 +396,8 @@ Bugfixes
 New Modules
 -----------
 
-- api_info - Retrieve information from API
-- api_modify - Modify data at paths with API
+- community.routeros.api_info - Retrieve information from API
+- community.routeros.api_modify - Modify data at paths with API
 
 v2.1.0
 ======
@@ -425,8 +425,8 @@ Bugfixes
 New Modules
 -----------
 
-- api_facts - Collect facts from remote devices running MikroTik RouterOS using the API
-- api_find_and_modify - Find and modify information using the API
+- community.routeros.api_facts - Collect facts from remote devices running MikroTik RouterOS using the API
+- community.routeros.api_find_and_modify - Find and modify information using the API
 
 v2.0.0
 ======
@@ -463,11 +463,11 @@ New Plugins
 Filter
 ~~~~~~
 
-- join - Join a list of arguments to a command
-- list_to_dict - Convert a list of arguments to a list of dictionary
-- quote_argument - Quote an argument
-- quote_argument_value - Quote an argument value
-- split - Split a command into arguments
+- community.routeros.join - Join a list of arguments to a command
+- community.routeros.list_to_dict - Convert a list of arguments to a list of dictionary
+- community.routeros.quote_argument - Quote an argument
+- community.routeros.quote_argument_value - Quote an argument value
+- community.routeros.split - Split a command into arguments
 
 v1.2.0
 ======

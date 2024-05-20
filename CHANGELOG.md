@@ -494,8 +494,8 @@ New feature release\.
 <a id="new-modules"></a>
 ### New Modules
 
-* api\_info \- Retrieve information from API
-* api\_modify \- Modify data at paths with API
+* community\.routeros\.api\_info \- Retrieve information from API
+* community\.routeros\.api\_modify \- Modify data at paths with API
 
 <a id="v2-1-0"></a>
 ## v2\.1\.0
@@ -523,8 +523,8 @@ Feature and bugfix release with new modules\.
 <a id="new-modules-1"></a>
 ### New Modules
 
-* api\_facts \- Collect facts from remote devices running MikroTik RouterOS using the API
-* api\_find\_and\_modify \- Find and modify information using the API
+* community\.routeros\.api\_facts \- Collect facts from remote devices running MikroTik RouterOS using the API
+* community\.routeros\.api\_find\_and\_modify \- Find and modify information using the API
 
 <a id="v2-0-0"></a>
 ## v2\.0\.0
@@ -561,11 +561,11 @@ A new major release with breaking changes in the behavior of <code>community\.ro
 <a id="filter"></a>
 #### Filter
 
-* join \- Join a list of arguments to a command
-* list\_to\_dict \- Convert a list of arguments to a list of dictionary
-* quote\_argument \- Quote an argument
-* quote\_argument\_value \- Quote an argument value
-* split \- Split a command into arguments
+* community\.routeros\.join \- Join a list of arguments to a command
+* community\.routeros\.list\_to\_dict \- Convert a list of arguments to a list of dictionary
+* community\.routeros\.quote\_argument \- Quote an argument
+* community\.routeros\.quote\_argument\_value \- Quote an argument value
+* community\.routeros\.split \- Split a command into arguments
 
 <a id="v1-2-0"></a>
 ## v1\.2\.0
