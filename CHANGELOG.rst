@@ -4,6 +4,20 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v2.16.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - add missing path ``/ppp secret`` (https://github.com/ansible-collections/community.routeros/pull/286).
+- api_info, api_modify - minor changes ``/interface ethernet`` path fields (https://github.com/ansible-collections/community.routeros/pull/288).
+
 v2.15.0
 =======
 
