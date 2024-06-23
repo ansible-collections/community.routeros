@@ -218,6 +218,7 @@ options:
         - snmp community
         - system clock
         - system clock manual
+        - system health settings
         - system identity
         - system leds settings
         - system logging
