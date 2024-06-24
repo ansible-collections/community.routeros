@@ -227,6 +227,7 @@ options:
         - system ntp client servers
         - system ntp server
         - system package update
+        - system resource irq rps
         - system routerboard settings
         - system scheduler
         - system script

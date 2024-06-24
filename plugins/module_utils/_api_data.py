@@ -4966,6 +4966,16 @@ PATHS = {
             },
         ),
     ),
+    ('system', 'resource', 'irq', 'rps'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('name',),
+            fields={
+                'disabled': KeyInfo(default=False),
+                'name': KeyInfo(),
+            },
+        ),
+    ),
     ('system', 'scheduler'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
