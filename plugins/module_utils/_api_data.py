@@ -4001,6 +4001,44 @@ PATHS = {
             },
         ),
     ),
+    ('system', 'health', 'settings'): APIData(
+        versioned=[
+            ('7.14', '<', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                fields={
+                    'cpu-overtemp-check': KeyInfo(),
+                    'cpu-overtemp-startup-delay': KeyInfo(),
+                    'cpu-overtemp-threshold': KeyInfo(),
+                    'fan-control-interval': KeyInfo(can_disable=True, default='30s'),
+                    'fan-full-speed-temp': KeyInfo(default=65),
+                    'fan-min-speed-percent': KeyInfo(default=0),
+                    'fan-mode': KeyInfo(),
+                    'fan-on-threshold': KeyInfo(),
+                    'fan-switch': KeyInfo(),
+                    'fan-target-temp': KeyInfo(default=58),
+                    'use-fan': KeyInfo(),
+                },
+            )),
+            ('7.14', '>=', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                fields={
+                    'cpu-overtemp-check': KeyInfo(),
+                    'cpu-overtemp-startup-delay': KeyInfo(),
+                    'cpu-overtemp-threshold': KeyInfo(),
+                    'fan-control-interval': KeyInfo(default=30),
+                    'fan-full-speed-temp': KeyInfo(default=65),
+                    'fan-min-speed-percent': KeyInfo(default=12),
+                    'fan-mode': KeyInfo(),
+                    'fan-on-threshold': KeyInfo(),
+                    'fan-switch': KeyInfo(),
+                    'fan-target-temp': KeyInfo(default=58),
+                    'use-fan': KeyInfo(),
+                },
+            )),
+        ],
+    ),
     ('system', 'identity'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
