@@ -3205,6 +3205,9 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.9', '>=')], 'host-key-type', KeyInfo(default='rsa')),
+            ],
             fields={
                 'allow-none-crypto': KeyInfo(default=False),
                 'always-allow-password-login': KeyInfo(default=False),
