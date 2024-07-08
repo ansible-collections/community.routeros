@@ -13,7 +13,7 @@ authors:
   - Egor Zaitsev (github.com/heuels)
   - Nikolay Dachev (github.com/NikolayDachev)
   - Felix Fontein (github.com/felixfontein)
-description: Modules for MikroTik RouterOS
+description: Modules and plugins for MikroTik RouterOS
 license:
   - GPL-3.0-or-later
 #license_file: COPYING
