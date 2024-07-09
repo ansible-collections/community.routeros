@@ -382,6 +382,20 @@ releases:
     - 286-add_ppp_secret_path.yml
     - 288-interface_ethernet_values.yml
     release_date: '2024-06-16'
+  2.17.0:
+    changes:
+      minor_changes:
+      - api_info, api_modify - add ``system health settings`` path (https://github.com/ansible-collections/community.routeros/pull/294).
+      - api_info, api_modify - add missing path ``/system resource irq rps`` (https://github.com/ansible-collections/community.routeros/pull/295).
+      - api_info, api_modify - add parameter ``host-key-type`` for ``ip ssh`` path
+        (https://github.com/ansible-collections/community.routeros/issues/280, https://github.com/ansible-collections/community.routeros/pull/297).
+      release_summary: Feature release.
+    fragments:
+    - 2.17.0.yml
+    - 294-add-system-health-settings-path.yml
+    - 295-add_system_resource_irq_rps_path.yml
+    - 297-add-ip-ssh-host-key-type.yml
+    release_date: '2024-07-09'
   2.2.0:
     changes:
       bugfixes:
