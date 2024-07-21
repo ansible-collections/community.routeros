@@ -2738,7 +2738,7 @@ PATHS = {
                 'code': KeyInfo(required=True),
                 'name': KeyInfo(),
                 'value': KeyInfo(default=''),
-                'force': KeyInfo(),
+                'force': KeyInfo(default=False),
             },
         ),
     ),
