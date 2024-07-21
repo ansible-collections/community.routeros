@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - set default for ``force`` in ``ip dhcp-server option`` to an explicit ``false`` (https://github.com/ansible-collections/community.routeros/issues/300).

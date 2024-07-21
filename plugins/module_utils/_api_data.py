@@ -774,36 +774,6 @@ PATHS = {
             )),
         ],
     ),
-    ('ip', 'dhcp-server'): APIData(
-        unversioned=VersionedAPIData(
-            fully_understood=True,
-            primary_keys=('name', ),
-            fields={
-                'address-pool': KeyInfo(default='static-only'),
-                'allow-dual-stack-queue': KeyInfo(can_disable=True, remove_value=True),
-                'always-broadcast': KeyInfo(can_disable=True, remove_value=False),
-                'authoritative': KeyInfo(default=True),
-                'bootp-lease-time': KeyInfo(default='forever'),
-                'bootp-support': KeyInfo(can_disable=True, remove_value='static'),
-                'client-mac-limit': KeyInfo(can_disable=True, remove_value='unlimited'),
-                'comment': KeyInfo(can_disable=True, remove_value=''),
-                'conflict-detection': KeyInfo(can_disable=True, remove_value=True),
-                'delay-threshold': KeyInfo(can_disable=True, remove_value='none'),
-                'dhcp-option-set': KeyInfo(can_disable=True, remove_value='none'),
-                'disabled': KeyInfo(default=False),
-                'insert-queue-before': KeyInfo(can_disable=True, remove_value='first'),
-                'interface': KeyInfo(required=True),
-                'lease-script': KeyInfo(default=''),
-                'lease-time': KeyInfo(default='10m'),
-                'name': KeyInfo(),
-                'parent-queue': KeyInfo(can_disable=True, remove_value='none'),
-                'relay': KeyInfo(can_disable=True, remove_value='0.0.0.0'),
-                'server-address': KeyInfo(can_disable=True, remove_value='0.0.0.0'),
-                'use-framed-as-classless': KeyInfo(can_disable=True, remove_value=True),
-                'use-radius': KeyInfo(default=False),
-            },
-        ),
-    ),
     ('routing', 'filter'): APIData(
         versioned=[
             ('7', '<', VersionedAPIData(
@@ -2679,6 +2649,36 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'dhcp-server'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('name', ),
+            fields={
+                'address-pool': KeyInfo(default='static-only'),
+                'allow-dual-stack-queue': KeyInfo(can_disable=True, remove_value=True),
+                'always-broadcast': KeyInfo(can_disable=True, remove_value=False),
+                'authoritative': KeyInfo(default=True),
+                'bootp-lease-time': KeyInfo(default='forever'),
+                'bootp-support': KeyInfo(can_disable=True, remove_value='static'),
+                'client-mac-limit': KeyInfo(can_disable=True, remove_value='unlimited'),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'conflict-detection': KeyInfo(can_disable=True, remove_value=True),
+                'delay-threshold': KeyInfo(can_disable=True, remove_value='none'),
+                'dhcp-option-set': KeyInfo(can_disable=True, remove_value='none'),
+                'disabled': KeyInfo(default=False),
+                'insert-queue-before': KeyInfo(can_disable=True, remove_value='first'),
+                'interface': KeyInfo(required=True),
+                'lease-script': KeyInfo(default=''),
+                'lease-time': KeyInfo(default='10m'),
+                'name': KeyInfo(),
+                'parent-queue': KeyInfo(can_disable=True, remove_value='none'),
+                'relay': KeyInfo(can_disable=True, remove_value='0.0.0.0'),
+                'server-address': KeyInfo(can_disable=True, remove_value='0.0.0.0'),
+                'use-framed-as-classless': KeyInfo(can_disable=True, remove_value=True),
+                'use-radius': KeyInfo(default=False),
+            },
+        ),
+    ),
     ('ip', 'dhcp-server', 'config'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
@@ -2738,7 +2738,7 @@ PATHS = {
                 'code': KeyInfo(required=True),
                 'name': KeyInfo(),
                 'value': KeyInfo(default=''),
-                'force': KeyInfo(),
+                'force': KeyInfo(default=False),
             },
         ),
     ),
@@ -2751,6 +2751,23 @@ PATHS = {
                 'options': KeyInfo(),
             },
         ),
+    ),
+    ('ip', 'dhcp-server', 'matcher'): APIData(
+        versioned=[
+            ('7.4', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('name', ),
+                fields={
+                    'address-pool': KeyInfo(default='none'),
+                    'code': KeyInfo(required=True),
+                    'disabled': KeyInfo(default=False),
+                    'name': KeyInfo(required=True),
+                    'option-set': KeyInfo(),
+                    'server': KeyInfo(default='all'),
+                    'value': KeyInfo(required=True),
+                },
+            )),
+        ],
     ),
     ('ip', 'dns'): APIData(
         unversioned=VersionedAPIData(
@@ -4966,9 +4983,10 @@ PATHS = {
                 'protocol': KeyInfo(default='all'),
                 'src-address': KeyInfo(),
                 'src-port': KeyInfo(default='any'),
+                # The template field can't really be changed once the item is
+                # created. This config captures the behavior best as it can
+                # i.e. template=yes is shown, template=no is hidden.
                 'template': KeyInfo(can_disable=True, remove_value=False),
-                # the tepmlate field can't really be changed once the item is created. This config captures the behavior best as it can
-                # i.e. tepmplate=yes is shown, tepmlate=no is hidden
                 'tunnel': KeyInfo(default=False),
             },
         ),
