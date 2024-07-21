@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add support for the ``ip dhcp-server matcher`` path (https://github.com/ansible-collections/community.routeros/issues/300).

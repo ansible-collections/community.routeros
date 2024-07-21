@@ -134,6 +134,7 @@ options:
         - ip dhcp-server
         - ip dhcp-server config
         - ip dhcp-server lease
+        - ip dhcp-server matcher
         - ip dhcp-server network
         - ip dhcp-server option
         - ip dhcp-server option sets

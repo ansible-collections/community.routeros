@@ -2752,6 +2752,23 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'dhcp-server', 'matcher'): APIData(
+        versioned=[
+            ('7.4', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('name', ),
+                fields={
+                    'address-pool': KeyInfo(default='none'),
+                    'code': KeyInfo(required=True),
+                    'disabled': KeyInfo(default=False),
+                    'name': KeyInfo(required=True),
+                    'option-set': KeyInfo(),
+                    'server': KeyInfo(default='all'),
+                    'value': KeyInfo(required=True),
+                },
+            )),
+        ],
+    ),
     ('ip', 'dns'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
