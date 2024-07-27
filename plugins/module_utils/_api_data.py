@@ -956,6 +956,21 @@ PATHS = {
             },
         ),
     ),
+    ('routing', 'ospf', 'static-neighbor'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'address': KeyInfo(required=True),
+                    'area': KeyInfo(required=True),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'instance-id': KeyInfo(default=0),
+                    'poll-interval': KeyInfo(default='2m'),
+                },
+            )),
+        ],
+    ),
     ('routing', 'ospf-v3', 'instance'): APIData(
         unversioned=VersionedAPIData(
             unknown_mechanism=True,

@@ -218,6 +218,7 @@ options:
         - routing ospf area range
         - routing ospf instance
         - routing ospf interface-template
+        - routing ospf static-neighbor
         - routing pimsm instance
         - routing pimsm interface-template
         - routing rip
