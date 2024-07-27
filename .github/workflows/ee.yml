@@ -113,6 +113,8 @@ jobs:
             ansible_runner:
               package_pip: ${{ matrix.ansible_runner }}
             galaxy: requirements.yml
+            python:
+              - python-daemon!=3.0.2
           ${{ matrix.other_deps }}
 
           images:
