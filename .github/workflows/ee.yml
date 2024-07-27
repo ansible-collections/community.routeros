@@ -113,8 +113,6 @@ jobs:
             ansible_runner:
               package_pip: ${{ matrix.ansible_runner }}
             galaxy: requirements.yml
-            python:
-              - python-daemon!=3.0.2
           ${{ matrix.other_deps }}
 
           images:
@@ -126,6 +124,8 @@ jobs:
               dest: src
 
           additional_build_steps:
+            prepend_builder:
+              - RUN \$PYCMD -m pip install --no-cache-dir python-daemon==3.0.1
             prepend_base:
               - ${{ matrix.pre_base }}
           EOF
