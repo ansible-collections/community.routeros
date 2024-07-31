@@ -183,6 +183,7 @@ options:
         - ipv6 firewall nat
         - ipv6 firewall raw
         - ipv6 nd
+        - ipv6 nd prefix
         - ipv6 nd prefix default
         - ipv6 route
         - ipv6 settings
