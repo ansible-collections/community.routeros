@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add support for the ``ipv6 nd prefix`` path (https://github.com/ansible-collections/community.routeros/pull/303).

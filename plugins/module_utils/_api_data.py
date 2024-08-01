@@ -3697,6 +3697,22 @@ PATHS = {
             },
         ),
     ),
+    ('ipv6', 'nd', 'prefix'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                '6to4-interface': KeyInfo(default='none'),
+                'autonomous': KeyInfo(),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'disabled': KeyInfo(default=False),
+                'interface': KeyInfo(required=True),
+                'on-link': KeyInfo(default=True),
+                'preferred-lifetime': KeyInfo(),
+                'prefix': KeyInfo(),
+                'valid-lifetime': KeyInfo(),
+            },
+        ),
+    ),
     ('ipv6', 'nd', 'prefix', 'default'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,
