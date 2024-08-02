@@ -2340,6 +2340,10 @@ PATHS = {
                 'preshared-key': KeyInfo(can_disable=True, remove_value=''),
                 'public-key': KeyInfo(),
             },
+            versioned_fields=[
+                ([('7.15', '>=')], 'name', KeyInfo()),
+                ([('7.15', '>=')], 'is-responder', KeyInfo()),
+            ],
         ),
     ),
     ('interface', 'wireless'): APIData(
