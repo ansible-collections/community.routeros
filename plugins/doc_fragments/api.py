@@ -116,7 +116,14 @@ options:
             then this will not match. If you are not sure, better include both variants:
             both the string and the integer.
           - Use V(none) for disabled values.
-        required: true
+          - Either O(restrict[].values) or O(restrict[].regex), but not both, must be specified.
         type: list
         elements: raw
+      regex:
+        description:
+          - A regular expression matching values of the field to limit to.
+          - Note that all values will be converted to strings before matching.
+          - It is not possible to match disabled values with regular expressions.
+          - Either O(restrict[].values) or O(restrict[].regex), but not both, must be specified.
+        type: str
 '''

@@ -462,9 +462,9 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 )
 
 from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
-    entry_accepted,
     restrict_argument_spec,
-    validate_restrict,
+    restrict_entry_accepted,
+    validate_and_prepare_restrict,
 )
 
 HAS_ORDEREDDICT = True
@@ -732,14 +732,14 @@ def prepare_for_add(entry, path_info):
     return new_entry
 
 
-def remove_rejected(data, path_info, module):
+def remove_rejected(data, path_info, restrict_data):
     return [
         entry for entry in data
-        if entry_accepted(entry, path_info, module)
+        if restrict_entry_accepted(entry, path_info, restrict_data)
     ]
 
 
-def sync_list(module, api, path, path_info):
+def sync_list(module, api, path, path_info, restrict_data):
     handle_absent_entries = module.params['handle_absent_entries']
     handle_entries_content = module.params['handle_entries_content']
     if handle_absent_entries == 'remove':
@@ -753,7 +753,7 @@ def sync_list(module, api, path, path_info):
     data = module.params['data']
     stratified_data = defaultdict(list)
     for index, entry in enumerate(data):
-        if not entry_accepted(entry, path_info, module):
+        if not restrict_entry_accepted(entry, path_info, restrict_data):
             module.fail_json(msg='The element at index #{index} does not match `restrict`'.format(index=index + 1))
         for stratify_key in stratify_keys:
             if stratify_key not in entry:
@@ -775,7 +775,7 @@ def sync_list(module, api, path, path_info):
 
     old_data = get_api_data(api_path, path_info)
     old_data = remove_dynamic(old_data)
-    old_data = remove_rejected(old_data, path_info, module)
+    old_data = remove_rejected(old_data, path_info, restrict_data)
     stratified_old_data = defaultdict(list)
     for index, entry in enumerate(old_data):
         sks = tuple(entry[stratify_key] for stratify_key in stratify_keys)
@@ -888,7 +888,7 @@ def sync_list(module, api, path, path_info):
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
             new_data = remove_dynamic(get_api_data(api_path, path_info))
-            new_data = remove_rejected(new_data, path_info, module)
+            new_data = remove_rejected(new_data, path_info, restrict_data)
 
     # Remove 'irrelevant' data
     for entry in old_data:
@@ -915,7 +915,7 @@ def sync_list(module, api, path, path_info):
     )
 
 
-def sync_with_primary_keys(module, api, path, path_info):
+def sync_with_primary_keys(module, api, path, path_info, restrict_data):
     primary_keys = path_info.primary_keys
 
     if path_info.fixed_entries:
@@ -927,7 +927,7 @@ def sync_with_primary_keys(module, api, path, path_info):
     data = module.params['data']
     new_data_by_key = OrderedDict()
     for index, entry in enumerate(data):
-        if not entry_accepted(entry, path_info, module):
+        if not restrict_entry_accepted(entry, path_info, restrict_data):
             module.fail_json(msg='The element at index #{index} does not match `restrict`'.format(index=index + 1))
         for primary_key in primary_keys:
             if primary_key not in entry:
@@ -960,7 +960,7 @@ def sync_with_primary_keys(module, api, path, path_info):
 
     old_data = get_api_data(api_path, path_info)
     old_data = remove_dynamic(old_data)
-    old_data = remove_rejected(old_data, path_info, module)
+    old_data = remove_rejected(old_data, path_info, restrict_data)
     old_data_by_key = OrderedDict()
     id_by_key = {}
     for entry in old_data:
@@ -1087,7 +1087,7 @@ def sync_with_primary_keys(module, api, path, path_info):
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
             new_data = remove_dynamic(get_api_data(api_path, path_info))
-            new_data = remove_rejected(new_data, path_info, module)
+            new_data = remove_rejected(new_data, path_info, restrict_data)
 
     # Remove 'irrelevant' data
     for entry in old_data:
@@ -1114,7 +1114,7 @@ def sync_with_primary_keys(module, api, path, path_info):
     )
 
 
-def sync_single_value(module, api, path, path_info):
+def sync_single_value(module, api, path, path_info, restrict_data):
     if module.params['restrict'] is not None:
         module.fail_json(msg='The restrict option cannot be used with this path, since there is precisely one entry.')
     data = module.params['data']
@@ -1246,9 +1246,9 @@ def main():
     if path_info is None or backend is None:
         module.fail_json(msg='Path /{path} is not yet supported'.format(path='/'.join(path)))
 
-    validate_restrict(module, path_info)
+    restrict_data = validate_and_prepare_restrict(module, path_info)
 
-    backend(module, api, path, path_info)
+    backend(module, api, path, path_info, restrict_data)
 
 
 if __name__ == '__main__':

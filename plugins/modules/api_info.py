@@ -376,9 +376,9 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 )
 
 from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
-    entry_accepted,
     restrict_argument_spec,
-    validate_restrict,
+    restrict_entry_accepted,
+    validate_and_prepare_restrict,
 )
 
 try:
@@ -435,7 +435,7 @@ def main():
     include_dynamic = module.params['include_dynamic']
     include_builtin = module.params['include_builtin']
     include_read_only = module.params['include_read_only']
-    validate_restrict(module, path_info)
+    restrict_data = validate_and_prepare_restrict(module, path_info)
     try:
         api_path = compose_api_path(api, path)
 
@@ -448,7 +448,7 @@ def main():
             if not include_builtin:
                 if entry.get('builtin', False):
                     continue
-            if not entry_accepted(entry, path_info, module):
+            if not restrict_entry_accepted(entry, path_info, restrict_data):
                 continue
             if not unfiltered:
                 for k in list(entry):
