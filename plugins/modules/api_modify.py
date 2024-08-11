@@ -353,10 +353,11 @@ options:
       values:
         description:
           - The values of the field to limit to.
-          - "Note that the types of the values are important. If you provide a string V("0"),
-             and librouteros converts the value returned by the API to the integer V(0),
-             then this will not match. If you are not sure, better include both variants:
-             both the string and the integer."
+          - >-
+            Note that the types of the values are important. If you provide a string V("0"),
+            and librouteros converts the value returned by the API to the integer V(0),
+            then this will not match. If you are not sure, better include both variants:
+            both the string and the integer.
           - Use V(none) for disabled values.
         required: true
         type: list
