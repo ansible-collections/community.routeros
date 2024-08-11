@@ -259,6 +259,10 @@ PATHS = {
         unversioned=VersionedAPIData(
             fully_understood=True,
             primary_keys=('name', ),
+            versioned_fields=[
+                ([('7.0', '<')], 'ingress-filtering', KeyInfo(default=False)),
+                ([('7.0', '>=')], 'ingress-filtering', KeyInfo(default=True)),
+            ],
             fields={
                 'admin-mac': KeyInfo(default=''),
                 'ageing-time': KeyInfo(default='5m'),
@@ -273,7 +277,6 @@ PATHS = {
                 'frame-types': KeyInfo(default='admit-all'),
                 'forward-delay': KeyInfo(default='15s'),
                 'igmp-snooping': KeyInfo(default=False),
-                'ingress-filtering': KeyInfo(default=True),
                 'max-message-age': KeyInfo(default='20s'),
                 'mtu': KeyInfo(default='auto'),
                 'name': KeyInfo(),
@@ -1310,6 +1313,10 @@ PATHS = {
         unversioned=VersionedAPIData(
             fully_understood=True,
             primary_keys=('interface', ),
+            versioned_fields=[
+                ([('7.0', '<')], 'ingress-filtering', KeyInfo(default=False)),
+                ([('7.0', '>=')], 'ingress-filtering', KeyInfo(default=True)),
+            ],
             fields={
                 'auto-isolate': KeyInfo(default=False),
                 'bpdu-guard': KeyInfo(default=False),
@@ -1322,7 +1329,6 @@ PATHS = {
                 'frame-types': KeyInfo(default='admit-all'),
                 'horizon': KeyInfo(default='none'),
                 'hw': KeyInfo(default=True),
-                'ingress-filtering': KeyInfo(default=True),
                 'interface': KeyInfo(),
                 'internal-path-cost': KeyInfo(default=10),
                 'learn': KeyInfo(default='auto'),
