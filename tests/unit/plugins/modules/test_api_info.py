@@ -822,3 +822,169 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'comment': 'foo',
             },
         ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_restrict_1(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                'chain': 'input',
+                'in-interface-list': 'LAN',
+                'dynamic': False,
+                '.id': '*1',
+            },
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+                'dynamic': False,
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'handle_disabled': 'omit',
+                'restrict': [],
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                'chain': 'input',
+                'in-interface-list': 'LAN',
+                '.id': '*1',
+            },
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_restrict_2(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                'chain': 'input',
+                'in-interface-list': 'LAN',
+                'dynamic': False,
+                '.id': '*1',
+            },
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+                'dynamic': False,
+            },
+            {
+                'chain': 'input',
+                'action': 'drop',
+                'dynamic': False,
+                '.id': '*3',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'handle_disabled': 'omit',
+                'restrict': [{
+                    'field': 'chain',
+                    'values': ['forward'],
+                }],
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+            },
+        ])
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_info.compose_api_path')
+    def test_restrict_3(self, mock_compose_api_path):
+        mock_compose_api_path.return_value = [
+            {
+                'chain': 'input',
+                'in-interface-list': 'LAN',
+                'dynamic': False,
+                '.id': '*1',
+            },
+            {
+                'chain': 'forward',
+                'action': 'drop',
+                'in-interface': 'sfp1',
+                '.id': '*2',
+                'dynamic': False,
+            },
+            {
+                'chain': 'input',
+                'action': 'drop',
+                'dynamic': False,
+                '.id': '*3',
+            },
+            {
+                'chain': 'input',
+                'action': 'drop',
+                'comment': 'Foo',
+                'dynamic': False,
+                '.id': '*4',
+            },
+            {
+                'chain': 'input',
+                'action': 'drop',
+                'comment': 'Bar',
+                'dynamic': False,
+                '.id': '*5',
+            },
+        ]
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip firewall filter',
+                'handle_disabled': 'omit',
+                'restrict': [
+                    {
+                        'field': 'chain',
+                        'values': ['input', 'foobar'],
+                    },
+                    {
+                        'field': 'action',
+                        'values': ['drop', 42],
+                    },
+                    {
+                        'field': 'comment',
+                        'values': [None, 'Foo'],
+                    },
+                ],
+            })
+            set_module_args(args)
+            self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['result'], [
+            {
+                'chain': 'input',
+                'action': 'drop',
+                '.id': '*3',
+            },
+            {
+                'chain': 'input',
+                'action': 'drop',
+                'comment': 'Foo',
+                '.id': '*4',
+            },
+        ])

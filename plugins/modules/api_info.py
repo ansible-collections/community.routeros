@@ -301,6 +301,29 @@ options:
     type: bool
     default: false
     version_added: 2.10.0
+  restrict:
+    description:
+      - Restrict output to entries matching the following criteria.
+    type: list
+    elements: dict
+    version_added: 2.18.0
+    suboptions:
+      field:
+        description:
+          - The field whose values to restrict.
+        required: true
+        type: str
+      values:
+        description:
+          - The values of the field to limit to.
+          - "Note that the types of the values are important. If you provide a string V("0"),
+             and librouteros converts the value returned by the API to the integer V(0),
+             then this will not match. If you are not sure, better include both variants:
+             both the string and the integer."
+          - Use V(none) for disabled values.
+        required: true
+        type: list
+        elements: raw
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -310,6 +333,18 @@ seealso:
 
 EXAMPLES = '''
 ---
+- name: Get IP addresses
+  community.routeros.api_info:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: ip address
+  register: ip_addresses
+
+- name: Print data for IP addresses
+  ansible.builtin.debug:
+    var: ip_addresses.result
+
 - name: Get IP addresses
   community.routeros.api_info:
     hostname: "{{ hostname }}"
@@ -358,6 +393,11 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
     split_path,
 )
 
+from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
+    entry_accepted,
+    validate_restrict,
+)
+
 try:
     from librouteros.exceptions import LibRouterosError
 except Exception:
@@ -381,6 +421,10 @@ def main():
         include_dynamic=dict(type='bool', default=False),
         include_builtin=dict(type='bool', default=False),
         include_read_only=dict(type='bool', default=False),
+        restrict=dict(type='list', elements='dict', options=dict(
+            field=dict(type='str', required=True),
+            values=dict(type='list', elements='raw', required=True),
+        )),
     )
     module_args.update(api_argument_spec())
 
@@ -411,6 +455,7 @@ def main():
     include_dynamic = module.params['include_dynamic']
     include_builtin = module.params['include_builtin']
     include_read_only = module.params['include_read_only']
+    validate_restrict(module, path_info)
     try:
         api_path = compose_api_path(api, path)
 
@@ -423,6 +468,8 @@ def main():
             if not include_builtin:
                 if entry.get('builtin', False):
                     continue
+            if not entry_accepted(entry, path_info, module):
+                continue
             if not unfiltered:
                 for k in list(entry):
                     if k == '.id':
