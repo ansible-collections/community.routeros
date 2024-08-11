@@ -561,15 +561,26 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/regex"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-restrict-regex"><strong>regex</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/regex" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>A regular expression matching values of the field to limit to.</p>
+<p>Note that all values will be converted to strings before matching.</p>
+<p>It is not possible to match disabled values with regular expressions.</p>
+<p>Either <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-info-module-parameter-restrict-values"><span class="std std-ref"><span class="pre">restrict[].values</span></span></a></strong></code> or <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-info-module-parameter-restrict-regex"><span class="std std-ref"><span class="pre">restrict[].regex</span></span></a></strong></code>, but not both, must be specified.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-restrict/values"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-restrict-values"><strong>values</strong></p>
-<a class="ansibleOptionLink" href="#parameter-restrict/values" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=any</span> / <span class="ansible-option-required">required</span></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/values" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=any</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The values of the field to limit to.</p>
 <p>Note that the types of the values are important. If you provide a string <code class="ansible-value docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code>, and librouteros converts the value returned by the API to the integer <code class="ansible-value docutils literal notranslate"><span class="pre">0</span></code>, then this will not match. If you are not sure, better include both variants: both the string and the integer.</p>
 <p>Use <code class="ansible-value docutils literal notranslate"><span class="pre">none</span></code> for disabled values.</p>
+<p>Either <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-info-module-parameter-restrict-values"><span class="std std-ref"><span class="pre">restrict[].values</span></span></a></strong></code> or <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-info-module-parameter-restrict-regex"><span class="std std-ref"><span class="pre">restrict[].regex</span></span></a></strong></code>, but not both, must be specified.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-timeout"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-timeout"><strong>timeout</strong></p>
 <a class="ansibleOptionLink" href="#parameter-timeout" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 <p><em class="ansible-option-versionadded">added in community.routeros 2.3.0</em></p>
@@ -578,7 +589,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">10</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-tls"></div>
 <div class="ansibleOptionAnchor" id="parameter-ssl"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-tls"><span id="ansible-collections-community-routeros-api-info-module-parameter-ssl"></span><strong>tls</strong></p>
 <a class="ansibleOptionLink" href="#parameter-tls" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: ssl</span></p>
@@ -592,7 +603,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-unfiltered"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-unfiltered"><strong>unfiltered</strong></p>
 <a class="ansibleOptionLink" href="#parameter-unfiltered" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -605,14 +616,14 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-username"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-username"><strong>username</strong></p>
 <a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>RouterOS login user.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-validate_cert_hostname"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-validate-cert-hostname"><strong>validate_cert_hostname</strong></p>
 <a class="ansibleOptionLink" href="#parameter-validate_cert_hostname" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 <p><em class="ansible-option-versionadded">added in community.routeros 1.2.0</em></p>
@@ -626,7 +637,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-validate_certs"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-info-module-parameter-validate-certs"><strong>validate_certs</strong></p>
 <a class="ansibleOptionLink" href="#parameter-validate_certs" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 <p><em class="ansible-option-versionadded">added in community.routeros 1.2.0</em></p>
