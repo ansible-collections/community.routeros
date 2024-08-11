@@ -333,6 +333,34 @@ options:
       - error
     default: create_only
     version_added: 2.10.0
+  restrict:
+    description:
+      - Restrict operation to entries matching the following criteria.
+      - This can be useful together with O(handle_absent_entries=remove) to operate on a subset of
+        the values.
+      - For example, for O(path=ip firewall filter), you can set O(restrict[].field=chain) and
+        O(restrict[].values=input) to restrict operation to the input chain, and ignore the
+        forward and output chains.
+    type: list
+    elements: dict
+    version_added: 2.18.0
+    suboptions:
+      field:
+        description:
+          - The field whose values to restrict.
+        required: true
+        type: str
+      values:
+        description:
+          - The values of the field to limit to.
+          - "Note that the types of the values are important. If you provide a string V("0"),
+             and librouteros converts the value returned by the API to the integer V(0),
+             then this will not match. If you are not sure, better include both variants:
+             both the string and the integer."
+          - Use V(none) for disabled values.
+        required: true
+        type: list
+        elements: raw
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -378,6 +406,23 @@ EXAMPLES = '''
         out-interface:
         to-addresses: ~
         '!to-ports':
+
+- name: Block all incoming connections
+  community.routeros.api_modify:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: ip firewall filter
+    handle_absent_entries: remove
+    handle_entries_content: remove_as_much_as_possible
+    restrict:
+      # Do not touch any chain except the input chain
+      - field: chain
+        values:
+          - input
+    data:
+      - action: drop
+        chain: input
 '''
 
 RETURN = '''
@@ -432,6 +477,11 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
     PATHS,
     join_path,
     split_path,
+)
+
+from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
+    entry_accepted,
+    validate_restrict,
 )
 
 HAS_ORDEREDDICT = True
@@ -699,18 +749,29 @@ def prepare_for_add(entry, path_info):
     return new_entry
 
 
+def remove_rejected(data, path_info, module):
+    return [
+        entry for entry in data
+        if entry_accepted(entry, path_info, module)
+    ]
+
+
 def sync_list(module, api, path, path_info):
     handle_absent_entries = module.params['handle_absent_entries']
     handle_entries_content = module.params['handle_entries_content']
     if handle_absent_entries == 'remove':
         if handle_entries_content == 'ignore':
-            module.fail_json('For this path, handle_absent_entries=remove cannot be combined with handle_entries_content=ignore')
+            module.fail_json(
+                msg='For this path, handle_absent_entries=remove cannot be combined with handle_entries_content=ignore'
+            )
 
     stratify_keys = path_info.stratify_keys or ()
 
     data = module.params['data']
     stratified_data = defaultdict(list)
     for index, entry in enumerate(data):
+        if not entry_accepted(entry, path_info, module):
+            module.fail_json(msg='The element at index #{index} does not match `restrict`'.format(index=index + 1))
         for stratify_key in stratify_keys:
             if stratify_key not in entry:
                 module.fail_json(
@@ -731,6 +792,7 @@ def sync_list(module, api, path, path_info):
 
     old_data = get_api_data(api_path, path_info)
     old_data = remove_dynamic(old_data)
+    old_data = remove_rejected(old_data, path_info, module)
     stratified_old_data = defaultdict(list)
     for index, entry in enumerate(old_data):
         sks = tuple(entry[stratify_key] for stratify_key in stratify_keys)
@@ -843,6 +905,7 @@ def sync_list(module, api, path, path_info):
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
             new_data = remove_dynamic(get_api_data(api_path, path_info))
+            new_data = remove_rejected(new_data, path_info, module)
 
     # Remove 'irrelevant' data
     for entry in old_data:
@@ -881,6 +944,8 @@ def sync_with_primary_keys(module, api, path, path_info):
     data = module.params['data']
     new_data_by_key = OrderedDict()
     for index, entry in enumerate(data):
+        if not entry_accepted(entry, path_info, module):
+            module.fail_json(msg='The element at index #{index} does not match `restrict`'.format(index=index + 1))
         for primary_key in primary_keys:
             if primary_key not in entry:
                 module.fail_json(
@@ -912,6 +977,7 @@ def sync_with_primary_keys(module, api, path, path_info):
 
     old_data = get_api_data(api_path, path_info)
     old_data = remove_dynamic(old_data)
+    old_data = remove_rejected(old_data, path_info, module)
     old_data_by_key = OrderedDict()
     id_by_key = {}
     for entry in old_data:
@@ -1038,6 +1104,7 @@ def sync_with_primary_keys(module, api, path, path_info):
         # For sake of completeness, retrieve the full new data:
         if modify_list or create_list or reorder_list:
             new_data = remove_dynamic(get_api_data(api_path, path_info))
+            new_data = remove_rejected(new_data, path_info, module)
 
     # Remove 'irrelevant' data
     for entry in old_data:
@@ -1065,6 +1132,8 @@ def sync_with_primary_keys(module, api, path, path_info):
 
 
 def sync_single_value(module, api, path, path_info):
+    if module.params['restrict'] is not None:
+        module.fail_json(msg='The restrict option cannot be used with this path, since there is precisely one entry.')
     data = module.params['data']
     if len(data) != 1:
         module.fail_json(msg='Data must be a list with exactly one element.')
@@ -1160,6 +1229,10 @@ def main():
         ensure_order=dict(type='bool', default=False),
         handle_read_only=dict(type='str', default='error', choices=['ignore', 'validate', 'error']),
         handle_write_only=dict(type='str', default='create_only', choices=['create_only', 'always_update', 'error']),
+        restrict=dict(type='list', elements='dict', options=dict(
+            field=dict(type='str', required=True),
+            values=dict(type='list', elements='raw', required=True),
+        )),
     )
     module_args.update(api_argument_spec())
 
@@ -1192,6 +1265,8 @@ def main():
     backend = get_backend(path_info)
     if path_info is None or backend is None:
         module.fail_json(msg='Path /{path} is not yet supported'.format(path='/'.join(path)))
+
+    validate_restrict(module, path_info)
 
     backend(module, api, path, path_info)
 
