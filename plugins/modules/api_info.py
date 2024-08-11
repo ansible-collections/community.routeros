@@ -26,6 +26,7 @@ description:
     L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.api.restrict
   - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
   - community.routeros.attributes.info_module
@@ -304,27 +305,7 @@ options:
   restrict:
     description:
       - Restrict output to entries matching the following criteria.
-    type: list
-    elements: dict
     version_added: 2.18.0
-    suboptions:
-      field:
-        description:
-          - The field whose values to restrict.
-        required: true
-        type: str
-      values:
-        description:
-          - The values of the field to limit to.
-          - >-
-            Note that the types of the values are important. If you provide a string V("0"),
-            and librouteros converts the value returned by the API to the integer V(0),
-            then this will not match. If you are not sure, better include both variants:
-            both the string and the integer.
-          - Use V(none) for disabled values.
-        required: true
-        type: list
-        elements: raw
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -396,6 +377,7 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 
 from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
     entry_accepted,
+    restrict_argument_spec,
     validate_restrict,
 )
 
@@ -422,12 +404,9 @@ def main():
         include_dynamic=dict(type='bool', default=False),
         include_builtin=dict(type='bool', default=False),
         include_read_only=dict(type='bool', default=False),
-        restrict=dict(type='list', elements='dict', options=dict(
-            field=dict(type='str', required=True),
-            values=dict(type='list', elements='raw', required=True),
-        )),
     )
     module_args.update(api_argument_spec())
+    module_args.update(restrict_argument_spec())
 
     module = AnsibleModule(
         argument_spec=module_args,

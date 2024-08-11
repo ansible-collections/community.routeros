@@ -38,3 +38,16 @@ def entry_accepted(entry, path_info, module):
         if value not in rule['values']:
             return False
     return True
+
+
+def restrict_argument_spec():
+    return dict(
+        restrict=dict(
+            type='list',
+            elements='dict',
+            options=dict(
+                field=dict(type='str', required=True),
+                values=dict(type='list', elements='raw', required=True),
+            ),
+        ),
+    )

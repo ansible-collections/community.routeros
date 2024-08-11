@@ -32,6 +32,7 @@ requirements:
   - Needs L(ordereddict,https://pypi.org/project/ordereddict) for Python 2.6
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.api.restrict
   - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
 attributes:
@@ -341,27 +342,7 @@ options:
       - For example, for O(path=ip firewall filter), you can set O(restrict[].field=chain) and
         O(restrict[].values=input) to restrict operation to the input chain, and ignore the
         forward and output chains.
-    type: list
-    elements: dict
     version_added: 2.18.0
-    suboptions:
-      field:
-        description:
-          - The field whose values to restrict.
-        required: true
-        type: str
-      values:
-        description:
-          - The values of the field to limit to.
-          - >-
-            Note that the types of the values are important. If you provide a string V("0"),
-            and librouteros converts the value returned by the API to the integer V(0),
-            then this will not match. If you are not sure, better include both variants:
-            both the string and the integer.
-          - Use V(none) for disabled values.
-        required: true
-        type: list
-        elements: raw
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -482,6 +463,7 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 
 from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
     entry_accepted,
+    restrict_argument_spec,
     validate_restrict,
 )
 
@@ -1230,12 +1212,9 @@ def main():
         ensure_order=dict(type='bool', default=False),
         handle_read_only=dict(type='str', default='error', choices=['ignore', 'validate', 'error']),
         handle_write_only=dict(type='str', default='create_only', choices=['create_only', 'always_update', 'error']),
-        restrict=dict(type='list', elements='dict', options=dict(
-            field=dict(type='str', required=True),
-            values=dict(type='list', elements='raw', required=True),
-        )),
     )
     module_args.update(api_argument_spec())
+    module_args.update(restrict_argument_spec())
 
     module = AnsibleModule(
         argument_spec=module_args,
