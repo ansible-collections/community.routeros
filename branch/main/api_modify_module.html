@@ -566,6 +566,64 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict"><strong>restrict</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
+<p><em class="ansible-option-versionadded">added in community.routeros 2.18.0</em></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Restrict operation to entries matching the following criteria.</p>
+<p>This can be useful together with <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-handle-absent-entries"><span class="std std-ref"><span class="pre">handle_absent_entries=remove</span></span></a></code> to operate on a subset of the values.</p>
+<p>For example, for <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-path"><span class="std std-ref"><span class="pre">path=ip</span> <span class="pre">firewall</span> <span class="pre">filter</span></span></a></code>, you can set <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-field"><span class="std std-ref"><span class="pre">restrict[].field=chain</span></span></a></code> and <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-values"><span class="std std-ref"><span class="pre">restrict[].values=input</span></span></a></code> to restrict operation to the input chain, and ignore the forward and output chains.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/field"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-field"><strong>field</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/field" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The field whose values to restrict.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/invert"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-invert"><strong>invert</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/invert" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Invert the condition. This affects <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-match-disabled"><span class="std std-ref"><span class="pre">restrict[].match_disabled</span></span></a></strong></code>, <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-values"><span class="std std-ref"><span class="pre">restrict[].values</span></span></a></strong></code>, and <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-regex"><span class="std std-ref"><span class="pre">restrict[].regex</span></span></a></strong></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/match_disabled"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-match-disabled"><strong>match_disabled</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/match_disabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Whether disabled or not provided values should match.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/regex"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-regex"><strong>regex</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/regex" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>A regular expression matching values of the field to limit to.</p>
+<p>Note that all values will be converted to strings before matching.</p>
+<p>It is not possible to match disabled values with regular expressions. Set <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-match-disabled"><span class="std std-ref"><span class="pre">restrict[].match_disabled=true</span></span></a></code> if you also want to match disabled values.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/values"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-values"><strong>values</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/values" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=any</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The values of the field to limit to.</p>
+<p>Note that the types of the values are important. If you provide a string <code class="ansible-value docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code>, and librouteros converts the value returned by the API to the integer <code class="ansible-value docutils literal notranslate"><span class="pre">0</span></code>, then this will not match. If you are not sure, better include both variants: both the string and the integer.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-timeout"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-timeout"><strong>timeout</strong></p>
 <a class="ansibleOptionLink" href="#parameter-timeout" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 <p><em class="ansible-option-versionadded">added in community.routeros 2.3.0</em></p>
@@ -738,6 +796,23 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <span class="w">        </span><span class="nt">out-interface</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">to-addresses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~</span>
 <span class="w">        </span><span class="s">&#39;!to-ports&#39;</span><span class="p p-Indicator">:</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block all incoming connections</span>
+<span class="w">  </span><span class="nt">community.routeros.api_modify</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">hostname</span> <span class="cp">}}</span><span class="s">&quot;</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">password</span> <span class="cp">}}</span><span class="s">&quot;</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">&quot;</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip firewall filter</span>
+<span class="w">    </span><span class="nt">handle_absent_entries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remove</span>
+<span class="w">    </span><span class="nt">handle_entries_content</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remove_as_much_as_possible</span>
+<span class="w">    </span><span class="nt">restrict</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># Do not touch any chain except the input chain</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chain</span>
+<span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input</span>
+<span class="w">    </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drop</span>
+<span class="w">        </span><span class="nt">chain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input</span>
 </pre></div>
 </div>
 </section>
