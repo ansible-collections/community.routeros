@@ -26,6 +26,7 @@ description:
     L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
 extends_documentation_fragment:
   - community.routeros.api
+  - community.routeros.api.restrict
   - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
   - community.routeros.attributes.info_module
@@ -301,6 +302,10 @@ options:
     type: bool
     default: false
     version_added: 2.10.0
+  restrict:
+    description:
+      - Restrict output to entries matching the following criteria.
+    version_added: 2.18.0
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -310,6 +315,18 @@ seealso:
 
 EXAMPLES = '''
 ---
+- name: Get IP addresses
+  community.routeros.api_info:
+    hostname: "{{ hostname }}"
+    password: "{{ password }}"
+    username: "{{ username }}"
+    path: ip address
+  register: ip_addresses
+
+- name: Print data for IP addresses
+  ansible.builtin.debug:
+    var: ip_addresses.result
+
 - name: Get IP addresses
   community.routeros.api_info:
     hostname: "{{ hostname }}"
@@ -358,6 +375,12 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
     split_path,
 )
 
+from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
+    restrict_argument_spec,
+    restrict_entry_accepted,
+    validate_and_prepare_restrict,
+)
+
 try:
     from librouteros.exceptions import LibRouterosError
 except Exception:
@@ -383,6 +406,7 @@ def main():
         include_read_only=dict(type='bool', default=False),
     )
     module_args.update(api_argument_spec())
+    module_args.update(restrict_argument_spec())
 
     module = AnsibleModule(
         argument_spec=module_args,
@@ -411,6 +435,7 @@ def main():
     include_dynamic = module.params['include_dynamic']
     include_builtin = module.params['include_builtin']
     include_read_only = module.params['include_read_only']
+    restrict_data = validate_and_prepare_restrict(module, path_info)
     try:
         api_path = compose_api_path(api, path)
 
@@ -423,6 +448,8 @@ def main():
             if not include_builtin:
                 if entry.get('builtin', False):
                     continue
+            if not restrict_entry_accepted(entry, path_info, restrict_data):
+                continue
             if not unfiltered:
                 for k in list(entry):
                     if k == '.id':

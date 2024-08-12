@@ -95,3 +95,44 @@ seealso:
   - ref: ansible_collections.community.routeros.docsite.api-guide
     description: How to connect to RouterOS devices with the RouterOS API
 '''
+
+    RESTRICT = r'''
+options:
+  restrict:
+    type: list
+    elements: dict
+    suboptions:
+      field:
+        description:
+          - The field whose values to restrict.
+        required: true
+        type: str
+      match_disabled:
+        description:
+          - Whether disabled or not provided values should match.
+        type: bool
+        default: false
+      values:
+        description:
+          - The values of the field to limit to.
+          - >-
+            Note that the types of the values are important. If you provide a string V("0"),
+            and librouteros converts the value returned by the API to the integer V(0),
+            then this will not match. If you are not sure, better include both variants:
+            both the string and the integer.
+        type: list
+        elements: raw
+      regex:
+        description:
+          - A regular expression matching values of the field to limit to.
+          - Note that all values will be converted to strings before matching.
+          - It is not possible to match disabled values with regular expressions.
+            Set O(restrict[].match_disabled=true) if you also want to match disabled values.
+        type: str
+      invert:
+        description:
+          - Invert the condition. This affects O(restrict[].match_disabled), O(restrict[].values),
+            and O(restrict[].regex).
+        type: bool
+        default: false
+'''
