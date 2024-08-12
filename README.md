@@ -9,7 +9,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 [![Codecov](https://img.shields.io/codecov/c/github/ansible-collections/community.routeros)](https://codecov.io/gh/ansible-collections/community.routeros)
 [![REUSE status](https://api.reuse.software/badge/github.com/ansible-collections/community.routeros)](https://api.reuse.software/info/github.com/ansible-collections/community.routeros)
 
-Provides modules for [Ansible](https://www.ansible.com/community) to manage [MikroTik RouterOS](http://www.mikrotik-routeros.net/routeros.aspx) instances.
+Provides modules for [Ansible](https://www.ansible.com/community) to manage [MikroTik RouterOS](https://mikrotik.com/software) instances.
 
 You can find [documentation for the modules and plugins in this collection here](https://docs.ansible.com/ansible/devel/collections/community/routeros/).
 
