@@ -583,13 +583,36 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/invert"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-invert"><strong>invert</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/invert" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Invert the condition. This affects <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-match-disabled"><span class="std std-ref"><span class="pre">restrict[].match_disabled</span></span></a></strong></code>, <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-values"><span class="std std-ref"><span class="pre">restrict[].values</span></span></a></strong></code>, and <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-regex"><span class="std std-ref"><span class="pre">restrict[].regex</span></span></a></strong></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-restrict/match_disabled"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-match-disabled"><strong>match_disabled</strong></p>
+<a class="ansibleOptionLink" href="#parameter-restrict/match_disabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Whether disabled or not provided values should match.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-restrict/regex"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-modify-module-parameter-restrict-regex"><strong>regex</strong></p>
 <a class="ansibleOptionLink" href="#parameter-restrict/regex" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>A regular expression matching values of the field to limit to.</p>
 <p>Note that all values will be converted to strings before matching.</p>
-<p>It is not possible to match disabled values with regular expressions.</p>
-<p>Either <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-values"><span class="std std-ref"><span class="pre">restrict[].values</span></span></a></strong></code> or <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-regex"><span class="std std-ref"><span class="pre">restrict[].regex</span></span></a></strong></code>, but not both, must be specified.</p>
+<p>It is not possible to match disabled values with regular expressions. Set <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-match-disabled"><span class="std std-ref"><span class="pre">restrict[].match_disabled=true</span></span></a></code> if you also want to match disabled values.</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
@@ -598,8 +621,6 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </div></td>
 <td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>The values of the field to limit to.</p>
 <p>Note that the types of the values are important. If you provide a string <code class="ansible-value docutils literal notranslate"><span class="pre">&quot;0&quot;</span></code>, and librouteros converts the value returned by the API to the integer <code class="ansible-value docutils literal notranslate"><span class="pre">0</span></code>, then this will not match. If you are not sure, better include both variants: both the string and the integer.</p>
-<p>Use <code class="ansible-value docutils literal notranslate"><span class="pre">none</span></code> for disabled values.</p>
-<p>Either <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-values"><span class="std std-ref"><span class="pre">restrict[].values</span></span></a></strong></code> or <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-restrict-regex"><span class="std std-ref"><span class="pre">restrict[].regex</span></span></a></strong></code>, but not both, must be specified.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -836,6 +857,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <ul class="ansible-links">
 <li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/ansible-collections/community.routeros/issues" rel="noopener external" target="_blank">Issue Tracker</a></span></li>
 <li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/ansible-collections/community.routeros" rel="noopener external" target="_blank">Repository (Sources)</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://forum.ansible.com/tags/c/help/6/none/routeros" rel="noopener external" target="_blank">Ask for help (RouterOS)</a></span></li>
 <li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/ansible-collections/community.routeros/issues/new?assignees=&amp;labels=&amp;template=bug_report.md" rel="noopener external" target="_blank">Submit a bug report</a></span></li>
 <li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/ansible-collections/community.routeros/issues/new?assignees=&amp;labels=&amp;template=feature_request.md" rel="noopener external" target="_blank">Request a feature</a></span></li>
 <li><span><a class="reference internal" href="index.html#communication-for-community-routeros"><span class="std std-ref">Communication</span></a></span></li>
