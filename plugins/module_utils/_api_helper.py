@@ -27,10 +27,14 @@ def validate_and_prepare_restrict(module, path_info):
         if f is None:
             module.fail_json(msg='restrict: the field "{0}" does not exist for this path'.format(field))
 
-        new_rule = dict(field=field)
+        new_rule = dict(
+            field=field,
+            match_disabled=rule['match_disabled'],
+            invert=rule['invert'],
+        )
         if rule['values'] is not None:
             new_rule['values'] = rule['values']
-        elif rule['regex'] is not None:
+        if rule['regex'] is not None:
             regex = rule['regex']
             try:
                 new_rule['regex'] = re.compile(regex)
@@ -39,6 +43,25 @@ def validate_and_prepare_restrict(module, path_info):
                 module.fail_json(msg='restrict: invalid regular expression "{0}": {1}'.format(regex, exc))
         restrict_data.append(new_rule)
     return restrict_data
+
+
+def _value_to_str(value):
+    if value is None:
+        return None
+    value_str = to_text(value)
+    if isinstance(value, bool):
+        value_str = value_str.lower()
+    return value_str
+
+
+def _test_rule_except_invert(value, rule):
+    if value is None and rule['match_disabled']:
+        return True
+    if 'values' in rule and value in rule['values']:
+        return True
+    if 'regex' in rule and value is not None and rule['regex'].match(_value_to_str(value)):
+        return True
+    return False
 
 
 def restrict_entry_accepted(entry, path_info, restrict_data):
@@ -54,18 +77,12 @@ def restrict_entry_accepted(entry, path_info, restrict_data):
         if field not in entry and field_info.absent_value:
             value = field_info.absent_value
 
-        # Actual test
-        if 'values' in rule and value not in rule['values']:
+        # Check
+        matches_rule = _test_rule_except_invert(value, rule)
+        if rule['invert']:
+            matches_rule = not matches_rule
+        if not matches_rule:
             return False
-        if 'regex' in rule:
-            if value is None:
-                # regex cannot match None
-                return False
-            value_str = to_text(value)
-            if isinstance(value, bool):
-                value_str = value_str.lower()
-            if rule['regex'].match(value_str):
-                return False
     return True
 
 
@@ -76,14 +93,10 @@ def restrict_argument_spec():
             elements='dict',
             options=dict(
                 field=dict(type='str', required=True),
+                match_disabled=dict(type='bool', default=False),
                 values=dict(type='list', elements='raw'),
                 regex=dict(type='str'),
+                invert=dict(type='bool', default=False),
             ),
-            mutually_exclusive=[
-                ('values', 'regex'),
-            ],
-            required_one_of=[
-                ('values', 'regex'),
-            ],
         ),
     )

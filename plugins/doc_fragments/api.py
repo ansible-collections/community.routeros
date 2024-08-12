@@ -107,6 +107,11 @@ options:
           - The field whose values to restrict.
         required: true
         type: str
+      match_disabled:
+        description:
+          - Whether disabled or not provided values should match.
+        type: bool
+        default: false
       values:
         description:
           - The values of the field to limit to.
@@ -115,8 +120,6 @@ options:
             and librouteros converts the value returned by the API to the integer V(0),
             then this will not match. If you are not sure, better include both variants:
             both the string and the integer.
-          - Use V(none) for disabled values.
-          - Either O(restrict[].values) or O(restrict[].regex), but not both, must be specified.
         type: list
         elements: raw
       regex:
@@ -124,6 +127,12 @@ options:
           - A regular expression matching values of the field to limit to.
           - Note that all values will be converted to strings before matching.
           - It is not possible to match disabled values with regular expressions.
-          - Either O(restrict[].values) or O(restrict[].regex), but not both, must be specified.
+            Set O(restrict[].match_disabled=true) if you also want to match disabled values.
         type: str
+      invert:
+        description:
+          - Invert the condition. This affects O(restrict[].match_disabled), O(restrict[].values),
+            and O(restrict[].regex).
+        type: bool
+        default: false
 '''
