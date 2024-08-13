@@ -206,6 +206,8 @@ options:
         - routing filter rule
         - routing filter select-rule
         - routing id
+        - routing igmp-proxy
+        - routing igmp-proxy interface
         - routing mme
         - routing ospf area
         - routing ospf area range

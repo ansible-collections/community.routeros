@@ -3942,6 +3942,31 @@ PATHS = {
             },
         ),
     ),
+    ('routing', 'igmp-proxy'): APIData(
+        unversioned=VersionedAPIData(
+            single_value=True,
+            fully_understood=True,
+            fields={
+                'query-interval': KeyInfo(),
+                'query-response-interval': KeyInfo(),
+                'quick-leave': KeyInfo(default=False),
+            },
+        ),
+    ),
+    ('routing', 'igmp-proxy', 'interface'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('interface', ),
+            fields={
+                'alternative-subnets': KeyInfo(default=''),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'disabled': KeyInfo(default=False),
+                'interface': KeyInfo(),
+                'threshold': KeyInfo(),
+                'upstream': KeyInfo(default=False),
+            },
+        ),
+    ),
     ('routing', 'bfd', 'interface'): APIData(
         unversioned=VersionedAPIData(
             unknown_mechanism=True,
