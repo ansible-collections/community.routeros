@@ -131,6 +131,7 @@ options:
         - ip dhcp-server option
         - ip dhcp-server option sets
         - ip dns
+        - ip dns adlist
         - ip dns static
         - ip firewall address-list
         - ip firewall connection tracking

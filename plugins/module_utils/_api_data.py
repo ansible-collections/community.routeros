@@ -2818,6 +2818,22 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'dns', 'adlist'): APIData(
+        versioned=[
+            ('7.15', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'file': KeyInfo(default=''),
+                    'match-count': KeyInfo(read_only=True),
+                    'name-count': KeyInfo(read_only=True),
+                    'ssl-verify': KeyInfo(default=True),
+                    'url': KeyInfo(default=''),
+                },
+            )),
+        ],
+    ),
     ('ip', 'dns', 'static'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
