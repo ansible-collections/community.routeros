@@ -1086,6 +1086,7 @@ PATHS = {
             fully_understood=True,
             primary_keys=('name', ),
             fields={
+                'default': KeyInfo(),
                 'addresses': KeyInfo(default='::/0'),
                 'authentication-password': KeyInfo(default=''),
                 'authentication-protocol': KeyInfo(default='MD5'),
