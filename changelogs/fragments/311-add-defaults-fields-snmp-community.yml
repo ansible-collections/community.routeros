@@ -1,2 +1,2 @@
 minor_changes:
-  - api_modify - add default field to ``snmp community`` (https://github.com/ansible-collections/community.routeros/pull/311).
+  - api_modify, api_info - add default field to ``snmp community`` (https://github.com/ansible-collections/community.routeros/pull/311).
