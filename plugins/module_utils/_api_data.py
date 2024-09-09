@@ -844,6 +844,19 @@ PATHS = {
             )),
         ],
     ),
+    ('routing', 'filter', 'num-list'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'list': KeyInfo(required=True),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(can_disable=True),
+                    'range': KeyInfo(can_disable=True),
+                },
+            )),
+        ],
+    ),
     ('routing', 'filter', 'rule'): APIData(
         versioned=[
             ('7', '>=', VersionedAPIData(
