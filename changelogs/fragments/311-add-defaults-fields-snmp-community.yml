@@ -1,0 +1,2 @@
+minor_changes:
+  - api_modify, api_info - add read-only ``default`` field to ``snmp community`` (https://github.com/ansible-collections/community.routeros/pull/311).
