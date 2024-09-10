@@ -754,3 +754,24 @@ releases:
       - 306-ingress-filtering-ros6.yml
       - deprecate-eol-ansible-core.yml
     release_date: '2024-08-12'
+  2.19.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - add support for the ``ip dns adlist`` path implemented
+          by RouterOS 7.15 and newer (https://github.com/ansible-collections/community.routeros/pull/310).
+        - api_info, api_modify - add support for the ``mld-version`` and ``multicast-querier``
+          properties in ``interface bridge`` (https://github.com/ansible-collections/community.routeros/pull/315).
+        - api_info, api_modify - add support for the ``routing filter num-list`` path
+          implemented by RouterOS 7 and newer (https://github.com/ansible-collections/community.routeros/pull/313).
+        - api_info, api_modify - add support for the ``routing igmp-proxy`` path (https://github.com/ansible-collections/community.routeros/pull/309).
+        - api_modify, api_info - add read-only ``default`` field to ``snmp community``
+          (https://github.com/ansible-collections/community.routeros/pull/311).
+      release_summary: Feature release.
+    fragments:
+      - 2.19.0.yml
+      - 309-add-igmp-proxy.yml
+      - 310-add-ip-dns-adlist.yml
+      - 311-add-defaults-fields-snmp-community.yml
+      - 313-add-routing-filter-num-list.yml
+      - 315-bridge-mld-version-multicast-querier.yml
+    release_date: '2024-09-10'
