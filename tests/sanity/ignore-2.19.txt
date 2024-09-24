@@ -1,0 +1,2 @@
+update-docs.py shebang
+tests/unit/compat/mock.py pylint:use-yield-from  # suggested construct does not work with Python 2
