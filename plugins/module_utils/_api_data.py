@@ -2798,6 +2798,9 @@ PATHS = {
             ('7.4', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name', ),
+                versioned_fields=[
+                    ([('7.16', '>=')], 'matching-type', KeyInfo()),
+                ],
                 fields={
                     'address-pool': KeyInfo(default='none'),
                     'code': KeyInfo(required=True),
