@@ -26,12 +26,6 @@ jobs:
         ansible:
           # It's important that Sanity is tested against all stable-X.Y branches
           # Testing against `devel` may fail as new tests are added.
-          - stable-2.9
-          - stable-2.10
-          - stable-2.11
-          - stable-2.12
-          - stable-2.13
-          - stable-2.14
           - stable-2.15
           - stable-2.16
           - stable-2.17
@@ -54,10 +48,9 @@ jobs:
           ansible-core-version: ${{ matrix.ansible }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           testing-type: sanity
-          # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-          pre-test-cmd: |-
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
+          test-deps: >-
+            git+https://github.com/ansible-collections/ansible.utils.git,main
+            git+https://github.com/ansible-collections/ansible.netcommon.git,main
 
   units:
     # Ansible-test on various stable branches does not yet work well with cgroups v2.
@@ -75,13 +68,6 @@ jobs:
       fail-fast: true
       matrix:
         ansible:
-          - stable-2.9
-          - stable-2.10
-          - stable-2.11
-          - stable-2.12
-          - stable-2.13
-          - stable-2.14
-          - stable-2.15
           - stable-2.16
           - stable-2.17
           - stable-2.18
@@ -97,10 +83,9 @@ jobs:
           ansible-core-version: ${{ matrix.ansible }}
           codecov-token: ${{ secrets.CODECOV_TOKEN }}
           testing-type: units
-          # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-          pre-test-cmd: |-
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
+          test-deps: >-
+            git+https://github.com/ansible-collections/ansible.utils.git,main
+            git+https://github.com/ansible-collections/ansible.netcommon.git,main
 
   integration:
     # Ansible-test on various stable branches does not yet work well with cgroups v2.
@@ -122,41 +107,24 @@ jobs:
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
         include:
-          # 2.9
-          - ansible: stable-2.9
-            python: 2.7
-          - ansible: stable-2.9
-            python: 3.5
-          # 2.10
-          - ansible: stable-2.10
-            python: 3.5
-          # 2.11
-          - ansible: stable-2.11
-            python: 2.7
-          - ansible: stable-2.11
-            python: 3.6
-          # 2.12
-          - ansible: stable-2.12
-            python: 3.8
-          # 2.13
-          - ansible: stable-2.13
-            python: "3.10"
-          # 2.14
-          - ansible: stable-2.14
-            python: "3.11"
           # 2.15
           - ansible: stable-2.15
-            python: "3.9"
+            python: "2.7"
+          - ansible: stable-2.15
+            python: "3.6"
+          - ansible: stable-2.15
+            python: "3.7"
           # 2.16
           - ansible: stable-2.16
             python: "3.10"
           # 2.17
           - ansible: stable-2.17
-            python: "3.7"
+            python: "3.8"
           # 2.18
           - ansible: stable-2.18
-            python: "3.8"
+            python: "3.9"
 
     steps:
       - name: >-
@@ -171,9 +139,8 @@ jobs:
           integration-continue-on-error: 'false'
           integration-diff: 'false'
           integration-retry-on-error: 'true'
-          # NOTE: we're installing with git to work around Galaxy being a huge PITA (https://github.com/ansible/galaxy/issues/2429)
-          pre-test-cmd: |-
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.netcommon.git ../../ansible/netcommon
-            git clone --depth=1 --single-branch https://github.com/ansible-collections/ansible.utils.git ../../ansible/utils
+          test-deps: >-
+            git+https://github.com/ansible-collections/ansible.utils.git,main
+            git+https://github.com/ansible-collections/ansible.netcommon.git,main
           target-python-version: ${{ matrix.python }}
           testing-type: integration
