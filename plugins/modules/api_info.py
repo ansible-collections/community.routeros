@@ -70,6 +70,7 @@ options:
         - interface gre
         - interface gre6
         - interface l2tp-server server
+        - interface l2tp-client
         - interface list
         - interface list member
         - interface ovpn-client
