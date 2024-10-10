@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify, _api_data.py - add support l2tp-client configuration (https://github.com/ansible-collections/community.routeros/pull/322).

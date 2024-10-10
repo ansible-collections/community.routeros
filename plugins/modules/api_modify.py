@@ -78,6 +78,7 @@ options:
         - interface ethernet switch port
         - interface gre
         - interface gre6
+        - interface l2tp-client
         - interface l2tp-server server
         - interface list
         - interface list member
