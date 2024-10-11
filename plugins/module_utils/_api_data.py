@@ -1521,6 +1521,7 @@ PATHS = {
     ),
     ('interface', 'l2tp-client',): APIData(
         unversioned=VersionedAPIData(
+            primary_keys=('name', ),
             single_value=False,
             fully_understood=True,
             fields={
@@ -1528,7 +1529,7 @@ PATHS = {
                 'allow': KeyInfo(default='pap,chap,mschap1,mschap2'),
                 'allow-fast-path': KeyInfo(default=False),
                 'comment': KeyInfo(can_disable=True, remove_value=''),
-                'connect-to': KeyInfo(),
+                'connect-to': KeyInfo(required=True),
                 'default-route-distance': KeyInfo(default=False),
                 'dial-on-demand': KeyInfo(default=False),
                 'disabled': KeyInfo(default=True),
@@ -1540,13 +1541,13 @@ PATHS = {
                 'max-mru': KeyInfo(default=1450),
                 'max-mtu': KeyInfo(default=1450),
                 'mrru': KeyInfo(default='disabled'),
-                'name': KeyInfo(),
+                'name': KeyInfo(required=True),
                 'password': KeyInfo(),
                 'profile': KeyInfo(default='default-encryption'),
                 'src-address': KeyInfo(),
                 'use-ipsec': KeyInfo(default=False),
                 'use-peer-dns': KeyInfo(default=False),
-                'user': KeyInfo(),
+                'user': KeyInfo(required=True),
             },
         ),
     ),
