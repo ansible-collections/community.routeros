@@ -1,2 +1,2 @@
 minor_changes:
-  - api_info, api_modify - Add new parameters from the RouterOS 7.16 release (https://github.com/ansible-collections/community.routeros/pull/323).
+  - api_info, api_modify - add new parameters from the RouterOS 7.16 release (https://github.com/ansible-collections/community.routeros/pull/323).
