@@ -262,6 +262,8 @@ PATHS = {
             versioned_fields=[
                 ([('7.0', '<')], 'ingress-filtering', KeyInfo(default=False)),
                 ([('7.0', '>=')], 'ingress-filtering', KeyInfo(default=True)),
+                ([('7.16', '>=')], 'forward-reserved-addresses', KeyInfo(default=False)),
+                ([('7.16', '>=')], 'max-learned-entries', KeyInfo(default='auto')),
             ],
             fields={
                 'admin-mac': KeyInfo(default=''),
@@ -1450,6 +1452,9 @@ PATHS = {
             fully_understood=True,
             versioned_fields=[
                 ([('7.7', '>=')], 'mode', KeyInfo(default='tx-and-rx')),
+                ([('7.15', '>=')], 'lldp-mac-phy-config', KeyInfo(default=False)),
+                ([('7.16', '>=')], 'discover-interval', KeyInfo(default='30s')),
+                ([('7.16', '>=')], 'lldp-vlan-info', KeyInfo(default=False)),
             ],
             fields={
                 'discover-interface-list': KeyInfo(),
@@ -1462,6 +1467,9 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.16', '>=')], 'ipv4-multipath-hash-policy', KeyInfo(default='l3')),
+            ],
             fields={
                 'accept-redirects': KeyInfo(default=False),
                 'accept-source-route': KeyInfo(default=False),
@@ -1498,6 +1506,9 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.16', '>=')], 'multipath-hash-policy', KeyInfo(default='l3')),
+            ],
             fields={
                 'accept-redirects': KeyInfo(default='yes-if-forwarding-disabled'),
                 'accept-router-advertisements': KeyInfo(default='yes-if-forwarding-disabled'),
@@ -2807,6 +2818,9 @@ PATHS = {
         unversioned=VersionedAPIData(
             fully_understood=True,
             primary_keys=('name',),
+            versioned_fields=[
+                ([('7.16', '>=')], 'comment', KeyInfo(can_disable=True, remove_value='')),
+            ],
             fields={
                 'code': KeyInfo(required=True),
                 'name': KeyInfo(),
@@ -2819,6 +2833,9 @@ PATHS = {
         unversioned=VersionedAPIData(
             fully_understood=True,
             primary_keys=('name',),
+            versioned_fields=[
+                ([('7.16', '>=')], 'comment', KeyInfo(can_disable=True, remove_value='')),
+            ],
             fields={
                 'name': KeyInfo(required=True),
                 'options': KeyInfo(),
@@ -2831,6 +2848,7 @@ PATHS = {
                 fully_understood=True,
                 primary_keys=('name', ),
                 versioned_fields=[
+                    ([('7.16', '>=')], 'comment', KeyInfo(can_disable=True, remove_value='')),
                     ([('7.16', '>=')], 'matching-type', KeyInfo()),
                 ],
                 fields={
@@ -4458,6 +4476,10 @@ PATHS = {
         versioned=[
             ('7', '>=', VersionedAPIData(
                 fully_understood=True,
+                versioned_fields=[
+                    ([('7.16', '>=')], 'accept-icmp-time-exceeded', KeyInfo(default=False)),
+                    ([('7.16', '>=')], 'ttl', KeyInfo(default=255)),
+                ],
                 fields={
                     'certificate': KeyInfo(),
                     'check-certificate': KeyInfo(),
@@ -5133,6 +5155,9 @@ PATHS = {
             fixed_entries=True,
             primary_keys=('name', ),
             fully_understood=True,
+            versioned_fields=[
+                ([('7.16', '>=')], 'max-sessions', KeyInfo(default=20)),
+            ],
             fields={
                 'address': KeyInfo(),
                 'certificate': KeyInfo(),
