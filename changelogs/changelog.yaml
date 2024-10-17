@@ -775,3 +775,23 @@ releases:
       - 313-add-routing-filter-num-list.yml
       - 315-bridge-mld-version-multicast-querier.yml
     release_date: '2024-09-10'
+  2.20.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - add new parameters from the RouterOS 7.16 release
+          (https://github.com/ansible-collections/community.routeros/pull/323).
+        - api_info, api_modify - add support ``interface l2tp-client`` configuration
+          (https://github.com/ansible-collections/community.routeros/pull/322).
+        - api_info, api_modify - add support for the ``cpu-frequency``, ``memory-frequency``,
+          ``preboot-etherboot`` and ``preboot-etherboot-server`` properties in ``system
+          routerboard settings`` (https://github.com/ansible-collections/community.routeros/pull/320).
+        - api_info, api_modify - add support for the ``matching-type`` property in
+          ``ip dhcp-server matcher`` introduced by RouterOS 7.16 (https://github.com/ansible-collections/community.routeros/pull/321).
+      release_summary: Feature release.
+    fragments:
+      - 2.20.0.yml
+      - 320-add-routerboard-properties.yml
+      - 321-dhcp-server-matcher-matching-type.yml
+      - 322-add-l2tp-client-interface-configuration.yml
+      - 323-add-ros-7.16-parameters.yml
+    release_date: '2024-10-17'
