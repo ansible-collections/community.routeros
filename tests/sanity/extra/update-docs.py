@@ -12,7 +12,7 @@ import subprocess
 
 def main():
     """Main entry point."""
-    p = subprocess.run(['./update-docs.py'], check=False)
+    p = subprocess.run([sys.executable, 'update-docs.py'], check=False)
     if p.returncode not in (0, 1):
         print('{0}:0:0: unexpected return code {1}'.format(sys.argv[0], p.returncode))
 
