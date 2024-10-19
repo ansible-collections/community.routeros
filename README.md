@@ -53,7 +53,7 @@ Browsing the [**latest** collection documentation](https://docs.ansible.com/ansi
 
 Browsing the [**devel** collection documentation](https://docs.ansible.com/ansible/devel/collections/community/routeros) shows docs for the _latest version released on Galaxy_.
 
-We also separately publish [**latest commit** collection documentation](https://ansible-collections.github.io/community.routeros/branch/main/) which shows docs for the _latest commit in the `main` branch_.
+We also separately publish [**latest commit** collection documentation](https://ansible-collections.github.io/community.routeros/branch/stable-2/) which shows docs for the _latest commit in the `stable-2` branch_.
 
 If you use the Ansible package and do not update collections independently, use **latest**. If you install or update this collection directly from Galaxy, use **devel**. If you are looking to contribute, use **latest commit**.
 
@@ -183,7 +183,7 @@ See [Ansible's dev guide](https://docs.ansible.com/ansible/devel/dev_guide/devel
 
 ## Release notes
 
-See the [collection's changelog](https://github.com/ansible-collections/community.routeros/blob/main/CHANGELOG.md).
+See the [collection's changelog](https://github.com/ansible-collections/community.routeros/blob/stable-2/CHANGELOG.md).
 
 ## Roadmap
 
@@ -203,8 +203,8 @@ We plan to regularly release minor and patch versions, whenever new features are
 
 This collection is primarily licensed and distributed as a whole under the GNU General Public License v3.0 or later.
 
-See [LICENSES/GPL-3.0-or-later.txt](https://github.com/ansible-collections/community.routeros/blob/main/COPYING) for the full text.
+See [LICENSES/GPL-3.0-or-later.txt](https://github.com/ansible-collections/community.routeros/blob/stable-2/COPYING) for the full text.
 
-Parts of the collection are licensed under the [BSD 2-Clause license](https://github.com/ansible-collections/community.routeros/blob/main/LICENSES/BSD-2-Clause.txt).
+Parts of the collection are licensed under the [BSD 2-Clause license](https://github.com/ansible-collections/community.routeros/blob/stable-2/LICENSES/BSD-2-Clause.txt).
 
 All files have a machine readable `SDPX-License-Identifier:` comment denoting its respective license(s) or an equivalent entry in an accompanying `.license` file. Only changelog fragments (which will not be part of a release) are covered by a blanket statement in `.reuse/dep5`. This conforms to the [REUSE specification](https://reuse.software/spec/).
