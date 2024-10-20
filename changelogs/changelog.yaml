@@ -795,3 +795,17 @@ releases:
       - 322-add-l2tp-client-interface-configuration.yml
       - 323-add-ros-7.16-parameters.yml
     release_date: '2024-10-17'
+  3.0.0:
+    changes:
+      breaking_changes:
+        - command - the module no longer declares that it supports check mode (https://github.com/ansible-collections/community.routeros/pull/318).
+      release_summary: Major release that drops support for End of Life Python versions
+        and fixes check mode for community.routeros.command.
+      removed_features:
+        - The collection no longer supports Ansible 2.9, ansible-base 2.10, ansible-core
+          2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14. If you
+          need to continue using End of Life versions of Ansible/ansible-base/ansible-core,
+          please use community.routeros 2.x.y (https://github.com/ansible-collections/community.routeros/pull/318).
+    fragments:
+      - 3.0.0.yml
+    release_date: '2024-10-20'

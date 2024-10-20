@@ -4,6 +4,24 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.0.0
+======
+
+Release Summary
+---------------
+
+Major release that drops support for End of Life Python versions and fixes check mode for community.routeros.command.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- command - the module no longer declares that it supports check mode (https://github.com/ansible-collections/community.routeros/pull/318).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+- The collection no longer supports Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14. If you need to continue using End of Life versions of Ansible/ansible-base/ansible-core, please use community.routeros 2.x.y (https://github.com/ansible-collections/community.routeros/pull/318).
+
 v2.20.0
 =======
 

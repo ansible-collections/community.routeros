@@ -2,128 +2,150 @@
 
 **Topics**
 
-- <a href="#v2-20-0">v2\.20\.0</a>
+- <a href="#v3-0-0">v3\.0\.0</a>
     - <a href="#release-summary">Release Summary</a>
+    - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
+    - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
+- <a href="#v2-20-0">v2\.20\.0</a>
+    - <a href="#release-summary-1">Release Summary</a>
     - <a href="#minor-changes">Minor Changes</a>
 - <a href="#v2-19-0">v2\.19\.0</a>
-    - <a href="#release-summary-1">Release Summary</a>
+    - <a href="#release-summary-2">Release Summary</a>
     - <a href="#minor-changes-1">Minor Changes</a>
 - <a href="#v2-18-0">v2\.18\.0</a>
-    - <a href="#release-summary-2">Release Summary</a>
+    - <a href="#release-summary-3">Release Summary</a>
     - <a href="#minor-changes-2">Minor Changes</a>
     - <a href="#deprecated-features">Deprecated Features</a>
     - <a href="#bugfixes">Bugfixes</a>
 - <a href="#v2-17-0">v2\.17\.0</a>
-    - <a href="#release-summary-3">Release Summary</a>
+    - <a href="#release-summary-4">Release Summary</a>
     - <a href="#minor-changes-3">Minor Changes</a>
 - <a href="#v2-16-0">v2\.16\.0</a>
-    - <a href="#release-summary-4">Release Summary</a>
+    - <a href="#release-summary-5">Release Summary</a>
     - <a href="#minor-changes-4">Minor Changes</a>
 - <a href="#v2-15-0">v2\.15\.0</a>
-    - <a href="#release-summary-5">Release Summary</a>
+    - <a href="#release-summary-6">Release Summary</a>
     - <a href="#minor-changes-5">Minor Changes</a>
 - <a href="#v2-14-0">v2\.14\.0</a>
-    - <a href="#release-summary-6">Release Summary</a>
+    - <a href="#release-summary-7">Release Summary</a>
     - <a href="#minor-changes-6">Minor Changes</a>
 - <a href="#v2-13-0">v2\.13\.0</a>
-    - <a href="#release-summary-7">Release Summary</a>
+    - <a href="#release-summary-8">Release Summary</a>
     - <a href="#minor-changes-7">Minor Changes</a>
     - <a href="#bugfixes-1">Bugfixes</a>
 - <a href="#v2-12-0">v2\.12\.0</a>
-    - <a href="#release-summary-8">Release Summary</a>
+    - <a href="#release-summary-9">Release Summary</a>
     - <a href="#minor-changes-8">Minor Changes</a>
 - <a href="#v2-11-0">v2\.11\.0</a>
-    - <a href="#release-summary-9">Release Summary</a>
+    - <a href="#release-summary-10">Release Summary</a>
     - <a href="#minor-changes-9">Minor Changes</a>
 - <a href="#v2-10-0">v2\.10\.0</a>
-    - <a href="#release-summary-10">Release Summary</a>
+    - <a href="#release-summary-11">Release Summary</a>
     - <a href="#minor-changes-10">Minor Changes</a>
     - <a href="#bugfixes-2">Bugfixes</a>
 - <a href="#v2-9-0">v2\.9\.0</a>
-    - <a href="#release-summary-11">Release Summary</a>
+    - <a href="#release-summary-12">Release Summary</a>
     - <a href="#minor-changes-11">Minor Changes</a>
     - <a href="#bugfixes-3">Bugfixes</a>
 - <a href="#v2-8-3">v2\.8\.3</a>
-    - <a href="#release-summary-12">Release Summary</a>
+    - <a href="#release-summary-13">Release Summary</a>
     - <a href="#known-issues">Known Issues</a>
 - <a href="#v2-8-2">v2\.8\.2</a>
-    - <a href="#release-summary-13">Release Summary</a>
+    - <a href="#release-summary-14">Release Summary</a>
     - <a href="#bugfixes-4">Bugfixes</a>
 - <a href="#v2-8-1">v2\.8\.1</a>
-    - <a href="#release-summary-14">Release Summary</a>
+    - <a href="#release-summary-15">Release Summary</a>
     - <a href="#bugfixes-5">Bugfixes</a>
 - <a href="#v2-8-0">v2\.8\.0</a>
-    - <a href="#release-summary-15">Release Summary</a>
+    - <a href="#release-summary-16">Release Summary</a>
     - <a href="#minor-changes-12">Minor Changes</a>
     - <a href="#bugfixes-6">Bugfixes</a>
 - <a href="#v2-7-0">v2\.7\.0</a>
-    - <a href="#release-summary-16">Release Summary</a>
+    - <a href="#release-summary-17">Release Summary</a>
     - <a href="#minor-changes-13">Minor Changes</a>
     - <a href="#bugfixes-7">Bugfixes</a>
 - <a href="#v2-6-0">v2\.6\.0</a>
-    - <a href="#release-summary-17">Release Summary</a>
+    - <a href="#release-summary-18">Release Summary</a>
     - <a href="#minor-changes-14">Minor Changes</a>
     - <a href="#bugfixes-8">Bugfixes</a>
 - <a href="#v2-5-0">v2\.5\.0</a>
-    - <a href="#release-summary-18">Release Summary</a>
+    - <a href="#release-summary-19">Release Summary</a>
     - <a href="#minor-changes-15">Minor Changes</a>
     - <a href="#bugfixes-9">Bugfixes</a>
 - <a href="#v2-4-0">v2\.4\.0</a>
-    - <a href="#release-summary-19">Release Summary</a>
+    - <a href="#release-summary-20">Release Summary</a>
     - <a href="#minor-changes-16">Minor Changes</a>
     - <a href="#bugfixes-10">Bugfixes</a>
     - <a href="#known-issues-1">Known Issues</a>
 - <a href="#v2-3-1">v2\.3\.1</a>
-    - <a href="#release-summary-20">Release Summary</a>
+    - <a href="#release-summary-21">Release Summary</a>
     - <a href="#known-issues-2">Known Issues</a>
 - <a href="#v2-3-0">v2\.3\.0</a>
-    - <a href="#release-summary-21">Release Summary</a>
+    - <a href="#release-summary-22">Release Summary</a>
     - <a href="#minor-changes-17">Minor Changes</a>
     - <a href="#bugfixes-11">Bugfixes</a>
 - <a href="#v2-2-1">v2\.2\.1</a>
-    - <a href="#release-summary-22">Release Summary</a>
+    - <a href="#release-summary-23">Release Summary</a>
     - <a href="#bugfixes-12">Bugfixes</a>
 - <a href="#v2-2-0">v2\.2\.0</a>
-    - <a href="#release-summary-23">Release Summary</a>
+    - <a href="#release-summary-24">Release Summary</a>
     - <a href="#minor-changes-18">Minor Changes</a>
     - <a href="#bugfixes-13">Bugfixes</a>
     - <a href="#new-modules">New Modules</a>
 - <a href="#v2-1-0">v2\.1\.0</a>
-    - <a href="#release-summary-24">Release Summary</a>
+    - <a href="#release-summary-25">Release Summary</a>
     - <a href="#minor-changes-19">Minor Changes</a>
     - <a href="#bugfixes-14">Bugfixes</a>
     - <a href="#new-modules-1">New Modules</a>
 - <a href="#v2-0-0">v2\.0\.0</a>
-    - <a href="#release-summary-25">Release Summary</a>
+    - <a href="#release-summary-26">Release Summary</a>
     - <a href="#minor-changes-20">Minor Changes</a>
-    - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
+    - <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
     - <a href="#bugfixes-15">Bugfixes</a>
     - <a href="#new-plugins">New Plugins</a>
         - <a href="#filter">Filter</a>
 - <a href="#v1-2-0">v1\.2\.0</a>
-    - <a href="#release-summary-26">Release Summary</a>
+    - <a href="#release-summary-27">Release Summary</a>
     - <a href="#minor-changes-21">Minor Changes</a>
     - <a href="#bugfixes-16">Bugfixes</a>
 - <a href="#v1-1-0">v1\.1\.0</a>
-    - <a href="#release-summary-27">Release Summary</a>
+    - <a href="#release-summary-28">Release Summary</a>
     - <a href="#minor-changes-22">Minor Changes</a>
 - <a href="#v1-0-1">v1\.0\.1</a>
-    - <a href="#release-summary-28">Release Summary</a>
+    - <a href="#release-summary-29">Release Summary</a>
     - <a href="#bugfixes-17">Bugfixes</a>
 - <a href="#v1-0-0">v1\.0\.0</a>
-    - <a href="#release-summary-29">Release Summary</a>
+    - <a href="#release-summary-30">Release Summary</a>
     - <a href="#bugfixes-18">Bugfixes</a>
 - <a href="#v0-1-1">v0\.1\.1</a>
-    - <a href="#release-summary-30">Release Summary</a>
+    - <a href="#release-summary-31">Release Summary</a>
     - <a href="#bugfixes-19">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
-    - <a href="#release-summary-31">Release Summary</a>
+    - <a href="#release-summary-32">Release Summary</a>
     - <a href="#minor-changes-23">Minor Changes</a>
+
+<a id="v3-0-0"></a>
+## v3\.0\.0
+
+<a id="release-summary"></a>
+### Release Summary
+
+Major release that drops support for End of Life Python versions and fixes check mode for community\.routeros\.command\.
+
+<a id="breaking-changes--porting-guide"></a>
+### Breaking Changes / Porting Guide
+
+* command \- the module no longer declares that it supports check mode \([https\://github\.com/ansible\-collections/community\.routeros/pull/318](https\://github\.com/ansible\-collections/community\.routeros/pull/318)\)\.
+
+<a id="removed-features-previously-deprecated"></a>
+### Removed Features \(previously deprecated\)
+
+* The collection no longer supports Ansible 2\.9\, ansible\-base 2\.10\, ansible\-core 2\.11\, ansible\-core 2\.12\, ansible\-core 2\.13\, and ansible\-core 2\.14\. If you need to continue using End of Life versions of Ansible/ansible\-base/ansible\-core\, please use community\.routeros 2\.x\.y \([https\://github\.com/ansible\-collections/community\.routeros/pull/318](https\://github\.com/ansible\-collections/community\.routeros/pull/318)\)\.
 
 <a id="v2-20-0"></a>
 ## v2\.20\.0
 
-<a id="release-summary"></a>
+<a id="release-summary-1"></a>
 ### Release Summary
 
 Feature release\.
@@ -139,7 +161,7 @@ Feature release\.
 <a id="v2-19-0"></a>
 ## v2\.19\.0
 
-<a id="release-summary-1"></a>
+<a id="release-summary-2"></a>
 ### Release Summary
 
 Feature release\.
@@ -156,7 +178,7 @@ Feature release\.
 <a id="v2-18-0"></a>
 ## v2\.18\.0
 
-<a id="release-summary-2"></a>
+<a id="release-summary-3"></a>
 ### Release Summary
 
 Feature release\.
@@ -185,7 +207,7 @@ Feature release\.
 <a id="v2-17-0"></a>
 ## v2\.17\.0
 
-<a id="release-summary-3"></a>
+<a id="release-summary-4"></a>
 ### Release Summary
 
 Feature release\.
@@ -200,7 +222,7 @@ Feature release\.
 <a id="v2-16-0"></a>
 ## v2\.16\.0
 
-<a id="release-summary-4"></a>
+<a id="release-summary-5"></a>
 ### Release Summary
 
 Feature release\.
@@ -214,7 +236,7 @@ Feature release\.
 <a id="v2-15-0"></a>
 ## v2\.15\.0
 
-<a id="release-summary-5"></a>
+<a id="release-summary-6"></a>
 ### Release Summary
 
 Feature release\.
@@ -236,7 +258,7 @@ Feature release\.
 <a id="v2-14-0"></a>
 ## v2\.14\.0
 
-<a id="release-summary-6"></a>
+<a id="release-summary-7"></a>
 ### Release Summary
 
 Feature release\.
@@ -251,7 +273,7 @@ Feature release\.
 <a id="v2-13-0"></a>
 ## v2\.13\.0
 
-<a id="release-summary-7"></a>
+<a id="release-summary-8"></a>
 ### Release Summary
 
 Bugfix and feature release\.
@@ -270,7 +292,7 @@ Bugfix and feature release\.
 <a id="v2-12-0"></a>
 ## v2\.12\.0
 
-<a id="release-summary-8"></a>
+<a id="release-summary-9"></a>
 ### Release Summary
 
 Feature release\.
@@ -289,7 +311,7 @@ Feature release\.
 <a id="v2-11-0"></a>
 ## v2\.11\.0
 
-<a id="release-summary-9"></a>
+<a id="release-summary-10"></a>
 ### Release Summary
 
 Feature and bugfix release\.
@@ -309,7 +331,7 @@ Feature and bugfix release\.
 <a id="v2-10-0"></a>
 ## v2\.10\.0
 
-<a id="release-summary-10"></a>
+<a id="release-summary-11"></a>
 ### Release Summary
 
 Bugfix and feature release\.
@@ -346,7 +368,7 @@ Bugfix and feature release\.
 <a id="v2-9-0"></a>
 ## v2\.9\.0
 
-<a id="release-summary-11"></a>
+<a id="release-summary-12"></a>
 ### Release Summary
 
 Bugfix and feature release\.
@@ -365,7 +387,7 @@ Bugfix and feature release\.
 <a id="v2-8-3"></a>
 ## v2\.8\.3
 
-<a id="release-summary-12"></a>
+<a id="release-summary-13"></a>
 ### Release Summary
 
 Maintenance release with updated documentation\.
@@ -386,7 +408,7 @@ for the rendered HTML version of the documentation of the latest release\.
 <a id="v2-8-2"></a>
 ## v2\.8\.2
 
-<a id="release-summary-13"></a>
+<a id="release-summary-14"></a>
 ### Release Summary
 
 Bugfix release\.
@@ -399,7 +421,7 @@ Bugfix release\.
 <a id="v2-8-1"></a>
 ## v2\.8\.1
 
-<a id="release-summary-14"></a>
+<a id="release-summary-15"></a>
 ### Release Summary
 
 Bugfix release\.
@@ -412,7 +434,7 @@ Bugfix release\.
 <a id="v2-8-0"></a>
 ## v2\.8\.0
 
-<a id="release-summary-15"></a>
+<a id="release-summary-16"></a>
 ### Release Summary
 
 Bugfix and feature release\.
@@ -437,7 +459,7 @@ Bugfix and feature release\.
 <a id="v2-7-0"></a>
 ## v2\.7\.0
 
-<a id="release-summary-16"></a>
+<a id="release-summary-17"></a>
 ### Release Summary
 
 Bugfix and feature release\.
@@ -455,7 +477,7 @@ Bugfix and feature release\.
 <a id="v2-6-0"></a>
 ## v2\.6\.0
 
-<a id="release-summary-17"></a>
+<a id="release-summary-18"></a>
 ### Release Summary
 
 Regular bugfix and feature release\.
@@ -475,7 +497,7 @@ Regular bugfix and feature release\.
 <a id="v2-5-0"></a>
 ## v2\.5\.0
 
-<a id="release-summary-18"></a>
+<a id="release-summary-19"></a>
 ### Release Summary
 
 Feature and bugfix release\.
@@ -493,7 +515,7 @@ Feature and bugfix release\.
 <a id="v2-4-0"></a>
 ## v2\.4\.0
 
-<a id="release-summary-19"></a>
+<a id="release-summary-20"></a>
 ### Release Summary
 
 Feature release improving the <code>api\*</code> modules\.
@@ -537,7 +559,7 @@ Feature release improving the <code>api\*</code> modules\.
 <a id="v2-3-1"></a>
 ## v2\.3\.1
 
-<a id="release-summary-20"></a>
+<a id="release-summary-21"></a>
 ### Release Summary
 
 Maintenance release with improved documentation\.
@@ -550,7 +572,7 @@ Maintenance release with improved documentation\.
 <a id="v2-3-0"></a>
 ## v2\.3\.0
 
-<a id="release-summary-21"></a>
+<a id="release-summary-22"></a>
 ### Release Summary
 
 Feature and bugfix release\.
@@ -570,7 +592,7 @@ Feature and bugfix release\.
 <a id="v2-2-1"></a>
 ## v2\.2\.1
 
-<a id="release-summary-22"></a>
+<a id="release-summary-23"></a>
 ### Release Summary
 
 Bugfix release\.
@@ -584,7 +606,7 @@ Bugfix release\.
 <a id="v2-2-0"></a>
 ## v2\.2\.0
 
-<a id="release-summary-23"></a>
+<a id="release-summary-24"></a>
 ### Release Summary
 
 New feature release\.
@@ -608,7 +630,7 @@ New feature release\.
 <a id="v2-1-0"></a>
 ## v2\.1\.0
 
-<a id="release-summary-24"></a>
+<a id="release-summary-25"></a>
 ### Release Summary
 
 Feature and bugfix release with new modules\.
@@ -637,7 +659,7 @@ Feature and bugfix release with new modules\.
 <a id="v2-0-0"></a>
 ## v2\.0\.0
 
-<a id="release-summary-25"></a>
+<a id="release-summary-26"></a>
 ### Release Summary
 
 A new major release with breaking changes in the behavior of <code>community\.routeros\.api</code> and <code>community\.routeros\.command</code>\.
@@ -649,7 +671,7 @@ A new major release with breaking changes in the behavior of <code>community\.ro
 * command \- the <code>commands</code> and <code>wait\_for</code> options now convert the list elements to strings \([https\://github\.com/ansible\-collections/community\.routeros/pull/55](https\://github\.com/ansible\-collections/community\.routeros/pull/55)\)\.
 * facts \- the <code>gather\_subset</code> option now converts the list elements to strings \([https\://github\.com/ansible\-collections/community\.routeros/pull/55](https\://github\.com/ansible\-collections/community\.routeros/pull/55)\)\.
 
-<a id="breaking-changes--porting-guide"></a>
+<a id="breaking-changes--porting-guide-1"></a>
 ### Breaking Changes / Porting Guide
 
 * api \- due to a programming error\, the module never failed on errors\. This has now been fixed\. If you are relying on the module not failing in case of idempotent commands \(resulting in errors like <code>failure\: already have such address</code>\)\, you need to adjust your roles/playbooks\. We suggest to use <code>failed\_when</code> to accept failure in specific circumstances\, for example <code>failed\_when\: \"\'failure\: already have \' in result\.msg\[0\]\"</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/39](https\://github\.com/ansible\-collections/community\.routeros/pull/39)\)\.
@@ -678,7 +700,7 @@ A new major release with breaking changes in the behavior of <code>community\.ro
 <a id="v1-2-0"></a>
 ## v1\.2\.0
 
-<a id="release-summary-26"></a>
+<a id="release-summary-27"></a>
 ### Release Summary
 
 Bugfix and feature release\.
@@ -699,7 +721,7 @@ Bugfix and feature release\.
 <a id="v1-1-0"></a>
 ## v1\.1\.0
 
-<a id="release-summary-27"></a>
+<a id="release-summary-28"></a>
 ### Release Summary
 
 This release allow dashes in usernames for SSH\-based modules\.
@@ -713,7 +735,7 @@ This release allow dashes in usernames for SSH\-based modules\.
 <a id="v1-0-1"></a>
 ## v1\.0\.1
 
-<a id="release-summary-28"></a>
+<a id="release-summary-29"></a>
 ### Release Summary
 
 Maintenance release with a bugfix for <code>api</code>\.
@@ -726,7 +748,7 @@ Maintenance release with a bugfix for <code>api</code>\.
 <a id="v1-0-0"></a>
 ## v1\.0\.0
 
-<a id="release-summary-29"></a>
+<a id="release-summary-30"></a>
 ### Release Summary
 
 This is the first production \(non\-prerelease\) release of <code>community\.routeros</code>\.
@@ -739,7 +761,7 @@ This is the first production \(non\-prerelease\) release of <code>community\.rou
 <a id="v0-1-1"></a>
 ## v0\.1\.1
 
-<a id="release-summary-30"></a>
+<a id="release-summary-31"></a>
 ### Release Summary
 
 Small improvements and bugfixes over the initial release\.
@@ -752,7 +774,7 @@ Small improvements and bugfixes over the initial release\.
 <a id="v0-1-0"></a>
 ## v0\.1\.0
 
-<a id="release-summary-31"></a>
+<a id="release-summary-32"></a>
 ### Release Summary
 
 The <code>community\.routeros</code> continues the work on the Ansible RouterOS modules from their state in <code>community\.network</code> 1\.2\.0\. The changes listed here are thus relative to the modules <code>community\.network\.routeros\_\*</code>\.
