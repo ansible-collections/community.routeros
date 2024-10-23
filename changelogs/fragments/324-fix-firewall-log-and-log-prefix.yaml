@@ -1,0 +1,2 @@
+bugfixes:
+   - fields 'log' and 'log-prefix' in paths ip firewall filter, mangle, nat, raw changed from KeyInfo(can_disable=True) to KeyInfo(default=False) for 'log' and KeyInfo(default='') for 'log-prefix' (https://github.com/ansible-collections/community.routeros/pull/324).
