@@ -708,7 +708,10 @@ PATHS = {
             fully_understood=True,
             primary_keys=('name', ),
             fields={
+                'comment': KeyInfo(),
+                'copy-from': KeyInfo(),
                 'name': KeyInfo(),
+                'next-pool': KeyInfo(),
                 'ranges': KeyInfo(),
             },
         ),
