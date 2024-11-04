@@ -709,7 +709,6 @@ PATHS = {
             primary_keys=('name', ),
             fields={
                 'comment': KeyInfo(),
-                'copy-from': KeyInfo(),
                 'name': KeyInfo(),
                 'next-pool': KeyInfo(),
                 'ranges': KeyInfo(),
