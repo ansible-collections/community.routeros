@@ -620,6 +620,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'comment': 'defconf',
                 'protocol': 'icmp',
                 'disabled': False,
+                'log': False,
+                'log-prefix': '',
             },
             {
                 '.id': '*3',
@@ -627,6 +629,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'chain': 'input',
                 'comment': 'defconf',
                 'disabled': False,
+                'log': False,
+                'log-prefix': '',
             },
             {
                 '.id': '*4',
@@ -634,6 +638,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'chain': 'input',
                 'comment': 'defconf',
                 'disabled': False,
+                'log': False,
+                'log-prefix': '',
             },
             {
                 '.id': '*7',
@@ -642,6 +648,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'comment': 'defconf',
                 'disabled': False,
                 'in-interface': 'wan',
+                'log': False,
+                'log-prefix': '',
             },
             {
                 '.id': '*8',
@@ -650,6 +658,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'comment': 'defconf',
                 'connection-state': 'established',
                 'disabled': False,
+                'log': False,
+                'log-prefix': '',
             },
             {
                 '.id': '*9',
@@ -658,6 +668,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'comment': 'defconf',
                 'connection-state': 'related',
                 'disabled': False,
+                'log': False,
+                'log-prefix': '',
             },
             {
                 '.id': '*A',
@@ -666,6 +678,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'comment': 'defconf',
                 'connection-status': 'invalid',
                 'disabled': False,
+                'log': False,
+                'log-prefix': '',
             },
         ])
         self.assertEqual(result['match_count'], 3)
