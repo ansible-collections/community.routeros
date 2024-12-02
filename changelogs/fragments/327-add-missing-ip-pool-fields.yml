@@ -1,3 +1,0 @@
----
-minor_changes:
-  - api_info, api_modify - add missing fields ``comment``, ``next-pool`` to ``ip pool`` path (https://github.com/ansible-collections/community.routeros/pull/327).

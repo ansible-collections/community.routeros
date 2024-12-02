@@ -809,3 +809,18 @@ releases:
     fragments:
       - 3.0.0.yml
     release_date: '2024-10-20'
+  3.1.0:
+    changes:
+      bugfixes:
+        - api_info, api_modify - fields ``log`` and ``log-prefix`` in paths ``ip firewall
+          filter``, ``ip firewall mangle``, ``ip firewall nat``, ``ip firewall raw``
+          now have the correct default values (https://github.com/ansible-collections/community.routeros/pull/324).
+      minor_changes:
+        - api_info, api_modify - add missing fields ``comment``, ``next-pool`` to
+          ``ip pool`` path (https://github.com/ansible-collections/community.routeros/pull/327).
+      release_summary: Bugfix and feature release.
+    fragments:
+      - 3.1.0.yml
+      - 324-fix-firewall-log-and-log-prefix.yaml
+      - 327-add-missing-ip-pool-fields.yml
+    release_date: '2024-12-02'
