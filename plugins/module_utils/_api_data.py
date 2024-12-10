@@ -895,6 +895,20 @@ PATHS = {
             )),
         ],
     ),
+    ('routing', 'filter', 'community-list'): APIData(
+        versioned=[
+            ('7', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'list': KeyInfo(required=True),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(can_disable=True),
+                    'communities': KeyInfo(can_disable=True),
+                    'regexp': KeyInfo(can_disable=True),
+                },
+            )),
+        ],
+    ),
     ('routing', 'ospf', 'instance'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
