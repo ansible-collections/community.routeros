@@ -214,6 +214,7 @@ options:
         - routing bgp peer
         - routing bgp template
         - routing filter
+        - routing filter community-list
         - routing filter num-list
         - routing filter rule
         - routing filter select-rule
