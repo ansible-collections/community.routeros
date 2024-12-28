@@ -7,27 +7,23 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-DOCUMENTATION = '''
----
+DOCUMENTATION = r"""
 module: command
 author: "Egor Zaitsev (@heuels)"
 short_description: Run commands on remote devices running MikroTik RouterOS
 description:
-  - Sends arbitrary commands to an RouterOS node and returns the results
-    read from the device. This module includes an
-    argument that will cause the module to wait for a specific condition
-    before returning or timing out if the condition is not met.
-  - The module always indicates a (changed) status. You can use
-    R(the changed_when task property,override_the_changed_result) to determine
-    whether a command task actually resulted in a change or not.
+  - Sends arbitrary commands to an RouterOS node and returns the results read from the device. This module includes an argument
+    that will cause the module to wait for a specific condition before returning or timing out if the condition is not met.
+  - The module always indicates a (changed) status. You can use R(the changed_when task property,override_the_changed_result)
+    to determine whether a command task actually resulted in a change or not.
 extends_documentation_fragment:
   - community.routeros.attributes
 attributes:
   check_mode:
     support: none
     details:
-      - Before community.routeros 3.0.0, the module claimed to support check mode.
-        It simply executed the command in check mode.
+      - Before community.routeros 3.0.0, the module claimed to support check mode. It simply executed the command in check
+        mode.
   diff_mode:
     support: none
   platform:
@@ -36,58 +32,47 @@ attributes:
 options:
   commands:
     description:
-      - List of commands to send to the remote RouterOS device over the
-        configured provider. The resulting output from the command
-        is returned. If the O(wait_for) argument is provided, the
-        module is not returned until the condition is satisfied or
-        the number of retries has expired.
+      - List of commands to send to the remote RouterOS device over the configured provider. The resulting output from the
+        command is returned. If the O(wait_for) argument is provided, the module is not returned until the condition is satisfied
+        or the number of retries has expired.
     required: true
     type: list
     elements: str
   wait_for:
     description:
-      - List of conditions to evaluate against the output of the
-        command. The task will wait for each condition to be true
-        before moving forward. If the conditional is not true
-        within the configured number of retries, the task fails.
-        See examples.
+      - List of conditions to evaluate against the output of the command. The task will wait for each condition to be true
+        before moving forward. If the conditional is not true within the configured number of retries, the task fails. See
+        examples.
     type: list
     elements: str
   match:
     description:
-      - The O(match) argument is used in conjunction with the
-        O(wait_for) argument to specify the match policy.  Valid
-        values are V(all) or V(any).  If the value is set to V(all)
-        then all conditionals in the wait_for must be satisfied.  If
-        the value is set to V(any) then only one of the values must be
-        satisfied.
+      - The O(match) argument is used in conjunction with the O(wait_for) argument to specify the match policy. Valid values
+        are V(all) or V(any). If the value is set to V(all) then all conditionals in the wait_for must be satisfied. If the
+        value is set to V(any) then only one of the values must be satisfied.
     default: all
     choices: ['any', 'all']
     type: str
   retries:
     description:
-      - Specifies the number of retries a command should by tried
-        before it is considered failed. The command is run on the
-        target device every retry and evaluated against the
-        O(wait_for) conditions.
+      - Specifies the number of retries a command should by tried before it is considered failed. The command is run on the
+        target device every retry and evaluated against the O(wait_for) conditions.
     default: 10
     type: int
   interval:
     description:
-      - Configures the interval in seconds to wait between retries
-        of the command. If the command does not pass the specified
-        conditions, the interval indicates how long to wait before
-        trying the command again.
+      - Configures the interval in seconds to wait between retries of the command. If the command does not pass the specified
+        conditions, the interval indicates how long to wait before trying the command again.
     default: 1
     type: int
 seealso:
   - ref: ansible_collections.community.routeros.docsite.ssh-guide
-    description: How to connect to RouterOS devices with SSH
+    description: How to connect to RouterOS devices with SSH.
   - ref: ansible_collections.community.routeros.docsite.quoting
-    description: How to quote and unquote commands and arguments
-'''
+    description: How to quote and unquote commands and arguments.
+"""
 
-EXAMPLES = """
+EXAMPLES = r"""
 - name: Run command on remote devices
   community.routeros.command:
     commands: /system routerboard print
@@ -113,19 +98,19 @@ EXAMPLES = """
       - result[1] contains ether1
 """
 
-RETURN = """
+RETURN = r"""
 stdout:
-  description: The set of responses from the commands
+  description: The set of responses from the commands.
   returned: always apart from low level errors (such as action plugin)
   type: list
   sample: ['...', '...']
 stdout_lines:
-  description: The value of stdout split into a list
+  description: The value of stdout split into a list.
   returned: always apart from low level errors (such as action plugin)
   type: list
   sample: [['...', '...'], ['...'], ['...']]
 failed_conditions:
-  description: The list of conditionals that have failed
+  description: The list of conditionals that have failed.
   returned: failed
   type: list
   sample: ['...', '...']

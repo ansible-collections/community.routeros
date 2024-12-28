@@ -7,16 +7,13 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-DOCUMENTATION = '''
----
+DOCUMENTATION = r"""
 module: facts
 author: "Egor Zaitsev (@heuels)"
 short_description: Collect facts from remote devices running MikroTik RouterOS
 description:
-  - Collects a base set of device facts from a remote device that
-    is running RouterOS.  This module prepends all of the
-    base network fact keys with C(ansible_net_<fact>).  The facts
-    module will always collect a base set of facts from the device
+  - Collects a base set of device facts from a remote device that is running RouterOS. This module prepends all of the base
+    network fact keys with C(ansible_net_<fact>). The facts module will always collect a base set of facts from the device
     and can enable or disable collection of additional facts.
 extends_documentation_fragment:
   - community.routeros.attributes
@@ -29,12 +26,10 @@ attributes:
 options:
   gather_subset:
     description:
-      - When supplied, this argument will restrict the facts collected
-        to a given subset.  Possible values for this argument include
-        V(all), V(hardware), V(config), V(interfaces), and V(routing).
-      - Can specify a list of values to include a larger subset.
-        Values can also be used with an initial V(!) to specify that a
-        specific subset should not be collected.
+      - When supplied, this argument will restrict the facts collected to a given subset. Possible values for this argument
+        include V(all), V(hardware), V(config), V(interfaces), and V(routing).
+      - Can specify a list of values to include a larger subset. Values can also be used with an initial V(!) to specify that
+        a specific subset should not be collected.
     required: false
     default:
       - '!config'
@@ -42,10 +37,10 @@ options:
     elements: str
 seealso:
   - ref: ansible_collections.community.routeros.docsite.ssh-guide
-    description: How to connect to RouterOS devices with SSH
-'''
+    description: How to connect to RouterOS devices with SSH.
+"""
 
-EXAMPLES = """
+EXAMPLES = r"""
 - name: Collect all facts from the device
   community.routeros.facts:
     gather_subset: all
@@ -61,7 +56,7 @@ EXAMPLES = """
       - "!hardware"
 """
 
-RETURN = """
+RETURN = r"""
 ansible_facts:
   description: "Dictionary of IP geolocation facts for a host's IP address."
   returned: always
@@ -129,9 +124,9 @@ ansible_facts:
     ansible_net_config_nonverbose:
       description:
         - The current active config from the device in minimal form.
-        - This value is idempotent in the sense that if the facts module is run twice and the device's config
-          was not changed between the runs, the value is identical. This is achieved by running C(/export)
-          and stripping the timestamp from the comment in the first line.
+        - This value is idempotent in the sense that if the facts module is run twice and the device's config was not changed
+          between the runs, the value is identical. This is achieved by running C(/export) and stripping the timestamp from
+          the comment in the first line.
       returned: O(gather_subset) contains V(config)
       type: str
       version_added: 1.2.0

@@ -8,8 +8,7 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-DOCUMENTATION = '''
----
+DOCUMENTATION = r"""
 module: api
 author: "Nikolay Dachev (@NikolayDachev)"
 short_description: Ansible module for RouterOS API
@@ -18,9 +17,8 @@ description:
   - This module can add, remove, update, query and execute arbitrary command in RouterOS via API.
 notes:
   - O(add), O(remove), O(update), O(cmd), and O(query) are mutually exclusive.
-  - Use the M(community.routeros.api_modify) and M(community.routeros.api_find_and_modify) modules
-    for more specific modifications, and the M(community.routeros.api_info) module for a more controlled
-    way of returning all entries for a path.
+  - Use the M(community.routeros.api_modify) and M(community.routeros.api_find_and_modify) modules for more specific modifications,
+    and the M(community.routeros.api_info) module for a more controlled way of returning all entries for a path.
 extends_documentation_fragment:
   - community.routeros.api
   - community.routeros.attributes
@@ -68,11 +66,12 @@ options:
       - Query given path for selected query attributes from RouterOS aip.
       - WHERE is key word which extend query. WHERE format is key operator value - with spaces.
       - WHERE valid operators are V(==) or V(eq), V(!=) or V(not), V(>) or V(more), V(<) or V(less).
-      - Example path V(ip address) and query V(.id address) will return only C(.id) and C(address) for all items in V(ip address) path.
-      - Example path V(ip address) and query V(.id address WHERE address == 1.1.1.3/32).
-        will return only C(.id) and C(address) for items in V(ip address) path, where address is eq to 1.1.1.3/32.
-      - Example path V(interface) and query V(mtu name WHERE mut > 1400) will
-        return only interfaces C(mtu,name) where mtu is bigger than 1400.
+      - Example path V(ip address) and query V(.id address) will return only C(.id) and C(address) for all items in V(ip address)
+        path.
+      - Example path V(ip address) and query V(.id address WHERE address == 1.1.1.3/32). will return only C(.id) and C(address)
+        for items in V(ip address) path, where address is eq to 1.1.1.3/32.
+      - Example path V(interface) and query V(mtu name WHERE mut > 1400) will return only interfaces C(mtu,name) where mtu
+        is bigger than 1400.
       - Equivalent in RouterOS CLI C(/interface print where mtu > 1400).
     type: str
   extended_query:
@@ -91,7 +90,8 @@ options:
       where:
         description:
           - Allows to restrict the objects returned.
-          - The conditions here must all match. An O(extended_query.where[].or) condition needs at least one of its conditions to match.
+          - The conditions here must all match. An O(extended_query.where[].or) condition needs at least one of its conditions
+            to match.
         type: list
         elements: dict
         suboptions:
@@ -105,7 +105,8 @@ options:
             description:
               - The operator to use for matching.
               - For equality use V(==) or V(eq). For less use V(<) or V(less). For more use V(>) or V(more).
-              - Use V(in) to check whether the value is part of a list. In that case, O(extended_query.where[].value) must be a list.
+              - Use V(in) to check whether the value is part of a list. In that case, O(extended_query.where[].value) must
+                be a list.
               - Either O(extended_query.where[].or) or all of O(extended_query.where[].attribute), O(extended_query.where[].is),
                 and O(extended_query.where[].value) have to be specified.
             type: str
@@ -133,7 +134,8 @@ options:
                 description:
                   - The operator to use for matching.
                   - For equality use V(==) or V(eq). For less use V(<) or V(less). For more use V(>) or V(more).
-                  - Use V(in) to check whether the value is part of a list. In that case, O(extended_query.where[].or[].value) must be a list.
+                  - Use V(in) to check whether the value is part of a list. In that case, O(extended_query.where[].or[].value)
+                    must be a list.
                 type: str
                 choices: ["==", "!=", ">", "<", "in", "eq", "not", "more", "less"]
                 required: true
@@ -150,14 +152,14 @@ options:
     type: str
 seealso:
   - ref: ansible_collections.community.routeros.docsite.quoting
-    description: How to quote and unquote commands and arguments
+    description: How to quote and unquote commands and arguments.
   - module: community.routeros.api_facts
   - module: community.routeros.api_find_and_modify
   - module: community.routeros.api_info
   - module: community.routeros.api_modify
-'''
+"""
 
-EXAMPLES = '''
+EXAMPLES = r"""
 - name: Get example - ip address print
   community.routeros.api:
     hostname: "{{ hostname }}"
@@ -216,8 +218,8 @@ EXAMPLES = '''
         - attribute: "network"
           is: "in"
           value:
-             - "10.20.36.0"
-             - "192.168.255.0"
+            - "10.20.36.0"
+            - "192.168.255.0"
   register: extended_queryout
 
 - name: Dump "Extended query example" output
@@ -231,9 +233,9 @@ EXAMPLES = '''
     username: "{{ username }}"
     path: "ip address"
     update: >-
-        .id=*14
-        address=192.168.255.20/24
-        comment={{ 'Update 192.168.255.10/24 to 192.168.255.20/24 on ether2' | community.routeros.quote_argument_value }}
+      .id=*14
+      address=192.168.255.20/24
+      comment={{ 'Update 192.168.255.10/24 to 192.168.255.20/24 on ether2' | community.routeros.quote_argument_value }}
 
 - name: Remove example - ether2 ip 192.168.255.20/24 with ".id = *14"
   community.routeros.api:
@@ -255,18 +257,17 @@ EXAMPLES = '''
 - name: Dump "Arbitrary command example" output
   ansible.builtin.debug:
     msg: '{{ arbitraryout }}'
-'''
+"""
 
-RETURN = '''
----
+RETURN = r"""
 message:
-    description: All outputs are in list with dictionary elements returned from RouterOS api.
-    sample:
-        - address: 1.2.3.4
-        - address: 2.3.4.5
-    type: list
-    returned: always
-'''
+  description: All outputs are in list with dictionary elements returned from RouterOS api.
+  sample:
+    - address: 1.2.3.4
+    - address: 2.3.4.5
+  type: list
+  returned: always
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.common.text.converters import to_native

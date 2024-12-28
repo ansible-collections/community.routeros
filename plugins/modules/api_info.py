@@ -8,8 +8,7 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-DOCUMENTATION = '''
----
+DOCUMENTATION = r"""
 module: api_info
 author:
   - "Felix Fontein (@felixfontein)"
@@ -18,12 +17,12 @@ version_added: 2.2.0
 description:
   - Allows to retrieve information for a path using the API.
   - This can be used to backup a path to restore it with the M(community.routeros.api_modify) module.
-  - Entries are normalized, dynamic and builtin entries are not returned. Use the O(handle_disabled) and
-    O(hide_defaults) options to control normalization, the O(include_dynamic) and O(include_builtin) options to also return
-    dynamic resp. builtin entries, and use O(unfiltered) to return all fields including counters.
-  - B(Note) that this module is still heavily in development, and only supports B(some) paths.
-    If you want to support new paths, or think you found problems with existing paths, please first
-    L(create an issue in the community.routeros Issue Tracker,https://github.com/ansible-collections/community.routeros/issues/).
+  - Entries are normalized, dynamic and builtin entries are not returned. Use the O(handle_disabled) and O(hide_defaults)
+    options to control normalization, the O(include_dynamic) and O(include_builtin) options to also return dynamic resp. builtin
+    entries, and use O(unfiltered) to return all fields including counters.
+  - B(Note) that this module is still heavily in development, and only supports B(some) paths. If you want to support new
+    paths, or think you found problems with existing paths, please first L(create an issue in the community.routeros Issue
+    Tracker,https://github.com/ansible-collections/community.routeros/issues/).
 extends_documentation_fragment:
   - community.routeros.api
   - community.routeros.api.restrict
@@ -43,225 +42,225 @@ options:
     type: str
     choices:
     # BEGIN PATH LIST
-        - caps-man aaa
-        - caps-man access-list
-        - caps-man channel
-        - caps-man configuration
-        - caps-man datapath
-        - caps-man manager
-        - caps-man manager interface
-        - caps-man provisioning
-        - caps-man security
-        - certificate settings
-        - interface bonding
-        - interface bridge
-        - interface bridge mlag
-        - interface bridge port
-        - interface bridge port-controller
-        - interface bridge port-extender
-        - interface bridge settings
-        - interface bridge vlan
-        - interface detect-internet
-        - interface eoip
-        - interface ethernet
-        - interface ethernet poe
-        - interface ethernet switch
-        - interface ethernet switch port
-        - interface gre
-        - interface gre6
-        - interface l2tp-client
-        - interface l2tp-server server
-        - interface list
-        - interface list member
-        - interface ovpn-client
-        - interface ovpn-server server
-        - interface ppp-client
-        - interface pppoe-client
-        - interface pppoe-server server
-        - interface pptp-server server
-        - interface sstp-server server
-        - interface vlan
-        - interface vrrp
-        - interface wifi
-        - interface wifi aaa
-        - interface wifi access-list
-        - interface wifi cap
-        - interface wifi capsman
-        - interface wifi channel
-        - interface wifi configuration
-        - interface wifi datapath
-        - interface wifi interworking
-        - interface wifi provisioning
-        - interface wifi security
-        - interface wifi steering
-        - interface wifiwave2
-        - interface wifiwave2 aaa
-        - interface wifiwave2 access-list
-        - interface wifiwave2 cap
-        - interface wifiwave2 capsman
-        - interface wifiwave2 channel
-        - interface wifiwave2 configuration
-        - interface wifiwave2 datapath
-        - interface wifiwave2 interworking
-        - interface wifiwave2 provisioning
-        - interface wifiwave2 security
-        - interface wifiwave2 steering
-        - interface wireguard
-        - interface wireguard peers
-        - interface wireless
-        - interface wireless align
-        - interface wireless cap
-        - interface wireless security-profiles
-        - interface wireless sniffer
-        - interface wireless snooper
-        - iot modbus
-        - ip accounting
-        - ip accounting web-access
-        - ip address
-        - ip arp
-        - ip cloud
-        - ip cloud advanced
-        - ip dhcp-client
-        - ip dhcp-client option
-        - ip dhcp-relay
-        - ip dhcp-server
-        - ip dhcp-server config
-        - ip dhcp-server lease
-        - ip dhcp-server matcher
-        - ip dhcp-server network
-        - ip dhcp-server option
-        - ip dhcp-server option sets
-        - ip dns
-        - ip dns adlist
-        - ip dns static
-        - ip firewall address-list
-        - ip firewall connection tracking
-        - ip firewall filter
-        - ip firewall layer7-protocol
-        - ip firewall mangle
-        - ip firewall nat
-        - ip firewall raw
-        - ip firewall service-port
-        - ip hotspot service-port
-        - ip ipsec identity
-        - ip ipsec peer
-        - ip ipsec policy
-        - ip ipsec profile
-        - ip ipsec proposal
-        - ip ipsec settings
-        - ip neighbor discovery-settings
-        - ip pool
-        - ip proxy
-        - ip route
-        - ip route rule
-        - ip route vrf
-        - ip service
-        - ip settings
-        - ip smb
-        - ip socks
-        - ip ssh
-        - ip tftp settings
-        - ip traffic-flow
-        - ip traffic-flow ipfix
-        - ip traffic-flow target
-        - ip upnp
-        - ip upnp interfaces
-        - ip vrf
-        - ipv6 address
-        - ipv6 dhcp-client
-        - ipv6 dhcp-server
-        - ipv6 dhcp-server option
-        - ipv6 firewall address-list
-        - ipv6 firewall filter
-        - ipv6 firewall mangle
-        - ipv6 firewall nat
-        - ipv6 firewall raw
-        - ipv6 nd
-        - ipv6 nd prefix
-        - ipv6 nd prefix default
-        - ipv6 route
-        - ipv6 settings
-        - mpls
-        - mpls interface
-        - mpls ldp
-        - mpls ldp accept-filter
-        - mpls ldp advertise-filter
-        - mpls ldp interface
-        - port firmware
-        - port remote-access
-        - ppp aaa
-        - ppp profile
-        - ppp secret
-        - queue interface
-        - queue simple
-        - queue tree
-        - queue type
-        - radius
-        - radius incoming
-        - routing bgp aggregate
-        - routing bgp connection
-        - routing bgp instance
-        - routing bgp network
-        - routing bgp peer
-        - routing bgp template
-        - routing filter
-        - routing filter community-list
-        - routing filter num-list
-        - routing filter rule
-        - routing filter select-rule
-        - routing id
-        - routing igmp-proxy
-        - routing igmp-proxy interface
-        - routing mme
-        - routing ospf area
-        - routing ospf area range
-        - routing ospf instance
-        - routing ospf interface-template
-        - routing ospf static-neighbor
-        - routing pimsm instance
-        - routing pimsm interface-template
-        - routing rip
-        - routing ripng
-        - routing rule
-        - routing table
-        - snmp
-        - snmp community
-        - system clock
-        - system clock manual
-        - system health settings
-        - system identity
-        - system leds settings
-        - system logging
-        - system logging action
-        - system note
-        - system ntp client
-        - system ntp client servers
-        - system ntp server
-        - system package update
-        - system resource irq rps
-        - system routerboard settings
-        - system scheduler
-        - system script
-        - system upgrade mirror
-        - system ups
-        - system watchdog
-        - tool bandwidth-server
-        - tool e-mail
-        - tool graphing
-        - tool graphing interface
-        - tool graphing resource
-        - tool mac-server
-        - tool mac-server mac-winbox
-        - tool mac-server ping
-        - tool netwatch
-        - tool romon
-        - tool sms
-        - tool sniffer
-        - tool traffic-generator
-        - user
-        - user aaa
-        - user group
-        - user settings
+      - caps-man aaa
+      - caps-man access-list
+      - caps-man channel
+      - caps-man configuration
+      - caps-man datapath
+      - caps-man manager
+      - caps-man manager interface
+      - caps-man provisioning
+      - caps-man security
+      - certificate settings
+      - interface bonding
+      - interface bridge
+      - interface bridge mlag
+      - interface bridge port
+      - interface bridge port-controller
+      - interface bridge port-extender
+      - interface bridge settings
+      - interface bridge vlan
+      - interface detect-internet
+      - interface eoip
+      - interface ethernet
+      - interface ethernet poe
+      - interface ethernet switch
+      - interface ethernet switch port
+      - interface gre
+      - interface gre6
+      - interface l2tp-client
+      - interface l2tp-server server
+      - interface list
+      - interface list member
+      - interface ovpn-client
+      - interface ovpn-server server
+      - interface ppp-client
+      - interface pppoe-client
+      - interface pppoe-server server
+      - interface pptp-server server
+      - interface sstp-server server
+      - interface vlan
+      - interface vrrp
+      - interface wifi
+      - interface wifi aaa
+      - interface wifi access-list
+      - interface wifi cap
+      - interface wifi capsman
+      - interface wifi channel
+      - interface wifi configuration
+      - interface wifi datapath
+      - interface wifi interworking
+      - interface wifi provisioning
+      - interface wifi security
+      - interface wifi steering
+      - interface wifiwave2
+      - interface wifiwave2 aaa
+      - interface wifiwave2 access-list
+      - interface wifiwave2 cap
+      - interface wifiwave2 capsman
+      - interface wifiwave2 channel
+      - interface wifiwave2 configuration
+      - interface wifiwave2 datapath
+      - interface wifiwave2 interworking
+      - interface wifiwave2 provisioning
+      - interface wifiwave2 security
+      - interface wifiwave2 steering
+      - interface wireguard
+      - interface wireguard peers
+      - interface wireless
+      - interface wireless align
+      - interface wireless cap
+      - interface wireless security-profiles
+      - interface wireless sniffer
+      - interface wireless snooper
+      - iot modbus
+      - ip accounting
+      - ip accounting web-access
+      - ip address
+      - ip arp
+      - ip cloud
+      - ip cloud advanced
+      - ip dhcp-client
+      - ip dhcp-client option
+      - ip dhcp-relay
+      - ip dhcp-server
+      - ip dhcp-server config
+      - ip dhcp-server lease
+      - ip dhcp-server matcher
+      - ip dhcp-server network
+      - ip dhcp-server option
+      - ip dhcp-server option sets
+      - ip dns
+      - ip dns adlist
+      - ip dns static
+      - ip firewall address-list
+      - ip firewall connection tracking
+      - ip firewall filter
+      - ip firewall layer7-protocol
+      - ip firewall mangle
+      - ip firewall nat
+      - ip firewall raw
+      - ip firewall service-port
+      - ip hotspot service-port
+      - ip ipsec identity
+      - ip ipsec peer
+      - ip ipsec policy
+      - ip ipsec profile
+      - ip ipsec proposal
+      - ip ipsec settings
+      - ip neighbor discovery-settings
+      - ip pool
+      - ip proxy
+      - ip route
+      - ip route rule
+      - ip route vrf
+      - ip service
+      - ip settings
+      - ip smb
+      - ip socks
+      - ip ssh
+      - ip tftp settings
+      - ip traffic-flow
+      - ip traffic-flow ipfix
+      - ip traffic-flow target
+      - ip upnp
+      - ip upnp interfaces
+      - ip vrf
+      - ipv6 address
+      - ipv6 dhcp-client
+      - ipv6 dhcp-server
+      - ipv6 dhcp-server option
+      - ipv6 firewall address-list
+      - ipv6 firewall filter
+      - ipv6 firewall mangle
+      - ipv6 firewall nat
+      - ipv6 firewall raw
+      - ipv6 nd
+      - ipv6 nd prefix
+      - ipv6 nd prefix default
+      - ipv6 route
+      - ipv6 settings
+      - mpls
+      - mpls interface
+      - mpls ldp
+      - mpls ldp accept-filter
+      - mpls ldp advertise-filter
+      - mpls ldp interface
+      - port firmware
+      - port remote-access
+      - ppp aaa
+      - ppp profile
+      - ppp secret
+      - queue interface
+      - queue simple
+      - queue tree
+      - queue type
+      - radius
+      - radius incoming
+      - routing bgp aggregate
+      - routing bgp connection
+      - routing bgp instance
+      - routing bgp network
+      - routing bgp peer
+      - routing bgp template
+      - routing filter
+      - routing filter community-list
+      - routing filter num-list
+      - routing filter rule
+      - routing filter select-rule
+      - routing id
+      - routing igmp-proxy
+      - routing igmp-proxy interface
+      - routing mme
+      - routing ospf area
+      - routing ospf area range
+      - routing ospf instance
+      - routing ospf interface-template
+      - routing ospf static-neighbor
+      - routing pimsm instance
+      - routing pimsm interface-template
+      - routing rip
+      - routing ripng
+      - routing rule
+      - routing table
+      - snmp
+      - snmp community
+      - system clock
+      - system clock manual
+      - system health settings
+      - system identity
+      - system leds settings
+      - system logging
+      - system logging action
+      - system note
+      - system ntp client
+      - system ntp client servers
+      - system ntp server
+      - system package update
+      - system resource irq rps
+      - system routerboard settings
+      - system scheduler
+      - system script
+      - system upgrade mirror
+      - system ups
+      - system watchdog
+      - tool bandwidth-server
+      - tool e-mail
+      - tool graphing
+      - tool graphing interface
+      - tool graphing resource
+      - tool mac-server
+      - tool mac-server mac-winbox
+      - tool mac-server ping
+      - tool netwatch
+      - tool romon
+      - tool sms
+      - tool sniffer
+      - tool traffic-generator
+      - user
+      - user aaa
+      - user group
+      - user settings
     # END PATH LIST
   unfiltered:
     description:
@@ -317,10 +316,9 @@ seealso:
   - module: community.routeros.api_facts
   - module: community.routeros.api_find_and_modify
   - module: community.routeros.api_modify
-'''
+"""
 
-EXAMPLES = '''
----
+EXAMPLES = r"""
 - name: Get IP addresses
   community.routeros.api_info:
     hostname: "{{ hostname }}"
@@ -344,26 +342,25 @@ EXAMPLES = '''
 - name: Print data for IP addresses
   ansible.builtin.debug:
     var: ip_addresses.result
-'''
+"""
 
-RETURN = '''
----
+RETURN = r"""
 result:
-    description: A list of all elements for the current path.
-    sample:
-      - '.id': '*1'
-        actual-interface: bridge
-        address: "192.168.88.1/24"
-        comment: defconf
-        disabled: false
-        dynamic: false
-        interface: bridge
-        invalid: false
-        network: 192.168.88.0
-    type: list
-    elements: dict
-    returned: always
-'''
+  description: A list of all elements for the current path.
+  sample:
+    - '.id': '*1'
+      actual-interface: bridge
+      address: "192.168.88.1/24"
+      comment: defconf
+      disabled: false
+      dynamic: false
+      interface: bridge
+      invalid: false
+      network: 192.168.88.0
+  type: list
+  elements: dict
+  returned: always
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.common.text.converters import to_native

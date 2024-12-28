@@ -10,7 +10,7 @@ __metaclass__ = type
 
 class ModuleDocFragment(object):
 
-    DOCUMENTATION = r'''
+    DOCUMENTATION = r"""
 options:
   hostname:
     description:
@@ -50,10 +50,9 @@ options:
     description:
       - Set to V(true) to connect without a certificate when O(tls=true).
       - See also O(validate_certs).
-      - B(Note:) this forces the use of anonymous Diffie-Hellman (ADH) ciphers. The protocol is susceptible
-        to Man-in-the-Middle attacks, because the keys used in the exchange are not authenticated.
-        Instead of simply connecting without a certificate to "make things work" have a look at
-        O(validate_certs) and O(ca_path).
+      - B(Note:) this forces the use of anonymous Diffie-Hellman (ADH) ciphers. The protocol is susceptible to Man-in-the-Middle
+        attacks, because the keys used in the exchange are not authenticated. Instead of simply connecting without a certificate
+        to "make things work" have a look at O(validate_certs) and O(ca_path).
     type: bool
     default: false
     version_added: 2.4.0
@@ -61,10 +60,9 @@ options:
     description:
       - Set to V(false) to skip validation of TLS certificates.
       - See also O(validate_cert_hostname). Only used when O(tls=true).
-      - B(Note:) instead of simply deactivating certificate validations to "make things work",
-        please consider creating your own CA certificate and using it to sign certificates used
-        for your router. You can tell the module about your CA certificate with the O(ca_path)
-        option.
+      - B(Note:) instead of simply deactivating certificate validations to "make things work", please consider creating your
+        own CA certificate and using it to sign certificates used for your router. You can tell the module about your CA certificate
+        with the O(ca_path) option.
     type: bool
     default: true
     version_added: 1.2.0
@@ -93,10 +91,10 @@ requirements:
   - Python >= 3.6 (for librouteros)
 seealso:
   - ref: ansible_collections.community.routeros.docsite.api-guide
-    description: How to connect to RouterOS devices with the RouterOS API
-'''
+    description: How to connect to RouterOS devices with the RouterOS API.
+"""
 
-    RESTRICT = r'''
+    RESTRICT = r"""
 options:
   restrict:
     type: list
@@ -115,24 +113,21 @@ options:
       values:
         description:
           - The values of the field to limit to.
-          - >-
-            Note that the types of the values are important. If you provide a string V("0"),
-            and librouteros converts the value returned by the API to the integer V(0),
-            then this will not match. If you are not sure, better include both variants:
-            both the string and the integer.
+          - 'Note that the types of the values are important. If you provide a string V("0"), and librouteros converts the
+            value returned by the API to the integer V(0), then this will not match. If you are not sure, better include both
+            variants: both the string and the integer.'
         type: list
         elements: raw
       regex:
         description:
           - A regular expression matching values of the field to limit to.
           - Note that all values will be converted to strings before matching.
-          - It is not possible to match disabled values with regular expressions.
-            Set O(restrict[].match_disabled=true) if you also want to match disabled values.
+          - It is not possible to match disabled values with regular expressions. Set O(restrict[].match_disabled=true) if
+            you also want to match disabled values.
         type: str
       invert:
         description:
-          - Invert the condition. This affects O(restrict[].match_disabled), O(restrict[].values),
-            and O(restrict[].regex).
+          - Invert the condition. This affects O(restrict[].match_disabled), O(restrict[].values), and O(restrict[].regex).
         type: bool
         default: false
-'''
+"""
