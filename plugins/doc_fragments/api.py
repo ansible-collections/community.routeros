@@ -43,7 +43,7 @@ options:
       - ssl
   port:
     description:
-      - RouterOS api port. If O(tls) is set, port will apply to TLS/SSL connection.
+      - RouterOS API port. If O(tls) is set, port will apply to TLS/SSL connection.
       - Defaults are V(8728) for the HTTP API, and V(8729) for the HTTPS API.
     type: int
   force_no_cert:

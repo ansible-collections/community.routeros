@@ -14,7 +14,7 @@ author: "Nikolay Dachev (@NikolayDachev)"
 short_description: Ansible module for RouterOS API
 description:
   - Ansible module for RouterOS API with the Python C(librouteros) library.
-  - This module can add, remove, update, query and execute arbitrary command in RouterOS via API.
+  - This module can add, remove, update, query, and execute arbitrary command in RouterOS through the API.
 notes:
   - O(add), O(remove), O(update), O(cmd), and O(query) are mutually exclusive.
   - Use the M(community.routeros.api_modify) and M(community.routeros.api_find_and_modify) modules for more specific modifications,
@@ -37,7 +37,7 @@ options:
   path:
     description:
       - Main path for all other arguments.
-      - If other arguments are not set, api will return all items in selected path.
+      - If other arguments are not set, the module will return all items in selected path.
       - Example V(ip address). Equivalent of RouterOS CLI C(/ip address print).
     required: true
     type: str
@@ -57,7 +57,7 @@ options:
   update:
     description:
       - Update config/value in RouterOS by '.id' in selected path.
-      - Example V(.id=*03 address=1.1.1.3/32) and path V(ip address) will replace existing ip address with C(.id=*03).
+      - Example V(.id=*03 address=1.1.1.3/32) and path V(ip address) will replace the existing IP address with C(.id=*03).
       - Equivalent in RouterOS CLI C(/ip address set address=1.1.1.3/32 numbers=1).
       - Note C(number) in RouterOS CLI is different from C(.id).
     type: str
@@ -261,7 +261,7 @@ EXAMPLES = r"""
 
 RETURN = r"""
 message:
-  description: All outputs are in list with dictionary elements returned from RouterOS api.
+  description: All outputs are in list with dictionary elements returned from RouterOS API.
   sample:
     - address: 1.2.3.4
     - address: 2.3.4.5

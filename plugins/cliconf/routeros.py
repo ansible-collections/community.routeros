@@ -10,7 +10,7 @@ author: "Egor Zaitsev (@heuels)"
 name: routeros
 short_description: Use routeros cliconf to run command on MikroTik RouterOS platform
 description:
-  - This routeros plugin provides low level abstraction apis for sending and receiving CLI commands from MikroTik RouterOS
+  - This routeros plugin provides low level abstraction APIs for sending and receiving CLI commands from MikroTik RouterOS
     network devices.
 """
 
