@@ -77,7 +77,7 @@ def _ros_api_connect(module, username, password, host, port, use_tls, force_no_c
             elif not validate_cert_hostname:
                 ctx.check_hostname = False
             else:
-                # Since librouteros doesn't pass server_hostname,
+                # Since librouteros does not pass server_hostname,
                 # we have to do this ourselves:
                 def wrap_context(*args, **kwargs):
                     kwargs.pop('server_hostname', None)

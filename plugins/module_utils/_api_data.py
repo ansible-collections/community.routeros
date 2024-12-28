@@ -5158,7 +5158,7 @@ PATHS = {
                 'protocol': KeyInfo(default='all'),
                 'src-address': KeyInfo(),
                 'src-port': KeyInfo(default='any'),
-                # The template field can't really be changed once the item is
+                # The template field ca not really be changed once the item is
                 # created. This config captures the behavior best as it can
                 # i.e. template=yes is shown, template=no is hidden.
                 'template': KeyInfo(can_disable=True, remove_value=False),
