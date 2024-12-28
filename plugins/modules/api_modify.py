@@ -355,7 +355,7 @@ seealso:
 
 EXAMPLES = r"""
 - name: Setup DHCP server networks
-# Ensures that we have exactly two DHCP server networks (in the specified order)
+  # Ensures that we have exactly two DHCP server networks (in the specified order)
   community.routeros.api_modify:
     path: ip dhcp-server network
     handle_absent_entries: remove
@@ -383,12 +383,12 @@ EXAMPLES = r"""
         chain: srcnat
         comment: NAT to WAN
         out-interface-list: WAN
-      # Three ways to unset values:
-      #   - nothing after `:`
-      #   - "empty" value (null/~/None)
-      #   - prepend '!'
+        # Three ways to unset values:
+        #   - nothing after `:`
+        #   - "empty" value (null/~/None)
+        #   - prepend '!'
         out-interface:
-        to-addresses:
+        to-addresses: ~
         '!to-ports':
 
 - name: Block all incoming connections
@@ -400,7 +400,7 @@ EXAMPLES = r"""
     handle_absent_entries: remove
     handle_entries_content: remove_as_much_as_possible
     restrict:
-    # Do not touch any chain except the input chain
+      # Do not touch any chain except the input chain
       - field: chain
         values:
           - input
