@@ -535,7 +535,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="docsite/quoting.html#ansible-collections-community-routeros-docsite-quoting"><span class="std std-ref">How to quote and unquote commands and arguments</span></a></dt><dd><p>How to quote and unquote commands and arguments</p>
+<dt><a class="reference internal" href="docsite/quoting.html#ansible-collections-community-routeros-docsite-quoting"><span class="std std-ref">How to quote and unquote commands and arguments</span></a></dt><dd><p>How to quote and unquote commands and arguments.</p>
 </dd>
 <dt><a class="reference internal" href="api_facts_module.html#ansible-collections-community-routeros-api-facts-module"><span class="std std-ref">community.routeros.api_facts</span></a></dt><dd><p>Collect facts from remote devices running MikroTik RouterOS using the API.</p>
 </dd>
@@ -545,7 +545,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </dd>
 <dt><a class="reference internal" href="api_modify_module.html#ansible-collections-community-routeros-api-modify-module"><span class="std std-ref">community.routeros.api_modify</span></a></dt><dd><p>Modify data at paths with API.</p>
 </dd>
-<dt><a class="reference internal" href="docsite/api-guide.html#ansible-collections-community-routeros-docsite-api-guide"><span class="std std-ref">How to connect to RouterOS devices with the RouterOS API</span></a></dt><dd><p>How to connect to RouterOS devices with the RouterOS API</p>
+<dt><a class="reference internal" href="docsite/api-guide.html#ansible-collections-community-routeros-docsite-api-guide"><span class="std std-ref">How to connect to RouterOS devices with the RouterOS API</span></a></dt><dd><p>How to connect to RouterOS devices with the RouterOS API.</p>
 </dd>
 </dl>
 </div>
@@ -610,8 +610,8 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">attribute</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;network&quot;</span>
 <span class="w">          </span><span class="nt">is</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;in&quot;</span>
 <span class="w">          </span><span class="nt">value</span><span class="p">:</span>
-<span class="w">             </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;10.20.36.0&quot;</span>
-<span class="w">             </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;192.168.255.0&quot;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;10.20.36.0&quot;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;192.168.255.0&quot;</span>
 <span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extended_queryout</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dump &quot;Extended query example&quot; output</span>
@@ -625,9 +625,9 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">&quot;</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ip</span><span class="nv"> </span><span class="s">address&quot;</span>
 <span class="w">    </span><span class="nt">update</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
-<span class="w">        </span><span class="no">.id=*14</span>
-<span class="w">        </span><span class="no">address=192.168.255.20/24</span>
-<span class="w">        </span><span class="no">comment=</span><span class="cp">{{</span> <span class="s1">&#39;Update 192.168.255.10/24 to 192.168.255.20/24 on ether2&#39;</span> <span class="o">|</span> <span class="nf">community</span><span class="nv">.routeros.quote_argument_value</span> <span class="cp">}}</span>
+<span class="w">      </span><span class="no">.id=*14</span>
+<span class="w">      </span><span class="no">address=192.168.255.20/24</span>
+<span class="w">      </span><span class="no">comment=</span><span class="cp">{{</span> <span class="s1">&#39;Update 192.168.255.10/24 to 192.168.255.20/24 on ether2&#39;</span> <span class="o">|</span> <span class="nf">community</span><span class="nv">.routeros.quote_argument_value</span> <span class="cp">}}</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remove example - ether2 ip 192.168.255.20/24 with &quot;.id = *14&quot;</span>
 <span class="w">  </span><span class="nt">community.routeros.api</span><span class="p">:</span>
