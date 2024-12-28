@@ -8,8 +8,7 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-DOCUMENTATION = '''
----
+DOCUMENTATION = r"""
 module: api_find_and_modify
 author:
   - "Felix Fontein (@felixfontein)"
@@ -17,13 +16,13 @@ short_description: Find and modify information using the API
 version_added: 2.1.0
 description:
   - Allows to find entries for a path by conditions and modify the values of these entries.
-  - Use the M(community.routeros.api_find_and_modify) module to set all entries of a path to specific values,
-    or change multiple entries in different ways in one step.
+  - Use the M(community.routeros.api_find_and_modify) module to set all entries of a path to specific values, or change multiple
+    entries in different ways in one step.
 notes:
-  - "If you want to change values based on their old values (like change all comments 'foo' to 'bar') and make sure that
-     there are at least N such values, you can use O(require_matches_min=N) together with O(allow_no_matches=true).
-     This will make the module fail if there are less than N such entries, but not if there is no match. The latter case
-     is needed for idempotency of the task: once the values have been changed, there should be no further match."
+  - "If you want to change values based on their old values (like change all comments 'foo' to 'bar') and make sure that there
+    are at least N such values, you can use O(require_matches_min=N) together with O(allow_no_matches=true). This will make
+    the module fail if there are less than N such entries, but not if there is no match. The latter case is needed for idempotency
+    of the task: once the values have been changed, there should be no further match."
 extends_documentation_fragment:
   - community.routeros.api
   - community.routeros.attributes
@@ -79,10 +78,9 @@ seealso:
   - module: community.routeros.api_facts
   - module: community.routeros.api_modify
   - module: community.routeros.api_info
-'''
+"""
 
-EXAMPLES = '''
----
+EXAMPLES = r"""
 - name: Rename bridge from 'bridge' to 'my-bridge'
   community.routeros.api_find_and_modify:
     hostname: "{{ hostname }}"
@@ -104,59 +102,58 @@ EXAMPLES = '''
       interface: bridge
     values:
       address: "192.168.1.1/24"
-    # If there are zero entries, or more than one: fail! We expected that
-    # exactly one is configured.
+  # If there are zero entries, or more than one: fail! We expected that
+  # exactly one is configured.
     require_matches_min: 1
     require_matches_max: 1
-'''
+"""
 
-RETURN = '''
----
+RETURN = r"""
 old_data:
-    description:
-      - A list of all elements for the current path before a change was made.
-    sample:
-      - '.id': '*1'
-        actual-interface: bridge
-        address: "192.168.88.1/24"
-        comment: defconf
-        disabled: false
-        dynamic: false
-        interface: bridge
-        invalid: false
-        network: 192.168.88.0
-    type: list
-    elements: dict
-    returned: success
+  description:
+    - A list of all elements for the current path before a change was made.
+  sample:
+    - '.id': '*1'
+      actual-interface: bridge
+      address: "192.168.88.1/24"
+      comment: defconf
+      disabled: false
+      dynamic: false
+      interface: bridge
+      invalid: false
+      network: 192.168.88.0
+  type: list
+  elements: dict
+  returned: success
 new_data:
-    description:
-      - A list of all elements for the current path after a change was made.
-    sample:
-      - '.id': '*1'
-        actual-interface: bridge
-        address: "192.168.1.1/24"
-        comment: awesome
-        disabled: false
-        dynamic: false
-        interface: bridge
-        invalid: false
-        network: 192.168.1.0
-    type: list
-    elements: dict
-    returned: success
+  description:
+    - A list of all elements for the current path after a change was made.
+  sample:
+    - '.id': '*1'
+      actual-interface: bridge
+      address: "192.168.1.1/24"
+      comment: awesome
+      disabled: false
+      dynamic: false
+      interface: bridge
+      invalid: false
+      network: 192.168.1.0
+  type: list
+  elements: dict
+  returned: success
 match_count:
-    description:
-      - The number of entries that matched the criteria in O(find).
-    sample: 1
-    type: int
-    returned: success
+  description:
+    - The number of entries that matched the criteria in O(find).
+  sample: 1
+  type: int
+  returned: success
 modify__count:
-    description:
-      - The number of entries that were modified.
-    sample: 1
-    type: int
-    returned: success
-'''
+  description:
+    - The number of entries that were modified.
+  sample: 1
+  type: int
+  returned: success
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.common.text.converters import to_native
