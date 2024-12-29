@@ -27,24 +27,24 @@ attributes:
     INFO_MODULE = r'''
 options: {}
 attributes:
-    check_mode:
-      support: full
-      details:
-        - This action does not modify state.
-    diff_mode:
-      support: N/A
-      details:
-        - This action does not modify state.
+  check_mode:
+    support: full
+    details:
+      - This action does not modify state.
+  diff_mode:
+    support: N/A
+    details:
+      - This action does not modify state.
 '''
 
     ACTIONGROUP_API = r'''
 options: {}
 attributes:
-    action_group:
-      description: Use C(group/community.routeros.api) in C(module_defaults) to set defaults for this module.
-      support: full
-      membership:
-        - community.routeros.api
+  action_group:
+    description: Use C(group/community.routeros.api) in C(module_defaults) to set defaults for this module.
+    support: full
+    membership:
+      - community.routeros.api
 '''
 
     CONN = r"""
@@ -69,16 +69,16 @@ attributes:
     FACTS_MODULE = r'''
 options: {}
 attributes:
-    check_mode:
-      support: full
-      details:
-        - This action does not modify state.
-    diff_mode:
-      support: N/A
-      details:
-        - This action does not modify state.
-    facts:
-      support: full
+  check_mode:
+    support: full
+    details:
+      - This action does not modify state.
+  diff_mode:
+    support: N/A
+    details:
+      - This action does not modify state.
+  facts:
+    support: full
 '''
 
     FILES = r"""
