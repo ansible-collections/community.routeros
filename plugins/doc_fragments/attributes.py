@@ -21,6 +21,20 @@ attributes:
   platform:
     description: Target OS/families that can be operated against.
     support: N/A
+  idempotent:
+    description:
+      - When run twice in a row outside check mode, with the same arguments, the second invocation indicates no change.
+      - This assumes that the system controlled/queried by the module has not changed in a relevant way.
+"""
+
+    # Should be used together with the standard fragment
+    IDEMPOTENT_NOT_MODIFY_STATE = r"""
+options: {}
+attributes:
+  idempotent:
+    support: full
+    details:
+      - This action does not modify state.
 """
 
     # Should be used together with the standard fragment

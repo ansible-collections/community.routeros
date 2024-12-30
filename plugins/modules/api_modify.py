@@ -42,6 +42,8 @@ attributes:
   platform:
     support: full
     platforms: RouterOS
+  idempotent:
+    support: full
 options:
   path:
     description:
