@@ -28,6 +28,7 @@ extends_documentation_fragment:
   - community.routeros.api.restrict
   - community.routeros.attributes
   - community.routeros.attributes.actiongroup_api
+  - community.routeros.attributes.idempotent_not_modify_state
   - community.routeros.attributes.info_module
 attributes:
   platform:

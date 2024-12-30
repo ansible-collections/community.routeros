@@ -29,6 +29,7 @@ extends_documentation_fragment:
   - community.routeros.attributes.actiongroup_api
   - community.routeros.attributes.facts
   - community.routeros.attributes.facts_module
+  - community.routeros.attributes.idempotent_not_modify_state
 attributes:
   platform:
     support: full

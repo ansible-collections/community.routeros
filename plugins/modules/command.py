@@ -29,6 +29,10 @@ attributes:
   platform:
     support: full
     platforms: RouterOS
+  idempotent:
+    support: N/A
+    details:
+      - Whether the executed command is idempotent depends on the command.
 options:
   commands:
     description:

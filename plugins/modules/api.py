@@ -33,6 +33,10 @@ attributes:
     platforms: RouterOS
   action_group:
     version_added: 2.1.0
+  idempotent:
+    support: N/A
+    details:
+      - Whether the executed command is idempotent depends on the operation performed.
 options:
   path:
     description:
