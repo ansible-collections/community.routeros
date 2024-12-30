@@ -250,6 +250,16 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="attribute-idempotent"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-command-module-attribute-idempotent"><strong>idempotent</strong></p>
+<a class="ansibleOptionLink" href="#attribute-idempotent" title="Permalink to this attribute"></a></div></td>
+<td><div class="ansible-option-cell"><p><strong class="ansible-attribute-support-label">Support: </strong>      <span class="ansible-attribute-support-na">N/A</span></p>
+<p>Whether the executed command is idempotent depends on the command.</p>
+</div></td>
+<td><div class="ansible-option-cell"><p>When run twice in a row outside check mode, with the same arguments, the second invocation indicates no change.</p>
+<p>This assumes that the system controlled/queried by the module has not changed in a relevant way.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="attribute-platform"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-command-module-attribute-platform"><strong>platform</strong></p>
 <a class="ansibleOptionLink" href="#attribute-platform" title="Permalink to this attribute"></a></div></td>
 <td><div class="ansible-option-cell"><p><strong class="ansible-attribute-support-property">Platform:</strong> <strong class="ansible-attribute-support-full">RouterOS</strong></p>
