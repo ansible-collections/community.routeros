@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - add support for the ``routing filter community-list`` path implemented by RouterOS 7 and newer (https://github.com/ansible-collections/community.routeros/pull/331).

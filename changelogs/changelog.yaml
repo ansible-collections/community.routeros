@@ -824,3 +824,13 @@ releases:
       - 324-fix-firewall-log-and-log-prefix.yaml
       - 327-add-missing-ip-pool-fields.yml
     release_date: '2024-12-02'
+  3.2.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - add support for the ``routing filter community-list``
+          path implemented by RouterOS 7 and newer (https://github.com/ansible-collections/community.routeros/pull/331).
+      release_summary: Feature release.
+    fragments:
+      - 3.2.0.yml
+      - 331-add-routing-filter-community-list.yml
+    release_date: '2024-12-30'
