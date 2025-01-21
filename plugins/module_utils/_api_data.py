@@ -4018,6 +4018,9 @@ PATHS = {
                 'src-address': KeyInfo(default='0.0.0.0'),
                 'timeout': KeyInfo(default='300ms'),
             },
+            versioned_fields=[
+                ([('7.15', '>=')], 'require-message-auth', KeyInfo(default='yes-for-request-resp')),
+            ],
         ),
     ),
     ('radius', 'incoming'): APIData(
