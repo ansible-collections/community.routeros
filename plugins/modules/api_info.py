@@ -109,8 +109,10 @@ options:
       - interface wireguard
       - interface wireguard peers
       - interface wireless
+      - interface wireless access-list
       - interface wireless align
       - interface wireless cap
+      - interface wireless connect-list
       - interface wireless security-profiles
       - interface wireless sniffer
       - interface wireless snooper
