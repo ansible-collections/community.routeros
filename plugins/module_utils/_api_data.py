@@ -3544,6 +3544,14 @@ PATHS = {
                 'request': KeyInfo(),
                 'use-peer-dns': KeyInfo(default=True),
             },
+            versioned_fields=[
+                # Mikrotik does not provide exact version in official changelogs.
+                # The 7.15 version is the earliest, found option in router config backups:
+                ([('7.15', '>=')], 'script', KeyInfo(default='')),
+                ([('7.15', '>=')], 'custom-duid', KeyInfo(default='')),
+                ([('7.15', '>=')], 'use-interface-duid', KeyInfo(default=False)),
+                ([('7.15', '>=')], 'validate-server-duid', KeyInfo(default=True)),
+            ],
         ),
     ),
     ('ipv6', 'dhcp-server'): APIData(
