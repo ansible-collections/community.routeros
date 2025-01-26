@@ -53,6 +53,7 @@ options:
       - caps-man provisioning
       - caps-man security
       - certificate settings
+      - interface 6to4
       - interface bonding
       - interface bridge
       - interface bridge mlag

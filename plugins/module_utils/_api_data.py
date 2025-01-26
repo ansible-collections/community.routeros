@@ -226,6 +226,25 @@ def join_path(path):
 # 3. All bold attributes go into the `primary_keys` list -- this is not always true!
 
 PATHS = {
+    ('interface', '6to4'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            primary_keys=('name', ),
+            fields={
+                'clamp-tcp-mss': KeyInfo(default=True),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'disabled': KeyInfo(default=False),
+                'dont-fragment': KeyInfo(default=False),
+                'dscp': KeyInfo(default='inherit'),
+                'ipsec-secret': KeyInfo(can_disable=True),
+                'keepalive': KeyInfo(default='10s,10', can_disable=True),
+                'local-address': KeyInfo(default='0.0.0.0'),
+                'mtu': KeyInfo(default='auto'),
+                'name': KeyInfo(),
+                'remote-address': KeyInfo(required=True),
+            }
+        ),
+    ),
     ('interface', 'bonding'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
