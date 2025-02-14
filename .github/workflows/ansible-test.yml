@@ -31,11 +31,6 @@ jobs:
           - stable-2.17
           - stable-2.18
           - devel
-    # Ansible-test on various stable branches does not yet work well with cgroups v2.
-    # Since ubuntu-latest now uses Ubuntu 22.04, we need to fall back to the ubuntu-20.04
-    # image for these stable branches. The list of branches where this is necessary will
-    # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
-    # for the latest list.
     runs-on: ubuntu-latest
     steps:
       - name: Perform sanity testing
@@ -50,11 +45,6 @@ jobs:
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
 
   units:
-    # Ansible-test on various stable branches does not yet work well with cgroups v2.
-    # Since ubuntu-latest now uses Ubuntu 22.04, we need to fall back to the ubuntu-20.04
-    # image for these stable branches. The list of branches where this is necessary will
-    # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
-    # for the latest list.
     runs-on: ubuntu-latest
     name: Units (Ⓐ${{ matrix.ansible }})
     strategy:
@@ -82,11 +72,6 @@ jobs:
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
 
   integration:
-    # Ansible-test on various stable branches does not yet work well with cgroups v2.
-    # Since ubuntu-latest now uses Ubuntu 22.04, we need to fall back to the ubuntu-20.04
-    # image for these stable branches. The list of branches where this is necessary will
-    # shrink over time, check out https://github.com/ansible-collections/news-for-maintainers/issues/28
-    # for the latest list.
     runs-on: ubuntu-latest
     name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
     strategy:
