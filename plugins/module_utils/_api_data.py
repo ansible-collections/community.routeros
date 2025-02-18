@@ -2997,6 +2997,22 @@ PATHS = {
             )),
         ],
     ),
+    ('ip', 'dns', 'forwarders'): APIData(
+        versioned=[
+            ('7.17', '>=', VersionedAPIData(
+                fully_understood=True,
+                required_one_of=[['dns-servers', 'doh-servers']],
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'disabled': KeyInfo(default=False),
+                    'dns-servers': KeyInfo(default=''),
+                    'doh-servers': KeyInfo(default=''),
+                    'name': KeyInfo(required=True),
+                    'verify-doh-cert': KeyInfo(default=True),
+                },
+            )),
+        ],
+    ),
     ('ip', 'dns', 'static'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
