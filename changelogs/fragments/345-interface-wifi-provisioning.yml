@@ -1,4 +1,0 @@
-bugfixes:
-  - "api_info, api_modify - remove the primary key ``action`` from the ``interface wifi provisioning`` path,
-     since RouterOS also allows to create completely duplicate entries
-     (https://github.com/ansible-collections/community.routeros/issues/344, https://github.com/ansible-collections/community.routeros/pull/345)."

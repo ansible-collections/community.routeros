@@ -859,3 +859,19 @@ releases:
       - 341-add-dhcpv6-client-use-interface-duid.yml
       - 342-add-interface-6to4.yml
     release_date: '2025-01-27'
+  3.4.0:
+    changes:
+      bugfixes:
+        - api_info, api_modify - remove the primary key ``action`` from the ``interface
+          wifi provisioning`` path, since RouterOS also allows to create completely
+          duplicate entries (https://github.com/ansible-collections/community.routeros/issues/344,
+          https://github.com/ansible-collections/community.routeros/pull/345).
+      minor_changes:
+        - api_info, api_modify - add support for the ``ip dns forwarders`` path implemented
+          by RouterOS 7.17 and newer (https://github.com/ansible-collections/community.routeros/pull/343).
+      release_summary: Feature and bugfix release.
+    fragments:
+      - 3.4.0.yml
+      - 343-add-ip-dns-forwarders.yml
+      - 345-interface-wifi-provisioning.yml
+    release_date: '2025-02-24'
