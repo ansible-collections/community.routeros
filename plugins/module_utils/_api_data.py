@@ -2037,7 +2037,6 @@ PATHS = {
         versioned=[
             ('7.13', '>=', VersionedAPIData(
                 fully_understood=True,
-                primary_keys=('action', ),
                 fields={
                     'action': KeyInfo(default='none'),
                     'address-ranges': KeyInfo(can_disable=True),
