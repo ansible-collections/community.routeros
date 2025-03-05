@@ -31,6 +31,7 @@ jobs:
           - stable-2.17
           - stable-2.18
           - devel
+          - refs/pull/84621/head
     runs-on: ubuntu-latest
     steps:
       - name: Perform sanity testing
@@ -43,7 +44,7 @@ jobs:
           test-deps: >-
             git+https://github.com/ansible-collections/ansible.utils.git,main
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
-            git+https://github.com/ansible-collections/community.internal_test_tools.git,main
+            git+https://github.com/felixfontein/community.internal_test_tools.git,ci-data-tagging
 
   units:
     runs-on: ubuntu-latest
@@ -57,6 +58,7 @@ jobs:
           - stable-2.17
           - stable-2.18
           - devel
+          - refs/pull/84621/head
 
     steps:
       - name: >-
@@ -71,7 +73,7 @@ jobs:
           test-deps: >-
             git+https://github.com/ansible-collections/ansible.utils.git,main
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
-            git+https://github.com/ansible-collections/community.internal_test_tools.git,main
+            git+https://github.com/felixfontein/community.internal_test_tools.git,ci-data-tagging
 
   integration:
     runs-on: ubuntu-latest
@@ -81,6 +83,7 @@ jobs:
       matrix:
         ansible:
           - devel
+          - refs/pull/84621/head
         python:
           - "3.10"
           - "3.11"
@@ -120,6 +123,6 @@ jobs:
           test-deps: >-
             git+https://github.com/ansible-collections/ansible.utils.git,main
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
-            git+https://github.com/ansible-collections/community.internal_test_tools.git,main
+            git+https://github.com/felixfontein/community.internal_test_tools.git,ci-data-tagging
           target-python-version: ${{ matrix.python }}
           testing-type: integration
