@@ -41,8 +41,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
 
     def test_module_fail_when_required_args_missing(self):
         with self.assertRaises(AnsibleFailJson) as exc:
-            set_module_args({})
-            self.module.main()
+            with set_module_args({}):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -53,8 +53,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
             args.update({
                 'path': 'something invalid'
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -68,8 +68,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
             args.update({
                 'path': 'ip dns static'
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -93,8 +93,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
             args.update({
                 'path': 'caps-man aaa',
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -122,8 +122,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'path': 'caps-man aaa',
                 'hide_defaults': False,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -155,8 +155,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'path': 'caps-man aaa',
                 'unfiltered': True,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -189,8 +189,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'path': 'ip firewall filter',
                 'handle_disabled': 'exclamation',
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -278,8 +278,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'path': 'ip firewall filter',
                 'handle_disabled': 'null-value',
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -367,8 +367,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'path': 'ip firewall filter',
                 'handle_disabled': 'omit',
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -402,8 +402,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'handle_disabled': 'omit',
                 'include_dynamic': True,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -460,8 +460,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'path': 'interface list',
                 'handle_disabled': 'omit',
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -513,8 +513,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'handle_disabled': 'omit',
                 'include_builtin': True,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -605,8 +605,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'path': 'ip dhcp-server lease',
                 'handle_disabled': 'omit',
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -688,8 +688,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
             args.update({
                 'path': 'interface gre',
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -776,8 +776,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'handle_disabled': 'omit',
                 'hide_defaults': False,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -847,8 +847,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                 'handle_disabled': 'omit',
                 'restrict': [],
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -899,8 +899,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                     'values': ['forward'],
                 }],
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -970,8 +970,8 @@ class TestRouterosApiInfoModule(ModuleTestCase):
                     },
                 ],
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)

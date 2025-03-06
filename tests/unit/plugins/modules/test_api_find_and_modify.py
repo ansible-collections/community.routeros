@@ -117,8 +117,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
 
     def test_module_fail_when_required_args_missing(self):
         with self.assertRaises(AnsibleFailJson) as exc:
-            set_module_args({})
-            self.module.main()
+            with set_module_args({}):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -136,8 +136,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     'comment': 'bar',
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -155,8 +155,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     'comment': 'bar',
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -173,8 +173,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     '!comment': None,
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -190,8 +190,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     '!comment': 'gone',
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -212,8 +212,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 },
                 'require_matches_min': 10,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -234,8 +234,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 },
                 'require_matches_min': 10,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -256,8 +256,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 },
                 'require_matches_max': 1,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -277,8 +277,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     'name': 'bam',
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -303,8 +303,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'require_matches_min': 2,
                 'allow_no_matches': True,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -325,8 +325,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 'values': {
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -349,8 +349,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     'comment': None,
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
@@ -374,8 +374,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                 },
                 '_ansible_diff': True,
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], True)
@@ -450,8 +450,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     'comment': None,
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], True)
@@ -502,8 +502,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     'comment': '',
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], True)
@@ -553,8 +553,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     '!comment': None,
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], True)
@@ -606,8 +606,8 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
                     '!connection-state': None,
                 },
             })
-            set_module_args(args)
-            self.module.main()
+            with set_module_args(args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], True)
