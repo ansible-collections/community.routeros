@@ -39,8 +39,8 @@ class TestRouterosFactsModule(TestRouterosModule):
         self.run_commands.side_effect = load_from_file
 
     def test_facts_default(self):
-        set_module_args(dict(gather_subset='default'))
-        result = self.execute_module()
+        with set_module_args(dict(gather_subset='default')):
+            result = self.execute_module()
         self.assertEqual(
             result['ansible_facts']['ansible_net_hostname'], 'MikroTik'
         )
@@ -61,8 +61,8 @@ class TestRouterosFactsModule(TestRouterosModule):
         )
 
     def test_facts_hardware(self):
-        set_module_args(dict(gather_subset='hardware'))
-        result = self.execute_module()
+        with set_module_args(dict(gather_subset='hardware')):
+            result = self.execute_module()
         self.assertEqual(
             result['ansible_facts']['ansible_net_spacefree_mb'], 64921.6
         )
@@ -77,8 +77,8 @@ class TestRouterosFactsModule(TestRouterosModule):
         )
 
     def test_facts_config(self):
-        set_module_args(dict(gather_subset='config'))
-        result = self.execute_module()
+        with set_module_args(dict(gather_subset='config')):
+            result = self.execute_module()
         self.assertIsInstance(
             result['ansible_facts']['ansible_net_config'], str
         )
@@ -88,8 +88,8 @@ class TestRouterosFactsModule(TestRouterosModule):
         )
 
     def test_facts_interfaces(self):
-        set_module_args(dict(gather_subset='interfaces'))
-        result = self.execute_module()
+        with set_module_args(dict(gather_subset='interfaces')):
+            result = self.execute_module()
         self.assertIn(
             result['ansible_facts']['ansible_net_all_ipv4_addresses'][0], ['10.37.129.3', '10.37.0.0', '192.168.88.1']
         )
@@ -118,8 +118,8 @@ class TestRouterosFactsModule(TestRouterosModule):
         self.assertEqual(result, None)
 
     def test_facts_routing(self):
-        set_module_args(dict(gather_subset='routing'))
-        result = self.execute_module()
+        with set_module_args(dict(gather_subset='routing')):
+            result = self.execute_module()
         self.assertIn(
             result['ansible_facts']['ansible_net_bgp_peer']['iBGP_BRAS.TYRMA']['name'], ['iBGP_BRAS.TYRMA']
         )

@@ -47,54 +47,54 @@ class TestRouterosCommandModule(TestRouterosModule):
         self.run_commands.side_effect = load_from_file
 
     def test_command_simple(self):
-        set_module_args(dict(commands=['/system resource print']))
-        result = self.execute_module(changed=True)
+        with set_module_args(dict(commands=['/system resource print'])):
+            result = self.execute_module(changed=True)
         self.assertEqual(len(result['stdout']), 1)
         self.assertTrue('platform: "MikroTik"' in result['stdout'][0])
 
     def test_command_multiple(self):
-        set_module_args(dict(commands=['/system resource print', '/system resource print']))
-        result = self.execute_module(changed=True)
+        with set_module_args(dict(commands=['/system resource print', '/system resource print'])):
+            result = self.execute_module(changed=True)
         self.assertEqual(len(result['stdout']), 2)
         self.assertTrue('platform: "MikroTik"' in result['stdout'][0])
 
     def test_command_wait_for(self):
         wait_for = 'result[0] contains "MikroTik"'
-        set_module_args(dict(commands=['/system resource print'], wait_for=wait_for))
-        self.execute_module(changed=True)
+        with set_module_args(dict(commands=['/system resource print'], wait_for=wait_for)):
+            self.execute_module(changed=True)
 
     def test_command_wait_for_fails(self):
         wait_for = 'result[0] contains "test string"'
-        set_module_args(dict(commands=['/system resource print'], wait_for=wait_for))
-        self.execute_module(failed=True)
+        with set_module_args(dict(commands=['/system resource print'], wait_for=wait_for)):
+            self.execute_module(failed=True)
         self.assertEqual(self.run_commands.call_count, 10)
 
     def test_command_retries(self):
         wait_for = 'result[0] contains "test string"'
-        set_module_args(dict(commands=['/system resource print'], wait_for=wait_for, retries=2))
-        self.execute_module(failed=True)
+        with set_module_args(dict(commands=['/system resource print'], wait_for=wait_for, retries=2)):
+            self.execute_module(failed=True)
         self.assertEqual(self.run_commands.call_count, 2)
 
     def test_command_match_any(self):
         wait_for = ['result[0] contains "MikroTik"',
                     'result[0] contains "test string"']
-        set_module_args(dict(commands=['/system resource print'], wait_for=wait_for, match='any'))
-        self.execute_module(changed=True)
+        with set_module_args(dict(commands=['/system resource print'], wait_for=wait_for, match='any')):
+            self.execute_module(changed=True)
 
     def test_command_match_all(self):
         wait_for = ['result[0] contains "MikroTik"',
                     'result[0] contains "RB1100"']
-        set_module_args(dict(commands=['/system resource print'], wait_for=wait_for, match='all'))
-        self.execute_module(changed=True)
+        with set_module_args(dict(commands=['/system resource print'], wait_for=wait_for, match='all')):
+            self.execute_module(changed=True)
 
     def test_command_match_all_failure(self):
         wait_for = ['result[0] contains "MikroTik"',
                     'result[0] contains "test string"']
         commands = ['/system resource print', '/system resource print']
-        set_module_args(dict(commands=commands, wait_for=wait_for, match='all'))
-        self.execute_module(failed=True)
+        with set_module_args(dict(commands=commands, wait_for=wait_for, match='all')):
+            self.execute_module(failed=True)
 
     def test_command_wait_for_2(self):
         wait_for = 'result[0] contains "wireless"'
-        set_module_args(dict(commands=['/system package print'], wait_for=wait_for))
-        self.execute_module(changed=True)
+        with set_module_args(dict(commands=['/system package print'], wait_for=wait_for)):
+            self.execute_module(changed=True)

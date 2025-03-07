@@ -437,8 +437,8 @@ class TestRouterosApiFactsModule(ModuleTestCase):
 
     def test_module_fail_when_required_args_missing(self):
         with self.assertRaises(AnsibleFailJson) as exc:
-            set_module_args({})
-            self.module.main()
+            with set_module_args({}):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -447,8 +447,8 @@ class TestRouterosApiFactsModule(ModuleTestCase):
         with self.assertRaises(AnsibleFailJson) as exc:
             module_args = self.config_module_args.copy()
             module_args['gather_subset'] = ['!foobar']
-            set_module_args(module_args)
-            self.module.main()
+            with set_module_args(module_args):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['failed'], True)
@@ -456,8 +456,8 @@ class TestRouterosApiFactsModule(ModuleTestCase):
 
     def test_full_run(self):
         with self.assertRaises(AnsibleExitJson) as exc:
-            set_module_args(self.config_module_args.copy())
-            self.module.main()
+            with set_module_args(self.config_module_args.copy()):
+                self.module.main()
 
         result = exc.exception.args[0]
         self.assertEqual(result['changed'], False)
