@@ -6,11 +6,12 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-from ansible_collections.community.routeros.tests.unit.compat.mock import patch, MagicMock
+from ansible_collections.community.internal_test_tools.tests.unit.compat.mock import patch, MagicMock
+from ansible_collections.community.internal_test_tools.tests.unit.plugins.modules.utils import set_module_args, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
+
 from ansible_collections.community.routeros.tests.unit.plugins.modules.fake_api import (
     FakeLibRouterosError, fake_ros_api, massage_expected_result_data, create_fake_path,
 )
-from ansible_collections.community.routeros.tests.unit.plugins.modules.utils import set_module_args, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
 from ansible_collections.community.routeros.plugins.modules import api_find_and_modify
 
 
