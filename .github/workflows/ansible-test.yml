@@ -43,6 +43,7 @@ jobs:
           test-deps: >-
             git+https://github.com/ansible-collections/ansible.utils.git,main
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
+            git+https://github.com/ansible-collections/community.internal_test_tools.git,main
 
   units:
     runs-on: ubuntu-latest
@@ -70,6 +71,7 @@ jobs:
           test-deps: >-
             git+https://github.com/ansible-collections/ansible.utils.git,main
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
+            git+https://github.com/ansible-collections/community.internal_test_tools.git,main
 
   integration:
     runs-on: ubuntu-latest
@@ -118,5 +120,6 @@ jobs:
           test-deps: >-
             git+https://github.com/ansible-collections/ansible.utils.git,main
             git+https://github.com/ansible-collections/ansible.netcommon.git,main
+            git+https://github.com/ansible-collections/community.internal_test_tools.git,main
           target-python-version: ${{ matrix.python }}
           testing-type: integration
