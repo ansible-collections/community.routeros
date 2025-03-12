@@ -65,7 +65,7 @@ options:
     type: str
   query:
     description:
-      - Query given path for selected query attributes from RouterOS aip.
+      - Query given path for selected query attributes from RouterOS API.
       - WHERE is key word which extend query. WHERE format is key operator value - with spaces.
       - WHERE valid operators are V(==) or V(eq), V(!=) or V(not), V(>) or V(more), V(<) or V(less).
       - Example path V(ip address) and query V(.id address) will return only C(.id) and C(address) for all items in V(ip address) path.
