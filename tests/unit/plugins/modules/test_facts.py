@@ -6,9 +6,10 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-from ansible_collections.community.routeros.tests.unit.compat.mock import patch
+from ansible_collections.community.internal_test_tools.tests.unit.compat.mock import patch
+from ansible_collections.community.internal_test_tools.tests.unit.plugins.modules.utils import set_module_args
+
 from ansible_collections.community.routeros.plugins.modules import facts
-from ansible_collections.community.routeros.tests.unit.plugins.modules.utils import set_module_args
 from .routeros_module import TestRouterosModule, load_fixture
 
 
