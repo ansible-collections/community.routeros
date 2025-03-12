@@ -1,0 +1,1383 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community.Routeros Release Notes &mdash; Community.Routeros Collection  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=c5b67dd2" />
+      <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to connect to RouterOS devices with the RouterOS API" href="docsite/api-guide.html" />
+    <link rel="prev" title="Community.Routeros" href="index.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://ansible-collections.github.io/community.routeros/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Community.Routeros Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Community.Routeros Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Community.Routeros Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v3-4-0">v3.4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#release-summary">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#minor-changes">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bugfixes">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v3-3-0">v3.3.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v3-2-0">v3.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v3-1-0">v3.1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v3-0-0">v3.0.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#breaking-changes-porting-guide">Breaking Changes / Porting Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removed-features-previously-deprecated">Removed Features (previously deprecated)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-20-0">v2.20.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-19-0">v2.19.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-18-0">v2.18.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deprecated-features">Deprecated Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-17-0">v2.17.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-16-0">v2.16.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-15-0">v2.15.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-14-0">v2.14.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-13-0">v2.13.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-12-0">v2.12.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-11-0">v2.11.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-10-0">v2.10.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-9-0">v2.9.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-8-3">v2.8.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-8-2">v2.8.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-8-1">v2.8.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id40">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-8-0">v2.8.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id42">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id43">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id44">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-7-0">v2.7.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id45">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id46">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id47">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-6-0">v2.6.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id48">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id49">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-5-0">v2.5.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id51">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id52">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id53">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-4-0">v2.4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id54">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id55">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id56">Bugfixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id57">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-3-1">v2.3.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id58">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id59">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-3-0">v2.3.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id60">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id61">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id62">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-2-1">v2.2.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id63">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id64">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-2-0">v2.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id65">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id66">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id67">Bugfixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-modules">New Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-1-0">v2.1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id68">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id69">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id70">Bugfixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id71">New Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v2-0-0">v2.0.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id72">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id73">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id74">Breaking Changes / Porting Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id75">Bugfixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-plugins">New Plugins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#filter">Filter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-2-0">v1.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id76">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id77">Minor Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id78">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-1-0">v1.1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id79">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id80">Minor Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-1">v1.0.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id81">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id82">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-0">v1.0.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id83">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id84">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-1-1">v0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id85">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id86">Bugfixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-1-0">v0.1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id87">Release Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id88">Minor Changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docsite/api-guide.html">How to connect to RouterOS devices with the RouterOS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docsite/ssh-guide.html">How to connect to RouterOS devices with SSH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docsite/quoting.html">How to quote and unquote commands and arguments</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_module.html">community.routeros.api module – Ansible module for RouterOS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_facts_module.html">community.routeros.api_facts module – Collect facts from remote devices running MikroTik RouterOS using the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_find_and_modify_module.html">community.routeros.api_find_and_modify module – Find and modify information using the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_info_module.html">community.routeros.api_info module – Retrieve information from API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_modify_module.html">community.routeros.api_modify module – Modify data at paths with API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_module.html">community.routeros.command module – Run commands on remote devices running MikroTik RouterOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facts_module.html">community.routeros.facts module – Collect facts from remote devices running MikroTik RouterOS</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="routeros_cliconf.html">community.routeros.routeros cliconf – Use routeros cliconf to run command on MikroTik RouterOS platform</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="join_filter.html">community.routeros.join filter – Join a list of arguments to a command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list_to_dict_filter.html">community.routeros.list_to_dict filter – Convert a list of arguments to a dictionary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quote_argument_filter.html">community.routeros.quote_argument filter – Quote an argument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quote_argument_value_filter.html">community.routeros.quote_argument_value filter – Quote an argument value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="split_filter.html">community.routeros.split filter – Split a command into arguments</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Community.Routeros Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Community.Routeros Release Notes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="community-routeros-release-notes">
+<h1><a class="toc-backref" href="#id89" role="doc-backlink">Community.Routeros Release Notes</a><a class="headerlink" href="#community-routeros-release-notes" title="Link to this heading"></a></h1>
+<nav class="contents" id="topics">
+<p class="topic-title">Topics</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#community-routeros-release-notes" id="id89">Community.Routeros Release Notes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#v3-4-0" id="id90">v3.4.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#release-summary" id="id91">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#minor-changes" id="id92">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#bugfixes" id="id93">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v3-3-0" id="id94">v3.3.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id95">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id96">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v3-2-0" id="id97">v3.2.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id98">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id99">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v3-1-0" id="id100">v3.1.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id101">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id102">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id103">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v3-0-0" id="id104">v3.0.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id8" id="id105">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#breaking-changes-porting-guide" id="id106">Breaking Changes / Porting Guide</a></p></li>
+<li><p><a class="reference internal" href="#removed-features-previously-deprecated" id="id107">Removed Features (previously deprecated)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-20-0" id="id108">v2.20.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id9" id="id109">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id110">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-19-0" id="id111">v2.19.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id112">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id113">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-18-0" id="id114">v2.18.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id13" id="id115">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id116">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#deprecated-features" id="id117">Deprecated Features</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id118">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-17-0" id="id119">v2.17.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id16" id="id120">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id17" id="id121">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-16-0" id="id122">v2.16.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id18" id="id123">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id19" id="id124">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-15-0" id="id125">v2.15.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id20" id="id126">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id21" id="id127">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-14-0" id="id128">v2.14.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id22" id="id129">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id23" id="id130">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-13-0" id="id131">v2.13.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id24" id="id132">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id25" id="id133">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id26" id="id134">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-12-0" id="id135">v2.12.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id27" id="id136">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id28" id="id137">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-11-0" id="id138">v2.11.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id29" id="id139">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id30" id="id140">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-10-0" id="id141">v2.10.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id31" id="id142">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id32" id="id143">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id33" id="id144">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-9-0" id="id145">v2.9.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id34" id="id146">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id35" id="id147">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id36" id="id148">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-8-3" id="id149">v2.8.3</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id37" id="id150">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#known-issues" id="id151">Known Issues</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-8-2" id="id152">v2.8.2</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id38" id="id153">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id39" id="id154">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-8-1" id="id155">v2.8.1</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id40" id="id156">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id41" id="id157">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-8-0" id="id158">v2.8.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id42" id="id159">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id43" id="id160">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id44" id="id161">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-7-0" id="id162">v2.7.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id45" id="id163">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id46" id="id164">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id47" id="id165">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-6-0" id="id166">v2.6.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id48" id="id167">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id49" id="id168">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id50" id="id169">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-5-0" id="id170">v2.5.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id51" id="id171">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id52" id="id172">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id53" id="id173">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-4-0" id="id174">v2.4.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id54" id="id175">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id55" id="id176">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id56" id="id177">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#id57" id="id178">Known Issues</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-3-1" id="id179">v2.3.1</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id58" id="id180">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id59" id="id181">Known Issues</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-3-0" id="id182">v2.3.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id60" id="id183">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id61" id="id184">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id62" id="id185">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-2-1" id="id186">v2.2.1</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id63" id="id187">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id64" id="id188">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-2-0" id="id189">v2.2.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id65" id="id190">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id66" id="id191">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id67" id="id192">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#new-modules" id="id193">New Modules</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-1-0" id="id194">v2.1.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id68" id="id195">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id69" id="id196">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id70" id="id197">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#id71" id="id198">New Modules</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v2-0-0" id="id199">v2.0.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id72" id="id200">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id73" id="id201">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id74" id="id202">Breaking Changes / Porting Guide</a></p></li>
+<li><p><a class="reference internal" href="#id75" id="id203">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#new-plugins" id="id204">New Plugins</a></p>
+<ul>
+<li><p><a class="reference internal" href="#filter" id="id205">Filter</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v1-2-0" id="id206">v1.2.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id76" id="id207">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id77" id="id208">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#id78" id="id209">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v1-1-0" id="id210">v1.1.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id79" id="id211">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id80" id="id212">Minor Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v1-0-1" id="id213">v1.0.1</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id81" id="id214">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id82" id="id215">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v1-0-0" id="id216">v1.0.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id83" id="id217">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id84" id="id218">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v0-1-1" id="id219">v0.1.1</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id85" id="id220">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id86" id="id221">Bugfixes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v0-1-0" id="id222">v0.1.0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id87" id="id223">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id88" id="id224">Minor Changes</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="v3-4-0">
+<h2><a class="toc-backref" href="#id90" role="doc-backlink">v3.4.0</a><a class="headerlink" href="#v3-4-0" title="Link to this heading"></a></h2>
+<section id="release-summary">
+<h3><a class="toc-backref" href="#id91" role="doc-backlink">Release Summary</a><a class="headerlink" href="#release-summary" title="Link to this heading"></a></h3>
+<p>Feature and bugfix release.</p>
+</section>
+<section id="minor-changes">
+<h3><a class="toc-backref" href="#id92" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#minor-changes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dns</span> <span class="pre">forwarders</span></code> path implemented by RouterOS 7.17 and newer (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/343">https://github.com/ansible-collections/community.routeros/pull/343</a>).</p></li>
+</ul>
+</section>
+<section id="bugfixes">
+<h3><a class="toc-backref" href="#id93" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - remove the primary key <code class="docutils literal notranslate"><span class="pre">action</span></code> from the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wifi</span> <span class="pre">provisioning</span></code> path, since RouterOS also allows to create completely duplicate entries (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/344">https://github.com/ansible-collections/community.routeros/issues/344</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/345">https://github.com/ansible-collections/community.routeros/pull/345</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v3-3-0">
+<h2><a class="toc-backref" href="#id94" role="doc-backlink">v3.3.0</a><a class="headerlink" href="#v3-3-0" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3><a class="toc-backref" href="#id95" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id96" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add missing attribute <code class="docutils literal notranslate"><span class="pre">require-message-auth</span></code> for the <code class="docutils literal notranslate"><span class="pre">radius</span></code> path which exists since RouterOS version 7.15 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/338">https://github.com/ansible-collections/community.routeros/issues/338</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/339">https://github.com/ansible-collections/community.routeros/pull/339</a>).</p></li>
+<li><p>api_info, api_modify - add the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">6to4</span></code> path. Used to manage IPv6 tunnels via tunnel-brokers like HE, where native IPv6 is not provided (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/342">https://github.com/ansible-collections/community.routeros/pull/342</a>).</p></li>
+<li><p>api_info, api_modify - add the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireless</span> <span class="pre">access-list</span></code> and <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireless</span> <span class="pre">connect-list</span></code> paths (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/284">https://github.com/ansible-collections/community.routeros/issues/284</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/340">https://github.com/ansible-collections/community.routeros/pull/340</a>).</p></li>
+<li><p>api_info, api_modify - add the <code class="docutils literal notranslate"><span class="pre">use-interface-duid</span></code> option for <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">dhcp-client</span></code> path. This option prevents issues with Fritzbox modems and routers, when using virtual interfaces (like VLANs) may create duplicated records in hosts config, this breaks original “expose-host” function. Also add the <code class="docutils literal notranslate"><span class="pre">script</span></code>, <code class="docutils literal notranslate"><span class="pre">custom-duid</span></code> and <code class="docutils literal notranslate"><span class="pre">validate-server-duid</span></code> as backport from 7.15 version update (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/341">https://github.com/ansible-collections/community.routeros/pull/341</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v3-2-0">
+<h2><a class="toc-backref" href="#id97" role="doc-backlink">v3.2.0</a><a class="headerlink" href="#v3-2-0" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3><a class="toc-backref" href="#id98" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id4">
+<h3><a class="toc-backref" href="#id99" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">filter</span> <span class="pre">community-list</span></code> path implemented by RouterOS 7 and newer (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/331">https://github.com/ansible-collections/community.routeros/pull/331</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v3-1-0">
+<h2><a class="toc-backref" href="#id100" role="doc-backlink">v3.1.0</a><a class="headerlink" href="#v3-1-0" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3><a class="toc-backref" href="#id101" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Bugfix and feature release.</p>
+</section>
+<section id="id6">
+<h3><a class="toc-backref" href="#id102" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add missing fields <code class="docutils literal notranslate"><span class="pre">comment</span></code>, <code class="docutils literal notranslate"><span class="pre">next-pool</span></code> to <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">pool</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/327">https://github.com/ansible-collections/community.routeros/pull/327</a>).</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3><a class="toc-backref" href="#id103" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - fields <code class="docutils literal notranslate"><span class="pre">log</span></code> and <code class="docutils literal notranslate"><span class="pre">log-prefix</span></code> in paths <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">mangle</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">nat</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">raw</span></code> now have the correct default values (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/324">https://github.com/ansible-collections/community.routeros/pull/324</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v3-0-0">
+<h2><a class="toc-backref" href="#id104" role="doc-backlink">v3.0.0</a><a class="headerlink" href="#v3-0-0" title="Link to this heading"></a></h2>
+<section id="id8">
+<h3><a class="toc-backref" href="#id105" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>Major release that drops support for End of Life Python versions and fixes check mode for community.routeros.command.</p>
+</section>
+<section id="breaking-changes-porting-guide">
+<h3><a class="toc-backref" href="#id106" role="doc-backlink">Breaking Changes / Porting Guide</a><a class="headerlink" href="#breaking-changes-porting-guide" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>command - the module no longer declares that it supports check mode (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/318">https://github.com/ansible-collections/community.routeros/pull/318</a>).</p></li>
+</ul>
+</section>
+<section id="removed-features-previously-deprecated">
+<h3><a class="toc-backref" href="#id107" role="doc-backlink">Removed Features (previously deprecated)</a><a class="headerlink" href="#removed-features-previously-deprecated" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The collection no longer supports Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14. If you need to continue using End of Life versions of Ansible/ansible-base/ansible-core, please use community.routeros 2.x.y (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/318">https://github.com/ansible-collections/community.routeros/pull/318</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-20-0">
+<h2><a class="toc-backref" href="#id108" role="doc-backlink">v2.20.0</a><a class="headerlink" href="#v2-20-0" title="Link to this heading"></a></h2>
+<section id="id9">
+<h3><a class="toc-backref" href="#id109" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id10">
+<h3><a class="toc-backref" href="#id110" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add new parameters from the RouterOS 7.16 release (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/323">https://github.com/ansible-collections/community.routeros/pull/323</a>).</p></li>
+<li><p>api_info, api_modify - add support <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">l2tp-client</span></code> configuration (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/322">https://github.com/ansible-collections/community.routeros/pull/322</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">cpu-frequency</span></code>, <code class="docutils literal notranslate"><span class="pre">memory-frequency</span></code>, <code class="docutils literal notranslate"><span class="pre">preboot-etherboot</span></code> and <code class="docutils literal notranslate"><span class="pre">preboot-etherboot-server</span></code> properties in <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">routerboard</span> <span class="pre">settings</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/320">https://github.com/ansible-collections/community.routeros/pull/320</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">matching-type</span></code> property in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">matcher</span></code> introduced by RouterOS 7.16 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/321">https://github.com/ansible-collections/community.routeros/pull/321</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-19-0">
+<h2><a class="toc-backref" href="#id111" role="doc-backlink">v2.19.0</a><a class="headerlink" href="#v2-19-0" title="Link to this heading"></a></h2>
+<section id="id11">
+<h3><a class="toc-backref" href="#id112" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id12">
+<h3><a class="toc-backref" href="#id113" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dns</span> <span class="pre">adlist</span></code> path implemented by RouterOS 7.15 and newer (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/310">https://github.com/ansible-collections/community.routeros/pull/310</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">mld-version</span></code> and <code class="docutils literal notranslate"><span class="pre">multicast-querier</span></code> properties in <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bridge</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/315">https://github.com/ansible-collections/community.routeros/pull/315</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">filter</span> <span class="pre">num-list</span></code> path implemented by RouterOS 7 and newer (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/313">https://github.com/ansible-collections/community.routeros/pull/313</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">igmp-proxy</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/309">https://github.com/ansible-collections/community.routeros/pull/309</a>).</p></li>
+<li><p>api_modify, api_info - add read-only <code class="docutils literal notranslate"><span class="pre">default</span></code> field to <code class="docutils literal notranslate"><span class="pre">snmp</span> <span class="pre">community</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/311">https://github.com/ansible-collections/community.routeros/pull/311</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-18-0">
+<h2><a class="toc-backref" href="#id114" role="doc-backlink">v2.18.0</a><a class="headerlink" href="#v2-18-0" title="Link to this heading"></a></h2>
+<section id="id13">
+<h3><a class="toc-backref" href="#id115" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id14">
+<h3><a class="toc-backref" href="#id116" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info - allow to restrict the output by limiting fields to specific values with the new <code class="docutils literal notranslate"><span class="pre">restrict</span></code> option (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/305">https://github.com/ansible-collections/community.routeros/pull/305</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">matcher</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/300">https://github.com/ansible-collections/community.routeros/pull/300</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">nd</span> <span class="pre">prefix</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/303">https://github.com/ansible-collections/community.routeros/pull/303</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">is-responder</span></code> properties under the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireguard</span> <span class="pre">peers</span></code> path introduced in RouterOS 7.15 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/304">https://github.com/ansible-collections/community.routeros/pull/304</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">static-neighbor</span></code> path in RouterOS 7 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/302">https://github.com/ansible-collections/community.routeros/pull/302</a>).</p></li>
+<li><p>api_info, api_modify - set default for <code class="docutils literal notranslate"><span class="pre">force</span></code> in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">option</span></code> to an explicit <code class="docutils literal notranslate"><span class="pre">false</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/300">https://github.com/ansible-collections/community.routeros/pull/300</a>).</p></li>
+<li><p>api_modify - allow to restrict what is updated by limiting fields to specific values with the new <code class="docutils literal notranslate"><span class="pre">restrict</span></code> option (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/305">https://github.com/ansible-collections/community.routeros/pull/305</a>).</p></li>
+</ul>
+</section>
+<section id="deprecated-features">
+<h3><a class="toc-backref" href="#id117" role="doc-backlink">Deprecated Features</a><a class="headerlink" href="#deprecated-features" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The collection deprecates support for all Ansible/ansible-base/ansible-core versions that are currently End of Life, <a class="reference external" href="https://docs.ansible.com/ansible-core/devel/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix">according to the ansible-core support matrix</a>. This means that the next major release of the collection will no longer support Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14.</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3><a class="toc-backref" href="#id118" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - change the default of <code class="docutils literal notranslate"><span class="pre">ingress-filtering</span></code> in paths <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bridge</span></code> and <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bridge</span> <span class="pre">port</span></code> back to <code class="docutils literal notranslate"><span class="pre">false</span></code> for RouterOS before version 7 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/305">https://github.com/ansible-collections/community.routeros/pull/305</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-17-0">
+<h2><a class="toc-backref" href="#id119" role="doc-backlink">v2.17.0</a><a class="headerlink" href="#v2-17-0" title="Link to this heading"></a></h2>
+<section id="id16">
+<h3><a class="toc-backref" href="#id120" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id17">
+<h3><a class="toc-backref" href="#id121" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">health</span> <span class="pre">settings</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/294">https://github.com/ansible-collections/community.routeros/pull/294</a>).</p></li>
+<li><p>api_info, api_modify - add missing path <code class="docutils literal notranslate"><span class="pre">/system</span> <span class="pre">resource</span> <span class="pre">irq</span> <span class="pre">rps</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/295">https://github.com/ansible-collections/community.routeros/pull/295</a>).</p></li>
+<li><p>api_info, api_modify - add parameter <code class="docutils literal notranslate"><span class="pre">host-key-type</span></code> for <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">ssh</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/280">https://github.com/ansible-collections/community.routeros/issues/280</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/297">https://github.com/ansible-collections/community.routeros/pull/297</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-16-0">
+<h2><a class="toc-backref" href="#id122" role="doc-backlink">v2.16.0</a><a class="headerlink" href="#v2-16-0" title="Link to this heading"></a></h2>
+<section id="id18">
+<h3><a class="toc-backref" href="#id123" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id19">
+<h3><a class="toc-backref" href="#id124" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add missing path <code class="docutils literal notranslate"><span class="pre">/ppp</span> <span class="pre">secret</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/286">https://github.com/ansible-collections/community.routeros/pull/286</a>).</p></li>
+<li><p>api_info, api_modify - minor changes <code class="docutils literal notranslate"><span class="pre">/interface</span> <span class="pre">ethernet</span></code> path fields (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/288">https://github.com/ansible-collections/community.routeros/pull/288</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-15-0">
+<h2><a class="toc-backref" href="#id125" role="doc-backlink">v2.15.0</a><a class="headerlink" href="#v2-15-0" title="Link to this heading"></a></h2>
+<section id="id20">
+<h3><a class="toc-backref" href="#id126" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id21">
+<h3><a class="toc-backref" href="#id127" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - Add RouterOS 7.x support to <code class="docutils literal notranslate"><span class="pre">/mpls</span> <span class="pre">ldp</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/271">https://github.com/ansible-collections/community.routeros/pull/271</a>).</p></li>
+<li><p>api_info, api_modify - add <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">route</span> <span class="pre">rule</span></code> path for RouterOS 6.x (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/278">https://github.com/ansible-collections/community.routeros/pull/278</a>).</p></li>
+<li><p>api_info, api_modify - add <code class="docutils literal notranslate"><span class="pre">/routing</span> <span class="pre">filter</span></code> path for RouterOS 6.x (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/279">https://github.com/ansible-collections/community.routeros/pull/279</a>).</p></li>
+<li><p>api_info, api_modify - add default value for <code class="docutils literal notranslate"><span class="pre">from-pool</span></code> field in <code class="docutils literal notranslate"><span class="pre">/ipv6</span> <span class="pre">address</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/270">https://github.com/ansible-collections/community.routeros/pull/270</a>).</p></li>
+<li><p>api_info, api_modify - add missing path <code class="docutils literal notranslate"><span class="pre">/interface</span> <span class="pre">pppoe-server</span> <span class="pre">server</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/273">https://github.com/ansible-collections/community.routeros/pull/273</a>).</p></li>
+<li><p>api_info, api_modify - add missing path <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">dhcp-relay</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/276">https://github.com/ansible-collections/community.routeros/pull/276</a>).</p></li>
+<li><p>api_info, api_modify - add missing path <code class="docutils literal notranslate"><span class="pre">/queue</span> <span class="pre">simple</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/269">https://github.com/ansible-collections/community.routeros/pull/269</a>).</p></li>
+<li><p>api_info, api_modify - add missing path <code class="docutils literal notranslate"><span class="pre">/queue</span> <span class="pre">type</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/274">https://github.com/ansible-collections/community.routeros/pull/274</a>).</p></li>
+<li><p>api_info, api_modify - add missing paths <code class="docutils literal notranslate"><span class="pre">/routing</span> <span class="pre">bgp</span> <span class="pre">aggregate</span></code>, <code class="docutils literal notranslate"><span class="pre">/routing</span> <span class="pre">bgp</span> <span class="pre">network</span></code> and <code class="docutils literal notranslate"><span class="pre">/routing</span> <span class="pre">bgp</span> <span class="pre">peer</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/277">https://github.com/ansible-collections/community.routeros/pull/277</a>).</p></li>
+<li><p>api_info, api_modify - add support for paths <code class="docutils literal notranslate"><span class="pre">/mpls</span> <span class="pre">interface</span></code>, <code class="docutils literal notranslate"><span class="pre">/mpls</span> <span class="pre">ldp</span> <span class="pre">accept-filter</span></code>, <code class="docutils literal notranslate"><span class="pre">/mpls</span> <span class="pre">ldp</span> <span class="pre">advertise-filter</span></code> and <code class="docutils literal notranslate"><span class="pre">mpls</span> <span class="pre">ldp</span> <span class="pre">interface</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/272">https://github.com/ansible-collections/community.routeros/pull/272</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-14-0">
+<h2><a class="toc-backref" href="#id128" role="doc-backlink">v2.14.0</a><a class="headerlink" href="#v2-14-0" title="Link to this heading"></a></h2>
+<section id="id22">
+<h3><a class="toc-backref" href="#id129" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id23">
+<h3><a class="toc-backref" href="#id130" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add read-only fields <code class="docutils literal notranslate"><span class="pre">installed-version</span></code>, <code class="docutils literal notranslate"><span class="pre">latest-version</span></code> and <code class="docutils literal notranslate"><span class="pre">status</span></code> in <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">package</span> <span class="pre">update</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/263">https://github.com/ansible-collections/community.routeros/pull/263</a>).</p></li>
+<li><p>api_info, api_modify - added support for <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wifi</span></code> and its sub-paths (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/266">https://github.com/ansible-collections/community.routeros/pull/266</a>).</p></li>
+<li><p>api_info, api_modify - remove default value for read-only <code class="docutils literal notranslate"><span class="pre">running</span></code> field in <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireless</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/264">https://github.com/ansible-collections/community.routeros/pull/264</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-13-0">
+<h2><a class="toc-backref" href="#id131" role="doc-backlink">v2.13.0</a><a class="headerlink" href="#v2-13-0" title="Link to this heading"></a></h2>
+<section id="id24">
+<h3><a class="toc-backref" href="#id132" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p>Bugfix and feature release.</p>
+</section>
+<section id="id25">
+<h3><a class="toc-backref" href="#id133" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - make path <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">group</span></code> modifiable and add <code class="docutils literal notranslate"><span class="pre">comment</span></code> attribute (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/256">https://github.com/ansible-collections/community.routeros/issues/256</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/257">https://github.com/ansible-collections/community.routeros/pull/257</a>).</p></li>
+<li><p>api_modify, api_info - add support for the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">vrf</span></code> path in RouterOS 7  (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/259">https://github.com/ansible-collections/community.routeros/pull/259</a>)</p></li>
+</ul>
+</section>
+<section id="id26">
+<h3><a class="toc-backref" href="#id134" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>facts - fix date not getting removed for idempotent config export (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/262">https://github.com/ansible-collections/community.routeros/pull/262</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-12-0">
+<h2><a class="toc-backref" href="#id135" role="doc-backlink">v2.12.0</a><a class="headerlink" href="#v2-12-0" title="Link to this heading"></a></h2>
+<section id="id27">
+<h3><a class="toc-backref" href="#id136" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<p>Feature release.</p>
+</section>
+<section id="id28">
+<h3><a class="toc-backref" href="#id137" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">ovpn-client</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/242">https://github.com/ansible-collections/community.routeros/issues/242</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/244">https://github.com/ansible-collections/community.routeros/pull/244</a>).</p></li>
+<li><p>api_info, api_modify - add <code class="docutils literal notranslate"><span class="pre">radius</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/241">https://github.com/ansible-collections/community.routeros/issues/241</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/245">https://github.com/ansible-collections/community.routeros/pull/245</a>).</p></li>
+<li><p>api_info, api_modify - add <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">rule</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/162">https://github.com/ansible-collections/community.routeros/issues/162</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/246">https://github.com/ansible-collections/community.routeros/pull/246</a>).</p></li>
+<li><p>api_info, api_modify - add missing path <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">bgp</span> <span class="pre">template</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/243">https://github.com/ansible-collections/community.routeros/pull/243</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">tx-power</span></code> attribute in <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireless</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/239">https://github.com/ansible-collections/community.routeros/pull/239</a>).</p></li>
+<li><p>api_info, api_modify - removed <code class="docutils literal notranslate"><span class="pre">host</span></code> primary key in <code class="docutils literal notranslate"><span class="pre">tool</span> <span class="pre">netwatch</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/248">https://github.com/ansible-collections/community.routeros/pull/248</a>).</p></li>
+<li><p>api_modify, api_info - added support for <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wifiwave2</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/226">https://github.com/ansible-collections/community.routeros/pull/226</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-11-0">
+<h2><a class="toc-backref" href="#id138" role="doc-backlink">v2.11.0</a><a class="headerlink" href="#v2-11-0" title="Link to this heading"></a></h2>
+<section id="id29">
+<h3><a class="toc-backref" href="#id139" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<p>Feature and bugfix release.</p>
+</section>
+<section id="id30">
+<h3><a class="toc-backref" href="#id140" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add missing DoH parameters <code class="docutils literal notranslate"><span class="pre">doh-max-concurrent-queries</span></code>, <code class="docutils literal notranslate"><span class="pre">doh-max-server-connections</span></code>, and <code class="docutils literal notranslate"><span class="pre">doh-timeout</span></code> to the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dns</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/230">https://github.com/ansible-collections/community.routeros/issues/230</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/235">https://github.com/ansible-collections/community.routeros/pull/235</a>)</p></li>
+<li><p>api_info, api_modify - add missing parameters <code class="docutils literal notranslate"><span class="pre">address-list</span></code>, <code class="docutils literal notranslate"><span class="pre">address-list-timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">randomise-ports</span></code>, and <code class="docutils literal notranslate"><span class="pre">realm</span></code> to subpaths of the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/236">https://github.com/ansible-collections/community.routeros/issues/236</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/237">https://github.com/ansible-collections/community.routeros/pull/237</a>).</p></li>
+<li><p>api_info, api_modify - mark the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireless</span></code> parameter <code class="docutils literal notranslate"><span class="pre">running</span></code> as read-only (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/233">https://github.com/ansible-collections/community.routeros/pull/233</a>).</p></li>
+<li><p>api_info, api_modify - set the default value to <code class="docutils literal notranslate"><span class="pre">false</span></code> for the  <code class="docutils literal notranslate"><span class="pre">disabled</span></code> parameter in some more paths where it can be seen in the documentation (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/237">https://github.com/ansible-collections/community.routeros/pull/237</a>).</p></li>
+<li><p>api_modify - add missing <code class="docutils literal notranslate"><span class="pre">comment</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">/routing</span> <span class="pre">id</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/234">https://github.com/ansible-collections/community.routeros/pull/234</a>).</p></li>
+<li><p>api_modify - add missing attributes to the <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">bgp</span> <span class="pre">connection</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/234">https://github.com/ansible-collections/community.routeros/pull/234</a>).</p></li>
+<li><p>api_modify - add versioning to the <code class="docutils literal notranslate"><span class="pre">/tool</span> <span class="pre">e-mail</span></code> path (RouterOS 7.12 release) (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/234">https://github.com/ansible-collections/community.routeros/pull/234</a>).</p></li>
+<li><p>api_modify - make <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">traffic-flow</span> <span class="pre">target</span></code> a multiple value attribute (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/234">https://github.com/ansible-collections/community.routeros/pull/234</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-10-0">
+<h2><a class="toc-backref" href="#id141" role="doc-backlink">v2.10.0</a><a class="headerlink" href="#v2-10-0" title="Link to this heading"></a></h2>
+<section id="id31">
+<h3><a class="toc-backref" href="#id142" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<p>Bugfix and feature release.</p>
+</section>
+<section id="id32">
+<h3><a class="toc-backref" href="#id143" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info - add new <code class="docutils literal notranslate"><span class="pre">include_read_only</span></code> option to select behavior for read-only values. By default these are not returned (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/213">https://github.com/ansible-collections/community.routeros/pull/213</a>).</p></li>
+<li><p>api_info, api_modify - add support for <code class="docutils literal notranslate"><span class="pre">address-list</span></code> and <code class="docutils literal notranslate"><span class="pre">match-subdomain</span></code> introduced by RouterOS 7.7 in the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dns</span> <span class="pre">static</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/197">https://github.com/ansible-collections/community.routeros/pull/197</a>).</p></li>
+<li><p>api_info, api_modify - add support for <code class="docutils literal notranslate"><span class="pre">user</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">gmt-offset</span></code> under the <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">clock</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/210">https://github.com/ansible-collections/community.routeros/pull/210</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">ppp-client</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/199">https://github.com/ansible-collections/community.routeros/pull/199</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireless</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/195">https://github.com/ansible-collections/community.routeros/pull/195</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">iot</span> <span class="pre">modbus</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/205">https://github.com/ansible-collections/community.routeros/pull/205</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">option</span></code> and <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">option</span> <span class="pre">sets</span></code> paths (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/223">https://github.com/ansible-collections/community.routeros/pull/223</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">upnp</span> <span class="pre">interfaces</span></code>, <code class="docutils literal notranslate"><span class="pre">tool</span> <span class="pre">graphing</span> <span class="pre">interface</span></code>, <code class="docutils literal notranslate"><span class="pre">tool</span> <span class="pre">graphing</span> <span class="pre">resource</span></code> paths (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/227">https://github.com/ansible-collections/community.routeros/pull/227</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">firewall</span> <span class="pre">nat</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/204">https://github.com/ansible-collections/community.routeros/pull/204</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">mode</span></code> property in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">neighbor</span> <span class="pre">discovery-settings</span></code> introduced in RouterOS 7.7 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/198">https://github.com/ansible-collections/community.routeros/pull/198</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">remote-access</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/224">https://github.com/ansible-collections/community.routeros/pull/224</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">filter</span> <span class="pre">rule</span></code> and <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">filter</span> <span class="pre">select-rule</span></code> paths (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/200">https://github.com/ansible-collections/community.routeros/pull/200</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">table</span></code> path in RouterOS 7 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/215">https://github.com/ansible-collections/community.routeros/pull/215</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">tool</span> <span class="pre">netwatch</span></code> path in RouterOS 7 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/216">https://github.com/ansible-collections/community.routeros/pull/216</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">settings</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/201">https://github.com/ansible-collections/community.routeros/pull/201</a>).</p></li>
+<li><p>api_info, api_modify - add support for the <code class="docutils literal notranslate"><span class="pre">user</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/211">https://github.com/ansible-collections/community.routeros/pull/211</a>).</p></li>
+<li><p>api_info, api_modify - finalize fields for the <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireless</span> <span class="pre">security-profiles</span></code> path and enable it (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/203">https://github.com/ansible-collections/community.routeros/pull/203</a>).</p></li>
+<li><p>api_info, api_modify - finalize fields for the <code class="docutils literal notranslate"><span class="pre">ppp</span> <span class="pre">profile</span></code> path and enable it (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/217">https://github.com/ansible-collections/community.routeros/pull/217</a>).</p></li>
+<li><p>api_modify - add new <code class="docutils literal notranslate"><span class="pre">handle_read_only</span></code> and <code class="docutils literal notranslate"><span class="pre">handle_write_only</span></code> options to handle the module’s behavior for read-only and write-only fields (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/213">https://github.com/ansible-collections/community.routeros/pull/213</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">bgp</span> <span class="pre">connection</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/220">https://github.com/ansible-collections/community.routeros/pull/220</a>).</p></li>
+</ul>
+</section>
+<section id="id33">
+<h3><a class="toc-backref" href="#id144" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - in the <code class="docutils literal notranslate"><span class="pre">snmp</span></code> path, ensure that <code class="docutils literal notranslate"><span class="pre">engine-id-suffix</span></code> is only available on RouterOS 7.10+, and that <code class="docutils literal notranslate"><span class="pre">engine-id</span></code> is read-only on RouterOS 7.10+ (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/208">https://github.com/ansible-collections/community.routeros/issues/208</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/218">https://github.com/ansible-collections/community.routeros/pull/218</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-9-0">
+<h2><a class="toc-backref" href="#id145" role="doc-backlink">v2.9.0</a><a class="headerlink" href="#v2-9-0" title="Link to this heading"></a></h2>
+<section id="id34">
+<h3><a class="toc-backref" href="#id146" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<p>Bugfix and feature release.</p>
+</section>
+<section id="id35">
+<h3><a class="toc-backref" href="#id147" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - add path <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">channel</span></code> and enable path <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">manager</span> <span class="pre">interface</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/193">https://github.com/ansible-collections/community.routeros/issues/193</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/194">https://github.com/ansible-collections/community.routeros/pull/194</a>).</p></li>
+<li><p>api_info, api_modify - add path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">traffic-flow</span> <span class="pre">target</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/191">https://github.com/ansible-collections/community.routeros/issues/191</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/192">https://github.com/ansible-collections/community.routeros/pull/192</a>).</p></li>
+</ul>
+</section>
+<section id="id36">
+<h3><a class="toc-backref" href="#id148" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - add missing parameter <code class="docutils literal notranslate"><span class="pre">engine-id-suffix</span></code> for the <code class="docutils literal notranslate"><span class="pre">snmp</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/189">https://github.com/ansible-collections/community.routeros/issues/189</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/190">https://github.com/ansible-collections/community.routeros/pull/190</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-8-3">
+<h2><a class="toc-backref" href="#id149" role="doc-backlink">v2.8.3</a><a class="headerlink" href="#v2-8-3" title="Link to this heading"></a></h2>
+<section id="id37">
+<h3><a class="toc-backref" href="#id150" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<p>Maintenance release with updated documentation.</p>
+<p>From this version on, community.routeros is using the new <a class="reference external" href="https://docs.ansible.com/ansible/devel/dev_guide/developing_modules_documenting.html#semantic-markup-within-module-documentation">Ansible semantic markup</a>
+in its documentation. If you look at documentation with the ansible-doc CLI tool
+from ansible-core before 2.15, please note that it does not render the markup
+correctly. You should be still able to read it in most cases, but you need
+ansible-core 2.15 or later to see it as it is intended. Alternatively you can
+look at <a class="reference external" href="https://docs.ansible.com/ansible/devel/collections/community/routeros/">the devel docsite</a>
+for the rendered HTML version of the documentation of the latest release.</p>
+</section>
+<section id="known-issues">
+<h3><a class="toc-backref" href="#id151" role="doc-backlink">Known Issues</a><a class="headerlink" href="#known-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on <a class="reference external" href="https://docs.ansible.com/ansible/devel/collections/community/routeros/">https://docs.ansible.com/ansible/devel/collections/community/routeros/</a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-8-2">
+<h2><a class="toc-backref" href="#id152" role="doc-backlink">v2.8.2</a><a class="headerlink" href="#v2-8-2" title="Link to this heading"></a></h2>
+<section id="id38">
+<h3><a class="toc-backref" href="#id153" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<p>Bugfix release.</p>
+</section>
+<section id="id39">
+<h3><a class="toc-backref" href="#id154" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - add missing parameter <code class="docutils literal notranslate"><span class="pre">tls</span></code> for the <code class="docutils literal notranslate"><span class="pre">tool</span> <span class="pre">e-mail</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/179">https://github.com/ansible-collections/community.routeros/issues/179</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/180">https://github.com/ansible-collections/community.routeros/pull/180</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-8-1">
+<h2><a class="toc-backref" href="#id155" role="doc-backlink">v2.8.1</a><a class="headerlink" href="#v2-8-1" title="Link to this heading"></a></h2>
+<section id="id40">
+<h3><a class="toc-backref" href="#id156" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<p>Bugfix release.</p>
+</section>
+<section id="id41">
+<h3><a class="toc-backref" href="#id157" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id41" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>facts - do not crash in CLI output preprocessing in unexpected situations during line unwrapping (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/170">https://github.com/ansible-collections/community.routeros/issues/170</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/177">https://github.com/ansible-collections/community.routeros/pull/177</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-8-0">
+<h2><a class="toc-backref" href="#id158" role="doc-backlink">v2.8.0</a><a class="headerlink" href="#v2-8-0" title="Link to this heading"></a></h2>
+<section id="id42">
+<h3><a class="toc-backref" href="#id159" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id42" title="Link to this heading"></a></h3>
+<p>Bugfix and feature release.</p>
+</section>
+<section id="id43">
+<h3><a class="toc-backref" href="#id160" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id43" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify - adapt data for API paths <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">network</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/156">https://github.com/ansible-collections/community.routeros/pull/156</a>).</p></li>
+<li><p>api_modify - add support for API path <code class="docutils literal notranslate"><span class="pre">snmp</span> <span class="pre">community</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/159">https://github.com/ansible-collections/community.routeros/pull/159</a>).</p></li>
+<li><p>api_modify - add support for <code class="docutils literal notranslate"><span class="pre">trap-interfaces</span></code> in API path <code class="docutils literal notranslate"><span class="pre">snmp</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/159">https://github.com/ansible-collections/community.routeros/pull/159</a>).</p></li>
+<li><p>api_modify - add support to disable IPv6 in API paths <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">settings</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/158">https://github.com/ansible-collections/community.routeros/pull/158</a>).</p></li>
+<li><p>api_modify - support API paths <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">layer7-protocol</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/153">https://github.com/ansible-collections/community.routeros/pull/153</a>).</p></li>
+<li><p>command - workaround for extra characters in stdout in RouterOS versions between 6.49 and 7.1.5 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/62">https://github.com/ansible-collections/community.routeros/issues/62</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/161">https://github.com/ansible-collections/community.routeros/pull/161</a>).</p></li>
+</ul>
+</section>
+<section id="id44">
+<h3><a class="toc-backref" href="#id161" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id44" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - fix default and remove behavior for <code class="docutils literal notranslate"><span class="pre">dhcp-options</span></code> in path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-client</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/148">https://github.com/ansible-collections/community.routeros/issues/148</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/154">https://github.com/ansible-collections/community.routeros/pull/154</a>).</p></li>
+<li><p>api_modify - fix handling of disabled keys on creation (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/154">https://github.com/ansible-collections/community.routeros/pull/154</a>).</p></li>
+<li><p>various plugins and modules - remove unnecessary imports (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/149">https://github.com/ansible-collections/community.routeros/pull/149</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-7-0">
+<h2><a class="toc-backref" href="#id162" role="doc-backlink">v2.7.0</a><a class="headerlink" href="#v2-7-0" title="Link to this heading"></a></h2>
+<section id="id45">
+<h3><a class="toc-backref" href="#id163" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id45" title="Link to this heading"></a></h3>
+<p>Bugfix and feature release.</p>
+</section>
+<section id="id46">
+<h3><a class="toc-backref" href="#id164" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id46" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">arp</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">raw</span></code>, <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">firewall</span> <span class="pre">raw</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/144">https://github.com/ansible-collections/community.routeros/pull/144</a>).</p></li>
+</ul>
+</section>
+<section id="id47">
+<h3><a class="toc-backref" href="#id165" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id47" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - defaults corrected for fields in <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireguard</span> <span class="pre">peers</span></code> API path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/144">https://github.com/ansible-collections/community.routeros/pull/144</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-6-0">
+<h2><a class="toc-backref" href="#id166" role="doc-backlink">v2.6.0</a><a class="headerlink" href="#v2-6-0" title="Link to this heading"></a></h2>
+<section id="id48">
+<h3><a class="toc-backref" href="#id167" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id48" title="Link to this heading"></a></h3>
+<p>Regular bugfix and feature release.</p>
+</section>
+<section id="id49">
+<h3><a class="toc-backref" href="#id168" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id49" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - add field <code class="docutils literal notranslate"><span class="pre">regexp</span></code> to <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dns</span> <span class="pre">static</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/141">https://github.com/ansible-collections/community.routeros/issues/141</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireguard</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">wireguard</span> <span class="pre">peers</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/143">https://github.com/ansible-collections/community.routeros/pull/143</a>).</p></li>
+</ul>
+</section>
+<section id="id50">
+<h3><a class="toc-backref" href="#id169" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id50" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify - do not use <code class="docutils literal notranslate"><span class="pre">name</span></code> as a unique key in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dns</span> <span class="pre">static</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/141">https://github.com/ansible-collections/community.routeros/issues/141</a>).</p></li>
+<li><p>api_modify, api_info - do not crash if router contains <code class="docutils literal notranslate"><span class="pre">regexp</span></code> DNS entries in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dns</span> <span class="pre">static</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/141">https://github.com/ansible-collections/community.routeros/issues/141</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-5-0">
+<h2><a class="toc-backref" href="#id170" role="doc-backlink">v2.5.0</a><a class="headerlink" href="#v2-5-0" title="Link to this heading"></a></h2>
+<section id="id51">
+<h3><a class="toc-backref" href="#id171" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id51" title="Link to this heading"></a></h3>
+<p>Feature and bugfix release.</p>
+</section>
+<section id="id52">
+<h3><a class="toc-backref" href="#id172" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id52" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_info, api_modify - support API paths <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">ethernet</span> <span class="pre">poe</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">gre6</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">vrrp</span></code> and also support all previously missing fields of entries in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/137">https://github.com/ansible-collections/community.routeros/pull/137</a>).</p></li>
+</ul>
+</section>
+<section id="id53">
+<h3><a class="toc-backref" href="#id173" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id53" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify - <code class="docutils literal notranslate"><span class="pre">address-pool</span></code> field of entries in API path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span></code> is not required anymore (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/137">https://github.com/ansible-collections/community.routeros/pull/137</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-4-0">
+<h2><a class="toc-backref" href="#id174" role="doc-backlink">v2.4.0</a><a class="headerlink" href="#v2-4-0" title="Link to this heading"></a></h2>
+<section id="id54">
+<h3><a class="toc-backref" href="#id175" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id54" title="Link to this heading"></a></h3>
+<p>Feature release improving the <code class="docutils literal notranslate"><span class="pre">api*</span></code> modules.</p>
+</section>
+<section id="id55">
+<h3><a class="toc-backref" href="#id176" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id55" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api* modules - Add new option <code class="docutils literal notranslate"><span class="pre">force_no_cert</span></code> to connect with ADH ciphers (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/124">https://github.com/ansible-collections/community.routeros/pull/124</a>).</p></li>
+<li><p>api_info - new parameter <code class="docutils literal notranslate"><span class="pre">include_builtin</span></code> which allows to include “builtin” entries that are automatically generated by ROS and cannot be modified by the user (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/130">https://github.com/ansible-collections/community.routeros/pull/130</a>).</p></li>
+<li><p>api_modify, api_info - support API paths - <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bonding</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bridge</span> <span class="pre">mlag</span></code>, <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">firewall</span> <span class="pre">mangle</span></code>, <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">nd</span></code>, <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">scheduler</span></code>, <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">script</span></code>, <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">ups</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/133">https://github.com/ansible-collections/community.routeros/pull/133</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">access-list</span></code>, <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">datapath</span></code>, <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">manager</span></code>, <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">provisioning</span></code>, <code class="docutils literal notranslate"><span class="pre">caps-man</span> <span class="pre">security</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/126">https://github.com/ansible-collections/community.routeros/pull/126</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">list</span> <span class="pre">member</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/120">https://github.com/ansible-collections/community.routeros/pull/120</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">pppoe-client</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">vlan</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bridge</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bridge</span> <span class="pre">vlan</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/125">https://github.com/ansible-collections/community.routeros/pull/125</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">ipsec</span> <span class="pre">identity</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">ipsec</span> <span class="pre">peer</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">ipsec</span> <span class="pre">policy</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">ipsec</span> <span class="pre">profile</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">ipsec</span> <span class="pre">proposal</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/129">https://github.com/ansible-collections/community.routeros/pull/129</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">route</span></code> and <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">route</span> <span class="pre">vrf</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/123">https://github.com/ansible-collections/community.routeros/pull/123</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">address</span></code>, <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">dhcp-server</span></code>, <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">dhcp-server</span> <span class="pre">option</span></code>, <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">route</span></code>, <code class="docutils literal notranslate"><span class="pre">queue</span> <span class="pre">tree</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">area</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">area</span> <span class="pre">range</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">instance</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">interface-template</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">pimsm</span> <span class="pre">instance</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">pimsm</span> <span class="pre">interface-template</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/131">https://github.com/ansible-collections/community.routeros/pull/131</a>).</p></li>
+<li><p>api_modify, api_info - support API paths <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">logging</span></code>, <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">logging</span> <span class="pre">action</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/127">https://github.com/ansible-collections/community.routeros/pull/127</a>).</p></li>
+<li><p>api_modify, api_info - support field <code class="docutils literal notranslate"><span class="pre">hw-offload</span></code> for path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">filter</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/121">https://github.com/ansible-collections/community.routeros/pull/121</a>).</p></li>
+<li><p>api_modify, api_info - support fields <code class="docutils literal notranslate"><span class="pre">address-list</span></code>, <code class="docutils literal notranslate"><span class="pre">address-list-timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">connection-bytes</span></code>, <code class="docutils literal notranslate"><span class="pre">connection-limit</span></code>, <code class="docutils literal notranslate"><span class="pre">connection-mark</span></code>, <code class="docutils literal notranslate"><span class="pre">connection-rate</span></code>, <code class="docutils literal notranslate"><span class="pre">connection-type</span></code>, <code class="docutils literal notranslate"><span class="pre">content</span></code>, <code class="docutils literal notranslate"><span class="pre">disabled</span></code>, <code class="docutils literal notranslate"><span class="pre">dscp</span></code>, <code class="docutils literal notranslate"><span class="pre">dst-address-list</span></code>, <code class="docutils literal notranslate"><span class="pre">dst-address-type</span></code>, <code class="docutils literal notranslate"><span class="pre">dst-limit</span></code>, <code class="docutils literal notranslate"><span class="pre">fragment</span></code>, <code class="docutils literal notranslate"><span class="pre">hotspot</span></code>, <code class="docutils literal notranslate"><span class="pre">icmp-options</span></code>, <code class="docutils literal notranslate"><span class="pre">in-bridge-port</span></code>, <code class="docutils literal notranslate"><span class="pre">in-bridge-port-list</span></code>, <code class="docutils literal notranslate"><span class="pre">ingress-priority</span></code>, <code class="docutils literal notranslate"><span class="pre">ipsec-policy</span></code>, <code class="docutils literal notranslate"><span class="pre">ipv4-options</span></code>, <code class="docutils literal notranslate"><span class="pre">jump-target</span></code>, <code class="docutils literal notranslate"><span class="pre">layer7-protocol</span></code>, <code class="docutils literal notranslate"><span class="pre">limit</span></code>, <code class="docutils literal notranslate"><span class="pre">log</span></code>, <code class="docutils literal notranslate"><span class="pre">log-prefix</span></code>, <code class="docutils literal notranslate"><span class="pre">nth</span></code>, <code class="docutils literal notranslate"><span class="pre">out-bridge-port</span></code>, <code class="docutils literal notranslate"><span class="pre">out-bridge-port-list</span></code>, <code class="docutils literal notranslate"><span class="pre">packet-mark</span></code>, <code class="docutils literal notranslate"><span class="pre">packet-size</span></code>, <code class="docutils literal notranslate"><span class="pre">per-connection-classifier</span></code>, <code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">priority</span></code>, <code class="docutils literal notranslate"><span class="pre">psd</span></code>, <code class="docutils literal notranslate"><span class="pre">random</span></code>, <code class="docutils literal notranslate"><span class="pre">realm</span></code>, <code class="docutils literal notranslate"><span class="pre">routing-mark</span></code>, <code class="docutils literal notranslate"><span class="pre">same-not-by-dst</span></code>, <code class="docutils literal notranslate"><span class="pre">src-address</span></code>, <code class="docutils literal notranslate"><span class="pre">src-address-list</span></code>, <code class="docutils literal notranslate"><span class="pre">src-address-type</span></code>, <code class="docutils literal notranslate"><span class="pre">src-mac-address</span></code>, <code class="docutils literal notranslate"><span class="pre">src-port</span></code>, <code class="docutils literal notranslate"><span class="pre">tcp-mss</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">tls-host</span></code>, <code class="docutils literal notranslate"><span class="pre">ttl</span></code> in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">nat</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/133">https://github.com/ansible-collections/community.routeros/pull/133</a>).</p></li>
+<li><p>api_modify, api_info - support fields <code class="docutils literal notranslate"><span class="pre">combo-mode</span></code>, <code class="docutils literal notranslate"><span class="pre">comment</span></code>, <code class="docutils literal notranslate"><span class="pre">fec-mode</span></code>, <code class="docutils literal notranslate"><span class="pre">mdix-enable</span></code>, <code class="docutils literal notranslate"><span class="pre">poe-out</span></code>, <code class="docutils literal notranslate"><span class="pre">poe-priority</span></code>, <code class="docutils literal notranslate"><span class="pre">poe-voltage</span></code>, <code class="docutils literal notranslate"><span class="pre">power-cycle-interval</span></code>, <code class="docutils literal notranslate"><span class="pre">power-cycle-ping-address</span></code>, <code class="docutils literal notranslate"><span class="pre">power-cycle-ping-enabled</span></code>, <code class="docutils literal notranslate"><span class="pre">power-cycle-ping-timeout</span></code> for path <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">ethernet</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/121">https://github.com/ansible-collections/community.routeros/pull/121</a>).</p></li>
+<li><p>api_modify, api_info - support fields <code class="docutils literal notranslate"><span class="pre">jump-target</span></code>, <code class="docutils literal notranslate"><span class="pre">reject-with</span></code> in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">filter</span></code> API path, field <code class="docutils literal notranslate"><span class="pre">comment</span></code> in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firwall</span> <span class="pre">address-list</span></code> API path, field <code class="docutils literal notranslate"><span class="pre">jump-target</span></code> in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">mangle</span></code> API path, field <code class="docutils literal notranslate"><span class="pre">comment</span></code> in <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">firewall</span> <span class="pre">address-list</span></code> API path, fields <code class="docutils literal notranslate"><span class="pre">jump-target</span></code>, <code class="docutils literal notranslate"><span class="pre">reject-with</span></code> in <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">firewall</span> <span class="pre">filter</span></code> API path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/133">https://github.com/ansible-collections/community.routeros/pull/133</a>).</p></li>
+<li><p>api_modify, api_info - support for API fields that can be disabled and have default value at the same time, support API paths <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">gre</span></code>, <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">eoip</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/128">https://github.com/ansible-collections/community.routeros/pull/128</a>).</p></li>
+<li><p>api_modify, api_info - support for fields <code class="docutils literal notranslate"><span class="pre">blackhole</span></code>, <code class="docutils literal notranslate"><span class="pre">pref-src</span></code>, <code class="docutils literal notranslate"><span class="pre">routing-table</span></code>, <code class="docutils literal notranslate"><span class="pre">suppress-hw-offload</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">vrf-interface</span></code> in <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">route</span></code> path (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/131">https://github.com/ansible-collections/community.routeros/pull/131</a>).</p></li>
+<li><p>api_modify, api_info - support paths <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">ntp</span> <span class="pre">client</span> <span class="pre">servers</span></code> and <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">ntp</span> <span class="pre">server</span></code> available in ROS7, as well as new fields <code class="docutils literal notranslate"><span class="pre">servers</span></code>, <code class="docutils literal notranslate"><span class="pre">mode</span></code>, and <code class="docutils literal notranslate"><span class="pre">vrf</span></code> for <code class="docutils literal notranslate"><span class="pre">system</span> <span class="pre">ntp</span> <span class="pre">client</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/122">https://github.com/ansible-collections/community.routeros/pull/122</a>).</p></li>
+</ul>
+</section>
+<section id="id56">
+<h3><a class="toc-backref" href="#id177" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id56" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify - <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">route</span></code> entry can be defined without the need of <code class="docutils literal notranslate"><span class="pre">gateway</span></code> field, which is correct for unreachable/blackhole type of routes (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/131">https://github.com/ansible-collections/community.routeros/pull/131</a>).</p></li>
+<li><p>api_modify - <code class="docutils literal notranslate"><span class="pre">queue</span> <span class="pre">interface</span></code> path works now (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/131">https://github.com/ansible-collections/community.routeros/pull/131</a>).</p></li>
+<li><p>api_modify, api_info - removed wrong field <code class="docutils literal notranslate"><span class="pre">dynamic</span></code> from API path <code class="docutils literal notranslate"><span class="pre">ipv6</span> <span class="pre">firewall</span> <span class="pre">address-list</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/133">https://github.com/ansible-collections/community.routeros/pull/133</a>).</p></li>
+<li><p>api_modify, api_info - the default of the field <code class="docutils literal notranslate"><span class="pre">ingress-filtering</span></code> in <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">bridge</span> <span class="pre">port</span></code> is now <code class="docutils literal notranslate"><span class="pre">true</span></code>, which is the default in ROS (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/125">https://github.com/ansible-collections/community.routeros/pull/125</a>).</p></li>
+<li><p>command, facts - commands do not timeout in safe mode anymore (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/134">https://github.com/ansible-collections/community.routeros/pull/134</a>).</p></li>
+</ul>
+</section>
+<section id="id57">
+<h3><a class="toc-backref" href="#id178" role="doc-backlink">Known Issues</a><a class="headerlink" href="#id57" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify - when limits for entries in <code class="docutils literal notranslate"><span class="pre">queue</span> <span class="pre">tree</span></code> are defined as human readable - for example <code class="docutils literal notranslate"><span class="pre">25M</span></code> -, the configuration will be correctly set in ROS, but the module will indicate the item is changed on every run even when there was no change done. This is caused by the ROS API which returns the number in bytes - for example <code class="docutils literal notranslate"><span class="pre">25000000</span></code> (which is inconsistent with the CLI behavior). In order to mitigate that, the limits have to be defined in bytes (those will still appear as human readable in the ROS CLI) (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/131">https://github.com/ansible-collections/community.routeros/pull/131</a>).</p></li>
+<li><p>api_modify, api_info - <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">area</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">area</span> <span class="pre">range</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">instance</span></code>, <code class="docutils literal notranslate"><span class="pre">routing</span> <span class="pre">ospf</span> <span class="pre">interface-template</span></code> paths are not fully implemented for ROS6 due to the significant changes between ROS6 and ROS7 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/131">https://github.com/ansible-collections/community.routeros/pull/131</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-3-1">
+<h2><a class="toc-backref" href="#id179" role="doc-backlink">v2.3.1</a><a class="headerlink" href="#v2-3-1" title="Link to this heading"></a></h2>
+<section id="id58">
+<h3><a class="toc-backref" href="#id180" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id58" title="Link to this heading"></a></h3>
+<p>Maintenance release with improved documentation.</p>
+</section>
+<section id="id59">
+<h3><a class="toc-backref" href="#id181" role="doc-backlink">Known Issues</a><a class="headerlink" href="#id59" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">community.routeros.command</span></code> module claims to support check mode. Since it cannot judge whether the commands executed modify state or not, this behavior is incorrect. Since this potentially breaks existing playbooks, we will not change this behavior until community.routeros 3.0.0.</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-3-0">
+<h2><a class="toc-backref" href="#id182" role="doc-backlink">v2.3.0</a><a class="headerlink" href="#v2-3-0" title="Link to this heading"></a></h2>
+<section id="id60">
+<h3><a class="toc-backref" href="#id183" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id60" title="Link to this heading"></a></h3>
+<p>Feature and bugfix release.</p>
+</section>
+<section id="id61">
+<h3><a class="toc-backref" href="#id184" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id61" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The collection repository conforms to the <a class="reference external" href="https://reuse.software/spec/">REUSE specification</a> except for the changelog fragments (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/108">https://github.com/ansible-collections/community.routeros/pull/108</a>).</p></li>
+<li><p>api* modules - added <code class="docutils literal notranslate"><span class="pre">timeout</span></code> parameter (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/109">https://github.com/ansible-collections/community.routeros/pull/109</a>).</p></li>
+<li><p>api_modify, api_info - support API path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">mangle</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/110">https://github.com/ansible-collections/community.routeros/pull/110</a>).</p></li>
+</ul>
+</section>
+<section id="id62">
+<h3><a class="toc-backref" href="#id185" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id62" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - make API path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span></code> support <code class="docutils literal notranslate"><span class="pre">script</span></code>, and <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">firewall</span> <span class="pre">nat</span></code> support <code class="docutils literal notranslate"><span class="pre">in-interface</span></code> and <code class="docutils literal notranslate"><span class="pre">in-interface-list</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/110">https://github.com/ansible-collections/community.routeros/pull/110</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-2-1">
+<h2><a class="toc-backref" href="#id186" role="doc-backlink">v2.2.1</a><a class="headerlink" href="#v2-2-1" title="Link to this heading"></a></h2>
+<section id="id63">
+<h3><a class="toc-backref" href="#id187" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id63" title="Link to this heading"></a></h3>
+<p>Bugfix release.</p>
+</section>
+<section id="id64">
+<h3><a class="toc-backref" href="#id188" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id64" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api_modify, api_info - make API path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">lease</span></code> support <code class="docutils literal notranslate"><span class="pre">server=all</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/104">https://github.com/ansible-collections/community.routeros/issues/104</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/107">https://github.com/ansible-collections/community.routeros/pull/107</a>).</p></li>
+<li><p>api_modify, api_info - make API path <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">dhcp-server</span> <span class="pre">network</span></code> support missing options <code class="docutils literal notranslate"><span class="pre">boot-file-name</span></code>, <code class="docutils literal notranslate"><span class="pre">dhcp-option-set</span></code>, <code class="docutils literal notranslate"><span class="pre">dns-none</span></code>, <code class="docutils literal notranslate"><span class="pre">domain</span></code>, and <code class="docutils literal notranslate"><span class="pre">next-server</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/104">https://github.com/ansible-collections/community.routeros/issues/104</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/106">https://github.com/ansible-collections/community.routeros/pull/106</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-2-0">
+<h2><a class="toc-backref" href="#id189" role="doc-backlink">v2.2.0</a><a class="headerlink" href="#v2-2-0" title="Link to this heading"></a></h2>
+<section id="id65">
+<h3><a class="toc-backref" href="#id190" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id65" title="Link to this heading"></a></h3>
+<p>New feature release.</p>
+</section>
+<section id="id66">
+<h3><a class="toc-backref" href="#id191" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id66" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>All software licenses are now in the <code class="docutils literal notranslate"><span class="pre">LICENSES/</span></code> directory of the collection root. Moreover, <code class="docutils literal notranslate"><span class="pre">SPDX-License-Identifier:</span></code> is used to declare the applicable license for every file that is not automatically generated (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/101">https://github.com/ansible-collections/community.routeros/pull/101</a>).</p></li>
+</ul>
+</section>
+<section id="id67">
+<h3><a class="toc-backref" href="#id192" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id67" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Include <code class="docutils literal notranslate"><span class="pre">LICENSES/BSD-2-Clause.txt</span></code> file for the <code class="docutils literal notranslate"><span class="pre">routeros</span></code> module utils (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/101">https://github.com/ansible-collections/community.routeros/pull/101</a>).</p></li>
+</ul>
+</section>
+<section id="new-modules">
+<h3><a class="toc-backref" href="#id193" role="doc-backlink">New Modules</a><a class="headerlink" href="#new-modules" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>community.routeros.api_info - Retrieve information from API</p></li>
+<li><p>community.routeros.api_modify - Modify data at paths with API</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-1-0">
+<h2><a class="toc-backref" href="#id194" role="doc-backlink">v2.1.0</a><a class="headerlink" href="#v2-1-0" title="Link to this heading"></a></h2>
+<section id="id68">
+<h3><a class="toc-backref" href="#id195" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id68" title="Link to this heading"></a></h3>
+<p>Feature and bugfix release with new modules.</p>
+</section>
+<section id="id69">
+<h3><a class="toc-backref" href="#id196" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id69" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Added a <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> module defaults group. Use with <code class="docutils literal notranslate"><span class="pre">group/community.routeros.api</span></code> to provide options for all API-based modules (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/89">https://github.com/ansible-collections/community.routeros/pull/89</a>).</p></li>
+<li><p>Prepare collection for inclusion in an Execution Environment by declaring its dependencies (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/83">https://github.com/ansible-collections/community.routeros/pull/83</a>).</p></li>
+<li><p>api - add new option <code class="docutils literal notranslate"><span class="pre">extended</span> <span class="pre">query</span></code> more complex queries against RouterOS API (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/63">https://github.com/ansible-collections/community.routeros/pull/63</a>).</p></li>
+<li><p>api - update <code class="docutils literal notranslate"><span class="pre">query</span></code> to accept symbolic parameters (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/63">https://github.com/ansible-collections/community.routeros/pull/63</a>).</p></li>
+<li><p>api* modules - allow to set an encoding other than the default ASCII for communicating with the API (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/95">https://github.com/ansible-collections/community.routeros/pull/95</a>).</p></li>
+</ul>
+</section>
+<section id="id70">
+<h3><a class="toc-backref" href="#id197" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id70" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>query - fix query function check for <code class="docutils literal notranslate"><span class="pre">.id</span></code> vs. <code class="docutils literal notranslate"><span class="pre">id</span></code> arguments to not conflict with routeros arguments like <code class="docutils literal notranslate"><span class="pre">identity</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/68">https://github.com/ansible-collections/community.routeros/pull/68</a>, <a class="reference external" href="https://github.com/ansible-collections/community.routeros/issues/67">https://github.com/ansible-collections/community.routeros/issues/67</a>).</p></li>
+<li><p>quoting and unquoting filter plugins, api module - handle the escape sequence <code class="docutils literal notranslate"><span class="pre">\_</span></code> correctly as escaping a space and not an underscore (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/89">https://github.com/ansible-collections/community.routeros/pull/89</a>).</p></li>
+</ul>
+</section>
+<section id="id71">
+<h3><a class="toc-backref" href="#id198" role="doc-backlink">New Modules</a><a class="headerlink" href="#id71" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>community.routeros.api_facts - Collect facts from remote devices running MikroTik RouterOS using the API</p></li>
+<li><p>community.routeros.api_find_and_modify - Find and modify information using the API</p></li>
+</ul>
+</section>
+</section>
+<section id="v2-0-0">
+<h2><a class="toc-backref" href="#id199" role="doc-backlink">v2.0.0</a><a class="headerlink" href="#v2-0-0" title="Link to this heading"></a></h2>
+<section id="id72">
+<h3><a class="toc-backref" href="#id200" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id72" title="Link to this heading"></a></h3>
+<p>A new major release with breaking changes in the behavior of <code class="docutils literal notranslate"><span class="pre">community.routeros.api</span></code> and <code class="docutils literal notranslate"><span class="pre">community.routeros.command</span></code>.</p>
+</section>
+<section id="id73">
+<h3><a class="toc-backref" href="#id201" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id73" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api - make validation of <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> for <code class="docutils literal notranslate"><span class="pre">query</span></code> more strict (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/53">https://github.com/ansible-collections/community.routeros/pull/53</a>).</p></li>
+<li><p>command - the <code class="docutils literal notranslate"><span class="pre">commands</span></code> and <code class="docutils literal notranslate"><span class="pre">wait_for</span></code> options now convert the list elements to strings (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/55">https://github.com/ansible-collections/community.routeros/pull/55</a>).</p></li>
+<li><p>facts - the <code class="docutils literal notranslate"><span class="pre">gather_subset</span></code> option now converts the list elements to strings (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/55">https://github.com/ansible-collections/community.routeros/pull/55</a>).</p></li>
+</ul>
+</section>
+<section id="id74">
+<h3><a class="toc-backref" href="#id202" role="doc-backlink">Breaking Changes / Porting Guide</a><a class="headerlink" href="#id74" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api - due to a programming error, the module never failed on errors. This has now been fixed. If you are relying on the module not failing in case of idempotent commands (resulting in errors like <code class="docutils literal notranslate"><span class="pre">failure:</span> <span class="pre">already</span> <span class="pre">have</span> <span class="pre">such</span> <span class="pre">address</span></code>), you need to adjust your roles/playbooks. We suggest to use <code class="docutils literal notranslate"><span class="pre">failed_when</span></code> to accept failure in specific circumstances, for example <code class="docutils literal notranslate"><span class="pre">failed_when:</span> <span class="pre">&quot;'failure:</span> <span class="pre">already</span> <span class="pre">have</span> <span class="pre">'</span> <span class="pre">in</span> <span class="pre">result.msg[0]&quot;</span></code> (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/39">https://github.com/ansible-collections/community.routeros/pull/39</a>).</p></li>
+<li><p>api - splitting commands no longer uses a naive split by whitespace, but a more RouterOS CLI compatible splitting algorithm (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/45">https://github.com/ansible-collections/community.routeros/pull/45</a>).</p></li>
+<li><p>command - the module now always indicates that a change happens. If this is not correct, please use <code class="docutils literal notranslate"><span class="pre">changed_when</span></code> to determine the correct changed status for a task (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/50">https://github.com/ansible-collections/community.routeros/pull/50</a>).</p></li>
+</ul>
+</section>
+<section id="id75">
+<h3><a class="toc-backref" href="#id203" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id75" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api - improve splitting of <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> queries (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/47">https://github.com/ansible-collections/community.routeros/pull/47</a>).</p></li>
+<li><p>api - when converting result lists to dictionaries, no longer removes second <code class="docutils literal notranslate"><span class="pre">=</span></code> and text following that if present (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/47">https://github.com/ansible-collections/community.routeros/pull/47</a>).</p></li>
+<li><p>routeros cliconf plugin - adjust function signature that was modified in Ansible after creation of this plugin (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/43">https://github.com/ansible-collections/community.routeros/pull/43</a>).</p></li>
+</ul>
+</section>
+<section id="new-plugins">
+<h3><a class="toc-backref" href="#id204" role="doc-backlink">New Plugins</a><a class="headerlink" href="#new-plugins" title="Link to this heading"></a></h3>
+<section id="filter">
+<h4><a class="toc-backref" href="#id205" role="doc-backlink">Filter</a><a class="headerlink" href="#filter" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>community.routeros.join - Join a list of arguments to a command</p></li>
+<li><p>community.routeros.list_to_dict - Convert a list of arguments to a list of dictionary</p></li>
+<li><p>community.routeros.quote_argument - Quote an argument</p></li>
+<li><p>community.routeros.quote_argument_value - Quote an argument value</p></li>
+<li><p>community.routeros.split - Split a command into arguments</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="v1-2-0">
+<h2><a class="toc-backref" href="#id206" role="doc-backlink">v1.2.0</a><a class="headerlink" href="#v1-2-0" title="Link to this heading"></a></h2>
+<section id="id76">
+<h3><a class="toc-backref" href="#id207" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id76" title="Link to this heading"></a></h3>
+<p>Bugfix and feature release.</p>
+</section>
+<section id="id77">
+<h3><a class="toc-backref" href="#id208" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id77" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Avoid internal ansible-core module_utils in favor of equivalent public API available since at least Ansible 2.9 (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/38">https://github.com/ansible-collections/community.routeros/pull/38</a>).</p></li>
+<li><p>api - add options <code class="docutils literal notranslate"><span class="pre">validate_certs</span></code> (default value <code class="docutils literal notranslate"><span class="pre">true</span></code>), <code class="docutils literal notranslate"><span class="pre">validate_cert_hostname</span></code> (default value <code class="docutils literal notranslate"><span class="pre">false</span></code>), and <code class="docutils literal notranslate"><span class="pre">ca_path</span></code> to control certificate validation (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/37">https://github.com/ansible-collections/community.routeros/pull/37</a>).</p></li>
+<li><p>api - rename option <code class="docutils literal notranslate"><span class="pre">ssl</span></code> to <code class="docutils literal notranslate"><span class="pre">tls</span></code>, and keep the old name as an alias (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/37">https://github.com/ansible-collections/community.routeros/pull/37</a>).</p></li>
+<li><p>fact - add fact <code class="docutils literal notranslate"><span class="pre">ansible_net_config_nonverbose</span></code> to get idempotent config (no date, no verbose) (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/23">https://github.com/ansible-collections/community.routeros/pull/23</a>).</p></li>
+</ul>
+</section>
+<section id="id78">
+<h3><a class="toc-backref" href="#id209" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id78" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api - when using TLS/SSL, remove explicit cipher configuration to insecure values, which also makes it impossible to connect to newer RouterOS versions (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/34">https://github.com/ansible-collections/community.routeros/pull/34</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-1-0">
+<h2><a class="toc-backref" href="#id210" role="doc-backlink">v1.1.0</a><a class="headerlink" href="#v1-1-0" title="Link to this heading"></a></h2>
+<section id="id79">
+<h3><a class="toc-backref" href="#id211" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id79" title="Link to this heading"></a></h3>
+<p>This release allow dashes in usernames for SSH-based modules.</p>
+</section>
+<section id="id80">
+<h3><a class="toc-backref" href="#id212" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id80" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>command - added support for a dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>) in username (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/18">https://github.com/ansible-collections/community.routeros/pull/18</a>).</p></li>
+<li><p>facts - added support for a dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>) in username (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/18">https://github.com/ansible-collections/community.routeros/pull/18</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-0-1">
+<h2><a class="toc-backref" href="#id213" role="doc-backlink">v1.0.1</a><a class="headerlink" href="#v1-0-1" title="Link to this heading"></a></h2>
+<section id="id81">
+<h3><a class="toc-backref" href="#id214" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id81" title="Link to this heading"></a></h3>
+<p>Maintenance release with a bugfix for <code class="docutils literal notranslate"><span class="pre">api</span></code>.</p>
+</section>
+<section id="id82">
+<h3><a class="toc-backref" href="#id215" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id82" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api - remove <code class="docutils literal notranslate"><span class="pre">id</span> <span class="pre">to</span> <span class="pre">.id</span></code> as default requirement which conflicts with RouterOS <code class="docutils literal notranslate"><span class="pre">id</span></code> configuration parameter (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/15">https://github.com/ansible-collections/community.routeros/pull/15</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-0-0">
+<h2><a class="toc-backref" href="#id216" role="doc-backlink">v1.0.0</a><a class="headerlink" href="#v1-0-0" title="Link to this heading"></a></h2>
+<section id="id83">
+<h3><a class="toc-backref" href="#id217" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id83" title="Link to this heading"></a></h3>
+<p>This is the first production (non-prerelease) release of <code class="docutils literal notranslate"><span class="pre">community.routeros</span></code>.</p>
+</section>
+<section id="id84">
+<h3><a class="toc-backref" href="#id218" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id84" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>routeros terminal plugin - allow slashes in hostnames for terminal detection. Without this, slashes in hostnames will result in connection timeouts (<a class="reference external" href="https://github.com/ansible-collections/community.network/pull/138">https://github.com/ansible-collections/community.network/pull/138</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-1-1">
+<h2><a class="toc-backref" href="#id219" role="doc-backlink">v0.1.1</a><a class="headerlink" href="#v0-1-1" title="Link to this heading"></a></h2>
+<section id="id85">
+<h3><a class="toc-backref" href="#id220" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id85" title="Link to this heading"></a></h3>
+<p>Small improvements and bugfixes over the initial release.</p>
+</section>
+<section id="id86">
+<h3><a class="toc-backref" href="#id221" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id86" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>api - fix crash when the <code class="docutils literal notranslate"><span class="pre">ssl</span></code> parameter is used (<a class="reference external" href="https://github.com/ansible-collections/community.routeros/pull/3">https://github.com/ansible-collections/community.routeros/pull/3</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-1-0">
+<h2><a class="toc-backref" href="#id222" role="doc-backlink">v0.1.0</a><a class="headerlink" href="#v0-1-0" title="Link to this heading"></a></h2>
+<section id="id87">
+<h3><a class="toc-backref" href="#id223" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id87" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">community.routeros</span></code> continues the work on the Ansible RouterOS modules from their state in <code class="docutils literal notranslate"><span class="pre">community.network</span></code> 1.2.0. The changes listed here are thus relative to the modules <code class="docutils literal notranslate"><span class="pre">community.network.routeros_*</span></code>.</p>
+</section>
+<section id="id88">
+<h3><a class="toc-backref" href="#id224" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id88" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>facts - now also collecting data about BGP and OSPF (<a class="reference external" href="https://github.com/ansible-collections/community.network/pull/101">https://github.com/ansible-collections/community.network/pull/101</a>).</p></li>
+<li><p>facts - set configuration export on to verbose, for full configuration export (<a class="reference external" href="https://github.com/ansible-collections/community.network/pull/104">https://github.com/ansible-collections/community.network/pull/104</a>).</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Community.Routeros" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="docsite/api-guide.html" class="btn btn-neutral float-right" title="How to connect to RouterOS devices with the RouterOS API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Community.Routeros Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
