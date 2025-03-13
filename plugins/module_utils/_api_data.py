@@ -2777,8 +2777,11 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.17', '<')], 'ddns-enabled', KeyInfo(default=False)),
+                ([('7.17', '>=')], 'ddns-enabled', KeyInfo(default='auto')),
+            ],
             fields={
-                'ddns-enabled': KeyInfo(default=False),
                 'ddns-update-interval': KeyInfo(default='none'),
                 'update-time': KeyInfo(default=True),
             },
