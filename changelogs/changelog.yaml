@@ -875,3 +875,13 @@ releases:
       - 343-add-ip-dns-forwarders.yml
       - 345-interface-wifi-provisioning.yml
     release_date: '2025-02-24'
+  3.5.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - change default for ``/ip/cloud/ddns-enabled`` for
+          RouterOS 7.17 and newer from ``yes`` to ``auto`` (https://github.com/ansible-collections/community.routeros/pull/350).
+      release_summary: Feature release.
+    fragments:
+      - 3.5.0.yml
+      - 350-ip-cloud-ddns-enabled-auto.yml
+    release_date: '2025-03-22'
