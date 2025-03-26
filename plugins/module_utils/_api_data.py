@@ -2967,6 +2967,7 @@ PATHS = {
                 ([('7.8', '>=')], 'doh-max-concurrent-queries', KeyInfo(default=50)),
                 ([('7.8', '>=')], 'doh-max-server-connections', KeyInfo(default=5)),
                 ([('7.8', '>=')], 'doh-timeout', KeyInfo(default='5s')),
+                ([('7.16', '>=')], 'mdns-repeat-ifaces', KeyInfo()),
             ],
             fields={
                 'allow-remote-requests': KeyInfo(),
