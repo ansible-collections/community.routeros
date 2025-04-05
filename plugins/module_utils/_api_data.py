@@ -4982,10 +4982,13 @@ PATHS = {
     ('routing', 'bgp', 'connection'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
+            versioned_fields=[
+                ([('7.19', '<')], 'address-families', KeyInfo()),
+                ([('7.19', '>=')], 'afi', KeyInfo()),
+            ],
             fields={
                 'as': KeyInfo(),
                 'add-path-out': KeyInfo(),
-                'address-families': KeyInfo(),
                 'cisco-vpls-nlri-len-fmt': KeyInfo(),
                 'cluster-id': KeyInfo(),
                 'comment': KeyInfo(),
