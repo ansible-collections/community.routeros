@@ -1,9 +1,9 @@
 docs/docsite/rst/api-guide.rst rstcheck
 docs/docsite/rst/quoting.rst rstcheck
 docs/docsite/rst/ssh-guide.rst rstcheck
-update-docs.py compile-2.6
-update-docs.py compile-2.7
-update-docs.py compile-3.5
-update-docs.py future-import-boilerplate
-update-docs.py metaclass-boilerplate
-update-docs.py shebang
+tests/update-docs.py compile-2.6
+tests/update-docs.py compile-2.7
+tests/update-docs.py compile-3.5
+tests/update-docs.py future-import-boilerplate
+tests/update-docs.py metaclass-boilerplate
+tests/update-docs.py shebang

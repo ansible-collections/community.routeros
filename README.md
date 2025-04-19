@@ -6,7 +6,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 # Community RouterOS Collection
 [![Documentation](https://img.shields.io/badge/docs-brightgreen.svg)](https://docs.ansible.com/ansible/devel/collections/community/routeros/)
-[![CI](https://github.com/ansible-collections/community.routeros/actions/workflows/ansible-test.yml/badge.svg?branch=main)](https://github.com/ansible-collections/community.routeros/actions)
+[![CI](https://github.com/ansible-collections/community.routeros/actions/workflows/nox.yml/badge.svg?branch=main)](https://github.com/ansible-collections/community.routeros/actions)
 [![Codecov](https://img.shields.io/codecov/c/github/ansible-collections/community.routeros)](https://codecov.io/gh/ansible-collections/community.routeros)
 [![REUSE status](https://api.reuse.software/badge/github.com/ansible-collections/community.routeros)](https://api.reuse.software/info/github.com/ansible-collections/community.routeros)
 
