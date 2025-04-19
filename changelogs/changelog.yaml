@@ -795,3 +795,18 @@ releases:
       - 322-add-l2tp-client-interface-configuration.yml
       - 323-add-ros-7.16-parameters.yml
     release_date: '2024-10-17'
+  2.20.1:
+    changes:
+      release_summary: 'This is the final community.routeros 2.x.y release.
+
+
+        Please upgrade to community.routeros 3.x.y as soon as possible to receive
+        further bugfixes.
+
+
+        Thanks to everyone who contributed to community.routeros 2.x.y releases!
+
+        '
+    fragments:
+      - 2.20.1.yml
+    release_date: '2025-04-19'

@@ -4,6 +4,18 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v2.20.1
+=======
+
+Release Summary
+---------------
+
+This is the final community.routeros 2.x.y release.
+
+Please upgrade to community.routeros 3.x.y as soon as possible to receive further bugfixes.
+
+Thanks to everyone who contributed to community.routeros 2.x.y releases!
+
 v2.20.0
 =======
 
