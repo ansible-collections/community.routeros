@@ -1,0 +1,57 @@
+# Copyright (c) Ansible Project
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+[collection_sources]
+"community.internal_test_tools" = "git+https://github.com/ansible-collections/community.internal_test_tools.git,main"
+"community.netcommon" = "git+https://github.com/ansible-collections/ansible.netcommon.git,main"
+"community.utils" = "git+https://github.com/ansible-collections/ansible.utils.git,main"
+
+[sessions]
+
+[sessions.lint]
+# https://ansible.readthedocs.io/projects/antsibull-nox/config-file/#basic-linting-sessions
+
+# disable reformatting for now
+run_isort = false
+run_black = false
+
+# disable most linters
+run_flake8 = false
+run_pylint = false
+run_yamllint = false
+run_mypy = false
+
+[sessions.docs_check]
+validate_collection_refs="all"
+
+[sessions.extra_checks]
+run_no_unwanted_files = true
+no_unwanted_files_module_extensions = [".py"]
+no_unwanted_files_yaml_extensions = [".yml"]
+run_action_groups = true
+
+[[sessions.extra_checks.action_groups_config]]
+name = "api"
+pattern = "^api.*$"
+exclusions = []
+doc_fragment = "community.routeros.attributes.actiongroup_api"
+
+[sessions.build_import_check]
+run_galaxy_importer = true
+
+[sessions.ansible_test_sanity]
+include_devel = true
+
+[sessions.ansible_test_units]
+include_devel = true
+
+[sessions.ansible_test_integration_w_default_container]
+include_devel = true
+controller_python_versions_only = true
+
+[sessions.ansible_test_integration_w_default_container.core_python_versions]
+"2.15" = ["2.7", "3.6", "3.7"]
+"2.16" = ["3.10"]
+"2.17" = ["3.8"]
+"2.18" = ["3.9"]

@@ -1,1 +1,1 @@
-update-docs.py shebang
+tests/update-docs.py shebang
