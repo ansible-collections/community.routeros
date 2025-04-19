@@ -25,6 +25,8 @@ run_mypy = false
 [sessions.docs_check]
 validate_collection_refs="all"
 
+[sessions.license_check]
+
 [sessions.extra_checks]
 run_no_unwanted_files = true
 no_unwanted_files_module_extensions = [".py"]
