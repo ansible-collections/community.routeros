@@ -2441,7 +2441,8 @@ PATHS = {
             },
             versioned_fields=[
                 ([('7.15', '>=')], 'name', KeyInfo()),
-                ([('7.15', '>=')], 'is-responder', KeyInfo()),
+                ([('7.15', '>='), ('7.17', '<')], 'is-responder', KeyInfo()),
+                ([('7.17', '>=')], 'responder', KeyInfo()),
             ],
         ),
     ),
