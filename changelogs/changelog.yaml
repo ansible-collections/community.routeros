@@ -885,3 +885,19 @@ releases:
       - 3.5.0.yml
       - 350-ip-cloud-ddns-enabled-auto.yml
     release_date: '2025-03-22'
+  3.6.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - add ``mdns-repeat-ifaces`` to ``ip dns`` for RouterOS
+          7.16 and newer (https://github.com/ansible-collections/community.routeros/pull/358).
+        - api_info, api_modify - field name change in ``routing bgp connection`` path
+          implemented by RouterOS 7.19 and newer (https://github.com/ansible-collections/community.routeros/pull/360).
+        - api_info, api_modify - rename ``is-responder`` property in ``interface wireguard
+          peers`` to ``responder`` for RouterOS 7.17 and newer (https://github.com/ansible-collections/community.routeros/pull/364).
+      release_summary: Feature release.
+    fragments:
+      - 3.6.0.yml
+      - 358-mdns-repeat-ifaces.yml
+      - 360-bgp-connection-afi.yml
+      - 364-wireguard-responder.yml
+    release_date: '2025-04-21'
