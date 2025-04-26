@@ -16,7 +16,7 @@ authors:
 description: Modules and plugins for MikroTik RouterOS
 license:
   - GPL-3.0-or-later
-#license_file: COPYING
+# license_file: COPYING
 tags:
   - network
   - mikrotik

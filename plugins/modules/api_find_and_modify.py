@@ -83,6 +83,7 @@ seealso:
 """
 
 EXAMPLES = r"""
+---
 - name: Rename bridge from 'bridge' to 'my-bridge'
   community.routeros.api_find_and_modify:
     hostname: "{{ hostname }}"

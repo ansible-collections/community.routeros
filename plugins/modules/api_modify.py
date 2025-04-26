@@ -360,6 +360,7 @@ seealso:
 """
 
 EXAMPLES = r"""
+---
 - name: Setup DHCP server networks
   # Ensures that we have exactly two DHCP server networks (in the specified order)
   community.routeros.api_modify:

@@ -30,6 +30,7 @@ DOCUMENTATION:
     - Felix Fontein (@felixfontein)
 
 EXAMPLES: |
+  ---
   - name: Convert a list to a dictionary
     ansible.builtin.set_fact:
       dictionary: "{{ ['foo=bar', 'comment=foo is bar'] | community.routeros.list_to_dict }}"

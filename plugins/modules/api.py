@@ -164,6 +164,7 @@ seealso:
 """
 
 EXAMPLES = r"""
+---
 - name: Get example - ip address print
   community.routeros.api:
     hostname: "{{ hostname }}"

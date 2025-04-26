@@ -324,6 +324,7 @@ seealso:
 """
 
 EXAMPLES = r"""
+---
 - name: Get IP addresses
   community.routeros.api_info:
     hostname: "{{ hostname }}"
