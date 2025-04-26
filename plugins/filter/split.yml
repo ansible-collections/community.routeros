@@ -19,9 +19,11 @@ DOCUMENTATION:
     - Felix Fontein (@felixfontein)
 
 EXAMPLES: |
+  ---
   - name: Split command into list of arguments
     ansible.builtin.set_fact:
-      argument_list: "{{ 'foo=bar comment="foo is bar" baz' | community.routeros.split }}"
+      argument_list: >-
+        {{ 'foo=bar comment="foo is bar" baz' | community.routeros.split }}
       # Should result in ['foo=bar', 'comment=foo is bar', 'baz']
 
 RETURN:

@@ -55,6 +55,7 @@ seealso:
 """
 
 EXAMPLES = r"""
+---
 - name: Collect all facts from the device
   community.routeros.api_facts:
     hostname: 192.168.88.1

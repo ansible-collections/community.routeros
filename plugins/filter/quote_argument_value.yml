@@ -19,9 +19,11 @@ DOCUMENTATION:
     - Felix Fontein (@felixfontein)
 
 EXAMPLES: |
+  ---
   - name: Quote a RouterOS CLI command argument's value
     ansible.builtin.set_fact:
-      quoted: "{{ 'this is a "comment"' | community.routeros.quote_argument_value }}"
+      quoted: >-
+        {{ 'this is a "comment"' | community.routeros.quote_argument_value }}
       # Should result in '"this is a \"comment\""'
 
 RETURN:

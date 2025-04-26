@@ -42,6 +42,7 @@ seealso:
 """
 
 EXAMPLES = r"""
+---
 - name: Collect all facts from the device
   community.routeros.facts:
     gather_subset: all

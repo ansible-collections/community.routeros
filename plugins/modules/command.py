@@ -77,6 +77,7 @@ seealso:
 """
 
 EXAMPLES = r"""
+---
 - name: Run command on remote devices
   community.routeros.command:
     commands: /system routerboard print
