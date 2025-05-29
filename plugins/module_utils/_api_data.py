@@ -281,6 +281,7 @@ PATHS = {
             versioned_fields=[
                 ([('7.0', '<')], 'ingress-filtering', KeyInfo(default=False)),
                 ([('7.0', '>=')], 'ingress-filtering', KeyInfo(default=True)),
+                ([('7.13', '>=')], 'port-cost-mode', KeyInfo(default='long')),
                 ([('7.16', '>=')], 'forward-reserved-addresses', KeyInfo(default=False)),
                 ([('7.16', '>=')], 'max-learned-entries', KeyInfo(default='auto')),
             ],
