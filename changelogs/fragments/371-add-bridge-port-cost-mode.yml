@@ -1,3 +1,3 @@
 ---
 minor_changes:
-  - api - Add port-cost-mode to /interface/bridge which is supported since RouterOS 7.13
+  - api_info, api_modify - add ``port-cost-mode`` to ``interface bridge`` which is supported since RouterOS 7.13 (https://github.com/ansible-collections/community.routeros/pull/371).
