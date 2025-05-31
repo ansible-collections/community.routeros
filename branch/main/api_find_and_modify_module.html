@@ -257,6 +257,36 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ignore_builtin"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-find-and-modify-module-parameter-ignore-builtin"><strong>ignore_builtin</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ignore_builtin" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+<p><em class="ansible-option-versionadded">added in community.routeros 3.7.0</em></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Whether to ignore builtin entries.</p>
+<p>By default, they are considered. If set to <code class="ansible-value docutils literal notranslate"><span class="pre">true</span></code>, they are not considered.</p>
+<p>It is generally recommended to set this to <code class="ansible-value docutils literal notranslate"><span class="pre">true</span></code> unless when you really need to modify builtin entries.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ignore_dynamic"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-find-and-modify-module-parameter-ignore-dynamic"><strong>ignore_dynamic</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ignore_dynamic" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+<p><em class="ansible-option-versionadded">added in community.routeros 3.7.0</em></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Whether to ignore dynamic entries.</p>
+<p>By default, they are considered. If set to <code class="ansible-value docutils literal notranslate"><span class="pre">true</span></code>, they are not considered.</p>
+<p>It is generally recommended to set this to <code class="ansible-value docutils literal notranslate"><span class="pre">true</span></code> unless when you really need to modify dynamic entries.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-community-routeros-api-find-and-modify-module-parameter-password"><strong>password</strong></p>
 <a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
@@ -461,6 +491,10 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
 <span class="w">    </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-bridge</span>
+<span class="w">    </span><span class="c1"># Always ignore dynamic and builtin entries</span>
+<span class="w">    </span><span class="c1"># (not relevant for this path, but generally recommended)</span>
+<span class="w">    </span><span class="nt">ignore_dynamic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">ignore_builtin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Change IP address to 192.168.1.1 for interface bridge - assuming there is only one</span>
 <span class="w">  </span><span class="nt">community.routeros.api_find_and_modify</span><span class="p">:</span>
@@ -472,10 +506,14 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <span class="w">      </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
 <span class="w">    </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.168.1.1/24&quot;</span>
-<span class="w">  </span><span class="c1"># If there are zero entries, or more than one: fail! We expected that</span>
-<span class="w">  </span><span class="c1"># exactly one is configured.</span>
+<span class="w">    </span><span class="c1"># If there are zero entries, or more than one: fail! We expected that</span>
+<span class="w">    </span><span class="c1"># exactly one is configured.</span>
 <span class="w">    </span><span class="nt">require_matches_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">    </span><span class="nt">require_matches_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="c1"># Always ignore dynamic and builtin entries</span>
+<span class="w">    </span><span class="c1"># (not relevant for this path, but generally recommended)</span>
+<span class="w">    </span><span class="nt">ignore_dynamic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">ignore_builtin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 </section>
