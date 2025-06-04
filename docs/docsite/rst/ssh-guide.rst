@@ -126,4 +126,4 @@ This results in the following output:
     }
 
     PLAY RECAP *******************************************************************************************************
-    router                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+    router                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

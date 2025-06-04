@@ -38,7 +38,7 @@ Tested with the current ansible-core 2.15, ansible-core 2.16, ansible-core 2.17,
 
 ## External requirements
 
-The exact requirements for every module are listed in the module documentation. 
+The exact requirements for every module are listed in the module documentation.
 
 ### Supported connections
 
