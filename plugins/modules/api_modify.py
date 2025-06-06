@@ -159,6 +159,7 @@ options:
       - ip firewall service-port
       - ip hotspot service-port
       - ip ipsec identity
+      - ip ipsec mode-config
       - ip ipsec peer
       - ip ipsec policy
       - ip ipsec profile
