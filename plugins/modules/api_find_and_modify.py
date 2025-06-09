@@ -75,6 +75,22 @@ options:
       - Whether to allow that no match is found.
       - If not specified, this value is induced from whether O(require_matches_min) is 0 or larger.
     type: bool
+  ignore_dynamic:
+    description:
+      - Whether to ignore dynamic entries.
+      - By default, they are considered. If set to V(true), they are not considered.
+      - It is generally recommended to set this to V(true) unless when you really need to modify dynamic entries.
+    type: bool
+    default: false
+    version_added: 3.7.0
+  ignore_builtin:
+    description:
+      - Whether to ignore builtin entries.
+      - By default, they are considered. If set to V(true), they are not considered.
+      - It is generally recommended to set this to V(true) unless when you really need to modify builtin entries.
+    type: bool
+    default: false
+    version_added: 3.7.0
 seealso:
   - module: community.routeros.api
   - module: community.routeros.api_facts
@@ -94,6 +110,10 @@ EXAMPLES = r"""
       name: bridge
     values:
       name: my-bridge
+    # Always ignore dynamic and builtin entries
+    # (not relevant for this path, but generally recommended)
+    ignore_dynamic: true
+    ignore_builtin: true
 
 - name: Change IP address to 192.168.1.1 for interface bridge - assuming there is only one
   community.routeros.api_find_and_modify:
@@ -105,10 +125,14 @@ EXAMPLES = r"""
       interface: bridge
     values:
       address: "192.168.1.1/24"
-  # If there are zero entries, or more than one: fail! We expected that
-  # exactly one is configured.
+    # If there are zero entries, or more than one: fail! We expected that
+    # exactly one is configured.
     require_matches_min: 1
     require_matches_max: 1
+    # Always ignore dynamic and builtin entries
+    # (not relevant for this path, but generally recommended)
+    ignore_dynamic: true
+    ignore_builtin: true
 """
 
 RETURN = r"""
@@ -185,6 +209,17 @@ def compose_api_path(api, path):
     return api_path
 
 
+def filter_entries(entries, ignore_dynamic=False, ignore_builtin=False):
+    result = []
+    for entry in entries:
+        if ignore_dynamic and entry.get('dynamic', False):
+            continue
+        if ignore_builtin and entry.get('builtin', False):
+            continue
+        result.append(entry)
+    return result
+
+
 DISABLED_MEANS_EMPTY_STRING = ('comment', )
 
 
@@ -196,6 +231,8 @@ def main():
         require_matches_min=dict(type='int', default=0),
         require_matches_max=dict(type='int'),
         allow_no_matches=dict(type='bool'),
+        ignore_dynamic=dict(type='bool', default=False),
+        ignore_builtin=dict(type='bool', default=False),
     )
     module_args.update(api_argument_spec())
 
@@ -223,6 +260,9 @@ def main():
             if key in values:
                 module.fail_json(msg='`values` must not contain both "{key}" and "!{key}"!'.format(key=key))
 
+    ignore_dynamic = module.params['ignore_dynamic']
+    ignore_builtin = module.params['ignore_builtin']
+
     check_has_library(module)
     api = create_api(module)
 
@@ -230,7 +270,7 @@ def main():
 
     api_path = compose_api_path(api, path)
 
-    old_data = list(api_path)
+    old_data = filter_entries(list(api_path), ignore_dynamic=ignore_dynamic, ignore_builtin=ignore_builtin)
     new_data = [entry.copy() for entry in old_data]
 
     # Find matching entries
@@ -299,7 +339,7 @@ def main():
                         error=to_native(e),
                     )
                 )
-        new_data = list(api_path)
+        new_data = filter_entries(list(api_path), ignore_dynamic=ignore_dynamic, ignore_builtin=ignore_builtin)
 
     # Produce return value
     more = {}

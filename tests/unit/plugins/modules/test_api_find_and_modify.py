@@ -94,6 +94,52 @@ START_IP_FIREWALL_FILTER = [
 
 START_IP_FIREWALL_FILTER_OLD_DATA = massage_expected_result_data(START_IP_FIREWALL_FILTER, ('ip', 'firewall', 'filter'), keep_all=True)
 
+START_IP_SERVICE = [
+    # I removed all entryes not for 'api' and 'api-ssl'
+    {
+        "certificate": None,
+        "tls-version": None,
+        ".id": "*7",
+        "address": "",
+        "disabled": True,
+        "dynamic": False,
+        "invalid": True,
+        "name": "api",
+        "port": 8728,
+        "proto": "tcp",
+        "vrf": "main"
+    },
+    {
+        ".id": "*9",
+        "address": "192.168.1.0/24",
+        "certificate": "mycert",
+        "dynamic": False,
+        "invalid": False,
+        "name": "api-ssl",
+        "port": 8729,
+        "proto": "tcp",
+        "tls-version": "only-1.2",
+        "vrf": "main"
+    },
+    {
+        "address": None,
+        "certificate": None,
+        "max-sessions": None,
+        "tls-version": None,
+        ".id": "*13",
+        "connection": True,
+        "dynamic": True,
+        "invalid": False,
+        "local": "192.168.1.1",
+        "name": "api-ssl",
+        "port": 8729,
+        "proto": "tcp",
+        "remote": "192.168.1.2:12346"
+    }
+]
+
+START_IP_SERVICE_OLD_DATA = massage_expected_result_data(START_IP_SERVICE, ('ip', 'service'), keep_all=True)
+
 
 class TestRouterosApiFindAndModifyModule(ModuleTestCase):
 
@@ -685,3 +731,29 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
         ])
         self.assertEqual(result['match_count'], 3)
         self.assertEqual(result['modify_count'], 2)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_find_and_modify.compose_api_path',
+           new=create_fake_path(('ip', 'service'), START_IP_SERVICE))
+    def test_change_ignore_dynamic(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip service',
+                'find': {
+                    'name': 'api-ssl',
+                },
+                'values': {
+                    'address': '192.168.1.0/24',
+                },
+                'ignore_dynamic': True,
+                '_ansible_diff': True,
+            })
+            with set_module_args(args):
+                self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], [entry for entry in START_IP_SERVICE_OLD_DATA if entry["dynamic"] is False])
+        self.assertEqual(result['new_data'], [entry for entry in START_IP_SERVICE_OLD_DATA if entry["dynamic"] is False])
+        self.assertEqual(result['match_count'], 1)
+        self.assertEqual(result['modify_count'], 0)

@@ -901,3 +901,18 @@ releases:
       - 360-bgp-connection-afi.yml
       - 364-wireguard-responder.yml
     release_date: '2025-04-21'
+  3.7.0:
+    changes:
+      minor_changes:
+        - api_find_and_modify - allow to control whether ``dynamic`` and/or ``builtin``
+          entries are ignored with the new ``ignore_dynamic`` and ``ignore_builtin``
+          options (https://github.com/ansible-collections/community.routeros/issues/372,
+          https://github.com/ansible-collections/community.routeros/pull/373).
+        - api_info, api_modify - add ``port-cost-mode`` to ``interface bridge`` which
+          is supported since RouterOS 7.13 (https://github.com/ansible-collections/community.routeros/pull/371).
+      release_summary: Feature release.
+    fragments:
+      - 3.7.0.yml
+      - 371-add-bridge-port-cost-mode.yml
+      - 373-api_find_and_modify-dynamic-builtin.yml
+    release_date: '2025-05-31'
