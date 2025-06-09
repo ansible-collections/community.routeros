@@ -4923,6 +4923,7 @@ PATHS = {
                 fully_understood=True,
                 fields={
                     'forwarding-override': KeyInfo(),
+                    'name': KeyInfo(),
                 },
             )),
         ],
