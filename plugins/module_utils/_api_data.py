@@ -4197,8 +4197,8 @@ PATHS = {
                     'place-before': KeyInfo(),
                     'vrf': KeyInfo(),
                 },
-            )
-        )],
+            ))
+        ],
     ),
     ('routing', 'bfd', 'interface'): APIData(
         unversioned=VersionedAPIData(
