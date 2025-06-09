@@ -4919,8 +4919,8 @@ PATHS = {
     ('interface', 'ethernet', 'switch', 'port-isolation'): APIData(
         versioned=[
             ('6.43', '>=', VersionedAPIData(
-                fully_understood=True,
                 primary_keys=('name', ),
+                fully_understood=True,
                 fields={
                     'forwarding-override': KeyInfo(),
                 },
