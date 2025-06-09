@@ -4178,6 +4178,28 @@ PATHS = {
             },
         ),
     ),
+    ('routing', 'bfd', 'configuration'): APIData(
+        versioned=[
+            ('7.11', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'address-list': KeyInfo(),
+                    'addresses': KeyInfo(),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    'copy-from': KeyInfo(),
+                    'disabled': KeyInfo(default=False),
+                    'forbid-bfd': KeyInfo(),
+                    'interfaces': KeyInfo(),
+                    'min-echo-rx': KeyInfo(),
+                    'min-rx': KeyInfo(),
+                    'min-tx': KeyInfo(),
+                    'multiplier': KeyInfo(),
+                    'place-before': KeyInfo(),
+                    'vrf': KeyInfo(),
+                },
+            )
+        )],
+    ),
     ('routing', 'bfd', 'interface'): APIData(
         unversioned=VersionedAPIData(
             unknown_mechanism=True,
@@ -4893,6 +4915,17 @@ PATHS = {
                 'vlan-mode': KeyInfo(default='disabled'),
             },
         ),
+    ),
+    ('interface', 'ethernet', 'switch', 'port-isolation'): APIData(
+        versioned=[
+            ('6.43', '>=', VersionedAPIData(
+                fully_understood=True,
+                primary_keys=('name', ),
+                fields={
+                    'forwarding-override': KeyInfo(),
+                },
+            )),
+        ],
     ),
     ('ip', 'dhcp-client', 'option'): APIData(
         unversioned=VersionedAPIData(
