@@ -652,13 +652,22 @@ PATHS = {
     ),
     ('ip', 'ipsec', 'mode-config'): APIData(
         unversioned=VersionedAPIData(
-            unknown_mechanism=True,
-            # primary_keys=('default', ),
+            fully_understood=True,
+            primary_keys=('name', ),
+            versioned_fields=[
+                ([('6.43', '>=')], 'responder', KeyInfo(default=False)),
+                ([('6.44', '>=')], 'address', KeyInfo(can_disable=True, remove_value='0.0.0.0')),
+            ],
             fields={
-                'default': KeyInfo(),
+                'address-pool': KeyInfo(can_disable=True, remove_value='none'),
+                'address-prefix-length': KeyInfo(),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
                 'name': KeyInfo(),
-                'responder': KeyInfo(),
-                'use-responder-dns': KeyInfo(),
+                'split-dns': KeyInfo(can_disable=True, remove_value=''),
+                'split-include': KeyInfo(can_disable=True, remove_value=''),
+                'src-address-list': KeyInfo(can_disable=True, remove_value=''),
+                'static-dns': KeyInfo(can_disable=True, remove_value=''),
+                'system-dns': KeyInfo(default=False),
             },
         ),
     ),
