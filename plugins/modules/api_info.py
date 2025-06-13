@@ -68,6 +68,7 @@ options:
       - interface ethernet poe
       - interface ethernet switch
       - interface ethernet switch port
+      - interface ethernet switch port-isolation
       - interface gre
       - interface gre6
       - interface l2tp-client
@@ -203,6 +204,7 @@ options:
       - queue type
       - radius
       - radius incoming
+      - routing bfd configuration
       - routing bgp aggregate
       - routing bgp connection
       - routing bgp instance
