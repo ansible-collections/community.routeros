@@ -1,3 +1,0 @@
-minor_changes:
-  - api_modify, api_info - support API path ``ip ipsec mode-config``
-    (https://github.com/ansible-collections/community.routeros/pull/376).

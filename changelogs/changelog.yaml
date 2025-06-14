@@ -916,3 +916,21 @@ releases:
       - 371-add-bridge-port-cost-mode.yml
       - 373-api_find_and_modify-dynamic-builtin.yml
     release_date: '2025-05-31'
+  3.8.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - add ``interface ethernet switch port-isolation``
+          which is supported since RouterOS 6.43 (https://github.com/ansible-collections/community.routeros/pull/375).
+        - 'api_info, api_modify - add ``routing bfd configuration``. Officially stabilized
+          BFD support for BGP and OSPF is available since RouterOS 7.11
+
+          (https://github.com/ansible-collections/community.routeros/pull/375).
+
+          '
+        - api_modify, api_info - support API path ``ip ipsec mode-config`` (https://github.com/ansible-collections/community.routeros/pull/376).
+      release_summary: Feature release.
+    fragments:
+      - 3.8.0.yml
+      - 375-port_isolation-and-routing_bfd_configuration.yml
+      - 376-ipsec-mode-config.yml
+    release_date: '2025-06-14'
