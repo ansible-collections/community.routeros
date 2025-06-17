@@ -191,7 +191,7 @@ When this playbook completed successfully, you should be able to use the HTTPS a
 .. code-block:: yaml+jinja
 
     - community.routeros.api:
-        ...
+        # ...
         tls: true
         validate_certs: true
         validate_cert_hostname: true

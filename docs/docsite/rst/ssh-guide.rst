@@ -66,22 +66,22 @@ With the above inventory, you can use the following playbook to execute ``/syste
       gather_facts: false
       tasks:
 
-      - name: Gather system resources
-        community.routeros.command:
-          commands:
-            - /system resource print
-        register: system_resource_print
+        - name: Gather system resources
+          community.routeros.command:
+            commands:
+              - /system resource print
+          register: system_resource_print
 
-      - name: Show system resources
-        debug:
-          var: system_resource_print.stdout_lines
+        - name: Show system resources
+          debug:
+            var: system_resource_print.stdout_lines
 
-      - name: Gather facts
-        community.routeros.facts:
+        - name: Gather facts
+          community.routeros.facts:
 
-      - name: Show a fact
-        debug:
-          msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
+        - name: Show a fact
+          debug:
+            msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
 
 This results in the following output:
 
