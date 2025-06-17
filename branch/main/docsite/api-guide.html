@@ -307,8 +307,8 @@
 <p>The playbook also assumes that <code class="docutils literal notranslate"><span class="pre">admin_network</span></code> describes the network from which the HTTPS and API interface can be accessed. This can be for example <code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code>.</p>
 <p>When this playbook completed successfully, you should be able to use the HTTPS admin interface (reachable in a browser from <code class="docutils literal notranslate"><span class="pre">https://192.168.1.1/</span></code>, with the correct IP inserted), as well as the <a class="reference internal" href="../api_module.html#ansible-collections-community-routeros-api-module"><span class="std std-ref">community.routeros.api module</span></a> module with TLS and certificate validation enabled:</p>
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">community.routeros.api</span><span class="p">:</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">tls</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="c1"># ...</span>
+<span class="w">    </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">validate_certs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">validate_cert_hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/ca-certificate.pem</span>
