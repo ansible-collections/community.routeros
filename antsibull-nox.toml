@@ -44,12 +44,17 @@ run_no_trailing_whitespace = true
 no_trailing_whitespace_skip_directories = [
     "tests/unit/plugins/modules/fixtures/",
 ]
+run_avoid_characters = true
 
 [[sessions.extra_checks.action_groups_config]]
 name = "api"
 pattern = "^api.*$"
 exclusions = []
 doc_fragment = "community.routeros.attributes.actiongroup_api"
+
+[[sessions.extra_checks.avoid_character_group]]
+name = "tab"
+regex = "\\x09"
 
 [sessions.build_import_check]
 run_galaxy_importer = true
