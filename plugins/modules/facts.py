@@ -589,8 +589,6 @@ FACT_SUBSETS = dict(
 
 VALID_SUBSETS = frozenset(FACT_SUBSETS.keys())
 
-warnings = list()
-
 
 def main():
     """main entry point for module execution
@@ -653,7 +651,7 @@ def main():
         key = 'ansible_net_%s' % key
         ansible_facts[key] = value
 
-    module.exit_json(ansible_facts=ansible_facts, warnings=warnings)
+    module.exit_json(ansible_facts=ansible_facts)
 
 
 if __name__ == '__main__':
