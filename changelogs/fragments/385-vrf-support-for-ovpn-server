@@ -3,3 +3,5 @@ minor_changes:
   - api_info, api_modify - Since RouterOS 7.17 VRF is supported for OVPN server.
     It now supports multiple entries and single_value parameter is now obsolete. This demands for a versioned API.
     https://github.com/ansible-collections/community.routeros/pull/383
+license:
+  - GPL-3.0-or-later
