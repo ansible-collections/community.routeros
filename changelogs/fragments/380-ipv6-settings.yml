@@ -1,0 +1,3 @@
+minor_changes:
+  - api_info, api_modify - add ``disable-link-local-address`` and ``stale-neighbor-timeout`` fields to ``ipv6 settings`` (https://github.com/ansible-collections/community.routeros/pull/380).
+  - api_info, api_modify - adjust neighbor limit fields in ``ipv6 settings`` to match RouterOS 7.18 and newer (https://github.com/ansible-collections/community.routeros/pull/380).
