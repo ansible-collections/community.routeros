@@ -5,5 +5,3 @@ minor_changes:
     The ``interface ovpn-server server`` path now allows multiple entries
     on RouterOS 7.17 and newer
     (https://github.com/ansible-collections/community.routeros/pull/383).
-license:
-  - GPL-3.0-or-later
