@@ -4,6 +4,19 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.8.1
+======
+
+Release Summary
+---------------
+
+Bugfix release.
+
+Bugfixes
+--------
+
+- facts and api_facts modules - prevent deprecation warnings when used with ansible-core 2.19 (https://github.com/ansible-collections/community.routeros/pull/384).
+
 v3.8.0
 ======
 

@@ -934,3 +934,13 @@ releases:
       - 375-port_isolation-and-routing_bfd_configuration.yml
       - 376-ipsec-mode-config.yml
     release_date: '2025-06-14'
+  3.8.1:
+    changes:
+      bugfixes:
+        - facts and api_facts modules - prevent deprecation warnings when used with
+          ansible-core 2.19 (https://github.com/ansible-collections/community.routeros/pull/384).
+      release_summary: Bugfix release.
+    fragments:
+      - 3.8.1.yml
+      - 384-warnings.yml
+    release_date: '2025-07-26'
