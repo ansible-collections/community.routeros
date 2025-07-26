@@ -1658,23 +1658,46 @@ PATHS = {
         ),
     ),
     ('interface', 'ovpn-server', 'server'): APIData(
-        unversioned=VersionedAPIData(
-            single_value=True,
-            fully_understood=True,
-            fields={
-                'auth': KeyInfo(),
-                'cipher': KeyInfo(),
-                'default-profile': KeyInfo(default='default'),
-                'enabled': KeyInfo(default=False),
-                'keepalive-timeout': KeyInfo(default=60),
-                'mac-address': KeyInfo(),
-                'max-mtu': KeyInfo(default=1500),
-                'mode': KeyInfo(default='ip'),
-                'netmask': KeyInfo(default=24),
-                'port': KeyInfo(default=1194),
-                'require-client-certificate': KeyInfo(default=False),
-            },
-        ),
+        versioned=[
+            ('7.17', '>=', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'auth': KeyInfo(),
+                    'cipher': KeyInfo(),
+                    'default-profile': KeyInfo(default='default'),
+                    'enabled': KeyInfo(default=False),
+                    'keepalive-timeout': KeyInfo(default=60),
+                    'mac-address': KeyInfo(),
+                    'max-mtu': KeyInfo(default=1500),
+                    'mode': KeyInfo(default='ip'),
+                    'name': KeyInfo(default=''),
+                    'netmask': KeyInfo(default=24),
+                    'port': KeyInfo(default=1194),
+                    'protocol': KeyInfo(default='tcp'),
+                    'require-client-certificate': KeyInfo(default=False),
+                    'vrf': KeyInfo(default='main'),
+                },
+            )),
+            ('7.17', '<', VersionedAPIData(
+                single_value=True,
+                fully_understood=True,
+                fields={
+                    'auth': KeyInfo(),
+                    'cipher': KeyInfo(),
+                    'default-profile': KeyInfo(default='default'),
+                    'enabled': KeyInfo(default=False),
+                    'keepalive-timeout': KeyInfo(default=60),
+                    'mac-address': KeyInfo(),
+                    'max-mtu': KeyInfo(default=1500),
+                    'mode': KeyInfo(default='ip'),
+                    'name': KeyInfo(default=''),
+                    'netmask': KeyInfo(default=24),
+                    'port': KeyInfo(default=1194),
+                    'protocol': KeyInfo(default='tcp'),
+                    'require-client-certificate': KeyInfo(default=False),
+                },
+            ))
+        ]
     ),
     ('interface', 'pppoe-server', 'server'): APIData(
         unversioned=VersionedAPIData(
