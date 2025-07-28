@@ -3151,6 +3151,10 @@ PATHS = {
         unversioned=VersionedAPIData(
             fully_understood=True,
             stratify_keys=('chain', ),
+            versioned_fields=[
+                ([('7.19', '<')], 'passthrough', KeyInfo(can_disable=True)),
+                ([('7.19', '>=')], 'passthrough', KeyInfo(default=True)),
+            ],
             fields={
                 'action': KeyInfo(),
                 'address-list': KeyInfo(can_disable=True),
@@ -3202,7 +3206,6 @@ PATHS = {
                 'p2p': KeyInfo(can_disable=True),
                 'packet-mark': KeyInfo(can_disable=True),
                 'packet-size': KeyInfo(can_disable=True),
-                'passthrough': KeyInfo(can_disable=True),
                 'per-connection-classifier': KeyInfo(can_disable=True),
                 'port': KeyInfo(can_disable=True),
                 'priority': KeyInfo(can_disable=True),
