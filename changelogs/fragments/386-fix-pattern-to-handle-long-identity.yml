@@ -1,0 +1,3 @@
+---
+bugfixes:
+  - terminal, Fix terminal's `terminal_stdout_re` pattern to handle long system identity (https://github.com/ansible-collections/community.routeros/pull/386).
