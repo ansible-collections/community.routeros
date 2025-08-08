@@ -317,8 +317,8 @@ class Interfaces(FactsBase):
     def populate_addresses(self, data, family):
         for value in data:
             key = value['interface']
-            if family not in self.facts['interfaces'][key]:
-                self.facts['interfaces'][key][family] = []
+            iface = self.facts['interfaces'].setdefault(key, {"type": "unknown"} if key.startswith('*') else {})
+            iface_addrs = iface.setdefault(family, [])
             addr, subnet = value['address'].split('/')
             subnet = subnet.strip()
             # Try to convert subnet to an integer
@@ -328,7 +328,7 @@ class Interfaces(FactsBase):
                 pass
             ip = dict(address=addr.strip(), subnet=subnet)
             self.add_ip_address(addr.strip(), family)
-            self.facts['interfaces'][key][family].append(ip)
+            iface_addrs.append(ip)
 
     def add_ip_address(self, address, family):
         if family == 'ipv4':
