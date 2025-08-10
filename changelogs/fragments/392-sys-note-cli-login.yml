@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add ``show-at-cli-login`` property in ``system note`` (https://github.com/ansible-collections/community.routeros/pull/392).

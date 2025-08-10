@@ -4421,6 +4421,9 @@ PATHS = {
         unversioned=VersionedAPIData(
             single_value=True,
             fully_understood=True,
+            versioned_fields=[
+                ([('7.14', '>=')], 'show-at-cli-login', KeyInfo(default=False)),
+            ],
             fields={
                 'note': KeyInfo(default=''),
                 'show-at-login': KeyInfo(default=True),
