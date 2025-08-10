@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - set ``passthrough`` default in ``ip firewall mangle`` to ``true`` for RouterOS 7.19 and newer (https://github.com/ansible-collections/community.routeros/pull/382).

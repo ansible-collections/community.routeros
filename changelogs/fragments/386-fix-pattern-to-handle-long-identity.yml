@@ -1,3 +1,0 @@
----
-bugfixes:
-  - routeros terminal plugin - fix ``terminal_stdout_re`` pattern to handle long system identities when connecting to RouterOS through SSH (https://github.com/ansible-collections/community.routeros/pull/386).

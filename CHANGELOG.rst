@@ -4,6 +4,28 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.9.0
+======
+
+Release Summary
+---------------
+
+Bugfix and feature release.
+
+Minor Changes
+-------------
+
+- api_info, api modify - add ``remote-log-format``, ``remote-protocol``, and ``event-delimiter`` to ``system logging action`` (https://github.com/ansible-collections/community.routeros/pull/381).
+- api_info, api_modify - add ``disable-link-local-address`` and ``stale-neighbor-timeout`` fields to ``ipv6 settings`` (https://github.com/ansible-collections/community.routeros/pull/380).
+- api_info, api_modify - adjust neighbor limit fields in ``ipv6 settings`` to match RouterOS 7.18 and newer (https://github.com/ansible-collections/community.routeros/pull/380).
+- api_info, api_modify - set ``passthrough`` default in ``ip firewall mangle`` to ``true`` for RouterOS 7.19 and newer (https://github.com/ansible-collections/community.routeros/pull/382).
+- api_info, api_modify - since RouterOS 7.17 VRF is supported for OVPN server. It now supports multiple entries, while ``api_modify`` so far only accepted a single entry. The ``interface ovpn-server server`` path now allows multiple entries on RouterOS 7.17 and newer (https://github.com/ansible-collections/community.routeros/pull/383).
+
+Bugfixes
+--------
+
+- routeros terminal plugin - fix ``terminal_stdout_re`` pattern to handle long system identities when connecting to RouterOS through SSH (https://github.com/ansible-collections/community.routeros/pull/386).
+
 v3.8.1
 ======
 
