@@ -317,7 +317,9 @@ class Interfaces(FactsBase):
     def populate_addresses(self, data, family):
         for value in data:
             key = value['interface']
-            iface = self.facts['interfaces'].setdefault(key, {"type": "unknown"} if key.startswith('*') else {})
+            iface = self.facts['interfaces'].setdefault(key, (
+                {"type": "ansible:unknown"} if key.startswith('*') else
+                {"type": "ansible:mismatch"}))
             iface_addrs = iface.setdefault(family, [])
             addr, subnet = value['address'].split('/')
             subnet = subnet.strip()

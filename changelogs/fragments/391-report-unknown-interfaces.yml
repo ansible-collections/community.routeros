@@ -1,0 +1,12 @@
+---
+bugfixes:
+  - |
+    api_facts - also report interfaces that are inferred only by reference by IP addresses.
+    RouterOS's APIs have IPv4 and IPv6 addresses point at interfaces by their name, which can
+    change over time and in-between API calls, such that interfaces may have been enumerated
+    under another name, or not at all (i.e. when removed). Such interfaces are now reported
+    under their new or temporary name and with a synthetic ``type`` property set to differentiate
+    the more likely and positively confirmed removal case (with ``type: "ansible:unknown"``) from
+    the unlikely and probably transient naming mismatch (with ``type: "ansible:mismatch"``).
+    Previously, api_facts would have crashed with a `KeyError` exception.
+    (https://github.com/ansible-collections/community.routeros/pull/391).
