@@ -470,8 +470,6 @@ class TestRouterosApiInfoModule(ModuleTestCase):
             {
                 '.id': '*2000010',
                 'name': 'WAN',
-                'include': '',
-                'exclude': '',
                 'comment': 'defconf',
             },
         ])
@@ -523,24 +521,18 @@ class TestRouterosApiInfoModule(ModuleTestCase):
             {
                 '.id': '*2000000',
                 'name': 'all',
-                'include': '',
-                'exclude': '',
                 'builtin': True,
                 'comment': 'contains all interfaces',
             },
             {
                 '.id': '*2000001',
                 'name': 'none',
-                'include': '',
-                'exclude': '',
                 'builtin': True,
                 'comment': 'contains no interfaces',
             },
             {
                 '.id': '*2000010',
                 'name': 'WAN',
-                'include': '',
-                'exclude': '',
                 'builtin': False,
                 'comment': 'defconf',
             },
