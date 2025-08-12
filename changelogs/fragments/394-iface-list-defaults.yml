@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - set default value for ``include`` and ``exclude`` properties in ``system note`` to an empty string (https://github.com/ansible-collections/community.routeros/pull/394).
