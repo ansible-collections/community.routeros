@@ -441,8 +441,8 @@ PATHS = {
             fully_understood=True,
             fields={
                 'comment': KeyInfo(can_disable=True, remove_value=''),
-                'exclude': KeyInfo(),
-                'include': KeyInfo(),
+                'exclude': KeyInfo(default=''),
+                'include': KeyInfo(default=''),
                 'name': KeyInfo(),
             },
         ),
