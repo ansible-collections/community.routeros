@@ -1,1 +1,4 @@
+plugins/modules/api_facts.py pylint:ansible-bad-import-from
+plugins/modules/command.py pylint:ansible-bad-import-from
+plugins/modules/facts.py pylint:ansible-bad-import-from
 tests/update-docs.py shebang
