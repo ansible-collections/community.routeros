@@ -4,6 +4,33 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.10.0
+=======
+
+Release Summary
+---------------
+
+Bugfix and feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - add ``show-at-cli-login`` property in ``system note`` (https://github.com/ansible-collections/community.routeros/pull/392).
+- api_info, api_modify - set default value for ``include`` and ``exclude`` properties in ``system note`` to an empty string (https://github.com/ansible-collections/community.routeros/pull/394).
+
+Bugfixes
+--------
+
+- api_facts - also report interfaces that are inferred only by reference by IP addresses.
+  RouterOS's APIs have IPv4 and IPv6 addresses point at interfaces by their name, which can
+  change over time and in-between API calls, such that interfaces may have been enumerated
+  under another name, or not at all (for example when removed). Such interfaces are now reported
+  under their new or temporary name and with a synthetic ``type`` property set to differentiate
+  the more likely and positively confirmed removal case (with ``type: "ansible:unknown"``) from
+  the unlikely and probably transient naming mismatch (with ``type: "ansible:mismatch"``).
+  Previously, the api_facts module would have crashed with a ``KeyError`` exception
+  (https://github.com/ansible-collections/community.routeros/pull/391).
+
 v3.9.0
 ======
 
