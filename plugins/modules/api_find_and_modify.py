@@ -195,6 +195,10 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
     split_path,
 )
 
+from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
+    value_to_str,
+)
+
 try:
     from librouteros.exceptions import LibRouterosError
 except Exception:
@@ -285,7 +289,7 @@ def main():
             current_value = entry.get(key)
             if key in DISABLED_MEANS_EMPTY_STRING and value == '' and current_value is None:
                 current_value = value
-            if current_value != value:
+            if value_to_str(current_value) != value_to_str(value):
                 matches = False
                 break
         if matches:
@@ -312,7 +316,7 @@ def main():
             current_value = entry.get(key)
             if key in DISABLED_MEANS_EMPTY_STRING and value == '' and current_value is None:
                 current_value = value
-            if current_value != value:
+            if value_to_str(current_value) != value_to_str(value):
                 if value is None:
                     disable_key = '!%s' % key
                     if key in DISABLED_MEANS_EMPTY_STRING:

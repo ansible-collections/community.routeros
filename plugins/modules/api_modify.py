@@ -476,6 +476,7 @@ from ansible_collections.community.routeros.plugins.module_utils._api_helper imp
     restrict_argument_spec,
     restrict_entry_accepted,
     validate_and_prepare_restrict,
+    value_to_str,
 )
 
 HAS_ORDEREDDICT = True
@@ -511,7 +512,7 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
         disabled_k = None
         if k.startswith('!'):
             disabled_k = k[1:]
-        elif v is None or v == path_info.fields[k].remove_value:
+        elif v is None or value_to_str(v) == value_to_str(path_info.fields[k].remove_value):
             disabled_k = k
         if disabled_k is not None:
             if disabled_k in old_entry:
@@ -521,7 +522,7 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
                     modifications['!%s' % disabled_k] = ''
                 del updated_entry[disabled_k]
             continue
-        if k not in old_entry and path_info.fields[k].default == v and not path_info.fields[k].can_disable:
+        if k not in old_entry and value_to_str(path_info.fields[k].default) == value_to_str(v) and not path_info.fields[k].can_disable:
             continue
         key_info = path_info.fields[k]
         if key_info.read_only:
@@ -535,7 +536,7 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
             if module.params['handle_write_only'] == 'create_only':
                 # do not update this value
                 continue
-        if k not in old_entry or old_entry[k] != v:
+        if k not in old_entry or value_to_str(old_entry[k]) != value_to_str(v):
             modifications[k] = v
             updated_entry[k] = v
     handle_entries_content = module.params['handle_entries_content']
@@ -578,15 +579,15 @@ def essentially_same_weight(old_entry, new_entry, path_info, module):
         disabled_k = None
         if k.startswith('!'):
             disabled_k = k[1:]
-        elif v is None or v == path_info.fields[k].remove_value:
+        elif v is None or value_to_str(v) == value_to_str(path_info.fields[k].remove_value):
             disabled_k = k
         if disabled_k is not None:
             if disabled_k in old_entry:
                 return None
             continue
-        if k not in old_entry and path_info.fields[k].default == v:
+        if k not in old_entry and value_to_str(path_info.fields[k].default) == value_to_str(v):
             continue
-        if k not in old_entry or old_entry[k] != v:
+        if k not in old_entry or value_to_str(old_entry[k]) != value_to_str(v):
             return None
     handle_entries_content = module.params['handle_entries_content']
     weight = 0
@@ -948,7 +949,7 @@ def sync_with_primary_keys(module, api, path, path_info, restrict_data):
                         index=index + 1,
                     )
                 )
-        pks = tuple(entry[primary_key] for primary_key in primary_keys)
+        pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
         if pks in new_data_by_key:
             module.fail_json(
                 msg='Every element in data must contain a unique value for {primary_keys}. The value {value} appears at least twice.'.format(
@@ -975,7 +976,7 @@ def sync_with_primary_keys(module, api, path, path_info, restrict_data):
     old_data_by_key = OrderedDict()
     id_by_key = {}
     for entry in old_data:
-        pks = tuple(entry[primary_key] for primary_key in primary_keys)
+        pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
         old_data_by_key[pks] = entry
         id_by_key[pks] = entry['.id']
     new_data = []
@@ -1028,14 +1029,14 @@ def sync_with_primary_keys(module, api, path, path_info, restrict_data):
     if module.params['ensure_order']:
         index_by_key = dict()
         for index, entry in enumerate(new_data):
-            index_by_key[tuple(entry[primary_key] for primary_key in primary_keys)] = index
+            index_by_key[tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)] = index
         for index, source_entry in enumerate(data):
-            source_pks = tuple(source_entry[primary_key] for primary_key in primary_keys)
+            source_pks = tuple(value_to_str(source_entry[primary_key]) for primary_key in primary_keys)
             source_index = index_by_key.pop(source_pks)
             if index == source_index:
                 continue
             entry = new_data[index]
-            pks = tuple(entry[primary_key] for primary_key in primary_keys)
+            pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
             reorder_list.append((source_pks, index, pks))
             for k, v in index_by_key.items():
                 if v >= index and v < source_index:
