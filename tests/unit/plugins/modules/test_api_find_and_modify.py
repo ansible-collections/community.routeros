@@ -407,6 +407,54 @@ class TestRouterosApiFindAndModifyModule(ModuleTestCase):
         self.assertEqual(result['modify_count'], 0)
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_find_and_modify.compose_api_path',
+           new=create_fake_path(('ip', 'service'), START_IP_SERVICE, read_only=True))
+    def test_idempotent_3(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip service',
+                'find': {
+                    'name': 'api',
+                },
+                'values': {
+                    'port': '8728',
+                },
+            })
+            with set_module_args(args):
+                self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_SERVICE_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_SERVICE_OLD_DATA)
+        self.assertEqual(result['match_count'], 1)
+        self.assertEqual(result['modify_count'], 0)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_find_and_modify.compose_api_path',
+           new=create_fake_path(('ip', 'service'), START_IP_SERVICE, read_only=True))
+    def test_idempotent_4(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip service',
+                'find': {
+                    'port': '8728',
+                },
+                'values': {
+                    'name': 'api',
+                },
+            })
+            with set_module_args(args):
+                self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_SERVICE_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_SERVICE_OLD_DATA)
+        self.assertEqual(result['match_count'], 1)
+        self.assertEqual(result['modify_count'], 0)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_find_and_modify.compose_api_path',
            new=create_fake_path(('ip', 'dns', 'static'), START_IP_DNS_STATIC))
     def test_change(self):
         with self.assertRaises(AnsibleExitJson) as exc:

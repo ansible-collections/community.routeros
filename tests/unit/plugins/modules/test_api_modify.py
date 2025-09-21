@@ -43,6 +43,17 @@ START_IP_DNS_STATIC = [
         'address': '192.168.88.15',
         'dynamic': True,
     },
+    {
+        '.id': '*9',
+        'comment': '',
+        'name': 'foobar',
+        'type': 'SRV',
+        'srv-port': '123',
+        'srv-priority': 5,
+        'srv-target': '192.168.88.23',
+        'srv-weight': 15,
+        'dynamic': False,
+    },
 ]
 
 START_IP_DNS_STATIC_OLD_DATA = massage_expected_result_data(START_IP_DNS_STATIC, ('ip', 'dns', 'static'), remove_dynamic=True)
@@ -497,6 +508,13 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                         'name': 'router',
                         'text': 'Router Text Entry',
                     },
+                    {
+                        'name': 'foobar',
+                        'type': 'SRV',
+                        'srv-port': '123',
+                        'srv-priority': 5,
+                        'srv-target': '192.168.88.23',
+                    },
                 ],
             })
             with set_module_args(args):
@@ -529,6 +547,14 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                         'name': 'router',
                         '!comment': None,
                         'text': 'Router Text Entry',
+                    },
+                    {
+                        'name': 'foobar',
+                        'type': 'SRV',
+                        'srv-port': 123,
+                        'srv-priority': '5',
+                        'srv-target': '192.168.88.23',
+                        'srv-weight': '15',
                     },
                 ],
                 'handle_absent_entries': 'remove',
@@ -625,6 +651,18 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 'match-subdomain': False,
             },
             {
+                '.id': '*9',
+                'name': 'foobar',
+                'type': 'SRV',
+                'srv-port': '123',
+                'srv-priority': 5,
+                'srv-target': '192.168.88.23',
+                'srv-weight': 15,
+                'ttl': '1d',
+                'disabled': False,
+                'match-subdomain': False,
+            },
+            {
                 '.id': '*NEW1',
                 'name': 'router',
                 'text': 'Router Text Entry 2',
@@ -685,6 +723,18 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 '.id': '*7',
                 'name': 'foo',
                 'address': '192.168.88.2',
+                'ttl': '1d',
+                'disabled': False,
+                'match-subdomain': False,
+            },
+            {
+                '.id': '*9',
+                'name': 'foobar',
+                'type': 'SRV',
+                'srv-port': '123',
+                'srv-priority': 5,
+                'srv-target': '192.168.88.23',
+                'srv-weight': 15,
                 'ttl': '1d',
                 'disabled': False,
                 'match-subdomain': False,
@@ -751,6 +801,18 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                 '.id': '*7',
                 'name': 'foo',
                 'address': '192.168.88.2',
+                'ttl': '1d',
+                'disabled': False,
+                'match-subdomain': False,
+            },
+            {
+                '.id': '*9',
+                'name': 'foobar',
+                'type': 'SRV',
+                'srv-port': '123',
+                'srv-priority': 5,
+                'srv-target': '192.168.88.23',
+                'srv-weight': 15,
                 'ttl': '1d',
                 'disabled': False,
                 'match-subdomain': False,
@@ -1373,6 +1435,29 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['new_data'], START_IP_SETTINGS_OLD_DATA)
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'settings'), START_IP_SETTINGS, read_only=True))
+    def test_sync_value_idempotent_3(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip settings',
+                'data': [
+                    {
+                        'accept-redirects': 'yes',
+                        'icmp-rate-limit': '20',
+                    },
+                ],
+                'handle_entries_content': 'remove',
+            })
+            with set_module_args(args):
+                self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_SETTINGS_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_SETTINGS_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'settings'), START_IP_SETTINGS))
     def test_sync_value_modify(self):
         with self.assertRaises(AnsibleExitJson) as exc:
@@ -1870,6 +1955,42 @@ class TestRouterosApiModifyModule(ModuleTestCase):
                     {
                         'interface': 'ether2',
                         'dhcp-options': None,
+                    },
+                    {
+                        'interface': 'ether3',
+                        'dhcp-options': 'hostname',
+                    },
+                ],
+                'handle_absent_entries': 'remove',
+                'handle_entries_content': 'remove',
+                'ensure_order': True,
+            })
+            with set_module_args(args):
+                self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IP_DHCP_CLIENT_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IP_DHCP_CLIENT_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ip', 'dhcp-client'), START_IP_DHCP_CLIENT, read_only=True))
+    def test_default_remove_combination_idempotent_2(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ip dhcp-client',
+                'data': [
+                    {
+                        'interface': 'ether1',
+                        'add-default-route': 'yes',
+                        'default-route-distance': '1',
+                    },
+                    {
+                        'interface': 'ether2',
+                        'dhcp-options': None,
+                        'add-default-route': True,
+                        'default-route-distance': 1,
                     },
                     {
                         'interface': 'ether3',

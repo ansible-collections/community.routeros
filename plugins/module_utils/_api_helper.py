@@ -14,7 +14,17 @@ import re
 from ansible.module_utils.common.text.converters import to_text
 
 
-def validate_and_prepare_restrict(module, path_info):
+def value_to_str(value, compat_bool=False, none_to_empty=False):
+    if value is None:
+        return '' if none_to_empty else None
+    if value is True:
+        return 'true' if compat_bool else 'yes'
+    if value is False:
+        return 'false' if compat_bool else 'no'
+    return to_text(value)
+
+
+def validate_and_prepare_restrict(module, path_info, compat=True):
     restrict = module.params['restrict']
     if restrict is None:
         return None
@@ -33,7 +43,10 @@ def validate_and_prepare_restrict(module, path_info):
             invert=rule['invert'],
         )
         if rule['values'] is not None:
-            new_rule['values'] = rule['values']
+            if compat:
+                new_rule['values'] = rule['values']
+            else:
+                new_rule['values'] = [value_to_str(v, none_to_empty=False) for v in rule['values']]
         if rule['regex'] is not None:
             regex = rule['regex']
             try:
@@ -45,26 +58,19 @@ def validate_and_prepare_restrict(module, path_info):
     return restrict_data
 
 
-def _value_to_str(value):
-    if value is None:
-        return None
-    value_str = to_text(value)
-    if isinstance(value, bool):
-        value_str = value_str.lower()
-    return value_str
-
-
-def _test_rule_except_invert(value, rule):
+def _test_rule_except_invert(value, rule, compat=False):
     if value is None and rule['match_disabled']:
         return True
-    if 'values' in rule and value in rule['values']:
-        return True
-    if 'regex' in rule and value is not None and rule['regex'].match(_value_to_str(value)):
+    if 'values' in rule:
+        v = value if compat else value_to_str(value, none_to_empty=False)
+        if v in rule['values']:
+            return True
+    if 'regex' in rule and value is not None and rule['regex'].match(value_to_str(value, compat_bool=compat)):
         return True
     return False
 
 
-def restrict_entry_accepted(entry, path_info, restrict_data):
+def restrict_entry_accepted(entry, path_info, restrict_data, compat=True):
     if restrict_data is None:
         return True
     for rule in restrict_data:
@@ -78,7 +84,7 @@ def restrict_entry_accepted(entry, path_info, restrict_data):
             value = field_info.absent_value
 
         # Check
-        matches_rule = _test_rule_except_invert(value, rule)
+        matches_rule = _test_rule_except_invert(value, rule, compat=compat)
         if rule['invert']:
             matches_rule = not matches_rule
         if not matches_rule:

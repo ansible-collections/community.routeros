@@ -17,7 +17,7 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 )
 
 from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
-    _value_to_str,
+    value_to_str,
     _test_rule_except_invert,
     validate_and_prepare_restrict,
     restrict_entry_accepted,
@@ -25,23 +25,33 @@ from ansible_collections.community.routeros.plugins.module_utils._api_helper imp
 
 
 VALUE_TO_STR = [
-    (None, None),
-    ('', u''),
-    ('foo', u'foo'),
-    (True, u'true'),
-    (False, u'false'),
-    ([], u'[]'),
-    ({}, u'{}'),
-    (1, u'1'),
-    (-42, u'-42'),
-    (1.5, u'1.5'),
-    (1.0, u'1.0'),
+    (None, u'', {'none_to_empty': True}),
+    (None, None, {'none_to_empty': False}),
+    (None, None, {}),
+    ('', u'', {}),
+    ('foo', u'foo', {}),
+    (True, u'true', {'compat_bool': True}),
+    (False, u'false', {'compat_bool': True}),
+    (True, u'yes', {'compat_bool': False}),
+    (False, u'no', {'compat_bool': False}),
+    (True, u'yes', {}),
+    (False, u'no', {}),
+    ('true', u'true', {}),
+    ('false', u'false', {}),
+    ('yes', u'yes', {}),
+    ('no', u'no', {}),
+    ([], u'[]', {}),
+    ({}, u'{}', {}),
+    (1, u'1', {}),
+    (-42, u'-42', {}),
+    (1.5, u'1.5', {}),
+    (1.0, u'1.0', {}),
 ]
 
 
-@pytest.mark.parametrize("value, expected", VALUE_TO_STR)
-def test_value_to_str(value, expected):
-    result = _value_to_str(value)
+@pytest.mark.parametrize("value, expected, kwargs", VALUE_TO_STR)
+def test_value_to_str(value, expected, kwargs):
+    result = value_to_str(value, **kwargs)
     print(repr(result))
     assert result == expected
 
@@ -123,7 +133,7 @@ TEST_RULE_EXCEPT_INVERT = [
 
 @pytest.mark.parametrize("value, rule, expected", TEST_RULE_EXCEPT_INVERT)
 def test_rule_except_invert(value, rule, expected):
-    result = _test_rule_except_invert(value, rule)
+    result = _test_rule_except_invert(value, rule, compat=True)
     print(repr(result))
     assert result == expected
 
