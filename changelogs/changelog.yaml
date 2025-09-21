@@ -1012,3 +1012,22 @@ releases:
       - 392-sys-note-cli-login.yml
       - 394-iface-list-defaults.yml
     release_date: '2025-08-31'
+  3.11.0:
+    changes:
+      bugfixes:
+        - api - allow querying for keys containing ``id``, as long as the key itself
+          is not ``id`` (https://github.com/ansible-collections/community.routeros/issues/396,
+          https://github.com/ansible-collections/community.routeros/pull/398).
+      minor_changes:
+        - api_find_and_modify, api_modify - instead of comparing supplied values as-is
+          to values retrieved from the API and converted to some types (int, bool)
+          by librouteros, instead compare values by converting them to strings first,
+          using similar conversion rules that librouteros uses (https://github.com/ansible-collections/community.routeros/issues/389,
+          https://github.com/ansible-collections/community.routeros/issues/370, https://github.com/ansible-collections/community.routeros/issues/325,
+          https://github.com/ansible-collections/community.routeros/issues/169, https://github.com/ansible-collections/community.routeros/pull/397).
+      release_summary: Bugfix and feature release.
+    fragments:
+      - 3.11.0.yml
+      - 397-compare-by-value.yml
+      - 398-api-id.yml
+    release_date: '2025-09-21'
