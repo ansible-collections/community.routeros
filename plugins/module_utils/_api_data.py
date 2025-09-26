@@ -5251,6 +5251,7 @@ PATHS = {
                 ([('7.18', '>=')], 'remote-log-format', KeyInfo(default='default')),
                 ([('7.18', '>=')], 'remote-protocol', KeyInfo(default='udp')),
                 ([('7.18', '>=')], 'cef-event-delimiter', KeyInfo(default='\r\n')),
+                ([('7.19', '>=')], 'vrf', KeyInfo(default='main')),
             ],
             fields={
                 'bsd-syslog': KeyInfo(default=False),
