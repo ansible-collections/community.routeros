@@ -7,6 +7,11 @@
 "community.netcommon" = "git+https://github.com/ansible-collections/ansible.netcommon.git,main"
 "community.utils" = "git+https://github.com/ansible-collections/ansible.utils.git,main"
 
+[vcs]
+vcs = "git"
+development_branch = "main"
+stable_branches = [ "stable-*" ]
+
 [sessions]
 
 [sessions.lint]
