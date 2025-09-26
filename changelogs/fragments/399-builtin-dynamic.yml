@@ -1,0 +1,5 @@
+deprecated_features:
+  - "api_find_and_modify - the current defaults for ``ignore_dynamic`` and ``ignore_builtin`` (both ``false``) have been deprecated and will change to ``true`` in community.routeros 4.0.0.
+     To avoid deprecation messages, please set the value explicitly to ``true`` or ``false``, if you have not already done so.
+     We recommend to set them to ``true``, unless you have a good reason to set them to ``false``
+     (https://github.com/ansible-collections/community.routeros/pull/399)."
