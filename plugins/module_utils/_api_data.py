@@ -3785,6 +3785,7 @@ PATHS = {
                 'new-hop-limit': KeyInfo(),
                 'new-mss': KeyInfo(),
                 'new-packet-mark': KeyInfo(),
+                'new-priority': KeyInfo(can_disable=True),
                 'new-routing-mark': KeyInfo(),
                 'nth': KeyInfo(can_disable=True),
                 'out-bridge-port': KeyInfo(can_disable=True),
