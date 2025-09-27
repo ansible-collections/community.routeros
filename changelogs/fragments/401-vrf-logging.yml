@@ -1,3 +1,3 @@
 minor_changes:
-  - "api_modify - add ``VRF`` for ``system logging action`` with a default of ``main`` for RouterOS 7.19 and newer
+  - "api_modify - add ``vrf`` for ``system logging action`` with a default of ``main`` for RouterOS 7.19 and newer
      (https://github.com/ansible-collections/community.routeros/pull/401)."
