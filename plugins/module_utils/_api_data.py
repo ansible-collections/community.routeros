@@ -5115,7 +5115,6 @@ PATHS = {
                 'remote.as': KeyInfo(),
                 'remote.allowed-as': KeyInfo(),
                 'remote.ttl': KeyInfo(),
-                'router-id': KeyInfo(),
                 'routing-table': KeyInfo(),
                 'save-to': KeyInfo(),
                 'tcp-md5-key': KeyInfo(),
