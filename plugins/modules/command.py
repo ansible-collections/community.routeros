@@ -121,13 +121,18 @@ failed_conditions:
   sample: ['...', '...']
 """
 
+import sys
 import time
 
 from ansible_collections.community.routeros.plugins.module_utils.routeros import run_commands
 from ansible_collections.community.routeros.plugins.module_utils.routeros import routeros_argument_spec
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.parsing import Conditional
-from ansible.module_utils.six import string_types
+
+if sys.version_info[0] == 2:
+    string_types = (str, unicode)  # noqa: F821, pylint: disable=undefined-variable
+else:
+    string_types = (bytes, str)
 
 
 def to_lines(stdout):

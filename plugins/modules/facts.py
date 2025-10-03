@@ -182,7 +182,6 @@ import re
 from ansible_collections.community.routeros.plugins.module_utils.routeros import run_commands
 from ansible_collections.community.routeros.plugins.module_utils.routeros import routeros_argument_spec
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.six import iteritems
 
 
 class FactsBase(object):
@@ -364,7 +363,7 @@ class Interfaces(FactsBase):
             self.facts['neighbors'] = list(self.parse_detail(data))
 
     def populate_interfaces(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['interfaces'][key] = value
 
     def populate_addresses(self, data, family):
@@ -555,27 +554,27 @@ class Routing(FactsBase):
         return facts
 
     def populate_bgp_peer(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['bgp_peer'][key] = value
 
     def populate_vpnv4_route(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['bgp_vpnv4_route'][key] = value
 
     def populate_bgp_instance(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['bgp_instance'][key] = value
 
     def populate_route(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['route'][key] = value
 
     def populate_ospf_instance(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['ospf_instance'][key] = value
 
     def populate_ospf_neighbor(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['ospf_neighbor'][key] = value
 
 
@@ -647,7 +646,7 @@ def main():
         facts.update(inst.facts)
 
     ansible_facts = dict()
-    for key, value in iteritems(facts):
+    for key, value in facts.items():
         key = 'ansible_net_%s' % key
         ansible_facts[key] = value
 
