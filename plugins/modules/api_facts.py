@@ -177,7 +177,6 @@ ansible_facts:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.six import iteritems
 from ansible.module_utils.common.text.converters import to_native
 
 from ansible_collections.community.routeros.plugins.module_utils.api import (
@@ -311,7 +310,7 @@ class Interfaces(FactsBase):
             self.facts['neighbors'] = list(self.parse_detail(data))
 
     def populate_interfaces(self, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts['interfaces'][key] = value
 
     def populate_addresses(self, data, family):
@@ -408,7 +407,7 @@ class Routing(FactsBase):
         return facts
 
     def populate_result(self, name, data):
-        for key, value in iteritems(data):
+        for key, value in data.items():
             self.facts[name][key] = value
 
 
@@ -481,7 +480,7 @@ def main():
         facts.update(inst.facts)
 
     ansible_facts = {}
-    for key, value in iteritems(facts):
+    for key, value in facts.items():
         key = 'ansible_net_%s' % key
         ansible_facts[key] = value
 
