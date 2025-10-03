@@ -5066,6 +5066,8 @@ PATHS = {
             versioned_fields=[
                 ([('7.19', '<')], 'address-families', KeyInfo()),
                 ([('7.19', '>=')], 'afi', KeyInfo()),
+                ([('7.20', '<')], 'router-id', KeyInfo()),
+                ([('7.20', '>=')], 'instance', KeyInfo(required=True)),
             ],
             fields={
                 'as': KeyInfo(),
@@ -5113,7 +5115,6 @@ PATHS = {
                 'remote.as': KeyInfo(),
                 'remote.allowed-as': KeyInfo(),
                 'remote.ttl': KeyInfo(),
-                'router-id': KeyInfo(),
                 'routing-table': KeyInfo(),
                 'save-to': KeyInfo(),
                 'tcp-md5-key': KeyInfo(),
