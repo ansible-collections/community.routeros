@@ -1,3 +1,0 @@
-minor_changes:
-  - api_modify, api_info - support for field ``new-priority`` in API path ``ipv6 firewall mangle```
-    (https://github.com/ansible-collections/community.routeros/pull/402).

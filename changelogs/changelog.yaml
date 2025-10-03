@@ -1031,3 +1031,24 @@ releases:
       - 397-compare-by-value.yml
       - 398-api-id.yml
     release_date: '2025-09-21'
+  3.12.0:
+    changes:
+      bugfixes:
+        - Avoid using ``ansible.module_utils.six`` to avoid deprecation warnings with
+          ansible-core 2.20 (https://github.com/ansible-collections/community.routeros/pull/405).
+      minor_changes:
+        - api_modify - add ``vrf`` for ``system logging action`` with a default of
+          ``main`` for RouterOS 7.19 and newer (https://github.com/ansible-collections/community.routeros/pull/401).
+        - api_modify, api_info - field ``instance`` in ``routing bgp connection``
+          path is required, and ``router-id`` has been moved to ``routing bgp instance``
+          by RouterOS 7.20 and newer (https://github.com/ansible-collections/community.routeros/pull/404).
+        - api_modify, api_info - support for field ``new-priority`` in API path ``ipv6
+          firewall mangle``` (https://github.com/ansible-collections/community.routeros/pull/402).
+      release_summary: Bugfix and feature release.
+    fragments:
+      - 3.12.0.yml
+      - 401-vrf-logging.yml
+      - 402-ipv6-firewall-mangle-new-priority.yml
+      - 404-bgp-connection-instance.yml
+      - 405-six.yml
+    release_date: '2025-10-03'

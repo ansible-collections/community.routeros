@@ -1,2 +1,0 @@
-bugfixes:
-  - "Avoid using ``ansible.module_utils.six`` to avoid deprecation warnings with ansible-core 2.20 (https://github.com/ansible-collections/community.routeros/pull/405)."
