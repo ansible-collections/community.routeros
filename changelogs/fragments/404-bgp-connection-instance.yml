@@ -1,2 +1,2 @@
 minor_changes:
-  - api_modify, api_info - field `instance` in ``routing bgp connection`` path is required and `router-id` has been moved to `routing bgp instance` by RouterOS 7.20 and newer (https://github.com/ansible-collections/community.routeros/pull/404).
+  - api_modify, api_info - field ``instance`` in ``routing bgp connection`` path is required, and ``router-id`` has been moved to ``routing bgp instance`` by RouterOS 7.20 and newer (https://github.com/ansible-collections/community.routeros/pull/404).
