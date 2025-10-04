@@ -1,0 +1,2 @@
+bugfixes:
+  - "Fix accidental type extensions (https://github.com/ansible-collections/community.routeros/pull/406)."
