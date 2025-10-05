@@ -4,6 +4,19 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.12.1
+=======
+
+Release Summary
+---------------
+
+Maintenance release.
+
+Bugfixes
+--------
+
+- Fix accidental type extensions (https://github.com/ansible-collections/community.routeros/pull/406).
+
 v3.12.0
 =======
 

@@ -1052,3 +1052,12 @@ releases:
       - 404-bgp-connection-instance.yml
       - 405-six.yml
     release_date: '2025-10-03'
+  3.12.1:
+    changes:
+      bugfixes:
+        - Fix accidental type extensions (https://github.com/ansible-collections/community.routeros/pull/406).
+      release_summary: Maintenance release.
+    fragments:
+      - 3.12.1.yml
+      - 406-fix.yml
+    release_date: '2025-10-05'
