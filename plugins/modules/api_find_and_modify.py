@@ -78,18 +78,18 @@ options:
   ignore_dynamic:
     description:
       - Whether to ignore dynamic entries.
-      - By default, they are considered. If set to V(true), they are not considered.
+      - By default, they are considered (V(false)). If set to V(true), they are not considered.
       - It is generally recommended to set this to V(true) unless when you really need to modify dynamic entries.
+      - Note that the current default (V(false)) is B(deprecated) and will change to V(true) in community.routeros 4.0.0.
     type: bool
-    default: false
     version_added: 3.7.0
   ignore_builtin:
     description:
       - Whether to ignore builtin entries.
-      - By default, they are considered. If set to V(true), they are not considered.
+      - By default, they are considered (V(false)). If set to V(true), they are not considered.
       - It is generally recommended to set this to V(true) unless when you really need to modify builtin entries.
+      - Note that the current default (V(false)) is B(deprecated) and will change to V(true) in community.routeros 4.0.0.
     type: bool
-    default: false
     version_added: 3.7.0
 seealso:
   - module: community.routeros.api
@@ -215,13 +215,19 @@ def compose_api_path(api, path):
 
 def filter_entries(entries, ignore_dynamic=False, ignore_builtin=False):
     result = []
+    has_dynamic = False
+    has_builtin = False
     for entry in entries:
-        if ignore_dynamic and entry.get('dynamic', False):
-            continue
-        if ignore_builtin and entry.get('builtin', False):
-            continue
+        if entry.get('dynamic', False):
+            has_dynamic = True
+            if ignore_dynamic:
+                continue
+        if entry.get('builtin', False):
+            has_builtin = True
+            if ignore_builtin:
+                continue
         result.append(entry)
-    return result
+    return result, has_dynamic, has_builtin
 
 
 DISABLED_MEANS_EMPTY_STRING = ('comment', )
@@ -235,8 +241,8 @@ def main():
         require_matches_min=dict(type='int', default=0),
         require_matches_max=dict(type='int'),
         allow_no_matches=dict(type='bool'),
-        ignore_dynamic=dict(type='bool', default=False),
-        ignore_builtin=dict(type='bool', default=False),
+        ignore_dynamic=dict(type='bool'),
+        ignore_builtin=dict(type='bool'),
     )
     module_args.update(api_argument_spec())
 
@@ -274,8 +280,20 @@ def main():
 
     api_path = compose_api_path(api, path)
 
-    old_data = filter_entries(list(api_path), ignore_dynamic=ignore_dynamic, ignore_builtin=ignore_builtin)
+    old_data, has_dynamic, has_builtin = filter_entries(list(api_path), ignore_dynamic=ignore_dynamic or False, ignore_builtin=ignore_builtin or False)
     new_data = [entry.copy() for entry in old_data]
+    if ignore_dynamic is None and has_dynamic:
+        module.deprecate(
+            "The current default (false) of the ignore_dynamic function has been deprecated. It will change to `true` in community.routeros 4.0.0.",
+            version="4.0.0",
+            collection_name="community.routeros",
+        )
+    if ignore_builtin is None and has_builtin:
+        module.deprecate(
+            "The current default (false) of the ignore_builtin function has been deprecated. It will change to `true` in community.routeros 4.0.0.",
+            version="4.0.0",
+            collection_name="community.routeros",
+        )
 
     # Find matching entries
     matching_entries = []
@@ -343,7 +361,19 @@ def main():
                         error=to_native(e),
                     )
                 )
-        new_data = filter_entries(list(api_path), ignore_dynamic=ignore_dynamic, ignore_builtin=ignore_builtin)
+        new_data, has_dynamic, has_builtin = filter_entries(list(api_path), ignore_dynamic=ignore_dynamic or False, ignore_builtin=ignore_builtin or False)
+        if ignore_dynamic is None and has_dynamic:
+            module.deprecate(
+                "The current default (false) of the ignore_dynamic function has been deprecated. It will change to `true` in community.routeros 4.0.0.",
+                version="4.0.0",
+                collection_name="community.routeros",
+            )
+        if ignore_builtin is None and has_builtin:
+            module.deprecate(
+                "The current default (false) of the ignore_builtin function has been deprecated. It will change to `true` in community.routeros 4.0.0.",
+                version="4.0.0",
+                collection_name="community.routeros",
+            )
 
     # Produce return value
     more = {}
