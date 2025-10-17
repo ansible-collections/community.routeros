@@ -4334,6 +4334,7 @@ PATHS = {
                 ([('7.10', '<')], 'engine-id', KeyInfo(default='')),
                 ([('7.10', '>=')], 'engine-id', KeyInfo(read_only=True)),
                 ([('7.10', '>=')], 'engine-id-suffix', KeyInfo(default='')),
+                ([('7.3', '>=')], 'vrf', KeyInfo(default='main')),
             ],
         ),
     ),
