@@ -4,6 +4,19 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.13.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_modify - add ``vrf`` for ``snmp`` with a default of ``main`` for RouterOS 7.3 and newer (https://github.com/ansible-collections/community.routeros/pull/411).
+
 v3.12.1
 =======
 
