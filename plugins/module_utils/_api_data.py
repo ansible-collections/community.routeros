@@ -4169,6 +4169,7 @@ PATHS = {
             },
             versioned_fields=[
                 ([('7.15', '>=')], 'require-message-auth', KeyInfo(default='yes-for-request-resp')),
+                ([('7.19.6', '>=')], 'radsec-timeout', KeyInfo(default='3300ms')),
             ],
         ),
     ),
