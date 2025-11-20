@@ -1583,14 +1583,14 @@ PATHS = {
     ),
     ('interface', 'dot1x', 'client'): APIData(
         unversioned=VersionedAPIData(
-            primary_keys=('interface', ),
+            primary_keys=('eap-methods', 'identity', 'interface', ),
             single_value=False,
             fully_understood=True,
             fields={
                 'anon-identity': KeyInfo(default=''),
                 'certificate': KeyInfo(default='none'),
                 'comment': KeyInfo(can_disable=True, remove_value=''),
-                'disabled': KeyInfo(default='no'),
+                'disabled': KeyInfo(default=False),
                 'eap-methods': KeyInfo(),
                 'identity': KeyInfo(),
                 'interface': KeyInfo(),
