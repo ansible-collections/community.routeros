@@ -5110,7 +5110,7 @@ PATHS = {
                 'output.no-client-to-client-reflection': KeyInfo(),
                 'output.no-early-cut': KeyInfo(),
                 'output.redistribute': KeyInfo(),
-                'output.remote-private-as': KeyInfo(),
+                'output.remove-private-as': KeyInfo(),
                 'remote.address': KeyInfo(required=True),
                 'remote.port': KeyInfo(),
                 'remote.as': KeyInfo(),
@@ -5200,9 +5200,13 @@ PATHS = {
         unversioned=VersionedAPIData(
             primary_keys=('name', ),
             fully_understood=True,
+            versioned_fields=[
+                ([('7.19', '<')], 'address-families', KeyInfo()),
+                ([('7.19', '>=')], 'afi', KeyInfo()),
+                ([('7.20', '<')], 'router-id', KeyInfo()),
+            ],
             fields={
                 'add-path-out': KeyInfo(),
-                'address-families': KeyInfo(default='ip'),
                 'as': KeyInfo(),
                 'as-override': KeyInfo(default=False),
                 'cisco-vpls-nlri-len-fmt': KeyInfo(),
@@ -5236,7 +5240,7 @@ PATHS = {
                 'output.no-client-to-client-reflection': KeyInfo(),
                 'output.no-early-cut': KeyInfo(),
                 'output.redistribute': KeyInfo(),
-                'remove-private-as': KeyInfo(default=False),
+                'output.remove-private-as': KeyInfo(default=False),
                 'router-id': KeyInfo(default='main'),
                 'routing-table': KeyInfo(default='main'),
                 'save-to': KeyInfo(),
