@@ -1606,6 +1606,7 @@ PATHS = {
                 'accounting': KeyInfo(default='yes'),
                 'auth-timeout': KeyInfo(default='60s'),
                 'auth-types': KeyInfo(default='dot1x'),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
                 'disabled': KeyInfo(default='false'),
                 'guest-vlan-id': KeyInfo(can_disable=True),
                 'interface': KeyInfo(default='none'),
