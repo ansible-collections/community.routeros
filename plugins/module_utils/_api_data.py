@@ -1138,7 +1138,7 @@ PATHS = {
                     'name': KeyInfo(required=True),
                     'comment': KeyInfo(can_disable=True, remove_value=''),
                     'disabled': KeyInfo(default=False),
-                    'fib': KeyInfo(),
+                    'fib': KeyInfo(can_disable=True),
                 },
             )),
         ],
