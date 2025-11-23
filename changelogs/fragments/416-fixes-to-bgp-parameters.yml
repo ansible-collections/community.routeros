@@ -1,0 +1,7 @@
+---
+bugfixes:
+  - bgp connection - fix `output.remove-private-as` parameter (https://github.com/ansible-collections/community.routeros/issues/415).
+  - bgp templates - fix `output.remove-private-as` parameter (https://github.com/ansible-collections/community.routeros/issues/415).
+  - bgp templates - implement `afi` paramater (https://github.com/ansible-collections/community.routeros/issues/415).
+  - bgp templates - change `address-families` to versioned parameter (https://github.com/ansible-collections/community.routeros/issues/415).
+  - bgp templates - change `router-id` to versioned parameter (https://github.com/ansible-collections/community.routeros/issues/415).
