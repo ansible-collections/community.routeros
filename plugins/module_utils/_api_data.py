@@ -5203,7 +5203,7 @@ PATHS = {
             versioned_fields=[
                 ([('7.19', '<')], 'address-families', KeyInfo()),
                 ([('7.19', '>=')], 'afi', KeyInfo()),
-                ([('7.20', '<')], 'router-id', KeyInfo()),
+                ([('7.20', '<')], 'router-id', KeyInfo(default='main')),
             ],
             fields={
                 'add-path-out': KeyInfo(),
