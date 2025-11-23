@@ -5241,7 +5241,6 @@ PATHS = {
                 'output.no-early-cut': KeyInfo(),
                 'output.redistribute': KeyInfo(),
                 'output.remove-private-as': KeyInfo(default=False),
-                'router-id': KeyInfo(default='main'),
                 'routing-table': KeyInfo(default='main'),
                 'save-to': KeyInfo(),
                 'templates': KeyInfo(),
