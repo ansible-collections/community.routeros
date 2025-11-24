@@ -1599,7 +1599,7 @@ PATHS = {
     ),
     ('interface', 'dot1x', 'server'): APIData(
         unversioned=VersionedAPIData(
-            primary_keys=('interface', ),
+            stratify_keys=('interface', ),
             single_value=False,
             fully_understood=True,
             fields={
