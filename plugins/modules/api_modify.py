@@ -158,7 +158,13 @@ options:
       - ip firewall nat
       - ip firewall raw
       - ip firewall service-port
+      - ip hotspot
+      - ip hotspot profile
+      - ip hotspot user
+      - ip hotspot user profile
       - ip hotspot service-port
+      - ip hotspot walled-garden
+      - ip hotspot walled-garden ip
       - ip ipsec identity
       - ip ipsec mode-config
       - ip ipsec peer
