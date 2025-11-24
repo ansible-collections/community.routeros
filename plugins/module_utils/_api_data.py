@@ -580,7 +580,8 @@ PATHS = {
                 'vrid': KeyInfo(default=1),
             },
         ),
-    ),('ip', 'hotspot'): APIData(
+    ),
+    ('ip', 'hotspot'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
             primary_keys=('name', 'interface', ),
@@ -654,8 +655,8 @@ PATHS = {
                 'email': KeyInfo(),
                 'limit-bytes-in': KeyInfo(),
                 'limit-bytes-out': KeyInfo(),
-                'limit-bytes-total': KeyInfo(), 
-                'limit-uptime': KeyInfo(), 
+                'limit-bytes-total': KeyInfo(),
+                'limit-uptime': KeyInfo(),
                 'mac-address': KeyInfo(),
                 'name': KeyInfo(),
                 'password': KeyInfo(),
