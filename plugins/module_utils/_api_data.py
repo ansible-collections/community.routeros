@@ -1597,6 +1597,29 @@ PATHS = {
             },
         ),
     ),
+    ('interface', 'dot1x', 'server'): APIData(
+        unversioned=VersionedAPIData(
+            stratify_keys=('interface', ),
+            single_value=False,
+            fully_understood=True,
+            fields={
+                'accounting': KeyInfo(default=True),
+                'auth-timeout': KeyInfo(default='1m'),
+                'auth-types': KeyInfo(default='dot1x'),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'disabled': KeyInfo(default=False),
+                'guest-vlan-id': KeyInfo(can_disable=True),
+                'interface': KeyInfo(),
+                'interim-update': KeyInfo(default='0s'),
+                'mac-auth-mode': KeyInfo(default='mac-as-username'),
+                'radius-mac-format': KeyInfo(default='XX:XX:XX:XX:XX:XX'),
+                'reauth-timeout': KeyInfo(can_disable=True),
+                'reject-vlan-id': KeyInfo(can_disable=True),
+                'retrans-timeout': KeyInfo(default='30s'),
+                'server-fail-vlan-id': KeyInfo(can_disable=True),
+            },
+        ),
+    ),
     ('interface', 'l2tp-client',): APIData(
         unversioned=VersionedAPIData(
             primary_keys=('name', ),

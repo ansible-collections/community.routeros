@@ -64,6 +64,7 @@ options:
       - interface bridge vlan
       - interface detect-internet
       - interface dot1x client
+      - interface dot1x server
       - interface eoip
       - interface ethernet
       - interface ethernet poe

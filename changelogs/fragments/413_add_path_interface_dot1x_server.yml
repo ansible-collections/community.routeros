@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add support for path ``interface dot1x server`` (https://github.com/ansible-collections/community.routeros/pull/413).
