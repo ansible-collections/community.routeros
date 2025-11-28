@@ -737,7 +737,6 @@ PATHS = {
     ('ip', 'ipsec', 'identity'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
-            primary_keys=('peer', ),
             fields={
                 'auth-method': KeyInfo(default='pre-shared-key'),
                 'certificate': KeyInfo(),
