@@ -5266,7 +5266,6 @@ PATHS = {
     ),
     ('routing', 'bgp', 'instance'): APIData(
         unversioned=VersionedAPIData(
-            fixed_entries=True,
             primary_keys=('name', ),
             fully_understood=True,
             fields={
