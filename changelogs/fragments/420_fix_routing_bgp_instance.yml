@@ -1,0 +1,3 @@
+---
+bugfixes:
+  - api_modify, api_info - in the ``routing bgp instance``, fix 'Cannot add new entry to this path' error (https://github.com/ansible-collections/community.routeros/issues/409, https://github.com/ansible-collections/community.routeros/pull/420).
