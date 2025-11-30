@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - remove primary key constraint on 'peer' for path ``ip ipsec identity`` (https://github.com/ansible-collections/community.routeros/pull/421).
