@@ -226,6 +226,19 @@ def join_path(path):
 # 3. All bold attributes go into the `primary_keys` list -- this is not always true!
 
 PATHS = {
+    ('disk', 'settings'): APIData(
+        unversioned=VersionedAPIData(
+            single_value=True,
+            fully_understood=True,
+            fields={
+                'auto-media-interface': KeyInfo(default='bridge'),
+                'auto-media-sharing': KeyInfo(default=True),
+                'auto-smb-sharing': KeyInfo(default=True),
+                'auto-smb-user': KeyInfo(default='guest'),
+                'default-mount-point-template': KeyInfo(default='[slot]'),
+            }
+        ),
+    ),
     ('interface', '6to4'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,

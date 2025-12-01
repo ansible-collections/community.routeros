@@ -53,6 +53,7 @@ options:
       - caps-man provisioning
       - caps-man security
       - certificate settings
+      - disk settings
       - interface 6to4
       - interface bonding
       - interface bridge
