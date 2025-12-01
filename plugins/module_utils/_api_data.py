@@ -1517,6 +1517,8 @@ PATHS = {
             versioned_fields=[
                 ([('7.0', '<')], 'ingress-filtering', KeyInfo(default=False)),
                 ([('7.0', '>=')], 'ingress-filtering', KeyInfo(default=True)),
+                ([('7.20', '>=')], 'mvrp-applicant-state', KeyInfo(default='normal-participant')),
+                ([('7.20', '>=')], 'mvrp-registrar-state', KeyInfo(default='normal')),
             ],
             fields={
                 'auto-isolate': KeyInfo(default=False),
