@@ -304,7 +304,7 @@ PATHS = {
                 ([('7.20', '>=')], 'max-hops', KeyInfo(default=20)),
                 ([('7.20', '>=')], 'membership-interval', KeyInfo(default='4m20s')),
                 ([('7.20', '>=')], 'multicast-router', KeyInfo(default='temporary-query')),
-                ([('7.20', '>=')], 'mvrp', KeyInfo(default=True)),
+                ([('7.20', '>=')], 'mvrp', KeyInfo(default=False)),
                 ([('7.20', '>=')], 'querier-interval', KeyInfo(default='4m15s')),
                 ([('7.20', '>=')], 'query-interval', KeyInfo(default='2m5s')),
                 ([('7.20', '>=')], 'query-response-interval', KeyInfo(default='10s')),
