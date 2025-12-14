@@ -2060,6 +2060,9 @@ PATHS = {
                     'steering.wnm': KeyInfo(can_disable=True),
                     'steering': KeyInfo(can_disable=True),
                 },
+                versioned_fields=[
+                    ([('7.19', '>=')], 'datapath.traffic-processing', KeyInfo()),
+                ],
             )),
         ],
     ),
@@ -2208,6 +2211,9 @@ PATHS = {
                     'name': KeyInfo(),
                     'vlan-id': KeyInfo(can_disable=True),
                 },
+                versioned_fields=[
+                    ([('7.19', '>=')], 'traffic-processing', KeyInfo()),
+                ],
             )),
         ],
     ),
