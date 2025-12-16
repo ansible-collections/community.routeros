@@ -5537,6 +5537,7 @@ PATHS = {
             fully_understood=True,
             versioned_fields=[
                 ([('7.16', '>=')], 'max-sessions', KeyInfo(default=20)),
+                ([('7.17', '>=')], 'vrf', KeyInfo()),
             ],
             fields={
                 'address': KeyInfo(),
