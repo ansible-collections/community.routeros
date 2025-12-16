@@ -1135,6 +1135,9 @@ PATHS = {
     ('routing', 'ospf', 'interface-template'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
+            versioned_fields=[
+                ([('7.10', '>=')], 'use-bfd', KeyInfo(default=False)),
+            ],
             fields={
                 'area': KeyInfo(required=True),
                 'auth': KeyInfo(can_disable=True),
