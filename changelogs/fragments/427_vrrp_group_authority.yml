@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - rename group-master to group-authority in interface/vrrp on routeros 7.11+
