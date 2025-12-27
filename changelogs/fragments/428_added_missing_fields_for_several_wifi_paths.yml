@@ -1,5 +1,5 @@
 minor_changes:
-  - api_info, api_modify - add ``deprioritize-unii-3-4, reselect-interval, reselect-time`` fields to path ``interface wifi channel`` (https://github.com/ansible-collections/community.routeros/pull/428).
-  - api_info, api_modify - add ``multi-passphrase-group`` fields to path ``interface wifi security`` (https://github.com/ansible-collections/community.routeros/pull/428).
-  - api_info, api_modify - add ``2g-probe-delay`` fields to path ``interface wifi steering`` (https://github.com/ansible-collections/community.routeros/pull/428).
-  - api_info, api_modify - add ``aaa., channel., datapath., interworking., security., steering.`` sub-fields to path ``interface wifi configuration`` (https://github.com/ansible-collections/community.routeros/pull/428).
+  - api_info, api_modify - add ``deprioritize-unii-3-4``, ``reselect-interval``, ``reselect-time`` fields to path ``interface wifi channel`` (https://github.com/ansible-collections/community.routeros/pull/428).
+  - api_info, api_modify - add ``multi-passphrase-group`` field to path ``interface wifi security`` (https://github.com/ansible-collections/community.routeros/pull/428).
+  - api_info, api_modify - add ``2g-probe-delay`` field to path ``interface wifi steering`` (https://github.com/ansible-collections/community.routeros/pull/428).
+  - api_info, api_modify - add ``aaa.*``, ``channel.*``, ``datapath.*``, ``interworking.*``, ``security.*``, ``steering.*`` sub-fields to path ``interface wifi configuration`` (https://github.com/ansible-collections/community.routeros/pull/428).
