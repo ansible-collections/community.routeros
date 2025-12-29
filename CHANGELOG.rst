@@ -4,6 +4,33 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.15.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - add ``2g-probe-delay`` field to path ``interface wifi steering`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``aaa.*``, ``channel.*``, ``datapath.*``, ``interworking.*``, ``security.*``, ``steering.*`` sub-fields to path ``interface wifi configuration`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``deprioritize-unii-3-4``, ``reselect-interval``, ``reselect-time`` fields to path ``interface wifi channel`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``multi-passphrase-group`` field to path ``interface wifi security`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``send-email-from``, ``send-email-to`` and ``send-smtp-server`` to ``system watchdog`` (https://github.com/ansible-collections/community.routeros/pull/429).
+- api_info, api_modify - add ``traffic-processing`` field to path ``interface wifi datapath`` and ``interface wifi configuration`` (https://github.com/ansible-collections/community.routeros/pull/424).
+- api_info, api_modify - add ``use-bfd`` to ``routing ospf interface-template`` path (https://github.com/ansible-collections/community.routeros/pull/425).
+- api_info, api_modify - add ``vrf`` to ``ip service`` (https://github.com/ansible-collections/community.routeros/pull/426).
+- api_info, api_modify - add missing parameters to path ``interface bridge`` and ``interface bridge port`` (https://github.com/ansible-collections/community.routeros/pull/423).
+- api_info, api_modify - add support for path ``disk settings`` (https://github.com/ansible-collections/community.routeros/pull/422).
+
+Deprecated Features
+-------------------
+
+- api_find_and_modify - the current defaults for ``ignore_dynamic`` and ``ignore_builtin`` (both ``false``) have been deprecated and will change to ``true`` in community.routeros 4.0.0. To avoid deprecation messages, please set the value explicitly to ``true`` or ``false``, if you have not already done so. We recommend to set them to ``true``, unless you have a good reason to set them to ``false`` (https://github.com/ansible-collections/community.routeros/pull/399).
+
 v3.14.0
 =======
 

@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - add ``traffic-processing`` field to path ``interface wifi datapath`` and ``interface wifi configuration`` (https://github.com/ansible-collections/community.routeros/pull/424).

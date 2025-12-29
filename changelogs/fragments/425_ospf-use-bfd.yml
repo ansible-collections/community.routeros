@@ -1,2 +1,0 @@
-minor_changes:
-  - api_info, api_modify - add ``use-bfd`` to ``routing ospf interface-template`` path (https://github.com/ansible-collections/community.routeros/pull/425).
