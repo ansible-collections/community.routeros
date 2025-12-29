@@ -584,13 +584,16 @@ PATHS = {
         unversioned=VersionedAPIData(
             fully_understood=True,
             primary_keys=('name', ),
+            versioned_fields=[
+                ([('7.11', '<')], 'group-master', KeyInfo(default='')),
+                ([('7.11', '>=')], 'group-authority', KeyInfo(default='')),
+            ],
             fields={
                 'arp': KeyInfo(default='enabled'),
                 'arp-timeout': KeyInfo(default='auto'),
                 'authentication': KeyInfo(default='none'),
                 'comment': KeyInfo(can_disable=True, remove_value=''),
                 'disabled': KeyInfo(default=False),
-                'group-master': KeyInfo(default=''),
                 'interface': KeyInfo(required=True),
                 'interval': KeyInfo(default='1s'),
                 'mtu': KeyInfo(default=1500),
