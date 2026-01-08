@@ -1,0 +1,2 @@
+trivial:
+  - _api_data - allow ``fixed_entries`` and ``single_value`` to be set to true for the same path without needing ``primary_keys`` (https://github.com/ansible-collections/community.routeros/pull/432).
