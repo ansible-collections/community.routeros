@@ -107,8 +107,8 @@ class VersionedAPIData(object):
         self.unknown_mechanism = unknown_mechanism
         self.fully_understood = fully_understood
         self.fixed_entries = fixed_entries
-        if fixed_entries and primary_keys is None:
-            raise ValueError('fixed_entries can only be used with primary_keys')
+        if fixed_entries and not single_value and primary_keys is None:
+            raise ValueError('fixed_entries that are not singletons can only be used with primary_keys')
         if fields is None:
             raise ValueError('fields must be provided')
         self.fields = fields
