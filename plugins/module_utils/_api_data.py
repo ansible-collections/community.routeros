@@ -3756,6 +3756,19 @@ PATHS = {
             },
         ),
     ),
+    ('ip', 'socks', 'access'): APIData(
+        unversioned=VersionedAPIData(
+            fully_understood=True,
+            fields={
+                'action': KeyInfo(),
+                'comment': KeyInfo(can_disable=True, remove_value=''),
+                'disabled': KeyInfo(default=False),
+                'dst-address': KeyInfo(can_disable=True),
+                'dst-port': KeyInfo(can_disable=True),
+                'src-address': KeyInfo(can_disable=True),
+            },
+        ),
+    ),
     ('ip', 'ssh'): APIData(
         unversioned=VersionedAPIData(
             single_value=True,

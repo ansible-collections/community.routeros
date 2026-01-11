@@ -185,6 +185,7 @@ options:
       - ip settings
       - ip smb
       - ip socks
+      - ip socks access
       - ip ssh
       - ip tftp settings
       - ip traffic-flow
