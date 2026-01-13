@@ -3927,7 +3927,8 @@ PATHS = {
             fully_understood=True,
             primary_keys=('name', ),
             fields={
-                'address-pool': KeyInfo(required=True),
+                'address-pool': KeyInfo(default='static-only'),
+                'prefix-pool': KeyInfo(default='static-only'),
                 'allow-dual-stack-queue': KeyInfo(can_disable=True, remove_value=True),
                 'binding-script': KeyInfo(can_disable=True, remove_value=''),
                 'comment': KeyInfo(can_disable=True, remove_value=''),
