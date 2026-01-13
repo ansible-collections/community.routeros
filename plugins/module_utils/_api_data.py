@@ -106,6 +106,8 @@ class VersionedAPIData(object):
         self.single_value = single_value
         self.unknown_mechanism = unknown_mechanism
         self.fully_understood = fully_understood
+        if single_value:
+            fixed_entries = False
         self.fixed_entries = fixed_entries
         if fixed_entries and primary_keys is None:
             raise ValueError('fixed_entries can only be used with primary_keys')
