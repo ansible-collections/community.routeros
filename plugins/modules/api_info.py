@@ -389,7 +389,7 @@ options:
       - radius
       - radius incoming
       - routing bfd configuration
-      - routing bfd interface
+      #  - routing bfd interface
       - routing bgp aggregate
       - routing bgp connection
       - routing bgp evpn
@@ -424,8 +424,8 @@ options:
       - routing ospf interface-template
       - routing ospf neighbor
       - routing ospf static-neighbor
-      - routing ospf-v3 area
-      - routing ospf-v3 instance
+      #  - routing ospf-v3 area
+      #  - routing ospf-v3 instance
       - routing pimsm bsr candidate
       - routing pimsm bsr rp-candidate
       - routing pimsm igmp-interface-template
