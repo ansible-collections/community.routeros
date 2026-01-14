@@ -2757,7 +2757,7 @@ PATHS = {
 
     ('interface', 'lte', 'apn'): APIData(
         unversioned=VersionedAPIData(
-            unknown_mechanism=True,
+            fully_understood=True,
             versioned_fields=[
                 ([('7.15', '>=')], 'authentication', KeyInfo()),
                 ([('7.15', '>=')], 'comment', KeyInfo()),
@@ -6520,7 +6520,7 @@ PATHS = {
 
     ('ip', 'ipsec', 'policy', 'group'): APIData(
         unversioned=VersionedAPIData(
-            unknown_mechanism=True,
+            fully_understood=True,
             versioned_fields=[
                 ([('7.15', '>=')], 'comment', KeyInfo()),
                 ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
@@ -7008,7 +7008,7 @@ PATHS = {
 
     ('ip', 'smb', 'shares'): APIData(
         unversioned=VersionedAPIData(
-            unknown_mechanism=True,
+            fully_understood=True,
             versioned_fields=[
                 ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.15', '<')], 'default', KeyInfo()),
@@ -7029,7 +7029,7 @@ PATHS = {
 
     ('ip', 'smb', 'users'): APIData(
         unversioned=VersionedAPIData(
-            unknown_mechanism=True,
+            fully_understood=True,
             versioned_fields=[
                 ([('7.15', '>=')], 'comment', KeyInfo()),
                 ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
@@ -10703,6 +10703,7 @@ PATHS = {
             has_identifier=True,
             # fixed_entries=True,
             # primary_keys=('numbers',),
+            fully_understood=True,
             versioned_fields=[
                 ([('7.15', '>=')], 'numbers', KeyInfo()),
             ],
@@ -11311,6 +11312,7 @@ PATHS = {
 
     ('tool', 'romon', 'port'): APIData(
         unversioned=VersionedAPIData(
+            fully_understood=True,
             versioned_fields=[
                 ([('7.15', '>=')], 'comment', KeyInfo()),
                 ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
