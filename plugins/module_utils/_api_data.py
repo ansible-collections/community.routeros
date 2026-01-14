@@ -2774,7 +2774,7 @@ PATHS = {
             ],
             fields={
                 'add-default-route': KeyInfo(),
-                'apn': KeyInfo(),
+                'apn': KeyInfo(required=True),
                 'default-route-distance': KeyInfo(),
                 'name': KeyInfo(),
                 'use-peer-dns': KeyInfo(),
