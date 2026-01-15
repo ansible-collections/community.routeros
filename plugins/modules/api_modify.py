@@ -54,6 +54,8 @@ options:
     type: str
     choices:
     # BEGIN PATH LIST
+      - app
+      - app settings
       - caps-man aaa
       - caps-man access-list
       - caps-man actual-interface-configuration
@@ -290,6 +292,8 @@ options:
       - ip ipsec active-peers
       - ip ipsec identity
       - ip ipsec key
+      - ip ipsec key psk
+      - ip ipsec key qkd
       - ip ipsec key rsa
       - ip ipsec mode-config
       - ip ipsec peer
@@ -318,6 +322,7 @@ options:
       - ip route rule
       - ip route vrf
       - ip service
+      - ip service webserver
       - ip settings
       - ip smb
       - ip smb shares
@@ -340,6 +345,7 @@ options:
       - ipv6 dhcp-client
       - ipv6 dhcp-client option
       - ipv6 dhcp-relay
+      - ipv6 dhcp-relay option
       - ipv6 dhcp-server
       - ipv6 dhcp-server binding
       - ipv6 dhcp-server option
@@ -482,7 +488,7 @@ options:
       - system package local-update update-package-source
       - system package update
       - system resource hardware usb-settings
-      - system resource irq
+      #  - system resource irq
       - system resource irq rps
       - system resource usb
       - system resource usb settings
