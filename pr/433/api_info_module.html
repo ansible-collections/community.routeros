@@ -319,6 +319,8 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p>An example value is <code class="ansible-value docutils literal notranslate"><span class="pre">ip</span> <span class="pre">address</span></code>. This is equivalent to running <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">address</span> <span class="pre">print</span></code> in the RouterOS CLI.</p>
 <p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
 <ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;app&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;app</span> <span class="pre">settings&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">aaa&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">access-list&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">actual-interface-configuration&quot;</span></code></p></li>
@@ -555,6 +557,8 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">active-peers&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">identity&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">key&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">key</span> <span class="pre">psk&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">key</span> <span class="pre">qkd&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">key</span> <span class="pre">rsa&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">mode-config&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">ipsec</span> <span class="pre">peer&quot;</span></code></p></li>
@@ -583,6 +587,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">route</span> <span class="pre">rule&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">route</span> <span class="pre">vrf&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">service&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">service</span> <span class="pre">webserver&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">settings&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">smb&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ip</span> <span class="pre">smb</span> <span class="pre">shares&quot;</span></code></p></li>
@@ -605,6 +610,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-client&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-client</span> <span class="pre">option&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-relay&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-relay</span> <span class="pre">option&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-server&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-server</span> <span class="pre">binding&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;ipv6</span> <span class="pre">dhcp-server</span> <span class="pre">option&quot;</span></code></p></li>
@@ -744,7 +750,6 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;system</span> <span class="pre">package</span> <span class="pre">local-update</span> <span class="pre">update-package-source&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;system</span> <span class="pre">package</span> <span class="pre">update&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;system</span> <span class="pre">resource</span> <span class="pre">hardware</span> <span class="pre">usb-settings&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;system</span> <span class="pre">resource</span> <span class="pre">irq&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;system</span> <span class="pre">resource</span> <span class="pre">irq</span> <span class="pre">rps&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;system</span> <span class="pre">resource</span> <span class="pre">usb&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;system</span> <span class="pre">resource</span> <span class="pre">usb</span> <span class="pre">settings&quot;</span></code></p></li>
