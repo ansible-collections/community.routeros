@@ -477,7 +477,7 @@ options:
       - system package local-update update-package-source
       - system package update
       - system resource hardware usb-settings
-      #  - system resource irq
+      - system resource irq
       - system resource irq rps
       - system resource usb
       - system resource usb settings

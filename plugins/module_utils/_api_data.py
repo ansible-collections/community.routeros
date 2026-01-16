@@ -10970,11 +10970,9 @@ PATHS = {
             # fixed_entries=True,
             # primary_keys=('numbers',),
             fully_understood=True,
-            versioned_fields=[
-                ([('7.15', '>=')], 'numbers', KeyInfo()),
-            ],
             fields={
                 'cpu': KeyInfo(),
+                'numbers': KeyInfo(),
             },
         ),
     ),
