@@ -170,7 +170,7 @@ minor_changes:
   - api_info - adds support for the ``interface wireless manual-tx-power-table`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info - adds support for the ``interface wireless nstreme`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``interface wireless nstreme-dual`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
-  - api_info, api_modify - adds support for the ``comment`` and ``copy-from`` parameters in the ``interface wireless security-profiles`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+  - api_info, api_modify - adds support for the ``comment`` and ``copy-from`` parameters in the ``interface wireless security-profiles`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/388, https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``interface wireless wds`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info - adds support for the ``iot bluetooth`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info - adds support for the ``iot bluetooth advertisers`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
