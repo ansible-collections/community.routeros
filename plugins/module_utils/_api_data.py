@@ -8307,8 +8307,8 @@ PATHS = {
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 has_identifier=True,
-                #fixed_entries=True,
-                #primary_keys=('numbers',),
+                # fixed_entries=True,
+                # primary_keys=('numbers',),
                 fields={
                     'disabled': KeyInfo(),
                     'numbers': KeyInfo(),
