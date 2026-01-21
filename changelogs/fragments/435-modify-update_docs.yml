@@ -1,0 +1,2 @@
+trivial:
+  - update-docs.py - filter path_choices for api_modify to exclude paths with has_identifier=True (https://github.com/ansible-collections/community.routeros/pull/435).
