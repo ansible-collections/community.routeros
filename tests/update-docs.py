@@ -38,8 +38,6 @@ def update_file(file: str, begin_line: str, end_line: str, choice_line: str, pat
 
 
 def main(args: list[str]) -> int:
-    # path_choices = sorted([join_path(path) for path, path_info in PATHS.items() if path_info.fully_understood])
-
     changes = False
     for file in MODULES:
         if file == 'plugins/modules/api_modify.py':
