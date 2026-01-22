@@ -54,11 +54,9 @@ options:
     type: str
     choices:
     # BEGIN PATH LIST
-      - app
       - app settings
       - caps-man aaa
       - caps-man access-list
-      - caps-man actual-interface-configuration
       - caps-man channel
       - caps-man configuration
       - caps-man datapath
@@ -79,7 +77,6 @@ options:
       - container envs
       - container mounts
       - disk
-      - disk btrfs filesystem
       - disk btrfs subvolume
       - disk btrfs transfer
       - disk settings
@@ -91,19 +88,13 @@ options:
       - dude probe
       - dude ros address
       - dude ros arp
-      - dude ros health
-      - dude ros interface
       - dude ros lease
-      - dude ros neighbor
       - dude ros queue
-      - dude ros resource
       - dude ros route
-      - dude ros routerboard
       - dude service
       - file
       - file rsync-daemon
       - file sync
-      - interface
       - interface 6to4
       - interface amt
       - interface bonding
@@ -119,7 +110,6 @@ options:
       - interface bridge port mst-override
       - interface bridge port-controller
       - interface bridge port-controller device
-      - interface bridge port-controller port
       - interface bridge port-extender
       - interface bridge settings
       - interface bridge vlan
@@ -140,12 +130,10 @@ options:
       - interface ethernet switch qos map
       - interface ethernet switch qos map ip
       - interface ethernet switch qos map vlan
-      - interface ethernet switch qos port
       - interface ethernet switch qos priority-flow-control
       - interface ethernet switch qos profile
       - interface ethernet switch qos settings
       - interface ethernet switch qos tx-manager
-      - interface ethernet switch qos tx-manager queue
       - interface ethernet switch rule
       - interface ethernet switch vlan
       - interface gre
@@ -158,7 +146,6 @@ options:
       - interface l2tp-server server
       - interface list
       - interface list member
-      - interface lte
       - interface lte apn
       - interface lte settings
       - interface macsec
@@ -200,7 +187,6 @@ options:
       - interface wifi security
       - interface wifi security multi-passphrase
       - interface wifi steering
-      - interface wifi steering neighbor-group
       - interface wifiwave2
       - interface wifiwave2 aaa
       - interface wifiwave2 access-list
