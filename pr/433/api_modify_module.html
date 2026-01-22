@@ -339,11 +339,9 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p>An example value is <code class="ansible-value docutils literal notranslate"><span class="pre">ip</span> <span class="pre">address</span></code>. This is equivalent to running modification commands in <code class="docutils literal notranslate"><span class="pre">/ip</span> <span class="pre">address</span></code> in the RouterOS CLI.</p>
 <p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
 <ul class="simple">
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;app&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;app</span> <span class="pre">settings&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">aaa&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">access-list&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">actual-interface-configuration&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">channel&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">configuration&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;caps-man</span> <span class="pre">datapath&quot;</span></code></p></li>
@@ -364,7 +362,6 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;container</span> <span class="pre">envs&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;container</span> <span class="pre">mounts&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;disk&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;disk</span> <span class="pre">btrfs</span> <span class="pre">filesystem&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;disk</span> <span class="pre">btrfs</span> <span class="pre">subvolume&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;disk</span> <span class="pre">btrfs</span> <span class="pre">transfer&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;disk</span> <span class="pre">settings&quot;</span></code></p></li>
@@ -376,19 +373,13 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">probe&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">address&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">arp&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">health&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">interface&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">lease&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">neighbor&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">queue&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">resource&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">route&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">ros</span> <span class="pre">routerboard&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;dude</span> <span class="pre">service&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;file&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;file</span> <span class="pre">rsync-daemon&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;file</span> <span class="pre">sync&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">6to4&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">amt&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bonding&quot;</span></code></p></li>
@@ -404,7 +395,6 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bridge</span> <span class="pre">port</span> <span class="pre">mst-override&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bridge</span> <span class="pre">port-controller&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bridge</span> <span class="pre">port-controller</span> <span class="pre">device&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bridge</span> <span class="pre">port-controller</span> <span class="pre">port&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bridge</span> <span class="pre">port-extender&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bridge</span> <span class="pre">settings&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">bridge</span> <span class="pre">vlan&quot;</span></code></p></li>
@@ -425,12 +415,10 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">map&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">map</span> <span class="pre">ip&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">map</span> <span class="pre">vlan&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">port&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">priority-flow-control&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">profile&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">settings&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">tx-manager&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">qos</span> <span class="pre">tx-manager</span> <span class="pre">queue&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">rule&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">ethernet</span> <span class="pre">switch</span> <span class="pre">vlan&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">gre&quot;</span></code></p></li>
@@ -443,7 +431,6 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">l2tp-server</span> <span class="pre">server&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">list&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">list</span> <span class="pre">member&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">lte&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">lte</span> <span class="pre">apn&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">lte</span> <span class="pre">settings&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">macsec&quot;</span></code></p></li>
@@ -485,7 +472,6 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">security&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">security</span> <span class="pre">multi-passphrase&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">steering&quot;</span></code></p></li>
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifi</span> <span class="pre">steering</span> <span class="pre">neighbor-group&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifiwave2&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifiwave2</span> <span class="pre">aaa&quot;</span></code></p></li>
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;interface</span> <span class="pre">wifiwave2</span> <span class="pre">access-list&quot;</span></code></p></li>
