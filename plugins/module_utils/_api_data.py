@@ -39,6 +39,7 @@ class APIData(object):
         if self.unversioned is not None:
             self.needs_version = self.unversioned.needs_version
             self.fully_understood = self.unversioned.fully_understood
+            self.has_identifier = self.unversioned.has_identifier
         else:
             self.needs_version = self.versioned is not None
             # Mark as 'fully understood' if it is for at least one version
@@ -46,6 +47,12 @@ class APIData(object):
             for dummy, dummy, unversioned in self.versioned:
                 if unversioned and not isinstance(unversioned, str) and unversioned.fully_understood:
                     self.fully_understood = True
+                    break
+            # Mark as 'has_identifier' if it is for at least one version
+            self.has_identifier = False
+            for dummy, dummy, unversioned in self.versioned:
+                if unversioned and not isinstance(unversioned, str) and unversioned.has_identifier:
+                    self.has_identifier = True
                     break
         self._current = None if self.needs_version else self.unversioned
 
