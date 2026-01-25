@@ -4,8 +4,8 @@
 
 [collection_sources]
 "ansible.netcommon" = "git+https://github.com/ansible-collections/ansible.netcommon.git,main"
+"ansible.utils" = "git+https://github.com/ansible-collections/ansible.utils.git,main"
 "community.internal_test_tools" = "git+https://github.com/ansible-collections/community.internal_test_tools.git,main"
-"community.utils" = "git+https://github.com/ansible-collections/ansible.utils.git,main"
 
 [vcs]
 vcs = "git"
