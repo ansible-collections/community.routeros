@@ -7,6 +7,8 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
+import sys
+
 import pytest
 
 from ansible_collections.community.routeros.plugins.module_utils._api_data import (
@@ -19,6 +21,9 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 
 
 def test_paths_sorted():
+    if sys.version_info < (3, 6):
+        # PATHS is randomly ordered
+        return
     paths = list(PATHS)
     s_paths = sorted(paths)
     if paths != s_paths:
