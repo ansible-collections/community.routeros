@@ -10,11 +10,18 @@ __metaclass__ = type
 import pytest
 
 from ansible_collections.community.routeros.plugins.module_utils._api_data import (
+    PATHS,
     VersionedAPIData,
     KeyInfo,
     split_path,
     join_path,
 )
+
+
+def test_paths_sorted():
+    paths = list(PATHS)
+    s_paths = sorted(paths)
+    assert paths == s_paths
 
 
 def test_api_data_errors():
