@@ -21,6 +21,10 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 def test_paths_sorted():
     paths = list(PATHS)
     s_paths = sorted(paths)
+    if paths != s_paths:
+        for i, (a, b) in enumerate(zip(paths, s_paths)):
+            if a != b:
+                print(i, a, b)
     assert paths == s_paths
 
 
