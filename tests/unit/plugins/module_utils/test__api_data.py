@@ -7,14 +7,30 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
+import sys
+
 import pytest
 
 from ansible_collections.community.routeros.plugins.module_utils._api_data import (
+    PATHS,
     VersionedAPIData,
     KeyInfo,
     split_path,
     join_path,
 )
+
+
+def test_paths_sorted():
+    if sys.version_info < (3, 6):
+        # PATHS is randomly ordered
+        return
+    paths = list(PATHS)
+    s_paths = sorted(paths)
+    if paths != s_paths:
+        for i, (a, b) in enumerate(zip(paths, s_paths)):
+            if a != b:
+                print(i, a, b)
+    assert paths == s_paths
 
 
 def test_api_data_errors():
