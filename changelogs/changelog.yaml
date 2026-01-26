@@ -1155,3 +1155,16 @@ releases:
       - 428_added_missing_fields_for_several_wifi_paths.yml
       - 429_add_missing_system_watchdog_options.yml
     release_date: '2025-12-29'
+  3.16.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - add ``prefix-pool`` field to and fix default of ``address-pool``
+          for ``ipv6 dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/430).
+        - api_info, api_modify - add support for path ``ip socks access`` (https://github.com/ansible-collections/community.routeros/pull/431).
+      release_summary: Feature release.
+    fragments:
+      - 3.16.0.yml
+      - 430-add-prefix-pool-ipv6-dhcp-server.yaml
+      - 431-api-socks-access.yml
+      - 435-modify-update_docs.yml
+    release_date: '2026-01-26'

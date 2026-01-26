@@ -2,189 +2,192 @@
 
 **Topics**
 
-- <a href="#v3-15-0">v3\.15\.0</a>
+- <a href="#v3-16-0">v3\.16\.0</a>
     - <a href="#release-summary">Release Summary</a>
     - <a href="#minor-changes">Minor Changes</a>
-    - <a href="#deprecated-features">Deprecated Features</a>
-- <a href="#v3-14-0">v3\.14\.0</a>
+- <a href="#v3-15-0">v3\.15\.0</a>
     - <a href="#release-summary-1">Release Summary</a>
     - <a href="#minor-changes-1">Minor Changes</a>
-    - <a href="#bugfixes">Bugfixes</a>
-- <a href="#v3-13-0">v3\.13\.0</a>
+    - <a href="#deprecated-features">Deprecated Features</a>
+- <a href="#v3-14-0">v3\.14\.0</a>
     - <a href="#release-summary-2">Release Summary</a>
     - <a href="#minor-changes-2">Minor Changes</a>
-- <a href="#v3-12-1">v3\.12\.1</a>
+    - <a href="#bugfixes">Bugfixes</a>
+- <a href="#v3-13-0">v3\.13\.0</a>
     - <a href="#release-summary-3">Release Summary</a>
+    - <a href="#minor-changes-3">Minor Changes</a>
+- <a href="#v3-12-1">v3\.12\.1</a>
+    - <a href="#release-summary-4">Release Summary</a>
     - <a href="#bugfixes-1">Bugfixes</a>
 - <a href="#v3-12-0">v3\.12\.0</a>
-    - <a href="#release-summary-4">Release Summary</a>
-    - <a href="#minor-changes-3">Minor Changes</a>
-    - <a href="#bugfixes-2">Bugfixes</a>
-- <a href="#v3-11-0">v3\.11\.0</a>
     - <a href="#release-summary-5">Release Summary</a>
     - <a href="#minor-changes-4">Minor Changes</a>
-    - <a href="#bugfixes-3">Bugfixes</a>
-- <a href="#v3-10-0">v3\.10\.0</a>
+    - <a href="#bugfixes-2">Bugfixes</a>
+- <a href="#v3-11-0">v3\.11\.0</a>
     - <a href="#release-summary-6">Release Summary</a>
     - <a href="#minor-changes-5">Minor Changes</a>
-    - <a href="#bugfixes-4">Bugfixes</a>
-- <a href="#v3-9-0">v3\.9\.0</a>
+    - <a href="#bugfixes-3">Bugfixes</a>
+- <a href="#v3-10-0">v3\.10\.0</a>
     - <a href="#release-summary-7">Release Summary</a>
     - <a href="#minor-changes-6">Minor Changes</a>
+    - <a href="#bugfixes-4">Bugfixes</a>
+- <a href="#v3-9-0">v3\.9\.0</a>
+    - <a href="#release-summary-8">Release Summary</a>
+    - <a href="#minor-changes-7">Minor Changes</a>
     - <a href="#bugfixes-5">Bugfixes</a>
 - <a href="#v3-8-1">v3\.8\.1</a>
-    - <a href="#release-summary-8">Release Summary</a>
+    - <a href="#release-summary-9">Release Summary</a>
     - <a href="#bugfixes-6">Bugfixes</a>
 - <a href="#v3-8-0">v3\.8\.0</a>
-    - <a href="#release-summary-9">Release Summary</a>
-    - <a href="#minor-changes-7">Minor Changes</a>
-- <a href="#v3-7-0">v3\.7\.0</a>
     - <a href="#release-summary-10">Release Summary</a>
     - <a href="#minor-changes-8">Minor Changes</a>
-- <a href="#v3-6-0">v3\.6\.0</a>
+- <a href="#v3-7-0">v3\.7\.0</a>
     - <a href="#release-summary-11">Release Summary</a>
     - <a href="#minor-changes-9">Minor Changes</a>
-- <a href="#v3-5-0">v3\.5\.0</a>
+- <a href="#v3-6-0">v3\.6\.0</a>
     - <a href="#release-summary-12">Release Summary</a>
     - <a href="#minor-changes-10">Minor Changes</a>
-- <a href="#v3-4-0">v3\.4\.0</a>
+- <a href="#v3-5-0">v3\.5\.0</a>
     - <a href="#release-summary-13">Release Summary</a>
     - <a href="#minor-changes-11">Minor Changes</a>
-    - <a href="#bugfixes-7">Bugfixes</a>
-- <a href="#v3-3-0">v3\.3\.0</a>
+- <a href="#v3-4-0">v3\.4\.0</a>
     - <a href="#release-summary-14">Release Summary</a>
     - <a href="#minor-changes-12">Minor Changes</a>
-- <a href="#v3-2-0">v3\.2\.0</a>
+    - <a href="#bugfixes-7">Bugfixes</a>
+- <a href="#v3-3-0">v3\.3\.0</a>
     - <a href="#release-summary-15">Release Summary</a>
     - <a href="#minor-changes-13">Minor Changes</a>
-- <a href="#v3-1-0">v3\.1\.0</a>
+- <a href="#v3-2-0">v3\.2\.0</a>
     - <a href="#release-summary-16">Release Summary</a>
     - <a href="#minor-changes-14">Minor Changes</a>
+- <a href="#v3-1-0">v3\.1\.0</a>
+    - <a href="#release-summary-17">Release Summary</a>
+    - <a href="#minor-changes-15">Minor Changes</a>
     - <a href="#bugfixes-8">Bugfixes</a>
 - <a href="#v3-0-0">v3\.0\.0</a>
-    - <a href="#release-summary-17">Release Summary</a>
+    - <a href="#release-summary-18">Release Summary</a>
     - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
     - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
 - <a href="#v2-20-0">v2\.20\.0</a>
-    - <a href="#release-summary-18">Release Summary</a>
-    - <a href="#minor-changes-15">Minor Changes</a>
-- <a href="#v2-19-0">v2\.19\.0</a>
     - <a href="#release-summary-19">Release Summary</a>
     - <a href="#minor-changes-16">Minor Changes</a>
-- <a href="#v2-18-0">v2\.18\.0</a>
+- <a href="#v2-19-0">v2\.19\.0</a>
     - <a href="#release-summary-20">Release Summary</a>
     - <a href="#minor-changes-17">Minor Changes</a>
+- <a href="#v2-18-0">v2\.18\.0</a>
+    - <a href="#release-summary-21">Release Summary</a>
+    - <a href="#minor-changes-18">Minor Changes</a>
     - <a href="#deprecated-features-1">Deprecated Features</a>
     - <a href="#bugfixes-9">Bugfixes</a>
 - <a href="#v2-17-0">v2\.17\.0</a>
-    - <a href="#release-summary-21">Release Summary</a>
-    - <a href="#minor-changes-18">Minor Changes</a>
-- <a href="#v2-16-0">v2\.16\.0</a>
     - <a href="#release-summary-22">Release Summary</a>
     - <a href="#minor-changes-19">Minor Changes</a>
-- <a href="#v2-15-0">v2\.15\.0</a>
+- <a href="#v2-16-0">v2\.16\.0</a>
     - <a href="#release-summary-23">Release Summary</a>
     - <a href="#minor-changes-20">Minor Changes</a>
-- <a href="#v2-14-0">v2\.14\.0</a>
+- <a href="#v2-15-0">v2\.15\.0</a>
     - <a href="#release-summary-24">Release Summary</a>
     - <a href="#minor-changes-21">Minor Changes</a>
-- <a href="#v2-13-0">v2\.13\.0</a>
+- <a href="#v2-14-0">v2\.14\.0</a>
     - <a href="#release-summary-25">Release Summary</a>
     - <a href="#minor-changes-22">Minor Changes</a>
-    - <a href="#bugfixes-10">Bugfixes</a>
-- <a href="#v2-12-0">v2\.12\.0</a>
+- <a href="#v2-13-0">v2\.13\.0</a>
     - <a href="#release-summary-26">Release Summary</a>
     - <a href="#minor-changes-23">Minor Changes</a>
-- <a href="#v2-11-0">v2\.11\.0</a>
+    - <a href="#bugfixes-10">Bugfixes</a>
+- <a href="#v2-12-0">v2\.12\.0</a>
     - <a href="#release-summary-27">Release Summary</a>
     - <a href="#minor-changes-24">Minor Changes</a>
-- <a href="#v2-10-0">v2\.10\.0</a>
+- <a href="#v2-11-0">v2\.11\.0</a>
     - <a href="#release-summary-28">Release Summary</a>
     - <a href="#minor-changes-25">Minor Changes</a>
-    - <a href="#bugfixes-11">Bugfixes</a>
-- <a href="#v2-9-0">v2\.9\.0</a>
+- <a href="#v2-10-0">v2\.10\.0</a>
     - <a href="#release-summary-29">Release Summary</a>
     - <a href="#minor-changes-26">Minor Changes</a>
+    - <a href="#bugfixes-11">Bugfixes</a>
+- <a href="#v2-9-0">v2\.9\.0</a>
+    - <a href="#release-summary-30">Release Summary</a>
+    - <a href="#minor-changes-27">Minor Changes</a>
     - <a href="#bugfixes-12">Bugfixes</a>
 - <a href="#v2-8-3">v2\.8\.3</a>
-    - <a href="#release-summary-30">Release Summary</a>
+    - <a href="#release-summary-31">Release Summary</a>
     - <a href="#known-issues">Known Issues</a>
 - <a href="#v2-8-2">v2\.8\.2</a>
-    - <a href="#release-summary-31">Release Summary</a>
+    - <a href="#release-summary-32">Release Summary</a>
     - <a href="#bugfixes-13">Bugfixes</a>
 - <a href="#v2-8-1">v2\.8\.1</a>
-    - <a href="#release-summary-32">Release Summary</a>
+    - <a href="#release-summary-33">Release Summary</a>
     - <a href="#bugfixes-14">Bugfixes</a>
 - <a href="#v2-8-0">v2\.8\.0</a>
-    - <a href="#release-summary-33">Release Summary</a>
-    - <a href="#minor-changes-27">Minor Changes</a>
-    - <a href="#bugfixes-15">Bugfixes</a>
-- <a href="#v2-7-0">v2\.7\.0</a>
     - <a href="#release-summary-34">Release Summary</a>
     - <a href="#minor-changes-28">Minor Changes</a>
-    - <a href="#bugfixes-16">Bugfixes</a>
-- <a href="#v2-6-0">v2\.6\.0</a>
+    - <a href="#bugfixes-15">Bugfixes</a>
+- <a href="#v2-7-0">v2\.7\.0</a>
     - <a href="#release-summary-35">Release Summary</a>
     - <a href="#minor-changes-29">Minor Changes</a>
-    - <a href="#bugfixes-17">Bugfixes</a>
-- <a href="#v2-5-0">v2\.5\.0</a>
+    - <a href="#bugfixes-16">Bugfixes</a>
+- <a href="#v2-6-0">v2\.6\.0</a>
     - <a href="#release-summary-36">Release Summary</a>
     - <a href="#minor-changes-30">Minor Changes</a>
-    - <a href="#bugfixes-18">Bugfixes</a>
-- <a href="#v2-4-0">v2\.4\.0</a>
+    - <a href="#bugfixes-17">Bugfixes</a>
+- <a href="#v2-5-0">v2\.5\.0</a>
     - <a href="#release-summary-37">Release Summary</a>
     - <a href="#minor-changes-31">Minor Changes</a>
+    - <a href="#bugfixes-18">Bugfixes</a>
+- <a href="#v2-4-0">v2\.4\.0</a>
+    - <a href="#release-summary-38">Release Summary</a>
+    - <a href="#minor-changes-32">Minor Changes</a>
     - <a href="#bugfixes-19">Bugfixes</a>
     - <a href="#known-issues-1">Known Issues</a>
 - <a href="#v2-3-1">v2\.3\.1</a>
-    - <a href="#release-summary-38">Release Summary</a>
+    - <a href="#release-summary-39">Release Summary</a>
     - <a href="#known-issues-2">Known Issues</a>
 - <a href="#v2-3-0">v2\.3\.0</a>
-    - <a href="#release-summary-39">Release Summary</a>
-    - <a href="#minor-changes-32">Minor Changes</a>
+    - <a href="#release-summary-40">Release Summary</a>
+    - <a href="#minor-changes-33">Minor Changes</a>
     - <a href="#bugfixes-20">Bugfixes</a>
 - <a href="#v2-2-1">v2\.2\.1</a>
-    - <a href="#release-summary-40">Release Summary</a>
+    - <a href="#release-summary-41">Release Summary</a>
     - <a href="#bugfixes-21">Bugfixes</a>
 - <a href="#v2-2-0">v2\.2\.0</a>
-    - <a href="#release-summary-41">Release Summary</a>
-    - <a href="#minor-changes-33">Minor Changes</a>
+    - <a href="#release-summary-42">Release Summary</a>
+    - <a href="#minor-changes-34">Minor Changes</a>
     - <a href="#bugfixes-22">Bugfixes</a>
     - <a href="#new-modules">New Modules</a>
 - <a href="#v2-1-0">v2\.1\.0</a>
-    - <a href="#release-summary-42">Release Summary</a>
-    - <a href="#minor-changes-34">Minor Changes</a>
+    - <a href="#release-summary-43">Release Summary</a>
+    - <a href="#minor-changes-35">Minor Changes</a>
     - <a href="#bugfixes-23">Bugfixes</a>
     - <a href="#new-modules-1">New Modules</a>
 - <a href="#v2-0-0">v2\.0\.0</a>
-    - <a href="#release-summary-43">Release Summary</a>
-    - <a href="#minor-changes-35">Minor Changes</a>
+    - <a href="#release-summary-44">Release Summary</a>
+    - <a href="#minor-changes-36">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
     - <a href="#bugfixes-24">Bugfixes</a>
     - <a href="#new-plugins">New Plugins</a>
         - <a href="#filter">Filter</a>
 - <a href="#v1-2-0">v1\.2\.0</a>
-    - <a href="#release-summary-44">Release Summary</a>
-    - <a href="#minor-changes-36">Minor Changes</a>
-    - <a href="#bugfixes-25">Bugfixes</a>
-- <a href="#v1-1-0">v1\.1\.0</a>
     - <a href="#release-summary-45">Release Summary</a>
     - <a href="#minor-changes-37">Minor Changes</a>
-- <a href="#v1-0-1">v1\.0\.1</a>
+    - <a href="#bugfixes-25">Bugfixes</a>
+- <a href="#v1-1-0">v1\.1\.0</a>
     - <a href="#release-summary-46">Release Summary</a>
+    - <a href="#minor-changes-38">Minor Changes</a>
+- <a href="#v1-0-1">v1\.0\.1</a>
+    - <a href="#release-summary-47">Release Summary</a>
     - <a href="#bugfixes-26">Bugfixes</a>
 - <a href="#v1-0-0">v1\.0\.0</a>
-    - <a href="#release-summary-47">Release Summary</a>
+    - <a href="#release-summary-48">Release Summary</a>
     - <a href="#bugfixes-27">Bugfixes</a>
 - <a href="#v0-1-1">v0\.1\.1</a>
-    - <a href="#release-summary-48">Release Summary</a>
+    - <a href="#release-summary-49">Release Summary</a>
     - <a href="#bugfixes-28">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
-    - <a href="#release-summary-49">Release Summary</a>
-    - <a href="#minor-changes-38">Minor Changes</a>
+    - <a href="#release-summary-50">Release Summary</a>
+    - <a href="#minor-changes-39">Minor Changes</a>
 
-<a id="v3-15-0"></a>
-## v3\.15\.0
+<a id="v3-16-0"></a>
+## v3\.16\.0
 
 <a id="release-summary"></a>
 ### Release Summary
@@ -192,6 +195,20 @@
 Feature release\.
 
 <a id="minor-changes"></a>
+### Minor Changes
+
+* api\_info\, api\_modify \- add <code>prefix\-pool</code> field to and fix default of <code>address\-pool</code> for <code>ipv6 dhcp\-server</code> path \([https\://github\.com/ansible\-collections/community\.routeros/pull/430](https\://github\.com/ansible\-collections/community\.routeros/pull/430)\)\.
+* api\_info\, api\_modify \- add support for path <code>ip socks access</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/431](https\://github\.com/ansible\-collections/community\.routeros/pull/431)\)\.
+
+<a id="v3-15-0"></a>
+## v3\.15\.0
+
+<a id="release-summary-1"></a>
+### Release Summary
+
+Feature release\.
+
+<a id="minor-changes-1"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add <code>2g\-probe\-delay</code> field to path <code>interface wifi steering</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/428](https\://github\.com/ansible\-collections/community\.routeros/pull/428)\)\.
@@ -213,12 +230,12 @@ Feature release\.
 <a id="v3-14-0"></a>
 ## v3\.14\.0
 
-<a id="release-summary-1"></a>
+<a id="release-summary-2"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-1"></a>
+<a id="minor-changes-2"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add missing attribute <code>radsec\-timeout</code> for the <code>radius</code> path which exists since RouterOS version 7\.19\.6 \([https\://github\.com/ansible\-collections/community\.routeros/pull/412](https\://github\.com/ansible\-collections/community\.routeros/pull/412)\)\.
@@ -240,12 +257,12 @@ Bugfix and feature release\.
 <a id="v3-13-0"></a>
 ## v3\.13\.0
 
-<a id="release-summary-2"></a>
+<a id="release-summary-3"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-2"></a>
+<a id="minor-changes-3"></a>
 ### Minor Changes
 
 * api\_modify \- add <code>vrf</code> for <code>snmp</code> with a default of <code>main</code> for RouterOS 7\.3 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/411](https\://github\.com/ansible\-collections/community\.routeros/pull/411)\)\.
@@ -253,7 +270,7 @@ Feature release\.
 <a id="v3-12-1"></a>
 ## v3\.12\.1
 
-<a id="release-summary-3"></a>
+<a id="release-summary-4"></a>
 ### Release Summary
 
 Maintenance release\.
@@ -266,12 +283,12 @@ Maintenance release\.
 <a id="v3-12-0"></a>
 ## v3\.12\.0
 
-<a id="release-summary-4"></a>
+<a id="release-summary-5"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-3"></a>
+<a id="minor-changes-4"></a>
 ### Minor Changes
 
 * api\_modify \- add <code>vrf</code> for <code>system logging action</code> with a default of <code>main</code> for RouterOS 7\.19 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/401](https\://github\.com/ansible\-collections/community\.routeros/pull/401)\)\.
@@ -286,12 +303,12 @@ Bugfix and feature release\.
 <a id="v3-11-0"></a>
 ## v3\.11\.0
 
-<a id="release-summary-5"></a>
+<a id="release-summary-6"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-4"></a>
+<a id="minor-changes-5"></a>
 ### Minor Changes
 
 * api\_find\_and\_modify\, api\_modify \- instead of comparing supplied values as\-is to values retrieved from the API and converted to some types \(int\, bool\) by librouteros\, instead compare values by converting them to strings first\, using similar conversion rules that librouteros uses \([https\://github\.com/ansible\-collections/community\.routeros/issues/389](https\://github\.com/ansible\-collections/community\.routeros/issues/389)\, [https\://github\.com/ansible\-collections/community\.routeros/issues/370](https\://github\.com/ansible\-collections/community\.routeros/issues/370)\, [https\://github\.com/ansible\-collections/community\.routeros/issues/325](https\://github\.com/ansible\-collections/community\.routeros/issues/325)\, [https\://github\.com/ansible\-collections/community\.routeros/issues/169](https\://github\.com/ansible\-collections/community\.routeros/issues/169)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/397](https\://github\.com/ansible\-collections/community\.routeros/pull/397)\)\.
@@ -304,12 +321,12 @@ Bugfix and feature release\.
 <a id="v3-10-0"></a>
 ## v3\.10\.0
 
-<a id="release-summary-6"></a>
+<a id="release-summary-7"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-5"></a>
+<a id="minor-changes-6"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add <code>show\-at\-cli\-login</code> property in <code>system note</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/392](https\://github\.com/ansible\-collections/community\.routeros/pull/392)\)\.
@@ -331,12 +348,12 @@ Bugfix and feature release\.
 <a id="v3-9-0"></a>
 ## v3\.9\.0
 
-<a id="release-summary-7"></a>
+<a id="release-summary-8"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-6"></a>
+<a id="minor-changes-7"></a>
 ### Minor Changes
 
 * api\_info\, api modify \- add <code>remote\-log\-format</code>\, <code>remote\-protocol</code>\, and <code>event\-delimiter</code> to <code>system logging action</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/381](https\://github\.com/ansible\-collections/community\.routeros/pull/381)\)\.
@@ -353,7 +370,7 @@ Bugfix and feature release\.
 <a id="v3-8-1"></a>
 ## v3\.8\.1
 
-<a id="release-summary-8"></a>
+<a id="release-summary-9"></a>
 ### Release Summary
 
 Bugfix release\.
@@ -366,12 +383,12 @@ Bugfix release\.
 <a id="v3-8-0"></a>
 ## v3\.8\.0
 
-<a id="release-summary-9"></a>
+<a id="release-summary-10"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-7"></a>
+<a id="minor-changes-8"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add <code>interface ethernet switch port\-isolation</code> which is supported since RouterOS 6\.43 \([https\://github\.com/ansible\-collections/community\.routeros/pull/375](https\://github\.com/ansible\-collections/community\.routeros/pull/375)\)\.
@@ -382,20 +399,6 @@ Feature release\.
 <a id="v3-7-0"></a>
 ## v3\.7\.0
 
-<a id="release-summary-10"></a>
-### Release Summary
-
-Feature release\.
-
-<a id="minor-changes-8"></a>
-### Minor Changes
-
-* api\_find\_and\_modify \- allow to control whether <code>dynamic</code> and/or <code>builtin</code> entries are ignored with the new <code>ignore\_dynamic</code> and <code>ignore\_builtin</code> options \([https\://github\.com/ansible\-collections/community\.routeros/issues/372](https\://github\.com/ansible\-collections/community\.routeros/issues/372)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/373](https\://github\.com/ansible\-collections/community\.routeros/pull/373)\)\.
-* api\_info\, api\_modify \- add <code>port\-cost\-mode</code> to <code>interface bridge</code> which is supported since RouterOS 7\.13 \([https\://github\.com/ansible\-collections/community\.routeros/pull/371](https\://github\.com/ansible\-collections/community\.routeros/pull/371)\)\.
-
-<a id="v3-6-0"></a>
-## v3\.6\.0
-
 <a id="release-summary-11"></a>
 ### Release Summary
 
@@ -404,12 +407,11 @@ Feature release\.
 <a id="minor-changes-9"></a>
 ### Minor Changes
 
-* api\_info\, api\_modify \- add <code>mdns\-repeat\-ifaces</code> to <code>ip dns</code> for RouterOS 7\.16 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/358](https\://github\.com/ansible\-collections/community\.routeros/pull/358)\)\.
-* api\_info\, api\_modify \- field name change in <code>routing bgp connection</code> path implemented by RouterOS 7\.19 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/360](https\://github\.com/ansible\-collections/community\.routeros/pull/360)\)\.
-* api\_info\, api\_modify \- rename <code>is\-responder</code> property in <code>interface wireguard peers</code> to <code>responder</code> for RouterOS 7\.17 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/364](https\://github\.com/ansible\-collections/community\.routeros/pull/364)\)\.
+* api\_find\_and\_modify \- allow to control whether <code>dynamic</code> and/or <code>builtin</code> entries are ignored with the new <code>ignore\_dynamic</code> and <code>ignore\_builtin</code> options \([https\://github\.com/ansible\-collections/community\.routeros/issues/372](https\://github\.com/ansible\-collections/community\.routeros/issues/372)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/373](https\://github\.com/ansible\-collections/community\.routeros/pull/373)\)\.
+* api\_info\, api\_modify \- add <code>port\-cost\-mode</code> to <code>interface bridge</code> which is supported since RouterOS 7\.13 \([https\://github\.com/ansible\-collections/community\.routeros/pull/371](https\://github\.com/ansible\-collections/community\.routeros/pull/371)\)\.
 
-<a id="v3-5-0"></a>
-## v3\.5\.0
+<a id="v3-6-0"></a>
+## v3\.6\.0
 
 <a id="release-summary-12"></a>
 ### Release Summary
@@ -419,17 +421,32 @@ Feature release\.
 <a id="minor-changes-10"></a>
 ### Minor Changes
 
+* api\_info\, api\_modify \- add <code>mdns\-repeat\-ifaces</code> to <code>ip dns</code> for RouterOS 7\.16 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/358](https\://github\.com/ansible\-collections/community\.routeros/pull/358)\)\.
+* api\_info\, api\_modify \- field name change in <code>routing bgp connection</code> path implemented by RouterOS 7\.19 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/360](https\://github\.com/ansible\-collections/community\.routeros/pull/360)\)\.
+* api\_info\, api\_modify \- rename <code>is\-responder</code> property in <code>interface wireguard peers</code> to <code>responder</code> for RouterOS 7\.17 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/364](https\://github\.com/ansible\-collections/community\.routeros/pull/364)\)\.
+
+<a id="v3-5-0"></a>
+## v3\.5\.0
+
+<a id="release-summary-13"></a>
+### Release Summary
+
+Feature release\.
+
+<a id="minor-changes-11"></a>
+### Minor Changes
+
 * api\_info\, api\_modify \- change default for <code>/ip/cloud/ddns\-enabled</code> for RouterOS 7\.17 and newer from <code>yes</code> to <code>auto</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/350](https\://github\.com/ansible\-collections/community\.routeros/pull/350)\)\.
 
 <a id="v3-4-0"></a>
 ## v3\.4\.0
 
-<a id="release-summary-13"></a>
+<a id="release-summary-14"></a>
 ### Release Summary
 
 Feature and bugfix release\.
 
-<a id="minor-changes-11"></a>
+<a id="minor-changes-12"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add support for the <code>ip dns forwarders</code> path implemented by RouterOS 7\.17 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/343](https\://github\.com/ansible\-collections/community\.routeros/pull/343)\)\.
@@ -442,12 +459,12 @@ Feature and bugfix release\.
 <a id="v3-3-0"></a>
 ## v3\.3\.0
 
-<a id="release-summary-14"></a>
+<a id="release-summary-15"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-12"></a>
+<a id="minor-changes-13"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add missing attribute <code>require\-message\-auth</code> for the <code>radius</code> path which exists since RouterOS version 7\.15 \([https\://github\.com/ansible\-collections/community\.routeros/issues/338](https\://github\.com/ansible\-collections/community\.routeros/issues/338)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/339](https\://github\.com/ansible\-collections/community\.routeros/pull/339)\)\.
@@ -458,12 +475,12 @@ Feature release\.
 <a id="v3-2-0"></a>
 ## v3\.2\.0
 
-<a id="release-summary-15"></a>
+<a id="release-summary-16"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-13"></a>
+<a id="minor-changes-14"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add support for the <code>routing filter community\-list</code> path implemented by RouterOS 7 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/331](https\://github\.com/ansible\-collections/community\.routeros/pull/331)\)\.
@@ -471,12 +488,12 @@ Feature release\.
 <a id="v3-1-0"></a>
 ## v3\.1\.0
 
-<a id="release-summary-16"></a>
+<a id="release-summary-17"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-14"></a>
+<a id="minor-changes-15"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add missing fields <code>comment</code>\, <code>next\-pool</code> to <code>ip pool</code> path \([https\://github\.com/ansible\-collections/community\.routeros/pull/327](https\://github\.com/ansible\-collections/community\.routeros/pull/327)\)\.
@@ -489,7 +506,7 @@ Bugfix and feature release\.
 <a id="v3-0-0"></a>
 ## v3\.0\.0
 
-<a id="release-summary-17"></a>
+<a id="release-summary-18"></a>
 ### Release Summary
 
 Major release that drops support for End of Life Python versions and fixes check mode for community\.routeros\.command\.
@@ -507,12 +524,12 @@ Major release that drops support for End of Life Python versions and fixes check
 <a id="v2-20-0"></a>
 ## v2\.20\.0
 
-<a id="release-summary-18"></a>
+<a id="release-summary-19"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-15"></a>
+<a id="minor-changes-16"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add new parameters from the RouterOS 7\.16 release \([https\://github\.com/ansible\-collections/community\.routeros/pull/323](https\://github\.com/ansible\-collections/community\.routeros/pull/323)\)\.
@@ -523,12 +540,12 @@ Feature release\.
 <a id="v2-19-0"></a>
 ## v2\.19\.0
 
-<a id="release-summary-19"></a>
+<a id="release-summary-20"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-16"></a>
+<a id="minor-changes-17"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add support for the <code>ip dns adlist</code> path implemented by RouterOS 7\.15 and newer \([https\://github\.com/ansible\-collections/community\.routeros/pull/310](https\://github\.com/ansible\-collections/community\.routeros/pull/310)\)\.
@@ -540,12 +557,12 @@ Feature release\.
 <a id="v2-18-0"></a>
 ## v2\.18\.0
 
-<a id="release-summary-20"></a>
+<a id="release-summary-21"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-17"></a>
+<a id="minor-changes-18"></a>
 ### Minor Changes
 
 * api\_info \- allow to restrict the output by limiting fields to specific values with the new <code>restrict</code> option \([https\://github\.com/ansible\-collections/community\.routeros/pull/305](https\://github\.com/ansible\-collections/community\.routeros/pull/305)\)\.
@@ -569,12 +586,12 @@ Feature release\.
 <a id="v2-17-0"></a>
 ## v2\.17\.0
 
-<a id="release-summary-21"></a>
+<a id="release-summary-22"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-18"></a>
+<a id="minor-changes-19"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add <code>system health settings</code> path \([https\://github\.com/ansible\-collections/community\.routeros/pull/294](https\://github\.com/ansible\-collections/community\.routeros/pull/294)\)\.
@@ -584,12 +601,12 @@ Feature release\.
 <a id="v2-16-0"></a>
 ## v2\.16\.0
 
-<a id="release-summary-22"></a>
+<a id="release-summary-23"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-19"></a>
+<a id="minor-changes-20"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add missing path <code>/ppp secret</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/286](https\://github\.com/ansible\-collections/community\.routeros/pull/286)\)\.
@@ -598,12 +615,12 @@ Feature release\.
 <a id="v2-15-0"></a>
 ## v2\.15\.0
 
-<a id="release-summary-23"></a>
+<a id="release-summary-24"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-20"></a>
+<a id="minor-changes-21"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- Add RouterOS 7\.x support to <code>/mpls ldp</code> path \([https\://github\.com/ansible\-collections/community\.routeros/pull/271](https\://github\.com/ansible\-collections/community\.routeros/pull/271)\)\.
@@ -620,12 +637,12 @@ Feature release\.
 <a id="v2-14-0"></a>
 ## v2\.14\.0
 
-<a id="release-summary-24"></a>
+<a id="release-summary-25"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-21"></a>
+<a id="minor-changes-22"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add read\-only fields <code>installed\-version</code>\, <code>latest\-version</code> and <code>status</code> in <code>system package update</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/263](https\://github\.com/ansible\-collections/community\.routeros/pull/263)\)\.
@@ -635,12 +652,12 @@ Feature release\.
 <a id="v2-13-0"></a>
 ## v2\.13\.0
 
-<a id="release-summary-25"></a>
+<a id="release-summary-26"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-22"></a>
+<a id="minor-changes-23"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- make path <code>user group</code> modifiable and add <code>comment</code> attribute \([https\://github\.com/ansible\-collections/community\.routeros/issues/256](https\://github\.com/ansible\-collections/community\.routeros/issues/256)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/257](https\://github\.com/ansible\-collections/community\.routeros/pull/257)\)\.
@@ -654,12 +671,12 @@ Bugfix and feature release\.
 <a id="v2-12-0"></a>
 ## v2\.12\.0
 
-<a id="release-summary-26"></a>
+<a id="release-summary-27"></a>
 ### Release Summary
 
 Feature release\.
 
-<a id="minor-changes-23"></a>
+<a id="minor-changes-24"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add <code>interface ovpn\-client</code> path \([https\://github\.com/ansible\-collections/community\.routeros/issues/242](https\://github\.com/ansible\-collections/community\.routeros/issues/242)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/244](https\://github\.com/ansible\-collections/community\.routeros/pull/244)\)\.
@@ -673,12 +690,12 @@ Feature release\.
 <a id="v2-11-0"></a>
 ## v2\.11\.0
 
-<a id="release-summary-27"></a>
+<a id="release-summary-28"></a>
 ### Release Summary
 
 Feature and bugfix release\.
 
-<a id="minor-changes-24"></a>
+<a id="minor-changes-25"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add missing DoH parameters <code>doh\-max\-concurrent\-queries</code>\, <code>doh\-max\-server\-connections</code>\, and <code>doh\-timeout</code> to the <code>ip dns</code> path \([https\://github\.com/ansible\-collections/community\.routeros/issues/230](https\://github\.com/ansible\-collections/community\.routeros/issues/230)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/235](https\://github\.com/ansible\-collections/community\.routeros/pull/235)\)
@@ -693,12 +710,12 @@ Feature and bugfix release\.
 <a id="v2-10-0"></a>
 ## v2\.10\.0
 
-<a id="release-summary-28"></a>
+<a id="release-summary-29"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-25"></a>
+<a id="minor-changes-26"></a>
 ### Minor Changes
 
 * api\_info \- add new <code>include\_read\_only</code> option to select behavior for read\-only values\. By default these are not returned \([https\://github\.com/ansible\-collections/community\.routeros/pull/213](https\://github\.com/ansible\-collections/community\.routeros/pull/213)\)\.
@@ -730,12 +747,12 @@ Bugfix and feature release\.
 <a id="v2-9-0"></a>
 ## v2\.9\.0
 
-<a id="release-summary-29"></a>
+<a id="release-summary-30"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-26"></a>
+<a id="minor-changes-27"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- add path <code>caps\-man channel</code> and enable path <code>caps\-man manager interface</code> \([https\://github\.com/ansible\-collections/community\.routeros/issues/193](https\://github\.com/ansible\-collections/community\.routeros/issues/193)\, [https\://github\.com/ansible\-collections/community\.routeros/pull/194](https\://github\.com/ansible\-collections/community\.routeros/pull/194)\)\.
@@ -749,7 +766,7 @@ Bugfix and feature release\.
 <a id="v2-8-3"></a>
 ## v2\.8\.3
 
-<a id="release-summary-30"></a>
+<a id="release-summary-31"></a>
 ### Release Summary
 
 Maintenance release with updated documentation\.
@@ -770,7 +787,7 @@ for the rendered HTML version of the documentation of the latest release\.
 <a id="v2-8-2"></a>
 ## v2\.8\.2
 
-<a id="release-summary-31"></a>
+<a id="release-summary-32"></a>
 ### Release Summary
 
 Bugfix release\.
@@ -783,7 +800,7 @@ Bugfix release\.
 <a id="v2-8-1"></a>
 ## v2\.8\.1
 
-<a id="release-summary-32"></a>
+<a id="release-summary-33"></a>
 ### Release Summary
 
 Bugfix release\.
@@ -796,12 +813,12 @@ Bugfix release\.
 <a id="v2-8-0"></a>
 ## v2\.8\.0
 
-<a id="release-summary-33"></a>
+<a id="release-summary-34"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-27"></a>
+<a id="minor-changes-28"></a>
 ### Minor Changes
 
 * api\_modify \- adapt data for API paths <code>ip dhcp\-server network</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/156](https\://github\.com/ansible\-collections/community\.routeros/pull/156)\)\.
@@ -821,12 +838,12 @@ Bugfix and feature release\.
 <a id="v2-7-0"></a>
 ## v2\.7\.0
 
-<a id="release-summary-34"></a>
+<a id="release-summary-35"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-28"></a>
+<a id="minor-changes-29"></a>
 ### Minor Changes
 
 * api\_modify\, api\_info \- support API paths <code>ip arp</code>\, <code>ip firewall raw</code>\, <code>ipv6 firewall raw</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/144](https\://github\.com/ansible\-collections/community\.routeros/pull/144)\)\.
@@ -839,12 +856,12 @@ Bugfix and feature release\.
 <a id="v2-6-0"></a>
 ## v2\.6\.0
 
-<a id="release-summary-35"></a>
+<a id="release-summary-36"></a>
 ### Release Summary
 
 Regular bugfix and feature release\.
 
-<a id="minor-changes-29"></a>
+<a id="minor-changes-30"></a>
 ### Minor Changes
 
 * api\_modify\, api\_info \- add field <code>regexp</code> to <code>ip dns static</code> \([https\://github\.com/ansible\-collections/community\.routeros/issues/141](https\://github\.com/ansible\-collections/community\.routeros/issues/141)\)\.
@@ -859,12 +876,12 @@ Regular bugfix and feature release\.
 <a id="v2-5-0"></a>
 ## v2\.5\.0
 
-<a id="release-summary-36"></a>
+<a id="release-summary-37"></a>
 ### Release Summary
 
 Feature and bugfix release\.
 
-<a id="minor-changes-30"></a>
+<a id="minor-changes-31"></a>
 ### Minor Changes
 
 * api\_info\, api\_modify \- support API paths <code>interface ethernet poe</code>\, <code>interface gre6</code>\, <code>interface vrrp</code> and also support all previously missing fields of entries in <code>ip dhcp\-server</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/137](https\://github\.com/ansible\-collections/community\.routeros/pull/137)\)\.
@@ -877,12 +894,12 @@ Feature and bugfix release\.
 <a id="v2-4-0"></a>
 ## v2\.4\.0
 
-<a id="release-summary-37"></a>
+<a id="release-summary-38"></a>
 ### Release Summary
 
 Feature release improving the <code>api\*</code> modules\.
 
-<a id="minor-changes-31"></a>
+<a id="minor-changes-32"></a>
 ### Minor Changes
 
 * api\* modules \- Add new option <code>force\_no\_cert</code> to connect with ADH ciphers \([https\://github\.com/ansible\-collections/community\.routeros/pull/124](https\://github\.com/ansible\-collections/community\.routeros/pull/124)\)\.
@@ -921,7 +938,7 @@ Feature release improving the <code>api\*</code> modules\.
 <a id="v2-3-1"></a>
 ## v2\.3\.1
 
-<a id="release-summary-38"></a>
+<a id="release-summary-39"></a>
 ### Release Summary
 
 Maintenance release with improved documentation\.
@@ -934,12 +951,12 @@ Maintenance release with improved documentation\.
 <a id="v2-3-0"></a>
 ## v2\.3\.0
 
-<a id="release-summary-39"></a>
+<a id="release-summary-40"></a>
 ### Release Summary
 
 Feature and bugfix release\.
 
-<a id="minor-changes-32"></a>
+<a id="minor-changes-33"></a>
 ### Minor Changes
 
 * The collection repository conforms to the [REUSE specification](https\://reuse\.software/spec/) except for the changelog fragments \([https\://github\.com/ansible\-collections/community\.routeros/pull/108](https\://github\.com/ansible\-collections/community\.routeros/pull/108)\)\.
@@ -954,7 +971,7 @@ Feature and bugfix release\.
 <a id="v2-2-1"></a>
 ## v2\.2\.1
 
-<a id="release-summary-40"></a>
+<a id="release-summary-41"></a>
 ### Release Summary
 
 Bugfix release\.
@@ -968,12 +985,12 @@ Bugfix release\.
 <a id="v2-2-0"></a>
 ## v2\.2\.0
 
-<a id="release-summary-41"></a>
+<a id="release-summary-42"></a>
 ### Release Summary
 
 New feature release\.
 
-<a id="minor-changes-33"></a>
+<a id="minor-changes-34"></a>
 ### Minor Changes
 
 * All software licenses are now in the <code>LICENSES/</code> directory of the collection root\. Moreover\, <code>SPDX\-License\-Identifier\:</code> is used to declare the applicable license for every file that is not automatically generated \([https\://github\.com/ansible\-collections/community\.routeros/pull/101](https\://github\.com/ansible\-collections/community\.routeros/pull/101)\)\.
@@ -992,12 +1009,12 @@ New feature release\.
 <a id="v2-1-0"></a>
 ## v2\.1\.0
 
-<a id="release-summary-42"></a>
+<a id="release-summary-43"></a>
 ### Release Summary
 
 Feature and bugfix release with new modules\.
 
-<a id="minor-changes-34"></a>
+<a id="minor-changes-35"></a>
 ### Minor Changes
 
 * Added a <code>community\.routeros\.api</code> module defaults group\. Use with <code>group/community\.routeros\.api</code> to provide options for all API\-based modules \([https\://github\.com/ansible\-collections/community\.routeros/pull/89](https\://github\.com/ansible\-collections/community\.routeros/pull/89)\)\.
@@ -1021,12 +1038,12 @@ Feature and bugfix release with new modules\.
 <a id="v2-0-0"></a>
 ## v2\.0\.0
 
-<a id="release-summary-43"></a>
+<a id="release-summary-44"></a>
 ### Release Summary
 
 A new major release with breaking changes in the behavior of <code>community\.routeros\.api</code> and <code>community\.routeros\.command</code>\.
 
-<a id="minor-changes-35"></a>
+<a id="minor-changes-36"></a>
 ### Minor Changes
 
 * api \- make validation of <code>WHERE</code> for <code>query</code> more strict \([https\://github\.com/ansible\-collections/community\.routeros/pull/53](https\://github\.com/ansible\-collections/community\.routeros/pull/53)\)\.
@@ -1062,12 +1079,12 @@ A new major release with breaking changes in the behavior of <code>community\.ro
 <a id="v1-2-0"></a>
 ## v1\.2\.0
 
-<a id="release-summary-44"></a>
+<a id="release-summary-45"></a>
 ### Release Summary
 
 Bugfix and feature release\.
 
-<a id="minor-changes-36"></a>
+<a id="minor-changes-37"></a>
 ### Minor Changes
 
 * Avoid internal ansible\-core module\_utils in favor of equivalent public API available since at least Ansible 2\.9 \([https\://github\.com/ansible\-collections/community\.routeros/pull/38](https\://github\.com/ansible\-collections/community\.routeros/pull/38)\)\.
@@ -1083,12 +1100,12 @@ Bugfix and feature release\.
 <a id="v1-1-0"></a>
 ## v1\.1\.0
 
-<a id="release-summary-45"></a>
+<a id="release-summary-46"></a>
 ### Release Summary
 
 This release allow dashes in usernames for SSH\-based modules\.
 
-<a id="minor-changes-37"></a>
+<a id="minor-changes-38"></a>
 ### Minor Changes
 
 * command \- added support for a dash \(<code>\-</code>\) in username \([https\://github\.com/ansible\-collections/community\.routeros/pull/18](https\://github\.com/ansible\-collections/community\.routeros/pull/18)\)\.
@@ -1097,7 +1114,7 @@ This release allow dashes in usernames for SSH\-based modules\.
 <a id="v1-0-1"></a>
 ## v1\.0\.1
 
-<a id="release-summary-46"></a>
+<a id="release-summary-47"></a>
 ### Release Summary
 
 Maintenance release with a bugfix for <code>api</code>\.
@@ -1110,7 +1127,7 @@ Maintenance release with a bugfix for <code>api</code>\.
 <a id="v1-0-0"></a>
 ## v1\.0\.0
 
-<a id="release-summary-47"></a>
+<a id="release-summary-48"></a>
 ### Release Summary
 
 This is the first production \(non\-prerelease\) release of <code>community\.routeros</code>\.
@@ -1123,7 +1140,7 @@ This is the first production \(non\-prerelease\) release of <code>community\.rou
 <a id="v0-1-1"></a>
 ## v0\.1\.1
 
-<a id="release-summary-48"></a>
+<a id="release-summary-49"></a>
 ### Release Summary
 
 Small improvements and bugfixes over the initial release\.
@@ -1136,12 +1153,12 @@ Small improvements and bugfixes over the initial release\.
 <a id="v0-1-0"></a>
 ## v0\.1\.0
 
-<a id="release-summary-49"></a>
+<a id="release-summary-50"></a>
 ### Release Summary
 
 The <code>community\.routeros</code> continues the work on the Ansible RouterOS modules from their state in <code>community\.network</code> 1\.2\.0\. The changes listed here are thus relative to the modules <code>community\.network\.routeros\_\*</code>\.
 
-<a id="minor-changes-38"></a>
+<a id="minor-changes-39"></a>
 ### Minor Changes
 
 * facts \- now also collecting data about BGP and OSPF \([https\://github\.com/ansible\-collections/community\.network/pull/101](https\://github\.com/ansible\-collections/community\.network/pull/101)\)\.

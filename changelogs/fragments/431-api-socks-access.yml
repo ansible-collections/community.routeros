@@ -1,3 +1,0 @@
----
-minor_changes:
-  - api_info, api_modify - add support for path ``ip socks access`` (https://github.com/ansible-collections/community.routeros/pull/431).

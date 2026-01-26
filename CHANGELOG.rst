@@ -4,6 +4,20 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.16.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - add ``prefix-pool`` field to and fix default of ``address-pool`` for ``ipv6 dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/430).
+- api_info, api_modify - add support for path ``ip socks access`` (https://github.com/ansible-collections/community.routeros/pull/431).
+
 v3.15.0
 =======
 

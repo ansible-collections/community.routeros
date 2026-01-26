@@ -1,3 +1,0 @@
----
-minor_changes:
-  - "api_info, api_modify - add ``prefix-pool`` field to and fix default of ``address-pool`` for ``ipv6 dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/430)."
