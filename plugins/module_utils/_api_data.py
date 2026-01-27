@@ -2071,17 +2071,6 @@ PATHS = {
         ),
     ),
 
-    ('interface', 'dot1x', 'server', 'active'): APIData(
-        versioned=[
-            ('7.15', '>=', VersionedAPIData(
-                fully_understood=True,
-                fields={
-                    'copy-from': KeyInfo(write_only=True),
-                },
-            )),
-        ],
-    ),
-
     ('interface', 'eoip'): APIData(
         unversioned=VersionedAPIData(
             primary_keys=('name',),
@@ -6344,19 +6333,6 @@ PATHS = {
         ),
     ),
 
-    ('ip', 'hotspot', 'active'): APIData(
-        versioned=[
-            ('7.15', '>=', VersionedAPIData(
-                fully_understood=True,
-                fields={
-                    'comment': KeyInfo(),
-                    'copy-from': KeyInfo(write_only=True),
-                },
-            )),
-            ('7.21', '>=', 'Not supported anymore in version 7.21'),
-        ],
-    ),
-
     ('ip', 'hotspot', 'ip-binding'): APIData(
         versioned=[
             ('7.15', '>=', VersionedAPIData(
@@ -6537,18 +6513,6 @@ PATHS = {
                 'src-address-list': KeyInfo(can_disable=True),
             },
         ),
-    ),
-
-    ('ip', 'ipsec', 'active-peers'): APIData(
-        versioned=[
-            ('7.15', '>=', VersionedAPIData(
-                fully_understood=True,
-                fields={
-                    'comment': KeyInfo(),
-                    'copy-from': KeyInfo(write_only=True),
-                },
-            )),
-        ],
     ),
 
     ('ip', 'ipsec', 'identity'): APIData(
@@ -11877,17 +11841,6 @@ PATHS = {
                 'use-radius': KeyInfo(default=False),
             },
         ),
-    ),
-
-    ('user', 'active'): APIData(
-        versioned=[
-            ('7.20', '>=', VersionedAPIData(
-                fully_understood=True,
-                fields={
-                    'copy-from': KeyInfo(write_only=True),
-                },
-            )),
-        ],
     ),
 
     ('user', 'group'): APIData(

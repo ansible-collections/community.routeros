@@ -116,7 +116,6 @@ options:
       - interface detect-internet
       - interface dot1x client
       - interface dot1x server
-      - interface dot1x server active
       - interface eoip
       - interface eoipv6
       - interface ethernet
@@ -258,7 +257,6 @@ options:
       - ip firewall raw
       - ip firewall service-port
       - ip hotspot
-      - ip hotspot active
       - ip hotspot ip-binding
       - ip hotspot profile
       - ip hotspot service-port
@@ -266,7 +264,6 @@ options:
       - ip hotspot user profile
       - ip hotspot walled-garden
       - ip hotspot walled-garden ip
-      - ip ipsec active-peers
       - ip ipsec identity
       - ip ipsec key psk
       - ip ipsec key qkd
@@ -483,7 +480,6 @@ options:
       - tr069-client
       - user
       - user aaa
-      - user active
       - user group
       - user settings
       - user ssh-keys
