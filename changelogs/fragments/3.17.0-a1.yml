@@ -1,0 +1,5 @@
+release_summary: |-
+  Alpha release of 3.17.0, which has a huge amount of changes to the API modules
+  in terms of added and improved paths. Please test this carefully against existing
+  RouterOS setups (use **check mode**!) and report problems in the `collection's
+  bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!
