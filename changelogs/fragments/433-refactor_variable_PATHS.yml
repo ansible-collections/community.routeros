@@ -53,7 +53,7 @@ minor_changes:
   - api_info, api_modify - adds support for the ``heartbeat`` (>= 7.18) and ``priority`` (>= 7.17) parameters in the ``interface bridge mlag`` path (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``interface bridge msti`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``interface bridge nat`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
-   api_info, api_modify - allow the parameters ``internal-path-cost`` and ``path-cost`` to be disabled in the ``interface bridge port`` path for RouterOS >= 7.13 (https://github.com/ansible-collections/community.routeros/pull/433).
+  - api_info, api_modify - allow the parameters ``internal-path-cost`` and ``path-cost`` to be disabled in the ``interface bridge port`` path for RouterOS >= 7.13 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``interface bridge port mst-override`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``interface bridge port-controller device`` path for RouterOS >= 7.15, < 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info - adds support for the ``interface bridge port-controller port`` path for RouterOS >= 7.15, < 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
@@ -389,7 +389,7 @@ minor_changes:
   - api_info, api_modify - adds support for the ``zerotier controller member`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``zerotier interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 
-minor_changes:
+# minor_changes:
   - api_info, api_modify - removed support for the parameter ``default`` in the ``caps-man manager interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - removed support for the parameter ``default-mount-point-template`` in the ``disk settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - removed default value for parameters ``internal-path-cost`` and ``path-cost`` in the ``interface bridge port`` path for RouterOS >= 7.13 (https://github.com/ansible-collections/community.routeros/pull/433).
