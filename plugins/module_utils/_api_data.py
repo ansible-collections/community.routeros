@@ -6570,7 +6570,7 @@ PATHS = {
             ('7.21', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
-                    'copy-from': KeyInfo(),
+                    # 'copy-from': KeyInfo(write_only=True),
                     'id': KeyInfo(),
                     'key': KeyInfo(),
                     'peer': KeyInfo(),
@@ -7609,7 +7609,7 @@ PATHS = {
                 fields={
                     'code': KeyInfo(),
                     'comment': KeyInfo(),
-                    'copy-from': KeyInfo(),
+                    # 'copy-from': KeyInfo(write_only=True),
                     'name': KeyInfo(),
                     'only-if-mac-available': KeyInfo(),
                     'value': KeyInfo(),
