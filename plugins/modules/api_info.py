@@ -43,23 +43,72 @@ options:
     type: str
     choices:
     # BEGIN PATH LIST
+      - app
+      - app settings
       - caps-man aaa
       - caps-man access-list
+      - caps-man actual-interface-configuration
       - caps-man channel
       - caps-man configuration
       - caps-man datapath
+      - caps-man interface
       - caps-man manager
       - caps-man manager interface
       - caps-man provisioning
+      - caps-man rates
       - caps-man security
+      - certificate
+      - certificate crl
+      - certificate scep-server
+      - certificate scep-server ra
       - certificate settings
+      - console settings
+      - container
+      - container config
+      - container envs
+      - container mounts
+      - disk
+      - disk btrfs filesystem
+      - disk btrfs subvolume
+      - disk btrfs transfer
       - disk settings
+      - dude
+      - dude agent
+      - dude device
+      - dude device-type
+      - dude notification
+      - dude probe
+      - dude ros address
+      - dude ros arp
+      - dude ros health
+      - dude ros interface
+      - dude ros lease
+      - dude ros neighbor
+      - dude ros queue
+      - dude ros resource
+      - dude ros route
+      - dude ros routerboard
+      - dude service
+      - file
+      - file rsync-daemon
+      - file sync
+      - interface
       - interface 6to4
+      - interface amt
       - interface bonding
       - interface bridge
+      - interface bridge calea
+      - interface bridge filter
+      - interface bridge host
+      - interface bridge mdb
       - interface bridge mlag
+      - interface bridge msti
+      - interface bridge nat
       - interface bridge port
+      - interface bridge port mst-override
       - interface bridge port-controller
+      - interface bridge port-controller device
+      - interface bridge port-controller port
       - interface bridge port-extender
       - interface bridge settings
       - interface bridge vlan
@@ -67,26 +116,64 @@ options:
       - interface dot1x client
       - interface dot1x server
       - interface eoip
+      - interface eoipv6
       - interface ethernet
       - interface ethernet poe
       - interface ethernet switch
+      - interface ethernet switch host
+      - interface ethernet switch l3hw-settings
+      - interface ethernet switch l3hw-settings advanced
       - interface ethernet switch port
       - interface ethernet switch port-isolation
+      - interface ethernet switch qos map
+      - interface ethernet switch qos map ip
+      - interface ethernet switch qos map vlan
+      - interface ethernet switch qos port
+      - interface ethernet switch qos priority-flow-control
+      - interface ethernet switch qos profile
+      - interface ethernet switch qos settings
+      - interface ethernet switch qos tx-manager
+      - interface ethernet switch qos tx-manager queue
+      - interface ethernet switch rule
+      - interface ethernet switch vlan
       - interface gre
       - interface gre6
+      - interface ipip
+      - interface ipipv6
       - interface l2tp-client
+      - interface l2tp-ether
+      - interface l2tp-server
       - interface l2tp-server server
       - interface list
       - interface list member
+      - interface lte
+      - interface lte apn
+      - interface lte settings
+      - interface macsec
+      - interface macsec profile
+      - interface macvlan
+      - interface mesh
+      - interface mesh port
       - interface ovpn-client
+      - interface ovpn-server
       - interface ovpn-server server
       - interface ppp-client
+      - interface ppp-server
       - interface pppoe-client
+      - interface pppoe-server
       - interface pppoe-server server
+      - interface pptp-client
+      - interface pptp-server
       - interface pptp-server server
+      - interface sstp-client
+      - interface sstp-server
       - interface sstp-server server
+      - interface veth
       - interface vlan
+      - interface vpls
       - interface vrrp
+      - interface vxlan
+      - interface vxlan vteps
       - interface wifi
       - interface wifi aaa
       - interface wifi access-list
@@ -97,8 +184,11 @@ options:
       - interface wifi datapath
       - interface wifi interworking
       - interface wifi provisioning
+      - interface wifi radio settings
       - interface wifi security
+      - interface wifi security multi-passphrase
       - interface wifi steering
+      - interface wifi steering neighbor-group
       - interface wifiwave2
       - interface wifiwave2 aaa
       - interface wifiwave2 access-list
@@ -117,21 +207,48 @@ options:
       - interface wireless access-list
       - interface wireless align
       - interface wireless cap
+      - interface wireless channels
       - interface wireless connect-list
+      - interface wireless interworking-profiles
+      - interface wireless manual-tx-power-table
+      - interface wireless nstreme
+      - interface wireless nstreme-dual
       - interface wireless security-profiles
       - interface wireless sniffer
       - interface wireless snooper
+      - interface wireless wds
+      - iot bluetooth
+      - iot bluetooth advertisers
+      - iot bluetooth advertisers ad-structures
+      - iot bluetooth peripheral-devices
+      - iot bluetooth scanners
+      - iot bluetooth whitelist
+      - iot lora
+      - iot lora channels
+      - iot lora joineui
+      - iot lora netid
+      - iot lora radios
+      - iot lora servers
+      - iot lora traffic options
       - iot modbus
+      - iot modbus security-rules
+      - iot mqtt brokers
+      - iot mqtt subscriptions
       - ip accounting
       - ip accounting web-access
       - ip address
       - ip arp
       - ip cloud
       - ip cloud advanced
+      - ip cloud back-to-home-file
+      - ip cloud back-to-home-file settings
+      - ip cloud back-to-home-user
+      - ip cloud back-to-home-users
       - ip dhcp-client
       - ip dhcp-client option
       - ip dhcp-relay
       - ip dhcp-server
+      - ip dhcp-server alert
       - ip dhcp-server config
       - ip dhcp-server lease
       - ip dhcp-server matcher
@@ -143,6 +260,7 @@ options:
       - ip dns forwarders
       - ip dns static
       - ip firewall address-list
+      - ip firewall calea
       - ip firewall connection tracking
       - ip firewall filter
       - ip firewall layer7-protocol
@@ -151,6 +269,7 @@ options:
       - ip firewall raw
       - ip firewall service-port
       - ip hotspot
+      - ip hotspot ip-binding
       - ip hotspot profile
       - ip hotspot service-port
       - ip hotspot user
@@ -158,24 +277,48 @@ options:
       - ip hotspot walled-garden
       - ip hotspot walled-garden ip
       - ip ipsec identity
+      - ip ipsec key
+      - ip ipsec key psk
+      - ip ipsec key qkd
+      - ip ipsec key rsa
       - ip ipsec mode-config
       - ip ipsec peer
       - ip ipsec policy
+      - ip ipsec policy group
       - ip ipsec profile
       - ip ipsec proposal
       - ip ipsec settings
+      - ip kid-control
+      - ip kid-control device
+      - ip media
+      - ip media settings
+      - ip nat-pmp
+      - ip nat-pmp interfaces
       - ip neighbor discovery-settings
+      - ip packing
       - ip pool
+      - ip pool used
       - ip proxy
+      - ip proxy access
+      - ip proxy cache
+      - ip proxy connections
+      - ip proxy direct
       - ip route
       - ip route rule
       - ip route vrf
       - ip service
+      - ip service webserver
       - ip settings
       - ip smb
+      - ip smb shares
+      - ip smb users
       - ip socks
       - ip socks access
+      - ip socks connections
+      - ip socks users
+      - ip socksify
       - ip ssh
+      - ip tftp
       - ip tftp settings
       - ip traffic-flow
       - ip traffic-flow ipfix
@@ -185,8 +328,13 @@ options:
       - ip vrf
       - ipv6 address
       - ipv6 dhcp-client
+      - ipv6 dhcp-client option
+      - ipv6 dhcp-relay
+      - ipv6 dhcp-relay option
       - ipv6 dhcp-server
+      - ipv6 dhcp-server binding
       - ipv6 dhcp-server option
+      - ipv6 dhcp-server option sets
       - ipv6 firewall address-list
       - ipv6 firewall filter
       - ipv6 firewall mangle
@@ -195,17 +343,45 @@ options:
       - ipv6 nd
       - ipv6 nd prefix
       - ipv6 nd prefix default
+      - ipv6 nd proxy
+      - ipv6 neighbor
+      - ipv6 pool
       - ipv6 route
       - ipv6 settings
+      - lcd
+      - lcd interface
+      - lcd interface pages
+      - lcd pin
+      - lcd screen
+      - lora
+      - lora channels
+      - lora joineui
+      - lora netid
+      - lora radios
+      - lora servers
+      - lora traffic options
       - mpls
       - mpls interface
       - mpls ldp
       - mpls ldp accept-filter
       - mpls ldp advertise-filter
       - mpls ldp interface
+      - mpls ldp local-mapping
+      - mpls ldp neighbor
+      - mpls ldp remote-mapping
+      - mpls mangle
+      - mpls settings
+      - mpls traffic-eng interface
+      - mpls traffic-eng path
+      - mpls traffic-eng tunnel
+      - openflow
+      - openflow port
+      - partitions
+      - port
       - port firmware
       - port remote-access
       - ppp aaa
+      - ppp l2tp-secret
       - ppp profile
       - ppp secret
       - queue interface
@@ -217,68 +393,147 @@ options:
       - routing bfd configuration
       - routing bgp aggregate
       - routing bgp connection
+      - routing bgp evpn
       - routing bgp instance
       - routing bgp network
       - routing bgp peer
       - routing bgp template
+      - routing bgp vpls
+      - routing bgp vpn
+      - routing fantasy
       - routing filter
+      - routing filter community-ext-list
+      - routing filter community-large-list
       - routing filter community-list
       - routing filter num-list
       - routing filter rule
       - routing filter select-rule
+      - routing gmp
       - routing id
       - routing igmp-proxy
       - routing igmp-proxy interface
+      - routing igmp-proxy mfc
+      - routing isis instance
+      - routing isis interface
+      - routing isis interface-template
+      - routing isis lsp
+      - routing isis neighbor
       - routing mme
       - routing ospf area
       - routing ospf area range
       - routing ospf instance
       - routing ospf interface-template
+      - routing ospf neighbor
       - routing ospf static-neighbor
+      - routing pimsm bsr candidate
+      - routing pimsm bsr rp-candidate
+      - routing pimsm igmp-interface-template
       - routing pimsm instance
       - routing pimsm interface-template
+      - routing pimsm static-rp
       - routing rip
+      - routing rip instance
+      - routing rip interface-template
+      - routing rip keys
+      - routing rip static-neighbor
       - routing ripng
+      - routing route
+      - routing route rule
+      - routing rpki
       - routing rule
+      - routing settings
       - routing table
+      - rsync-daemon
       - snmp
       - snmp community
+      - special-login
       - system clock
       - system clock manual
+      - system console
+      - system console screen
+      - system gps
+      - system hardware
+      - system health
       - system health settings
       - system identity
+      - system leds
       - system leds settings
       - system logging
       - system logging action
       - system note
       - system ntp client
       - system ntp client servers
+      - system ntp key
       - system ntp server
+      - system package local-update
+      - system package local-update mirror
+      - system package local-update update-package-source
       - system package update
+      - system resource hardware usb-settings
+      - system resource irq
       - system resource irq rps
+      - system resource usb
+      - system resource usb settings
+      - system routerboard mode-button
+      - system routerboard reset-button
       - system routerboard settings
+      - system routerboard usb
+      - system routerboard wps-button
       - system scheduler
       - system script
+      - system script environment
+      - system script job
+      - system swos
+      - system upgrade
       - system upgrade mirror
+      - system upgrade upgrade-package-source
       - system ups
       - system watchdog
+      - task
       - tool bandwidth-server
+      - tool calea
       - tool e-mail
       - tool graphing
       - tool graphing interface
+      - tool graphing queue
       - tool graphing resource
       - tool mac-server
       - tool mac-server mac-winbox
       - tool mac-server ping
+      - tool mac-server sessions
       - tool netwatch
       - tool romon
+      - tool romon port
       - tool sms
       - tool sniffer
       - tool traffic-generator
+      - tool traffic-generator packet-template
+      - tool traffic-generator port
+      - tool traffic-generator raw-packet-template
+      - tool traffic-generator stream
+      - tool traffic-monitor
+      - tr069-client
       - user
       - user aaa
       - user group
       - user settings
+      - user ssh-keys
+      - user-manager
+      - user-manager advanced
+      - user-manager attribute
+      - user-manager database
+      - user-manager limitation
+      - user-manager payment
+      - user-manager profile
+      - user-manager profile-limitation
+      - user-manager router
+      - user-manager user
+      - user-manager user group
+      - user-manager user-profile
+      - zerotier
+      - zerotier controller
+      - zerotier controller member
+      - zerotier interface
     # END PATH LIST
   unfiltered:
     description:
