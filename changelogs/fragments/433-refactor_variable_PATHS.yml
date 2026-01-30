@@ -219,7 +219,6 @@ minor_changes:
   - api_info - adds support for the ``ip pool used`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``ip proxy access`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``ip proxy cache`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
-  - api_info, api_modify - adds support for the ``ip proxy cache-contents`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info - adds support for the ``ip proxy connections`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``ip proxy direct`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``numbers`` parameters in the ``ip service`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
@@ -296,8 +295,9 @@ minor_changes:
   - api_info, api_modify - adds support for the ``total-bucket-size``, ``total-burst-limit``, ``total-burst-threshold``, ``total-burst-time``, ``total-limit-at``, ``total-max-limit``, ``total-priority`` and ``total-queue`` parameters in the ``queue simple`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``vrf`` parameters in the ``radius incoming`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - parameters ``copy-from`` and ``place-before`` are now write-only for the ``routing bfd configuration`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+  - api_info, api_modify - adds support for the ``input.attr-error-handling`` parameter in the ``routing bgp connection`` path for RouterOS >= 7.21.2 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``routing bgp evpn`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
-  - api_info, api_modify - adds support for the ``input.filter-communities`` (>= 7.19), ``input.filter-ext-communities`` (>= 7.19), ``input.filter-large-communities`` (>= 7.19), ``input.filter-nlri`` (>= 7.20), ``input.filter-unknown`` (>= 7.19), ``output.as-override`` (>= 7.15), ``output.default-prepend`` (>= 7.15) and ``output.network-blackhole`` (>= 7.20.1) parameters in the ``routing bgp template`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+  - api_info, api_modify - adds support for the ``input.attr-error-handling`` (>= 7.21.2), ``input.filter-communities`` (>= 7.19), ``input.filter-ext-communities`` (>= 7.19), ``input.filter-large-communities`` (>= 7.19), ``input.filter-nlri`` (>= 7.20), ``input.filter-unknown`` (>= 7.19), ``output.as-override`` (>= 7.15), ``output.default-prepend`` (>= 7.15) and ``output.network-blackhole`` (>= 7.20.1) parameters in the ``routing bgp template`` path (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``routing bgp vpls`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``routing bgp vpn`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``routing fantasy`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
@@ -381,7 +381,6 @@ minor_changes:
   - api_info, api_modify - adds support for the ``user-manager profile`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``user-manager profile-limitation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``user-manager router`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
-  - api_info, api_modify - adds support for the ``user-manager session`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``user-manager user`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``user-manager user group`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
   - api_info, api_modify - adds support for the ``user-manager user-profile`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).

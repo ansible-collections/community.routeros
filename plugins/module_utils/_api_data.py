@@ -819,7 +819,9 @@ PATHS = {
                     ([('7.21', '>=')], 'mount', KeyInfo()),
                     ([('7.21', '>=')], 'mountlists', KeyInfo()),
                     ([('7.19', '>=')], 'name', KeyInfo()),
+                    ([('7.21.2', '>=')], 'shm-size', KeyInfo()),
                     ([('7.21', '>=')], 'stop-time', KeyInfo()),
+                    ([('7.21.2', '>=')], 'tmpfs', KeyInfo()),
                 ],
                 fields={
                     'cmd': KeyInfo(),
@@ -1370,9 +1372,11 @@ PATHS = {
         versioned=[
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
+                # versioned_fields=[
+                #     ([('7.15', '>='), ('7.21.2', '<')], 'copy-from': KeyInfo(write_only=True)),
+                # ],
                 fields={
                     'contents': KeyInfo(),
-                    # 'copy-from': KeyInfo(write_only=True),
                     'name': KeyInfo(),
                     'type': KeyInfo(default='file'),
                 },
@@ -1383,9 +1387,9 @@ PATHS = {
     ('file', 'rsync-daemon'): APIData(
         versioned=[
             ('7.16', '>=', VersionedAPIData(
-                fully_understood=True,
                 fixed_entries=True,
                 single_value=True,
+                fully_understood=True,
                 fields={
                     'enabled': KeyInfo(),
                 },
@@ -7000,17 +7004,6 @@ PATHS = {
         ],
     ),
 
-    ('ip', 'proxy', 'cache-contents'): APIData(
-        versioned=[
-            ('7.15', '>=', VersionedAPIData(
-                fully_understood=True,
-                fields={
-                    # 'copy-from': KeyInfo(write_only=True),
-                },
-            )),
-        ],
-    ),
-
     ('ip', 'proxy', 'connections'): APIData(
         versioned=[
             ('7.15', '>=', VersionedAPIData(
@@ -9166,6 +9159,7 @@ PATHS = {
                 ([('7.20', '<')], 'cluster-id', KeyInfo()),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.19', '<')], 'input.accept-unknown', KeyInfo()),
+                ([('7.21.2', '>=')], 'input.attr-error-handling', KeyInfo()),
                 ([('7.19', '>=')], 'input.filter-communities', KeyInfo()),
                 ([('7.19', '>=')], 'input.filter-ext-communities', KeyInfo()),
                 ([('7.19', '>=')], 'input.filter-large-communities', KeyInfo()),
@@ -9343,6 +9337,7 @@ PATHS = {
                 ([('7.20', '<')], 'cluster-id', KeyInfo()),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.19', '<')], 'input.accept-unknown', KeyInfo()),
+                ([('7.21.2', '>=')], 'input.attr-error-handling', KeyInfo()),
                 ([('7.19', '>=')], 'input.filter-communities', KeyInfo()),
                 ([('7.19', '>=')], 'input.filter-ext-communities', KeyInfo()),
                 ([('7.19', '>=')], 'input.filter-large-communities', KeyInfo()),
@@ -12055,17 +12050,6 @@ PATHS = {
                     'disabled': KeyInfo(),
                     'name': KeyInfo(),
                     'shared-secret': KeyInfo(),
-                },
-            )),
-        ],
-    ),
-
-    ('user-manager', 'session'): APIData(
-        versioned=[
-            ('7.15', '>=', VersionedAPIData(
-                fully_understood=True,
-                fields={
-                    # 'copy-from': KeyInfo(write_only=True),
                 },
             )),
         ],

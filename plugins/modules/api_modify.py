@@ -287,7 +287,6 @@ options:
       - ip proxy
       - ip proxy access
       - ip proxy cache
-      - ip proxy cache-contents
       - ip proxy direct
       - ip route
       - ip route rule
@@ -492,7 +491,6 @@ options:
       - user-manager profile
       - user-manager profile-limitation
       - user-manager router
-      - user-manager session
       - user-manager user
       - user-manager user group
       - user-manager user-profile
