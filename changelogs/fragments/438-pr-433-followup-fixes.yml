@@ -1,5 +1,5 @@
 minor_changes:
   - api_info, api_modify - adds support for the ``routing bgp instance`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/437, https://github.com/ansible-collections/community.routeros/pull/438).
 trivial:
-  - _api_data.py - move ``read_only=True`` parameters back in `fields` (https://github.com/ansible-collections/community.routeros/pull/438).
+  - _api_data.py - move ``read_only=True`` parameters back in ``fields`` (https://github.com/ansible-collections/community.routeros/pull/438).
   - _api_data.py - sort ``KeyInfo`` parameters alphabetically (https://github.com/ansible-collections/community.routeros/pull/438).
