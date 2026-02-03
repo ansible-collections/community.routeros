@@ -9267,7 +9267,7 @@ PATHS = {
                     'routing-table': KeyInfo(),
                 },
             )),
-            # ('7.15', '>=', 'Not supported from 7.15 until reintroduced in 7.20'),
+            ('7.20', '<', 'Not supported from 7.15 until reintroduced in 7.20'),
             ('7.20', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
