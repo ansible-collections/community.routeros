@@ -2002,7 +2002,7 @@ PATHS = {
             fully_understood=True,
             versioned_fields=[
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
-                ([('7.15', '>=')], 'mvrp-forbidden', KeyInfo()),
+                ([('7.15', '>=')], 'mvrp-forbidden', KeyInfo(default='auto')),
             ],
             fields={
                 'bridge': KeyInfo(),
@@ -3418,7 +3418,7 @@ PATHS = {
             versioned_fields=[
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.21', '>=')], 'l3-hw-offloading', KeyInfo()),
-                ([('7.15', '>=')], 'mvrp', KeyInfo()),
+                ([('7.15', '>=')], 'mvrp', KeyInfo(default=False)),
             ],
             fields={
                 'arp': KeyInfo(default='enabled'),
@@ -7331,7 +7331,7 @@ PATHS = {
             versioned_fields=[
                 ([('7.17', '<')], 'allow-none-crypto', KeyInfo(default=False)),
                 ([('7.21', '<')], 'always-allow-password-login', KeyInfo(default=False)),
-                ([('7.17', '>=')], 'ciphers', KeyInfo()),
+                ([('7.17', '>=')], 'ciphers', KeyInfo(default='auto')),
                 ([('7.9', '>=')], 'host-key-type', KeyInfo(default='rsa')),
                 ([('7.21', '>=')], 'password-authentication', KeyInfo()),
                 ([('7.21', '>=')], 'publickey-authentication-options', KeyInfo()),
