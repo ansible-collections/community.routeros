@@ -1,0 +1,2 @@
+minor_changes:
+  - _api_data.py - add default values for fields ``ip/ssh``:``ciphers``, ``interface/vlan``:``mvrp``, ``interface/bridge``:``mvrp-forbidden``.
