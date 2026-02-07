@@ -3418,7 +3418,7 @@ PATHS = {
             versioned_fields=[
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.21', '>=')], 'l3-hw-offloading', KeyInfo()),
-                ([('7.15', '>=')], 'mvrp', KeyInfo()),
+                ([('7.15', '>=')], 'mvrp', KeyInfo(default=False)),
             ],
             fields={
                 'arp': KeyInfo(default='enabled'),
