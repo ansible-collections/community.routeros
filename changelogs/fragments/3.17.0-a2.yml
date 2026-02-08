@@ -1,4 +1,0 @@
-release_summary: >-
-  Second alpha release of 3.17.0. Please test this carefully against existing
-  RouterOS setups (use **check mode**!) and report problems in the `collection''s
-  bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!

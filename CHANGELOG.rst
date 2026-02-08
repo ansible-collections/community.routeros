@@ -4,6 +4,20 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.17.0-a2
+==========
+
+Release Summary
+---------------
+
+Second alpha release of 3.17.0. Please test this carefully against existing RouterOS setups (use **check mode**!) and report problems in the `collection''s bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!
+
+Minor Changes
+-------------
+
+- api_info, api_modify - add default values for fields ``ciphers`` in ``ip ssh``, ``mvrp`` in  ``interface vlan``, and ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/pull/439/).
+- api_info, api_modify - adds support for the ``routing bgp instance`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/437, https://github.com/ansible-collections/community.routeros/pull/438).
+
 v3.17.0-a1
 ==========
 
