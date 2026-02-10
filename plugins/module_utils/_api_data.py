@@ -2002,7 +2002,7 @@ PATHS = {
             fully_understood=True,
             versioned_fields=[
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
-                ([('7.15', '>=')], 'mvrp-forbidden', KeyInfo(default='auto')),
+                ([('7.15', '>=')], 'mvrp-forbidden', KeyInfo(default='')),
             ],
             fields={
                 'bridge': KeyInfo(),

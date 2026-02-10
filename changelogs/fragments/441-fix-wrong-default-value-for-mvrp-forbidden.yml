@@ -1,0 +1,2 @@
+minor_changes:
+  - "api_info, api_modify - fix default value for field ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/issues/440, https://github.com/ansible-collections/community.routeros/pull/441/)."
