@@ -974,6 +974,7 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p>If write-only fields are present in the path, the module is <strong>not idempotent</strong> in a strict sense, since it is not able to verify the current value of these fields. The behavior the module should assume can be controlled with the <code class="ansible-option docutils literal notranslate"><strong><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-handle-write-only"><span class="std std-ref"><span class="pre">handle_write_only</span></span></a></strong></code> option.</p></li>
+<li><p>If you want to modify a path where a property is called <code class="ansible-value docutils literal notranslate"><span class="pre">cmd</span></code>, you should use librouteros 3.4.2 or newer. This is for example true for <code class="ansible-option-value docutils literal notranslate"><a class="reference internal" href="#ansible-collections-community-routeros-api-modify-module-parameter-path"><span class="std std-ref"><span class="pre">path=container</span></span></a></code>. Previous versions of librouteros had a bug preventing to add or modify entries when <code class="ansible-value docutils literal notranslate"><span class="pre">cmd</span></code> is provided.</p></li>
 </ul>
 </div>
 </section>
