@@ -804,7 +804,8 @@ PATHS = {
 
     ('container',): APIData(
         versioned=[
-            ('7.15', '>=', VersionedAPIData(
+            ('7.19', '>=', VersionedAPIData(
+                primary_keys=('name',),
                 fully_understood=True,
                 versioned_fields=[
                     ([('7.20', '>=')], 'auto-restart-interval', KeyInfo()),
@@ -818,11 +819,34 @@ PATHS = {
                     ([('7.20', '>=')], 'memory-high', KeyInfo()),
                     ([('7.21', '>=')], 'mount', KeyInfo()),
                     ([('7.21', '>=')], 'mountlists', KeyInfo()),
-                    ([('7.19', '>=')], 'name', KeyInfo()),
                     ([('7.21.2', '>=')], 'shm-size', KeyInfo()),
                     ([('7.21', '>=')], 'stop-time', KeyInfo()),
                     ([('7.21.2', '>=')], 'tmpfs', KeyInfo()),
                 ],
+                fields={
+                    'cmd': KeyInfo(),
+                    'comment': KeyInfo(),
+                    # 'copy-from': KeyInfo(write_only=True),
+                    'dns': KeyInfo(),
+                    'domain-name': KeyInfo(),
+                    'entrypoint': KeyInfo(),
+                    'envlist': KeyInfo(),
+                    'file': KeyInfo(),
+                    'hostname': KeyInfo(),
+                    'interface': KeyInfo(),
+                    'logging': KeyInfo(),
+                    'mounts': KeyInfo(),
+                    'name': KeyInfo(),
+                    'remote-image': KeyInfo(),
+                    'root-dir': KeyInfo(),
+                    'start-on-boot': KeyInfo(),
+                    'stop-signal': KeyInfo(),
+                    'user': KeyInfo(),
+                    'workdir': KeyInfo(),
+                },
+            )),
+            ('7.15', '>=', VersionedAPIData(
+                fully_understood=True,
                 fields={
                     'cmd': KeyInfo(),
                     'comment': KeyInfo(),
