@@ -845,8 +845,6 @@ PATHS = {
                     'workdir': KeyInfo(),
                 },
             )),
-        ],
-        versioned=[
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
