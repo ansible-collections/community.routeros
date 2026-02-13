@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add ``primary_keys=('name',)`` to the ``container`` path for RouterOS >=7.19 (https://github.com/ansible-collections/community.routeros/issues/443, https://github.com/ansible-collections/community.routeros/pull/445).
