@@ -1,0 +1,4 @@
+known_issues:
+  - api_modify - to create or modify entries in the ``container`` path, you need librouteros 4.0.0 or newer
+    due to a bug preventing older versions from setting or modifying properties named ``cmd``
+    (https://github.com/ansible-collections/community.routeros/issues/442).
