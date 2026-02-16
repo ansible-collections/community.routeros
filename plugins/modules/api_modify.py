@@ -27,7 +27,7 @@ notes:
   - If write-only fields are present in the path, the module is B(not idempotent) in a strict sense, since it is not able
     to verify the current value of these fields. The behavior the module should assume can be controlled with the O(handle_write_only)
     option.
-  - If you want to modify a path where a property is called V(cmd), you should use librouteros 3.4.2 or newer.
+  - If you want to modify a path where a property is called V(cmd), you should use librouteros 4.0.0 or newer.
     This is for example true for O(path=container).
     Previous versions of librouteros had a bug preventing to add or modify entries when V(cmd) is provided.
 requirements:
