@@ -4,6 +4,25 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.17.0-a3
+==========
+
+Release Summary
+---------------
+
+Third alpha release of 3.17.0. Please test this carefully against existing RouterOS setups (use **check mode**!) and report problems in the `collection''s bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!
+
+Minor Changes
+-------------
+
+- api_info, api_modify - fix default value for field ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/issues/440, https://github.com/ansible-collections/community.routeros/pull/441/).
+- api_modify - make ``name`` a primary key (and thus required) for the ``container`` path for RouterOS >=7.19 (https://github.com/ansible-collections/community.routeros/issues/443, https://github.com/ansible-collections/community.routeros/pull/445).
+
+Known Issues
+------------
+
+- api_modify - to create or modify entries in the ``container`` path, you need librouteros 4.0.0 or newer due to a bug preventing older versions from setting or modifying properties named ``cmd`` (https://github.com/ansible-collections/community.routeros/issues/442).
+
 v3.17.0-a2
 ==========
 

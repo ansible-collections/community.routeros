@@ -2191,3 +2191,25 @@ releases:
       - 438-pr-433-followup-fixes.yml
       - 439-add-defaults-for-fields.yml
     release_date: '2026-02-08'
+  3.17.0-a3:
+    changes:
+      known_issues:
+        - api_modify - to create or modify entries in the ``container`` path, you
+          need librouteros 4.0.0 or newer due to a bug preventing older versions from
+          setting or modifying properties named ``cmd`` (https://github.com/ansible-collections/community.routeros/issues/442).
+      minor_changes:
+        - api_info, api_modify - fix default value for field ``mvrp-forbidden`` in
+          ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/issues/440,
+          https://github.com/ansible-collections/community.routeros/pull/441/).
+        - api_modify - make ``name`` a primary key (and thus required) for the ``container``
+          path for RouterOS >=7.19 (https://github.com/ansible-collections/community.routeros/issues/443,
+          https://github.com/ansible-collections/community.routeros/pull/445).
+      release_summary: Third alpha release of 3.17.0. Please test this carefully against
+        existing RouterOS setups (use **check mode**!) and report problems in the
+        `collection''s bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!
+    fragments:
+      - 3.17.0-a3.yml
+      - 441-fix-wrong-default-value-for-mvrp-forbidden.yml
+      - 445-fix-container-paths-name-parameter.yml
+      - container.yml
+    release_date: '2026-02-16'
