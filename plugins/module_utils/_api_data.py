@@ -894,17 +894,27 @@ PATHS = {
 
     ('container', 'envs'): APIData(
         versioned=[
-            ('7.15', '>=', VersionedAPIData(
+            ('7.20', '<', VersionedAPIData(
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(),
+                    # 'copy-from': KeyInfo(write_only=True),
+                    'key': KeyInfo(),
+                    'name': KeyInfo(),
+                    'value': KeyInfo(),
+                },
+            )),
+            ('7.20', '>=', VersionedAPIData(
+                primary_keys=('list', 'key',),
                 fully_understood=True,
                 versioned_fields=[
                     ([('7.21', '>=')], 'disabled', KeyInfo()),
-                    ([('7.20', '>=')], 'list', KeyInfo()),
-                    ([('7.20', '<')], 'name', KeyInfo()),
                 ],
                 fields={
                     'comment': KeyInfo(),
                     # 'copy-from': KeyInfo(write_only=True),
                     'key': KeyInfo(),
+                    'list': KeyInfo(),
                     'value': KeyInfo(),
                 },
             )),
