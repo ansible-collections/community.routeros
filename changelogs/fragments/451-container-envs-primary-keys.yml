@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - treat parameters ``list`` and ``key`` as primary keys for the ``container envs`` path on RouterOS versions >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/449, https://github.com/ansible-collections/community.routeros/pull/451).
