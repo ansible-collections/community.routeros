@@ -1186,30 +1186,30 @@ def sync_with_primary_keys(module, api, path, path_info, restrict_data):
                         index=index + 1,
                     )
                 )
-    # Build for_text from raw values — only used for human-readable error
-    # messages inside polish_entry, so pre-sanitization values are fine here
-    for_text = ' for values {0}'.format(
-        ', '.join(
-            '{pk}={value!r}'.format(pk=pk, value=entry[pk])
-            for pk in primary_keys
+        # Build for_text from raw values — only used for human-readable error
+        # messages inside polish_entry, so pre-sanitization values are fine here
+        for_text = ' for values {0}'.format(
+            ', '.join(
+                '{pk}={value!r}'.format(pk=pk, value=entry[pk])
+                for pk in primary_keys
+            )
         )
-    )
 
-    # Sanitize the entry in-place (e.g. 'TEST' → '/TEST')
-    polish_entry(entry, path_info, module, for_text)
+        # Sanitize the entry in-place (e.g. 'TEST' → '/TEST')
+        polish_entry(entry, path_info, module, for_text)
 
-    # Compute pks AFTER sanitization so the key matches what RouterOS returns
-    pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
+        # Compute pks AFTER sanitization so the key matches what RouterOS returns
+        pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
 
-    if pks in new_data_by_key:
-        module.fail_json(
-            msg='Every element in data must contain a unique value for {pks}. '
-                'The value {value} appears at least twice.'.format(
-                    pks=', '.join(primary_keys),
-                    value=', '.join('{0}'.format(pk) for pk in pks),
-                )
-        )
-    new_data_by_key[pks] = entry
+        if pks in new_data_by_key:
+            module.fail_json(
+                msg='Every element in data must contain a unique value for {pks}. '
+                    'The value {value} appears at least twice.'.format(
+                        pks=', '.join(primary_keys),
+                        value=', '.join('{0}'.format(pk) for pk in pks),
+                    )
+            )
+        new_data_by_key[pks] = entry
 
     api_path = compose_api_path(api, path)
 
