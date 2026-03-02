@@ -5,7 +5,6 @@ minor_changes:
     for fields RouterOS transforms implicitly on write, such as prepending a
     leading ``/`` to path values (https://github.com/ansible-collections/community.routeros/pull/452).
 
-minor_changes:
   - api_data - add versioned ``container mounts`` entry for RouterOS 7.22+
     with ``(dst, list)`` as primary keys and correct field defaults
     (https://github.com/ansible-collections/community.routeros/issues/449, https://github.com/ansible-collections/community.routeros/pull/452).
