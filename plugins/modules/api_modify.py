@@ -694,6 +694,7 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 )
 
 from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
+    apply_value_sanitizer,
     restrict_argument_spec,
     restrict_entry_accepted,
     validate_and_prepare_restrict,
@@ -874,6 +875,21 @@ def polish_entry(entry, path_info, module, for_text):
                 module.fail_json(msg='Key "{key}" is write-only{for_text}, and handle_write_only=error.'.format(key=key, for_text=for_text))
     for key in to_remove:
         entry.pop(key)
+    # Iterate over a snapshot of keys because we may update values in-place.
+    # Only plain string values are sanitised; disabled-key entries (!key) and
+    # non-string values (booleans, integers) are left untouched – sanitizers
+    # are only registered on string path fields so this is always correct.
+    for key in list(entry):
+        if key.startswith('!'):
+            # Disabled-key entries carry no meaningful string value to sanitise.
+            continue
+        key_info = path_info.fields.get(key)
+        if key_info is None or key_info.value_sanitizer is None:
+            continue
+        raw_value = entry[key]
+        if not isinstance(raw_value, str):
+            continue
+        entry[key] = apply_value_sanitizer(key_info, raw_value, key, module)
     for key, field_info in path_info.fields.items():
         if field_info.required and key not in entry:
             module.fail_json(msg='Key "{key}" must be present{for_text}.'.format(key=key, for_text=for_text))
@@ -1170,24 +1186,30 @@ def sync_with_primary_keys(module, api, path, path_info, restrict_data):
                         index=index + 1,
                     )
                 )
-        pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
-        if pks in new_data_by_key:
-            module.fail_json(
-                msg='Every element in data must contain a unique value for {primary_keys}. The value {value} appears at least twice.'.format(
-                    primary_keys=','.join(primary_keys),
-                    value=','.join(['"{0}"'.format(pk) for pk in pks]),
-                )
-            )
-        polish_entry(
-            entry, path_info, module,
-            ' for {values}'.format(
-                values=', '.join([
-                    '{primary_key}="{value}"'.format(primary_key=primary_key, value=value)
-                    for primary_key, value in zip(primary_keys, pks)
-                ])
-            ),
+    # Build for_text from raw values — only used for human-readable error
+    # messages inside polish_entry, so pre-sanitization values are fine here
+    for_text = ' for values {0}'.format(
+        ', '.join(
+            '{pk}={value!r}'.format(pk=pk, value=entry[pk])
+            for pk in primary_keys
         )
-        new_data_by_key[pks] = entry
+    )
+
+    # Sanitize the entry in-place (e.g. 'TEST' → '/TEST')
+    polish_entry(entry, path_info, module, for_text)
+
+    # Compute pks AFTER sanitization so the key matches what RouterOS returns
+    pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
+
+    if pks in new_data_by_key:
+        module.fail_json(
+            msg='Every element in data must contain a unique value for {pks}. '
+                'The value {value} appears at least twice.'.format(
+                    pks=', '.join(primary_keys),
+                    value=', '.join('{0}'.format(pk) for pk in pks),
+                )
+        )
+    new_data_by_key[pks] = entry
 
     api_path = compose_api_path(api, path)
 
