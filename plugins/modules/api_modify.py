@@ -1011,7 +1011,7 @@ def sync_list(module, api, path, path_info, restrict_data):
         polish_entry(entry, path_info, module, 'at index {index}'.format(index=index + 1))
         # Compute stratification keys AFTER sanitization so they match
         # the normalised form RouterOS stores and returns.
-        sks = tuple(entry[stratifykey] for stratifykey in stratifykeys)
+        sks = tuple(entry[stratify_key] for stratify_key in stratify_keys)
         stratified_data[sks].append((index, entry))
     stratified_data = dict(stratified_data)
 
