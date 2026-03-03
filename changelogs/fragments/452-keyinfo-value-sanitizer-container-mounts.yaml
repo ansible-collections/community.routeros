@@ -1,14 +1,3 @@
-minor_changes:
-  - api_data - add optional ``value_sanitizer`` callable to ``KeyInfo`` that
-    normalises user-supplied string values before they are compared with
-    RouterOS state and before they are sent to the API. This fixes idempotency
-    for fields RouterOS transforms implicitly on write, such as prepending a
-    leading ``/`` to path values (https://github.com/ansible-collections/community.routeros/pull/452).
-
-  - api_data - add versioned ``container mounts`` entry for RouterOS 7.22+
-    with ``(dst, list)`` as primary keys and correct field defaults
-    (https://github.com/ansible-collections/community.routeros/issues/449, https://github.com/ansible-collections/community.routeros/pull/452).
-
 bugfixes:
   - api_modify - fix idempotency for ``container mounts`` path on RouterOS 7.22+
     where for ``dst`` and ``src``, values without a leading ``/`` (e.g. ``TEST``)
