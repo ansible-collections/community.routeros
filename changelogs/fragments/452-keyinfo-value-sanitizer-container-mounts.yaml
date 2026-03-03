@@ -11,7 +11,8 @@ minor_changes:
 
 bugfixes:
   - api_modify - fix idempotency for ``container mounts`` path on RouterOS 7.22+
-    where ``dst`` and ``src`` values without a leading ``/`` (e.g. ``TEST``)
+    where for ``dst`` and ``src``, values without a leading ``/`` (e.g. ``TEST``)
     were not recognised as matching the normalised value returned by RouterOS
     (``/TEST``), causing spurious updates on every run
-    (https://github.com/ansible-collections/community.routeros/pull/452).
+    (https://github.com/ansible-collections/community.routeros/issues/449,
+    https://github.com/ansible-collections/community.routeros/pull/452).
