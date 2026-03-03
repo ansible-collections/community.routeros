@@ -15,7 +15,7 @@ from ansible_collections.community.routeros.plugins.module_utils.version import 
 # ---------------------------------------------------------------------------
 # Value sanitizers
 #
-# A value sanitizer is a callable (str) -> str that normalises a user-supplied
+# A value sanitizer is a callable (any) -> any that normalises a user-supplied
 # field value so it matches the form RouterOS stores and returns.  Sanitizers
 # are registered on individual KeyInfo instances via the ``value_sanitizer``
 # kwarg and are applied by ``polish_entry()`` in api_modify.py before any
@@ -23,10 +23,12 @@ from ansible_collections.community.routeros.plugins.module_utils.version import 
 #
 # CONTRACT: a sanitizer must be idempotent – applying it twice must yield the
 # same result as applying it once.
+# CONTRACT: a sanitizer must pass through any value type it does not
+# explicitly handle, leaving it unchanged.
 # ---------------------------------------------------------------------------
 
 def _sanitize_ensure_leading_slash(value):
-    # type: (str) -> str
+    # type: (any) -> any
     """Prepend ``/`` when absent, mirroring RouterOS's implicit normalisation.
 
     RouterOS silently prepends ``/`` to certain path fields (e.g.
@@ -36,11 +38,13 @@ def _sanitize_ensure_leading_slash(value):
     value ``/usb1/data``, making the module non-idempotent.
 
     Edge cases:
+    * Non-string value → returned as-is (type checking is the caller's
+      responsibility; this sanitizer only operates on strings).
     * Empty string → returned as-is (RouterOS maps a missing ``src`` to ``/``,
       but that is represented separately via the field default).
     * Already starts with ``/`` → returned unchanged.
     """
-    if value and not value.startswith('/'):
+    if value and isinstance(value, str) and not value.startswith('/'):
         return '/' + value
     return value
 

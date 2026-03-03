@@ -876,20 +876,16 @@ def polish_entry(entry, path_info, module, for_text):
     for key in to_remove:
         entry.pop(key)
     # Iterate over a snapshot of keys because we may update values in-place.
-    # Only plain string values are sanitised; disabled-key entries (!key) and
-    # non-string values (booleans, integers) are left untouched – sanitizers
-    # are only registered on string path fields so this is always correct.
+    # Disabled-key entries (!key) carry no meaningful value to sanitise and are
+    # skipped. Type handling for all other values is delegated to the individual
+    # sanitizer – see the value sanitizer CONTRACT in api_data.py.
     for key in list(entry):
         if key.startswith('!'):
-            # Disabled-key entries carry no meaningful string value to sanitise.
             continue
         key_info = path_info.fields.get(key)
         if key_info is None or key_info.value_sanitizer is None:
             continue
-        raw_value = entry[key]
-        if not isinstance(raw_value, str):
-            continue
-        entry[key] = apply_value_sanitizer(key_info, raw_value, key, module)
+        entry[key] = apply_value_sanitizer(key_info, entry[key], key, module.warn)
     for key, field_info in path_info.fields.items():
         if field_info.required and key not in entry:
             module.fail_json(msg='Key "{key}" must be present{for_text}.'.format(key=key, for_text=for_text))
@@ -1012,11 +1008,10 @@ def sync_list(module, api, path, path_info, restrict_data):
                         index=index + 1,
                     )
                 )
-        sks = tuple(entry[stratify_key] for stratify_key in stratify_keys)
-        polish_entry(
-            entry, path_info, module,
-            ' at index {index}'.format(index=index + 1),
-        )
+        polish_entry(entry, path_info, module, 'at index {index}'.format(index=index + 1))
+        # Compute stratification keys AFTER sanitization so they match
+        # the normalised form RouterOS stores and returns.
+        sks = tuple(entry[stratifykey] for stratifykey in stratifykeys)
         stratified_data[sks].append((index, entry))
     stratified_data = dict(stratified_data)
 
@@ -1198,7 +1193,7 @@ def sync_with_primary_keys(module, api, path, path_info, restrict_data):
         # Sanitize the entry in-place (e.g. 'TEST' → '/TEST')
         polish_entry(entry, path_info, module, for_text)
 
-        # Compute pks AFTER sanitization so the key matches what RouterOS returns
+        # Compute primary keys AFTER sanitization so the key should match to what RouterOS returns
         pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
 
         if pks in new_data_by_key:
