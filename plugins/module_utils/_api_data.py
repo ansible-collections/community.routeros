@@ -977,7 +977,20 @@ PATHS = {
 
     ('container', 'mounts'): APIData(
         versioned=[
-            ('7.22', '<', VersionedAPIData(
+            ('7.22', '>=', VersionedAPIData(
+                primary_keys=('dst', 'list',),
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    # 'copy-from': KeyInfo(write_only=True),
+                    'disabled': KeyInfo(default=False),
+                    'dst': KeyInfo(value_sanitizer=_sanitize_ensure_leading_slash),
+                    'list': KeyInfo(),
+                    'read-only': KeyInfo(default=False),
+                    'src': KeyInfo(default="/", value_sanitizer=_sanitize_ensure_leading_slash),
+                },
+            )),
+            ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 versioned_fields=[
                     ([('7.21', '>=')], 'disabled', KeyInfo()),
@@ -990,19 +1003,6 @@ PATHS = {
                     # 'copy-from': KeyInfo(write_only=True),
                     'dst': KeyInfo(),
                     'src': KeyInfo(),
-                },
-            )),
-            ('7.22', '>=', VersionedAPIData(
-                primary_keys=('dst', 'list',),
-                fully_understood=True,
-                fields={
-                    'comment': KeyInfo(can_disable=True, remove_value=''),
-                    # 'copy-from': KeyInfo(write_only=True),
-                    'disabled': KeyInfo(default=False),
-                    'dst': KeyInfo(value_sanitizer=_sanitize_ensure_leading_slash),
-                    'list': KeyInfo(),
-                    'read-only': KeyInfo(default=False),
-                    'src': KeyInfo(default="/", value_sanitizer=_sanitize_ensure_leading_slash),
                 },
             )),
         ],
