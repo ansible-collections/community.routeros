@@ -4,49 +4,13 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
-v3.17.0-a3
-==========
+v3.17.0
+=======
 
 Release Summary
 ---------------
 
-Third alpha release of 3.17.0. Please test this carefully against existing RouterOS setups (use **check mode**!) and report problems in the `collection''s bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!
-
-Minor Changes
--------------
-
-- api_info, api_modify - fix default value for field ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/issues/440, https://github.com/ansible-collections/community.routeros/pull/441/).
-- api_modify - make ``name`` a primary key (and thus required) for the ``container`` path for RouterOS >=7.19 (https://github.com/ansible-collections/community.routeros/issues/443, https://github.com/ansible-collections/community.routeros/pull/445).
-
-Known Issues
-------------
-
-- api_modify - to create or modify entries in the ``container`` path, you need librouteros 4.0.0 or newer due to a bug preventing older versions from setting or modifying properties named ``cmd`` (https://github.com/ansible-collections/community.routeros/issues/442).
-
-v3.17.0-a2
-==========
-
-Release Summary
----------------
-
-Second alpha release of 3.17.0. Please test this carefully against existing RouterOS setups (use **check mode**!) and report problems in the `collection''s bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!
-
-Minor Changes
--------------
-
-- api_info, api_modify - add default values for fields ``ciphers`` in ``ip ssh``, ``mvrp`` in  ``interface vlan``, and ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/pull/439/).
-- api_info, api_modify - adds support for the ``routing bgp instance`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/437, https://github.com/ansible-collections/community.routeros/pull/438).
-
-v3.17.0-a1
-==========
-
-Release Summary
----------------
-
-Alpha release of 3.17.0, which has a huge amount of changes to the API modules
-in terms of added and improved paths. Please test this carefully against existing
-RouterOS setups (use **check mode**!) and report problems in the `collection's
-bug tracker <https://github.com/ansible-collections/community.routeros/issues/new/choose>`__!
+New feature and bugfix release that adds support for many new paths to the ``api_modify`` and ``api_info`` modules.
 
 Major Changes
 -------------
@@ -103,6 +67,7 @@ Minor Changes
 - api_info - adds support for the ``system script environment`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info - adds support for the ``system script job`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info - adds support for the ``system upgrade`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - add default values for fields ``ciphers`` in ``ip ssh``, ``mvrp`` in  ``interface vlan``, and ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/pull/439/).
 - api_info, api_modify - adds default value and removes required being true for parameter ``address-pool`` in the ``ipv6 dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - adds support for the  ``lacp-mode`` (>= 7.19), ``lacp-system-id`` (>= 7.21) and ``lacp-system-priority`` (>= 7.21) parameters in the ``interface bonding`` path (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - adds support for the ``3gpp-info-raw`` (>= 7.21), and ``realms-raw`` (>= 7.21) parameters in the ``interface wifi interworking`` path (https://github.com/ansible-collections/community.routeros/pull/433).
@@ -337,6 +302,7 @@ Minor Changes
 - api_info, api_modify - adds support for the ``radius-password`` parameters in the ``ip dhcp-server config`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - adds support for the ``regex`` (>= 7.17) parameter in the ``system logging`` path (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - adds support for the ``routing bgp evpn`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing bgp instance`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/437, https://github.com/ansible-collections/community.routeros/pull/438).
 - api_info, api_modify - adds support for the ``routing bgp vpls`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - adds support for the ``routing bgp vpn`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - adds support for the ``routing fantasy`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
@@ -441,6 +407,7 @@ Minor Changes
 - api_info, api_modify - allow the parameters ``deprioritize-unii-3-4``, ``reselect-interval`` and ``reselect-time`` to be disabled for the ``interface wifi channel`` path (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - allow the parameters ``internal-path-cost`` and ``path-cost`` to be disabled in the ``interface bridge port`` path for RouterOS >= 7.13 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - changed support for the parameter ``group-master`` in the ``interface vrrp`` path to write-only for RouterOS >= 7.11 (deprecated and replaced by ``group-authority``) (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - fix default value for field ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/issues/440, https://github.com/ansible-collections/community.routeros/pull/441/).
 - api_info, api_modify - parameters ``copy-from`` and ``place-before`` are now write-only for the ``routing bfd configuration`` path (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - removed default value for parameters ``internal-path-cost`` and ``path-cost`` in the ``interface bridge port`` path for RouterOS >= 7.13 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - removed support for the ``interface bridge port port-controller`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
@@ -491,6 +458,41 @@ Minor Changes
 - api_info, api_modify - removed support for the parameters ``layer7-protocol`` and ``to-addresses`` in the ``ipv6 firewall nat`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - removed support for the parameters ``primary-ntp``, ``secondary-ntp`` and ``server-dns-names`` in the ``system ntp client`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
 - api_info, api_modify - removed support for the parameters ``route-tag``, ``routing-mark`` and ``type`` in the ``ip route`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - treat parameters ``list`` and ``key`` as primary keys for the ``container envs`` path on RouterOS versions >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/449, https://github.com/ansible-collections/community.routeros/pull/451).
+- api_modify - make ``name`` a primary key (and thus required) for the ``container`` path for RouterOS >=7.19 (https://github.com/ansible-collections/community.routeros/issues/443, https://github.com/ansible-collections/community.routeros/pull/445).
+
+Bugfixes
+--------
+
+- api_info, api_modify - removed support for several parameters (``shared-buffers-color``, ``shared-pool0``-``shared-pool7``, ``treat-yellow-as``, ``wred-shared-threshold``, ``wred-threshold``) in the ``interface ethernet switch qos settings`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``color`` in the ``interface ethernet switch qos profile`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``ecn`` in the ``interface ethernet switch qos tx-manager`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``enabled`` in the ``interface ovpn-server server`` path for RouterOS >=7.17 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``envlist`` (replaced by ``envlists``) in the ``container`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``fasttrack-hw`` in the ``interface ethernet switch l3hw-settings`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``import.router-id`` in the ``routing bgp vpn`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``min-echo-rx`` in the ``routing bfd configuration`` path for RouterOS <7.15 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``mounts`` (replaced by ``mount``) in the ``container`` path for RouterOS <7.21 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``name`` in the ``container envs`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``name`` in the ``container mounts`` path for RouterOS <7.21 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``nvme-tcp-name`` in the ``disk`` path for RouterOS <7.21 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``partial-offload-chunk`` in the ``interface ethernet switch l3hw-settings advanced`` path for RouterOS <7.18 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``pfc`` in the ``interface ethernet switch qos port`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``port`` in the ``interface vxlan vteps`` path for RouterOS <7.18 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``ports`` in the ``interface bridge mdb`` path for RouterOS <7.19 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``ram-high`` in the ``container config`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``remote-addrs`` (replaced by ``remote-address``) and ``status`` in the ``file sync`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``src-address`` in the ``iot lora`` and ``lora`` paths for RouterOS <7.19 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``start-tls`` (default ``False``) in the ``tool e-mail`` path for RouterOS <7.15 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``vrf`` in the ``interface vxlan`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameters ``rssi-off`` and ``tx-enabled`` in the ``iot lora radios`` and ``lora radios`` paths for RouterOS <7.17 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameters ``shared-pool-index`` and ``wred`` in the ``interface ethernet switch qos tx-manager queue`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_modify - fix idempotency for ``container mounts`` path on RouterOS 7.22+ where for ``dst`` and ``src``, values without a leading ``/`` (e.g. ``TEST``) were not recognised as matching the normalised value returned by RouterOS (``/TEST``), causing spurious updates on every run (https://github.com/ansible-collections/community.routeros/issues/449, https://github.com/ansible-collections/community.routeros/pull/452).
+
+Known Issues
+------------
+
+- api_modify - to create or modify entries in the ``container`` path, you need librouteros 4.0.0 or newer due to a bug preventing older versions from setting or modifying properties named ``cmd`` (https://github.com/ansible-collections/community.routeros/issues/442).
 
 v3.16.0
 =======
