@@ -12,6 +12,43 @@ __metaclass__ = type
 from ansible_collections.community.routeros.plugins.module_utils.version import LooseVersion
 
 
+# ---------------------------------------------------------------------------
+# Value sanitizers
+#
+# A value sanitizer is a callable (any) -> any that normalises a user-supplied
+# field value so it matches the form RouterOS stores and returns.  Sanitizers
+# are registered on individual KeyInfo instances via the ``value_sanitizer``
+# kwarg and are applied by ``polish_entry()`` in api_modify.py before any
+# comparison or API call is made.
+#
+# CONTRACT: a sanitizer must be idempotent – applying it twice must yield the
+# same result as applying it once.
+# CONTRACT: a sanitizer must pass through any value type it does not
+# explicitly handle, leaving it unchanged.
+# ---------------------------------------------------------------------------
+
+def _sanitize_ensure_leading_slash(value):
+    # type: (any) -> any
+    """Prepend ``/`` when absent, mirroring RouterOS's implicit normalisation.
+
+    RouterOS silently prepends ``/`` to certain path fields (e.g.
+    ``container/mounts`` ``src`` and ``dst``) when entries are created or
+    updated.  Without this sanitizer Ansible would always detect a diff
+    between the user-supplied value ``usb1/data`` and the RouterOS-stored
+    value ``/usb1/data``, making the module non-idempotent.
+
+    Edge cases:
+    * Non-string value → returned as-is (type checking is the caller's
+      responsibility; this sanitizer only operates on strings).
+    * Empty string → returned as-is (RouterOS maps a missing ``src`` to ``/``,
+      but that is represented separately via the field default).
+    * Already starts with ``/`` → returned unchanged.
+    """
+    if value and isinstance(value, str) and not value.startswith('/'):
+        return '/' + value
+    return value
+
+
 def _compare(a, b, comparator):
     if comparator == '==':
         return a == b
@@ -195,7 +232,8 @@ class KeyInfo(object):
                  required=False,
                  automatically_computed_from=None,
                  read_only=False,
-                 write_only=False):
+                 write_only=False,
+                 value_sanitizer=None):
         if _dummy is not None:
             raise ValueError('KeyInfo() does not have positional arguments')
         if sum([required, default is not None or can_disable, automatically_computed_from is not None]) > 1:
@@ -210,6 +248,21 @@ class KeyInfo(object):
             raise ValueError('read_only and write_only cannot be used at the same time')
         if read_only and any([can_disable, remove_value is not None, absent_value is not None, default is not None, required]):
             raise ValueError('read_only can not be combined with can_disable, remove_value, absent_value, default, or required')
+
+        if value_sanitizer is not None and not callable(value_sanitizer):
+            raise ValueError('value_sanitizer must be a callable or None')
+        if value_sanitizer is not None and read_only:
+            raise ValueError(
+                'value_sanitizer cannot be combined with read_only: '
+                'read-only fields are never written so sanitisation has no effect'
+            )
+        if value_sanitizer is not None and write_only:
+            raise ValueError(
+                'value_sanitizer cannot be combined with write_only: '
+                'write-only fields cannot be read back from RouterOS so '
+                'the sanitised value cannot be verified'
+            )
+
         self.can_disable = can_disable
         self.remove_value = remove_value
         self.automatically_computed_from = automatically_computed_from
@@ -218,6 +271,7 @@ class KeyInfo(object):
         self.absent_value = absent_value
         self.read_only = read_only
         self.write_only = write_only
+        self.value_sanitizer = value_sanitizer
 
 
 def split_path(path):
@@ -923,6 +977,19 @@ PATHS = {
 
     ('container', 'mounts'): APIData(
         versioned=[
+            ('7.22', '>=', VersionedAPIData(
+                primary_keys=('dst', 'list',),
+                fully_understood=True,
+                fields={
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
+                    # 'copy-from': KeyInfo(write_only=True),
+                    'disabled': KeyInfo(default=False),
+                    'dst': KeyInfo(value_sanitizer=_sanitize_ensure_leading_slash),
+                    'list': KeyInfo(),
+                    'read-only': KeyInfo(default=False),
+                    'src': KeyInfo(default="/", value_sanitizer=_sanitize_ensure_leading_slash),
+                },
+            )),
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 versioned_fields=[

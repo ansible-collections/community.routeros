@@ -694,6 +694,7 @@ from ansible_collections.community.routeros.plugins.module_utils._api_data impor
 )
 
 from ansible_collections.community.routeros.plugins.module_utils._api_helper import (
+    apply_value_sanitizer,
     restrict_argument_spec,
     restrict_entry_accepted,
     validate_and_prepare_restrict,
@@ -874,6 +875,17 @@ def polish_entry(entry, path_info, module, for_text):
                 module.fail_json(msg='Key "{key}" is write-only{for_text}, and handle_write_only=error.'.format(key=key, for_text=for_text))
     for key in to_remove:
         entry.pop(key)
+    # Iterate over a snapshot of keys because we may update values in-place.
+    # Disabled-key entries (!key) carry no meaningful value to sanitise and are
+    # skipped. Type handling for all other values is delegated to the individual
+    # sanitizer – see the value sanitizer CONTRACT in api_data.py.
+    for key in list(entry):
+        if key.startswith('!'):
+            continue
+        key_info = path_info.fields.get(key)
+        if key_info is None or key_info.value_sanitizer is None:
+            continue
+        entry[key] = apply_value_sanitizer(key_info, entry[key], key, module.warn)
     for key, field_info in path_info.fields.items():
         if field_info.required and key not in entry:
             module.fail_json(msg='Key "{key}" must be present{for_text}.'.format(key=key, for_text=for_text))
@@ -996,11 +1008,10 @@ def sync_list(module, api, path, path_info, restrict_data):
                         index=index + 1,
                     )
                 )
+        polish_entry(entry, path_info, module, ' at index {index}'.format(index=index + 1))
+        # Compute stratification keys AFTER sanitization so they match
+        # the normalised form RouterOS stores and returns.
         sks = tuple(entry[stratify_key] for stratify_key in stratify_keys)
-        polish_entry(
-            entry, path_info, module,
-            ' at index {index}'.format(index=index + 1),
-        )
         stratified_data[sks].append((index, entry))
     stratified_data = dict(stratified_data)
 
@@ -1170,23 +1181,29 @@ def sync_with_primary_keys(module, api, path, path_info, restrict_data):
                         index=index + 1,
                     )
                 )
+        # Build for_text from raw values — only used for human-readable error
+        # messages inside polish_entry, so pre-sanitization values are fine here
+        for_text = ' for values {0}'.format(
+            ', '.join(
+                '{pk}={value!r}'.format(pk=pk, value=entry[pk])
+                for pk in primary_keys
+            )
+        )
+
+        # Sanitize the entry in-place (e.g. 'TEST' → '/TEST')
+        polish_entry(entry, path_info, module, for_text)
+
+        # Compute primary keys AFTER sanitization so the key should match to what RouterOS returns
         pks = tuple(value_to_str(entry[primary_key]) for primary_key in primary_keys)
+
         if pks in new_data_by_key:
             module.fail_json(
-                msg='Every element in data must contain a unique value for {primary_keys}. The value {value} appears at least twice.'.format(
-                    primary_keys=','.join(primary_keys),
-                    value=','.join(['"{0}"'.format(pk) for pk in pks]),
-                )
+                msg='Every element in data must contain a unique value for {pks}. '
+                    'The value {value} appears at least twice.'.format(
+                        pks=', '.join(primary_keys),
+                        value=', '.join('{0}'.format(pk) for pk in pks),
+                    )
             )
-        polish_entry(
-            entry, path_info, module,
-            ' for {values}'.format(
-                values=', '.join([
-                    '{primary_key}="{value}"'.format(primary_key=primary_key, value=value)
-                    for primary_key, value in zip(primary_keys, pks)
-                ])
-            ),
-        )
         new_data_by_key[pks] = entry
 
     api_path = compose_api_path(api, path)

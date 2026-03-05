@@ -106,3 +106,50 @@ def restrict_argument_spec():
             ),
         ),
     )
+
+
+def apply_value_sanitizer(key_info, value, key_name, warn=None):
+    """Apply ``key_info.value_sanitizer`` to *value* and warn on change.
+
+    This is the central call-site for value sanitisation. It is intentionally
+    kept separate from ``KeyInfo`` itself so that no specific plugin framework
+    (e.g. ``AnsibleModule``) is ever imported by ``api_data.py``.
+
+    Parameters
+    ----------
+    key_info : KeyInfo
+        Metadata for the field being sanitised.
+    value : any
+        The value to sanitise. Non-string and ``None`` handling is delegated
+        to the sanitizer itself. If no sanitizer is registered, *value* is
+        returned unchanged.
+    key_name : str
+        Human-readable field name used in the warning message.
+    warn : callable or None
+        Optional warning function (e.g. ``module.warn``). Called with a
+        single string message when the sanitizer modifies *value*. Pass
+        ``None`` to suppress warnings entirely.
+
+    Returns
+    -------
+    any
+        The sanitised value, or *value* unchanged if no sanitizer is
+        registered.
+    """
+    if key_info.value_sanitizer is None:
+        return value
+
+    sanitized = key_info.value_sanitizer(value)
+
+    if warn is not None and sanitized != value:
+        warn(
+            'Value of field "{key}" was automatically normalised from {original!r} to '
+            '{sanitized!r}. Consider updating your playbook to use the normalised '
+            'value directly to avoid this warning.'.format(
+                key=key_name,
+                original=value,
+                sanitized=sanitized,
+            )
+        )
+
+    return sanitized
