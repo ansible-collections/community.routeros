@@ -1,4 +1,4 @@
-removed_features:
+bugfixes:
   - api_info, api_modify - removed support for the parameter ``envlist`` (replaced by ``envlists``) in the ``container`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
   - api_info, api_modify - removed support for the parameter ``mounts`` (replaced by ``mount``) in the ``container`` path for RouterOS <7.21 (https://github.com/ansible-collections/community.routeros/pull/450).
   - api_info, api_modify - removed support for the parameter ``ram-high`` in the ``container config`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
