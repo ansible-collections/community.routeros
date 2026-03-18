@@ -1,2 +1,2 @@
 minor_changes:
-  - api_modify - defined `name` as primary key, added default for `container-mac-address`, allowed `comment` to be disabled for RouterOS path `interface veth` (https://github.com/ansible-collections/community.routeros/issues/454, https://github.com/ansible-collections/community.routeros/pull/455)
+  - api_modify - defined ``name`` as primary key, added default for ``container-mac-address``, allowed ``comment`` to be disabled for RouterOS path ``interface veth`` (https://github.com/ansible-collections/community.routeros/issues/454, https://github.com/ansible-collections/community.routeros/pull/455).
