@@ -3499,14 +3499,15 @@ PATHS = {
         versioned=[
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
+                primary_keys=('name',),
                 versioned_fields=[
-                    ([('7.21', '>=')], 'container-mac-address', KeyInfo()),
+                    ([('7.21', '>=')], 'container-mac-address', KeyInfo(default='00:00:00:00:00:00')),
                     ([('7.20', '>=')], 'dhcp', KeyInfo(default=False)),
                     ([('7.20', '>=')], 'mac-address', KeyInfo(default='00:00:00:00:00:00')),
                 ],
                 fields={
                     'address': KeyInfo(default=''),
-                    'comment': KeyInfo(),
+                    'comment': KeyInfo(can_disable=True, remove_value=''),
                     # 'copy-from': KeyInfo(write_only=True),
                     'disabled': KeyInfo(default=False),
                     'gateway': KeyInfo(default=''),
