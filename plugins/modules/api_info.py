@@ -188,7 +188,6 @@ options:
       - interface wifi security
       - interface wifi security multi-passphrase
       - interface wifi steering
-      - interface wifi steering neighbor-group
       - interface wifiwave2
       - interface wifiwave2 aaa
       - interface wifiwave2 access-list
@@ -301,7 +300,6 @@ options:
       - ip proxy
       - ip proxy access
       - ip proxy cache
-      - ip proxy connections
       - ip proxy direct
       - ip route
       - ip route rule
@@ -423,7 +421,6 @@ options:
       - routing ospf area range
       - routing ospf instance
       - routing ospf interface-template
-      - routing ospf neighbor
       - routing ospf static-neighbor
       - routing pimsm bsr candidate
       - routing pimsm bsr rp-candidate
@@ -437,7 +434,6 @@ options:
       - routing rip keys
       - routing rip static-neighbor
       - routing ripng
-      - routing route
       - routing route rule
       - routing rpki
       - routing rule
