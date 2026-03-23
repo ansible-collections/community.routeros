@@ -2286,3 +2286,14 @@ releases:
       - 451-container-envs-primary-keys.yml
       - 452-keyinfo-value-sanitizer-container-mounts.yaml
     release_date: '2026-03-05'
+  3.18.0:
+    changes:
+      minor_changes:
+        - api_modify - defined ``name`` as primary key, added default for ``container-mac-address``,
+          allowed ``comment`` to be disabled for RouterOS path ``interface veth``
+          (https://github.com/ansible-collections/community.routeros/issues/454, https://github.com/ansible-collections/community.routeros/pull/455).
+      release_summary: Feature release.
+    fragments:
+      - 3.18.0.yml
+      - 455-veth-primary-key.yml
+    release_date: '2026-03-23'
