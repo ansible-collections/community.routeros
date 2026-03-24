@@ -77,6 +77,7 @@ class APIData(object):
             self.needs_version = self.unversioned.needs_version
             self.fully_understood = self.unversioned.fully_understood
             self.has_identifier = self.unversioned.has_identifier
+            self.modify_not_supported  = self.unversioned.modify_not_supported 
         else:
             self.needs_version = self.versioned is not None
             # Mark as 'fully understood' if it is for at least one version
@@ -90,6 +91,12 @@ class APIData(object):
             for dummy, dummy, unversioned in self.versioned:
                 if unversioned and not isinstance(unversioned, str) and unversioned.has_identifier:
                     self.has_identifier = True
+                    break
+            # Mark as 'modify_not_supported' if it is for at least one version
+            self.modify_not_supported = False
+            for dummy, dummy, unversioned in self.versioned:
+                if unversioned and not isinstance(unversioned, str) and unversioned.modify_not_supported:
+                    self.modify_not_supported = True
                     break
         self._current = None if self.needs_version else self.unversioned
 
@@ -132,6 +139,7 @@ class VersionedAPIData(object):
                  required_one_of=None,
                  mutually_exclusive=None,
                  has_identifier=False,
+                 modify_not_supported=False,
                  single_value=False,
                  unknown_mechanism=False,
                  fully_understood=False,
@@ -147,6 +155,7 @@ class VersionedAPIData(object):
         self.required_one_of = required_one_of or []
         self.mutually_exclusive = mutually_exclusive or []
         self.has_identifier = has_identifier
+        self.modify_not_supported = modify_not_supported
         self.single_value = single_value
         self.unknown_mechanism = unknown_mechanism
         self.fully_understood = fully_understood
@@ -219,6 +228,7 @@ class VersionedAPIData(object):
             fully_understood=self.fully_understood,
             fixed_entries=self.fixed_entries,
             fields=fields,
+            modify_not_supported=self.modify_not_supported,
         )
 
 
@@ -2214,6 +2224,24 @@ PATHS = {
                 'server-fail-vlan-id': KeyInfo(can_disable=True),
             },
         ),
+    ),
+
+    ('interface', 'dot1x', 'server', 'active'): APIData(
+        versioned=[
+            ('7.15', '>=', VersionedAPIData(
+                fully_understood=True,
+                modify_not_supported=True,
+                fields={
+                    # 'copy-from': KeyInfo(write_only=True),
+                    'auth-info': KeyInfo(read_only=True),
+                    'client-mac': KeyInfo(read_only=True),
+                    'interface': KeyInfo(read_only=True),
+                    'session-id': KeyInfo(read_only=True),
+                    'username': KeyInfo(read_only=True),
+                    'vlan-id': KeyInfo(read_only=True),
+                },
+            )),
+        ],
     ),
 
     ('interface', 'eoip'): APIData(
@@ -4545,6 +4573,7 @@ PATHS = {
                 # fixed_entries=True,
                 fully_understood=True,
                 has_identifier=True,
+                modify_not_supported=True,
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
@@ -6712,6 +6741,20 @@ PATHS = {
         ),
     ),
 
+    ('ip', 'hotspot', 'active'): APIData(
+            versioned=[
+                ('7.21', '>=', 'Not supported anymore in version 7.21'),
+                ('7.15', '>=', VersionedAPIData(
+                    fully_understood=True,
+                    modify_not_supported=True,
+                    fields={
+                        'comment': KeyInfo(),
+                        # 'copy-from': KeyInfo(write_only=True),
+                    },
+                )),
+            ],
+        ),
+
     ('ip', 'hotspot', 'ip-binding'): APIData(
         versioned=[
             ('7.15', '>=', VersionedAPIData(
@@ -6894,6 +6937,19 @@ PATHS = {
             },
         ),
     ),
+
+    ('ip', 'ipsec', 'active-peers'): APIData(
+            versioned=[
+                ('7.15', '>=', VersionedAPIData(
+                    fully_understood=True,
+                    modify_not_supported=True,
+                    fields={
+                        'comment': KeyInfo(),
+                        # 'copy-from': KeyInfo(write_only=True),
+                    },
+                )),
+            ],
+        ),
 
     ('ip', 'ipsec', 'identity'): APIData(
         unversioned=VersionedAPIData(
@@ -7383,12 +7439,25 @@ PATHS = {
         ],
     ),
 
+    ('ip', 'proxy', 'cache-contents'): APIData(
+        versioned=[
+            ('7.15', '>=', VersionedAPIData(
+                fully_understood=True,
+                modify_not_supported=True,
+                fields={
+                    # 'copy-from': KeyInfo(write_only=True),
+                },
+            )),
+        ],
+    ),
+
     ('ip', 'proxy', 'connections'): APIData(
         versioned=[
             ('7.15', '>=', VersionedAPIData(
                 # fixed_entries=True,
                 fully_understood=True,
                 has_identifier=True,
+                modify_not_supported=True,
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
@@ -7670,6 +7739,7 @@ PATHS = {
                 # fixed_entries=True,
                 fully_understood=True,
                 has_identifier=True,
+                modify_not_supported=True,
                 # primary_keys=('numbers',),
                 fields={
                     'dst-address': KeyInfo(read_only=True),
@@ -10448,6 +10518,7 @@ PATHS = {
                 # fixed_entries=True,
                 fully_understood=True,
                 has_identifier=True,
+                modify_not_supported=True,
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
@@ -10767,6 +10838,7 @@ PATHS = {
                 # fixed_entries=True,
                 fully_understood=True,
                 has_identifier=True,
+                modify_not_supported=True,
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
@@ -12277,6 +12349,18 @@ PATHS = {
         ),
     ),
 
+    ('user', 'active'): APIData(
+            versioned=[
+                ('7.20', '>=', VersionedAPIData(
+                    fully_understood=True,
+                    modify_not_supported=True,
+                    fields={
+                        # 'copy-from': KeyInfo(write_only=True),
+                    },
+                )),
+            ],
+        ),
+
     ('user', 'group'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
@@ -12493,6 +12577,18 @@ PATHS = {
             )),
         ],
     ),
+
+    ('user-manager', 'session'): APIData(
+            versioned=[
+                ('7.15', '>=', VersionedAPIData(
+                    fully_understood=True,
+                    modify_not_supported=True,
+                    fields={
+                        # 'copy-from': KeyInfo(write_only=True),
+                    },
+                )),
+            ],
+        ),
 
     ('user-manager', 'user'): APIData(
         versioned=[
