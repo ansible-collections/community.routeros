@@ -184,6 +184,8 @@ options:
       - interface wifi configuration
       - interface wifi datapath
       - interface wifi interworking
+      - interface wifi network
+      - interface wifi network radio
       - interface wifi provisioning
       - interface wifi radio settings
       - interface wifi security
@@ -291,6 +293,7 @@ options:
       - ip proxy access
       - ip proxy cache
       - ip proxy direct
+      - ip reverse-proxy
       - ip route
       - ip route rule
       - ip route vrf
