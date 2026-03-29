@@ -1,0 +1,6 @@
+minor_changes:
+  - api_modify.py, api_info.py - sort versioned buckets numerically so tighter bounds match before broader ones.
+
+trivial_changes:
+  - api_modify.py, api_info.py - sort ``VersionedAPIData`` metadata attributes alphabetically.
+  - api_modify.py, api_info.py - clarify ``Not supported anymore`` error messages to show that newer versions (``>= x``) are included.

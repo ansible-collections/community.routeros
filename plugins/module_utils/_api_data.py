@@ -1565,7 +1565,7 @@ PATHS = {
 
     ('interface', 'amt'): APIData(
         versioned=[
-            ('7.19', '>=', 'Not supported anymore in version 7.19'),
+            ('7.19', '>=', 'Not supported anymore in version  >= 7.19'),
             ('7.18', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
@@ -2023,7 +2023,7 @@ PATHS = {
 
     ('interface', 'bridge', 'port-controller'): APIData(
         versioned=[
-            ('7.18', '>=', 'Not supported anymore in version 7.18'),
+            ('7.18', '>=', 'Not supported anymore in version  >= 7.18'),
             ('7.18', '<', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -2039,7 +2039,7 @@ PATHS = {
 
     ('interface', 'bridge', 'port-controller', 'device'): APIData(
         versioned=[
-            ('7.18', '>=', 'Not supported anymore in version 7.18'),
+            ('7.18', '>=', 'Not supported anymore in version  >= 7.18'),
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
@@ -2052,7 +2052,7 @@ PATHS = {
 
     ('interface', 'bridge', 'port-controller', 'port'): APIData(
         versioned=[
-            ('7.18', '>=', 'Not supported anymore in version 7.18'),
+            ('7.18', '>=', 'Not supported anymore in version  >= 7.18'),
             ('7.15', '>=', VersionedAPIData(
                 # fixed_entries=True,
                 fully_understood=True,
@@ -2069,7 +2069,7 @@ PATHS = {
 
     ('interface', 'bridge', 'port-extender'): APIData(
         versioned=[
-            ('7.18', '>=', 'Not supported anymore in version 7.18'),
+            ('7.18', '>=', 'Not supported anymore in version  >= 7.18'),
             ('7.18', '<', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -2519,7 +2519,7 @@ PATHS = {
 
     ('interface', 'ethernet', 'switch', 'qos', 'priority-flow-control'): APIData(
         versioned=[
-            ('7.16', '>=', 'Not supported anymore in version 7.16'),
+            ('7.16', '>=', 'Not supported anymore in version  >= 7.16'),
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
@@ -4275,20 +4275,20 @@ PATHS = {
         ],
     ),
 
-    # ('interface', 'wifi', 'steering', 'neighbor-group'): APIData(
-    #         versioned=[
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 # fixed_entries=True,
-    #                 fully_understood=True,
-    #                 has_identifier=True,
-    #                 # primary_keys=('numbers',),
-    #                 fields={
-    #                     'comment': KeyInfo(),
-    #                     'numbers': KeyInfo(),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
+    ('interface', 'wifi', 'steering', 'neighbor-group'): APIData(
+            versioned=[
+                ('7.15', '>=', VersionedAPIData(
+                    # fixed_entries=True,
+                    fully_understood=True,
+                    has_identifier=True,
+                    # primary_keys=('numbers',),
+                    fields={
+                        'comment': KeyInfo(),
+                        'numbers': KeyInfo(),
+                    },
+                )),
+            ],
+        ),
 
     ('interface', 'wifiwave2'): APIData(
         versioned=[
@@ -5448,7 +5448,7 @@ PATHS = {
 
     ('ip', 'accounting'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 single_value=True,
@@ -5463,7 +5463,7 @@ PATHS = {
 
     ('ip', 'accounting', 'web-access'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 single_value=True,
@@ -5591,7 +5591,7 @@ PATHS = {
 
     ('ip', 'cloud', 'back-to-home-users'): APIData(
         versioned=[
-            ('7.18', '>=', 'Not supported anymore in version 7.18'),
+            ('7.18', '>=', 'Not supported anymore in version  >= 7.18'),
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 versioned_fields=[
@@ -6660,7 +6660,7 @@ PATHS = {
 
     ('ip', 'ipsec', 'key'): APIData(
         versioned=[
-            ('7.20', '>=', 'Not supported anymore in version 7.20'),
+            ('7.20', '>=', 'Not supported anymore in version  >= 7.20'),
             ('7.15', '>=', VersionedAPIData(
                 # fixed_entries=True,
                 fully_understood=True,
@@ -7113,20 +7113,20 @@ PATHS = {
         ],
     ),
 
-    # ('ip', 'proxy', 'connections'): APIData(
-    #         versioned=[
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 # fixed_entries=True,
-    #                 fully_understood=True,
-    #                 has_identifier=True,
-    #                 # primary_keys=('numbers',),
-    #                 fields={
-    #                     'comment': KeyInfo(),
-    #                     'numbers': KeyInfo(),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
+    ('ip', 'proxy', 'connections'): APIData(
+            versioned=[
+                ('7.15', '>=', VersionedAPIData(
+                    # fixed_entries=True,
+                    fully_understood=True,
+                    has_identifier=True,
+                    # primary_keys=('numbers',),
+                    fields={
+                        'comment': KeyInfo(),
+                        'numbers': KeyInfo(),
+                    },
+                )),
+            ],
+        ),
 
     ('ip', 'proxy', 'direct'): APIData(
         versioned=[
@@ -7179,7 +7179,7 @@ PATHS = {
 
     ('ip', 'route', 'rule'): APIData(
         versioned=[
-            ('7', '>=', 'Not supported anymore in version 7'),
+            ('7', '>=', 'Not supported anymore in version  >= 7'),
             ('7', '<', VersionedAPIData(
                 fully_understood=True,
                 fields={
@@ -7198,7 +7198,7 @@ PATHS = {
 
     ('ip', 'route', 'vrf'): APIData(
         versioned=[
-            ('7', '>=', 'Not supported anymore in version 7'),
+            ('7', '>=', 'Not supported anymore in version  >= 7'),
             ('7', '<', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('routing-mark',),
@@ -8514,7 +8514,7 @@ PATHS = {
 
     ('mpls',): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 single_value=True,
@@ -8879,7 +8879,7 @@ PATHS = {
 
     ('port', 'firmware'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 single_value=True,
@@ -9227,7 +9227,7 @@ PATHS = {
 
     ('routing', 'bfd', 'interface'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 unknown_mechanism=True,
                 fields={
@@ -9244,7 +9244,7 @@ PATHS = {
 
     ('routing', 'bgp', 'aggregate'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('prefix',),
@@ -9401,7 +9401,7 @@ PATHS = {
 
     ('routing', 'bgp', 'network'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('network',),
@@ -9417,7 +9417,7 @@ PATHS = {
 
     ('routing', 'bgp', 'peer'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('name',),
@@ -9604,7 +9604,7 @@ PATHS = {
 
     ('routing', 'filter'): APIData(
         versioned=[
-            ('7', '>=', 'Not supported anymore in version 7'),
+            ('7', '>=', 'Not supported anymore in version  >= 7'),
             ('7', '<', VersionedAPIData(
                 fully_understood=True,
                 fields={
@@ -10022,7 +10022,7 @@ PATHS = {
 
     ('routing', 'mme'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 single_value=True,
@@ -10141,20 +10141,20 @@ PATHS = {
         ),
     ),
 
-    # ('routing', 'ospf', 'neighbor'): APIData(
-    #         versioned=[
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 # fixed_entries=True,
-    #                 fully_understood=True,
-    #                 has_identifier=True,
-    #                 # primary_keys=('numbers',),
-    #                 fields={
-    #                     'comment': KeyInfo(),
-    #                     'numbers': KeyInfo(),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
+    ('routing', 'ospf', 'neighbor'): APIData(
+            versioned=[
+                ('7.15', '>=', VersionedAPIData(
+                    # fixed_entries=True,
+                    fully_understood=True,
+                    has_identifier=True,
+                    # primary_keys=('numbers',),
+                    fields={
+                        'comment': KeyInfo(),
+                        'numbers': KeyInfo(),
+                    },
+                )),
+            ],
+        ),
 
     ('routing', 'ospf', 'static-neighbor'): APIData(
         versioned=[
@@ -10177,7 +10177,7 @@ PATHS = {
 
     ('routing', 'ospf-v3', 'area'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 unknown_mechanism=True,
                 fields={
@@ -10194,7 +10194,7 @@ PATHS = {
 
     ('routing', 'ospf-v3', 'instance'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 unknown_mechanism=True,
                 fields={
@@ -10337,7 +10337,7 @@ PATHS = {
 
     ('routing', 'rip'): APIData(
         versioned=[
-            ('7.15', '>=', 'Not supported anymore in version 7.15'),
+            ('7.15', '>=', 'Not supported anymore in version  >= 7.15'),
             ('7.15', '<', VersionedAPIData(
                 fully_understood=True,
                 single_value=True,
@@ -10460,21 +10460,21 @@ PATHS = {
         ),
     ),
 
-    # ('routing', 'route'): APIData(
-    #         versioned=[
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 # fixed_entries=True,
-    #                 fully_understood=True,
-    #                 has_identifier=True,
-    #                 # primary_keys=('numbers',),
-    #                 fields={
-    #                     'comment': KeyInfo(),
-    #                     'disabled': KeyInfo(),
-    #                     'numbers': KeyInfo(),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
+    ('routing', 'route'): APIData(
+            versioned=[
+                ('7.15', '>=', VersionedAPIData(
+                    # fixed_entries=True,
+                    fully_understood=True,
+                    has_identifier=True,
+                    # primary_keys=('numbers',),
+                    fields={
+                        'comment': KeyInfo(),
+                        'disabled': KeyInfo(),
+                        'numbers': KeyInfo(),
+                    },
+                )),
+            ],
+        ),
 
     ('routing', 'route', 'rule'): APIData(
         versioned=[
@@ -10582,7 +10582,7 @@ PATHS = {
 
     ('rsync-daemon',): APIData(
         versioned=[
-            ('7.16', '>=', 'Not supported anymore in version 7.16'),
+            ('7.16', '>=', 'Not supported anymore in version  >= 7.16'),
             ('7.15', '>=', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -10706,7 +10706,7 @@ PATHS = {
 
     ('system', 'console', 'screen'): APIData(
         versioned=[
-            ('7.16.1', '>=', 'Not supported anymore in version 7.16.1'),
+            ('7.16.1', '>=', 'Not supported anymore in version  >= 7.16.1'),
             ('7.15.3', '>=', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -10740,7 +10740,7 @@ PATHS = {
 
     ('system', 'hardware'): APIData(
         versioned=[
-            ('7.16.1', '>=', 'Not supported anymore in version 7.16.1'),
+            ('7.16.1', '>=', 'Not supported anymore in version  >= 7.16.1'),
             ('7.15.3', '>=', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -10754,7 +10754,7 @@ PATHS = {
 
     ('system', 'health'): APIData(
         versioned=[
-            ('7.16.1', '>=', 'Not supported anymore in version 7.16.1'),
+            ('7.16.1', '>=', 'Not supported anymore in version  >= 7.16.1'),
             ('7.15.3', '>=', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -11087,7 +11087,7 @@ PATHS = {
 
     ('system', 'resource', 'usb'): APIData(
         versioned=[
-            ('7.20', '>=', 'Not supported anymore in version 7.20'),
+            ('7.20', '>=', 'Not supported anymore in version  >= 7.20'),
             ('7.15', '>=', VersionedAPIData(
                 # fixed_entries=True,
                 fully_understood=True,
@@ -11111,7 +11111,7 @@ PATHS = {
 
     ('system', 'resource', 'usb', 'settings'): APIData(
         versioned=[
-            ('7.20', '>=', 'Not supported anymore in version 7.20'),
+            ('7.20', '>=', 'Not supported anymore in version  >= 7.20'),
             ('7.15', '>=', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -11308,7 +11308,7 @@ PATHS = {
 
     ('system', 'upgrade'): APIData(
         versioned=[
-            ('7.17', '>=', 'Not supported anymore in version 7.17'),
+            ('7.17', '>=', 'Not supported anymore in version  >= 7.17'),
             ('7.15', '>=', VersionedAPIData(
                 # fixed_entries=True,
                 fully_understood=True,
@@ -11324,7 +11324,7 @@ PATHS = {
 
     ('system', 'upgrade', 'mirror'): APIData(
         versioned=[
-            ('7.17', '>=', 'Not supported anymore in version 7.17'),
+            ('7.17', '>=', 'Not supported anymore in version  >= 7.17'),
             ('7.17', '<', VersionedAPIData(
                 fixed_entries=True,
                 fully_understood=True,
@@ -11345,7 +11345,7 @@ PATHS = {
 
     ('system', 'upgrade', 'upgrade-package-source'): APIData(
         versioned=[
-            ('7.17', '>=', 'Not supported anymore in version 7.17'),
+            ('7.17', '>=', 'Not supported anymore in version  >= 7.17'),
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
                 fields={
