@@ -2211,17 +2211,6 @@ PATHS = {
         ),
     ),
 
-    # ('interface', 'dot1x', 'server', 'active'): APIData(
-    #         versioned=[
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 fully_understood=True,
-    #                 fields={
-    #                     # 'copy-from': KeyInfo(write_only=True),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
-
     ('interface', 'eoip'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
@@ -6718,19 +6707,6 @@ PATHS = {
         ),
     ),
 
-    # ('ip', 'hotspot', 'active'): APIData(
-    #         versioned=[
-    #             ('7.21', '>=', 'Not supported anymore in version 7.21'),
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 fully_understood=True,
-    #                 fields={
-    #                     'comment': KeyInfo(),
-    #                     # 'copy-from': KeyInfo(write_only=True),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
-
     ('ip', 'hotspot', 'ip-binding'): APIData(
         versioned=[
             ('7.15', '>=', VersionedAPIData(
@@ -6913,18 +6889,6 @@ PATHS = {
             },
         ),
     ),
-
-    # ('ip', 'ipsec', 'active-peers'): APIData(
-    #         versioned=[
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 fully_understood=True,
-    #                 fields={
-    #                     'comment': KeyInfo(),
-    #                     # 'copy-from': KeyInfo(write_only=True),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
 
     ('ip', 'ipsec', 'identity'): APIData(
         unversioned=VersionedAPIData(
@@ -12308,17 +12272,6 @@ PATHS = {
         ),
     ),
 
-    # ('user', 'active'): APIData(
-    #         versioned=[
-    #             ('7.20', '>=', VersionedAPIData(
-    #                 fully_understood=True,
-    #                 fields={
-    #                     # 'copy-from': KeyInfo(write_only=True),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
-
     ('user', 'group'): APIData(
         unversioned=VersionedAPIData(
             fully_understood=True,
@@ -12535,17 +12488,6 @@ PATHS = {
             )),
         ],
     ),
-
-    # ('user-manager', 'session'): APIData(
-    #         versioned=[
-    #             ('7.15', '>=', VersionedAPIData(
-    #                 fully_understood=True,
-    #                 fields={
-    #                     # 'copy-from': KeyInfo(write_only=True),
-    #                 },
-    #             )),
-    #         ],
-    #     ),
 
     ('user-manager', 'user'): APIData(
         versioned=[
