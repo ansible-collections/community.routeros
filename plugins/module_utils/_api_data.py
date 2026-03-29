@@ -4276,19 +4276,19 @@ PATHS = {
     ),
 
     ('interface', 'wifi', 'steering', 'neighbor-group'): APIData(
-            versioned=[
-                ('7.15', '>=', VersionedAPIData(
-                    # fixed_entries=True,
-                    fully_understood=True,
-                    has_identifier=True,
-                    # primary_keys=('numbers',),
-                    fields={
-                        'comment': KeyInfo(),
-                        'numbers': KeyInfo(),
-                    },
-                )),
-            ],
-        ),
+        versioned=[
+            ('7.15', '>=', VersionedAPIData(
+                # fixed_entries=True,
+                fully_understood=True,
+                has_identifier=True,
+                # primary_keys=('numbers',),
+                fields={
+                    'comment': KeyInfo(),
+                    'numbers': KeyInfo(),
+                },
+            )),
+        ],
+    ),
 
     ('interface', 'wifiwave2'): APIData(
         versioned=[
@@ -7114,19 +7114,19 @@ PATHS = {
     ),
 
     ('ip', 'proxy', 'connections'): APIData(
-            versioned=[
-                ('7.15', '>=', VersionedAPIData(
-                    # fixed_entries=True,
-                    fully_understood=True,
-                    has_identifier=True,
-                    # primary_keys=('numbers',),
-                    fields={
-                        'comment': KeyInfo(),
-                        'numbers': KeyInfo(),
-                    },
-                )),
-            ],
-        ),
+        versioned=[
+            ('7.15', '>=', VersionedAPIData(
+                # fixed_entries=True,
+                fully_understood=True,
+                has_identifier=True,
+                # primary_keys=('numbers',),
+                fields={
+                    'comment': KeyInfo(),
+                    'numbers': KeyInfo(),
+                },
+            )),
+        ],
+    ),
 
     ('ip', 'proxy', 'direct'): APIData(
         versioned=[
@@ -10142,19 +10142,19 @@ PATHS = {
     ),
 
     ('routing', 'ospf', 'neighbor'): APIData(
-            versioned=[
-                ('7.15', '>=', VersionedAPIData(
-                    # fixed_entries=True,
-                    fully_understood=True,
-                    has_identifier=True,
-                    # primary_keys=('numbers',),
-                    fields={
-                        'comment': KeyInfo(),
-                        'numbers': KeyInfo(),
-                    },
-                )),
-            ],
-        ),
+        versioned=[
+            ('7.15', '>=', VersionedAPIData(
+                # fixed_entries=True,
+                fully_understood=True,
+                has_identifier=True,
+                # primary_keys=('numbers',),
+                fields={
+                    'comment': KeyInfo(),
+                    'numbers': KeyInfo(),
+                },
+            )),
+        ],
+    ),
 
     ('routing', 'ospf', 'static-neighbor'): APIData(
         versioned=[
@@ -10461,20 +10461,20 @@ PATHS = {
     ),
 
     ('routing', 'route'): APIData(
-            versioned=[
-                ('7.15', '>=', VersionedAPIData(
-                    # fixed_entries=True,
-                    fully_understood=True,
-                    has_identifier=True,
-                    # primary_keys=('numbers',),
-                    fields={
-                        'comment': KeyInfo(),
-                        'disabled': KeyInfo(),
-                        'numbers': KeyInfo(),
-                    },
-                )),
-            ],
-        ),
+        versioned=[
+            ('7.15', '>=', VersionedAPIData(
+                # fixed_entries=True,
+                fully_understood=True,
+                has_identifier=True,
+                # primary_keys=('numbers',),
+                fields={
+                    'comment': KeyInfo(),
+                    'disabled': KeyInfo(),
+                    'numbers': KeyInfo(),
+                },
+            )),
+        ],
+    ),
 
     ('routing', 'route', 'rule'): APIData(
         versioned=[
