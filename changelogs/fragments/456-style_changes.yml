@@ -1,6 +1,2 @@
 minor_changes:
   - api_modify, api_info - sort versioned buckets numerically so tighter bounds match before broader ones (https://github.com/ansible-collections/community.routeros/pull/456).
-
-trivial:
-  - api_modify.py, api_info.py - sort ``VersionedAPIData`` metadata attributes alphabetically.
-  - api_modify.py, api_info.py - clarify ``Not supported anymore`` error messages to show that newer versions (``>= x``) are included.
