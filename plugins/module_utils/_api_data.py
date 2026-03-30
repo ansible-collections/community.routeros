@@ -10772,15 +10772,13 @@ PATHS = {
                 fixed_entries=True,
                 fully_understood=True,
                 single_value=True,
-                versioned_fields=[
-                    ([('7.14', '<')], 'fan-control-interval', KeyInfo(can_disable=True, default='30s')),
-                    ([('7.14', '<')], 'fan-min-speed-percent', KeyInfo(default=0)),
-                ],
                 fields={
                     'cpu-overtemp-check': KeyInfo(),
                     'cpu-overtemp-startup-delay': KeyInfo(),
                     'cpu-overtemp-threshold': KeyInfo(),
+                    'fan-control-interval': KeyInfo(default=30),
                     'fan-full-speed-temp': KeyInfo(default=65),
+                    'fan-min-speed-percent': KeyInfo(default=12),
                     'fan-mode': KeyInfo(),
                     'fan-on-threshold': KeyInfo(),
                     'fan-switch': KeyInfo(),
