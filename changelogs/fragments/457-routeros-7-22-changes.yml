@@ -28,7 +28,5 @@ minor_changes:
   - api_info, api_modify - adds support for the ``password`` parameter in the ``system package local-update update-package-source`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
   - api_info, api_modify - adds support for the ``preferred-architecture`` parameter in the ``system routerboard settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
   - api_info, api_modify - adjusts handling of required parameters in the ``interface wifi`` path by removing ``default-name`` from ``required_one_of`` for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/457).
-
-removed_features:
   - api_info, api_modify - removed support for the ``system package local-update`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
   - api_info, api_modify - removed support for the ``add-path-out`` parameter in BGP-related paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
