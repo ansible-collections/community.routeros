@@ -77,7 +77,7 @@ class APIData(object):
             self.needs_version = self.unversioned.needs_version
             self.fully_understood = self.unversioned.fully_understood
             self.has_identifier = self.unversioned.has_identifier
-            self.modify_not_supported  = self.unversioned.modify_not_supported 
+            self.modify_not_supported = self.unversioned.modify_not_supported 
         else:
             self.needs_version = self.versioned is not None
             # Mark as 'fully understood' if it is for at least one version
