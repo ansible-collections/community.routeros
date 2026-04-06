@@ -1434,7 +1434,7 @@ def get_backend(path_info):
     if path_info.single_value:
         return sync_single_value
 
-    if not path_info.has_identifier:
+    if not path_info.has_identifier and not path_info.modify_not_supported:
         return sync_list
 
     return None
