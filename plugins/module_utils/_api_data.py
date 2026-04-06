@@ -65,6 +65,21 @@ def _compare(a, b, comparator):
     raise ValueError('Unknown comparator "{comparator}"'.format(comparator=comparator))
 
 
+class Depr(object):
+    def __init__(self, version, msg, context="all"):
+        if context not in ("all", "read", "write"):
+            raise ValueError('context must be all, read, or write, but not {context!r}'.format(context=context))
+        self.context = context
+        self.version = version
+        self.msg = msg
+
+    def applies(self, context):
+        return context == self.context or self.context == "all"
+
+    def emit(self, module):
+        module.deprecate(self.msg, version=self.version, collection_name="community.routeros")
+
+
 class APIData(object):
     def __init__(self,
                  unversioned=None,
@@ -243,7 +258,8 @@ class KeyInfo(object):
                  automatically_computed_from=None,
                  read_only=False,
                  write_only=False,
-                 value_sanitizer=None):
+                 value_sanitizer=None,
+                 depr=None):
         if _dummy is not None:
             raise ValueError('KeyInfo() does not have positional arguments')
         if sum([required, default is not None or can_disable, automatically_computed_from is not None]) > 1:
@@ -272,6 +288,8 @@ class KeyInfo(object):
                 'write-only fields cannot be read back from RouterOS so '
                 'the sanitised value cannot be verified'
             )
+        if depr is not None and not isinstance(depr, Depr):
+            raise ValueError('depr must be a Depr instance, but got {depr!r}'.format(depr=depr))
 
         self.can_disable = can_disable
         self.remove_value = remove_value
@@ -282,6 +300,7 @@ class KeyInfo(object):
         self.read_only = read_only
         self.write_only = write_only
         self.value_sanitizer = value_sanitizer
+        self.depr = depr
 
 
 def split_path(path):
@@ -336,7 +355,7 @@ PATHS = {
                     'firewall-redirects': KeyInfo(),
                     'hw-device-access': KeyInfo(),
                     'network': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'required-mounts': KeyInfo(),
                 },
             )),
@@ -464,7 +483,7 @@ PATHS = {
                     'master-interface': KeyInfo(),
                     'mtu': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'radio-mac': KeyInfo(),
                     'security.authentication-types': KeyInfo(),
                     'security.disable-pmkid': KeyInfo(),
@@ -1161,7 +1180,7 @@ PATHS = {
                 fields={
                     'default-subvolume': KeyInfo(),
                     'label': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -1360,7 +1379,7 @@ PATHS = {
                     'fan-mode': KeyInfo(),
                     'fan-on-threshold': KeyInfo(),
                     'fan-switch': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'psu1-state': KeyInfo(),
                     'psu2-state': KeyInfo(),
                     'use-fan': KeyInfo(),
@@ -1384,7 +1403,7 @@ PATHS = {
                     'l2mtu': KeyInfo(),
                     'mtu': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -1427,7 +1446,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'device': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -1479,7 +1498,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'device': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -1527,7 +1546,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'device': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -1614,7 +1633,7 @@ PATHS = {
                     'l2mtu': KeyInfo(),
                     'mtu': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -2159,7 +2178,7 @@ PATHS = {
                 fields={
                     'disabled': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -2637,7 +2656,7 @@ PATHS = {
                     'egress-rate-queue6': KeyInfo(),
                     'egress-rate-queue7': KeyInfo(),
                     'map': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'profile': KeyInfo(),
                     'trust-l2': KeyInfo(),
                     'trust-l3': KeyInfo(),
@@ -2750,7 +2769,7 @@ PATHS = {
                 ],
                 fields={
                     'comment': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'queue-buffers': KeyInfo(),
                     'schedule': KeyInfo(),
                     'use-shared-buffers': KeyInfo(),
@@ -3095,7 +3114,7 @@ PATHS = {
                     'name': KeyInfo(),
                     'network-mode': KeyInfo(can_disable=True),
                     'nr-band': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'operator': KeyInfo(),
                     'pin': KeyInfo(),
                     'sms-read': KeyInfo(),
@@ -4692,7 +4711,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -5360,7 +5379,7 @@ PATHS = {
                 fields={
                     'comment': KeyInfo(),
                     'manual-tx-powers': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -5380,7 +5399,7 @@ PATHS = {
                     'enable-polling': KeyInfo(),
                     'framer-limit': KeyInfo(),
                     'framer-policy': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -5544,7 +5563,7 @@ PATHS = {
                 fields={
                     'antenna': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'random-static-address': KeyInfo(),
                 },
             )),
@@ -5568,7 +5587,7 @@ PATHS = {
                     'disabled': KeyInfo(),
                     'max-interval': KeyInfo(),
                     'min-interval': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'own-address-type': KeyInfo(),
                 },
             )),
@@ -5602,7 +5621,7 @@ PATHS = {
                     'address-type': KeyInfo(),
                     'mtik-key': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'persist': KeyInfo(),
                 },
             )),
@@ -5624,7 +5643,7 @@ PATHS = {
                     'filter-duplicates': KeyInfo(),
                     'filter-policy': KeyInfo(),
                     'interval': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'own-address-type': KeyInfo(),
                     'type': KeyInfo(),
                     'window': KeyInfo(),
@@ -5674,7 +5693,7 @@ PATHS = {
                     'listen-time': KeyInfo(),
                     'name': KeyInfo(),
                     'network': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'rssi-threshold': KeyInfo(),
                     'servers': KeyInfo(),
                     'spoof-gps': KeyInfo(),
@@ -5695,7 +5714,7 @@ PATHS = {
                     'datarate': KeyInfo(),
                     'disabled': KeyInfo(),
                     'freq-off': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'radio': KeyInfo(),
                     'spread-factor': KeyInfo(),
                 },
@@ -5753,7 +5772,7 @@ PATHS = {
                 fields={
                     'center-freq': KeyInfo(),
                     'disabled': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'tx-freq-max': KeyInfo(),
                     'tx-freq-min': KeyInfo(),
                 },
@@ -7166,7 +7185,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -7213,7 +7232,7 @@ PATHS = {
                 primary_keys=('numbers',),
                 fields={
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -7546,7 +7565,7 @@ PATHS = {
                 fields={
                     'address': KeyInfo(),
                     'info': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'owner': KeyInfo(),
                     'pool': KeyInfo(),
                 },
@@ -7650,7 +7669,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -7938,7 +7957,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'dst-address': KeyInfo(read_only=True),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'rx': KeyInfo(read_only=True),
                     'src-address': KeyInfo(read_only=True),
                     'tx': KeyInfo(read_only=True),
@@ -8948,7 +8967,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'disabled': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'timeout': KeyInfo(),
                 },
             )),
@@ -8979,7 +8998,7 @@ PATHS = {
                     'listen-time': KeyInfo(),
                     'name': KeyInfo(),
                     'network': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'rssi-threshold': KeyInfo(),
                     'servers': KeyInfo(),
                     'spoof-gps': KeyInfo(),
@@ -9000,7 +9019,7 @@ PATHS = {
                     'datarate': KeyInfo(),
                     'disabled': KeyInfo(),
                     'freq-off': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'radio': KeyInfo(),
                     'spread-factor': KeyInfo(),
                 },
@@ -9058,7 +9077,7 @@ PATHS = {
                 fields={
                     'center-freq': KeyInfo(),
                     'disabled': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'tx-freq-max': KeyInfo(),
                     'tx-freq-min': KeyInfo(),
                 },
@@ -9457,7 +9476,7 @@ PATHS = {
                     'comment': KeyInfo(),
                     'fallback-to': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -9476,7 +9495,7 @@ PATHS = {
                     'dtr': KeyInfo(),
                     'flow-control': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'parity': KeyInfo(),
                     'rts': KeyInfo(),
                     'stop-bits': KeyInfo(),
@@ -9828,14 +9847,16 @@ PATHS = {
                     'address-list': KeyInfo(),
                     'addresses': KeyInfo(),
                     'comment': KeyInfo(can_disable=True, remove_value=''),
-                    'copy-from': KeyInfo(write_only=True),
+                    'copy-from': KeyInfo(
+                        write_only=True, depr=Depr('4.0.0', 'The copy-from field will be removed in community.routeros 4.0.0.', context='write')),
                     'disabled': KeyInfo(default=False),
                     'forbid-bfd': KeyInfo(),
                     'interfaces': KeyInfo(),
                     'min-rx': KeyInfo(),
                     'min-tx': KeyInfo(),
                     'multiplier': KeyInfo(),
-                    'place-before': KeyInfo(write_only=True),
+                    'place-before': KeyInfo(
+                        write_only=True, depr=Depr('4.0.0', 'The place-before field will be removed in community.routeros 4.0.0.', context='write')),
                     'vrf': KeyInfo(),
                 },
             )),
@@ -10568,7 +10589,7 @@ PATHS = {
                     'l2.passive': KeyInfo(),
                     'l2.priority': KeyInfo(can_disable=True),
                     'l2.psnp-interval': KeyInfo(can_disable=True),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'ptp': KeyInfo(),
                     'ptp.3way-state': KeyInfo(can_disable=True),
                     'ptp.usage': KeyInfo(can_disable=True),
@@ -10636,7 +10657,7 @@ PATHS = {
                     'instance': KeyInfo(),
                     'level': KeyInfo(),
                     'lsp-id': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'sequence': KeyInfo(),
                 },
             )),
@@ -10654,7 +10675,7 @@ PATHS = {
                     'instance': KeyInfo(),
                     'interface': KeyInfo(),
                     'level-type': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'snpa': KeyInfo(),
                     'srcid': KeyInfo(),
                     'state': KeyInfo(can_disable=True),
@@ -10798,7 +10819,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -10915,7 +10936,7 @@ PATHS = {
                 fields={
                     'instance': KeyInfo(),
                     'interfaces': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -11129,7 +11150,7 @@ PATHS = {
                 fields={
                     'comment': KeyInfo(),
                     'disabled': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -11149,7 +11170,7 @@ PATHS = {
                     'dst-address': KeyInfo(can_disable=True),
                     'interface': KeyInfo(can_disable=True),
                     'min-prefix': KeyInfo(can_disable=True),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'routing-mark': KeyInfo(can_disable=True),
                     'src-address': KeyInfo(can_disable=True),
                     'table': KeyInfo(),
@@ -11669,7 +11690,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'download': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -11745,7 +11766,7 @@ PATHS = {
             # primary_keys=('numbers',),
             fields={
                 'cpu': KeyInfo(),
-                'numbers': KeyInfo(),
+                'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
             },
         ),
     ),
@@ -11777,7 +11798,7 @@ PATHS = {
                     'device': KeyInfo(),
                     'device-id': KeyInfo(),
                     'name': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'ports': KeyInfo(),
                     'serial-number': KeyInfo(),
                     'speed': KeyInfo(),
@@ -11947,7 +11968,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'value': KeyInfo(),
                 },
             )),
@@ -11963,7 +11984,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'comment': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'started': KeyInfo(),
                     'type': KeyInfo(),
                 },
@@ -11999,7 +12020,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'download': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                 },
             )),
         ],
@@ -12293,7 +12314,7 @@ PATHS = {
                 # primary_keys=('numbers',),
                 fields={
                     'interface': KeyInfo(),
-                    'numbers': KeyInfo(),
+                    'numbers': KeyInfo(depr=Depr('4.0.0', 'The numbers field will be read-only from community.routeros 4.0.0 on.', context='write')),
                     'src-address': KeyInfo(),
                     'uptime': KeyInfo(),
                 },

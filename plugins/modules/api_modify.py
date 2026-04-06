@@ -876,6 +876,8 @@ def polish_entry(entry, path_info, module, for_text):
         if key_info.write_only:
             if module.params['handle_write_only'] == 'error':
                 module.fail_json(msg='Key "{key}" is write-only{for_text}, and handle_write_only=error.'.format(key=key, for_text=for_text))
+        if key_info.depr and key_info.depr.applies("write"):
+            key_info.depr.emit(module)
     for key in to_remove:
         entry.pop(key)
     # Iterate over a snapshot of keys because we may update values in-place.

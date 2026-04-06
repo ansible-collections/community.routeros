@@ -667,6 +667,8 @@ from ansible_collections.community.routeros.plugins.module_utils._api_helper imp
     validate_and_prepare_restrict,
 )
 
+from ansible_collections.community.routeros.plugins.module_utils._tagging import deprecate_value
+
 try:
     from librouteros.exceptions import LibRouterosError
 except Exception:
@@ -763,6 +765,8 @@ def main():
                     entry[k] = field_info.absent_value
                 if not include_read_only and k in entry and field_info.read_only:
                     entry.pop(k)
+                if field_info.depr and field_info.depr.applies("read") and k in entry:
+                    entry[k] = deprecate_value(entry[k], field_info.depr.msg, field_info.depr.version)
             result.append(entry)
 
         module.exit_json(result=result)
