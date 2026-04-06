@@ -882,6 +882,7 @@ PATHS = {
             versioned_fields=[
                 ([('7.19', '>=')], 'builtin-trust-anchors', KeyInfo()),
                 ([('7.21', '>=')], 'builtin-trust-store', KeyInfo()),
+                ([('7.22.1', '>=')], 'current-defaults', KeyInfo()),
             ],
             fields={
                 'crl-download': KeyInfo(default=False),
@@ -4172,6 +4173,7 @@ PATHS = {
                 fully_understood=True,
                 single_value=True,
                 versioned_fields=[
+                    ([('7.22.1', '>=')], 'mld-datapath', KeyInfo()),
                     ([('7.22', '>=')], 'mld-static', KeyInfo()),
                 ],
                 fields={
@@ -11491,6 +11493,9 @@ PATHS = {
         versioned=[
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,
+                versioned_fields=[
+                    ([('7.22.1', '>=')], 'color', KeyInfo()),
+                ],
                 fields={
                     # 'copy-from': KeyInfo(write_only=True),
                     'disabled': KeyInfo(),
