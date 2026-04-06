@@ -86,17 +86,17 @@ class APIData(object):
                 if unversioned and not isinstance(unversioned, str) and unversioned.fully_understood:
                     self.fully_understood = True
                     break
-            # Mark as 'has_identifier' if it is for at least one version
-            self.has_identifier = False
+            # Mark as 'has_identifier' only if it is for all versions
+            self.has_identifier = True
             for dummy, dummy, unversioned in self.versioned:
-                if unversioned and not isinstance(unversioned, str) and unversioned.has_identifier:
-                    self.has_identifier = True
+                if unversioned and not isinstance(unversioned, str) and not unversioned.has_identifier:
+                    self.has_identifier = False
                     break
-            # Mark as 'modify_not_supported' if it is for at least one version
-            self.modify_not_supported = False
+            # Mark as 'modify_not_supported' only if it is for all versions
+            self.modify_not_supported = True
             for dummy, dummy, unversioned in self.versioned:
-                if unversioned and not isinstance(unversioned, str) and unversioned.modify_not_supported:
-                    self.modify_not_supported = True
+                if unversioned and not isinstance(unversioned, str) and not unversioned.modify_not_supported:
+                    self.modify_not_supported = False
                     break
         self._current = None if self.needs_version else self.unversioned
 
