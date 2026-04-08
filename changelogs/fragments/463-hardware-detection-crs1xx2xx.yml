@@ -1,0 +1,25 @@
+minor_changes:
+  - api_info, api_modify - add support for dynamic hardware detection of CRS1xx/2xx switch variants. Operations on ``interface ethernet switch`` and ``interface ethernet switch port-isolation`` paths now automatically adapt to detected hardware (single-entry vs multi-entry switch chips) (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add ``switch-all-ports`` parameter in the ``interface ethernet switch`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch acl`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch acl policer`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch dscp-qos-map`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch dscp-to-dscp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch egress-vlan-tag`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch egress-vlan-translation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch ingress-port-policer`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch ingress-vlan-translation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch mac-based-vlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch multicast-fdb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch one2one-vlan-switching`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch policer-qos-map`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch port-leakage`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch protocol-based-vlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch qos-group`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch reserved-fdb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch shaper`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch stats`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch trunk`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add support for ``interface ethernet switch unicast-fdb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add 46 new parameters to the ``interface ethernet switch port`` path for RouterOS >= 7.15 (CRS1xx/2xx variant) including QoS, mirroring, VLAN, and learning control parameters (https://github.com/ansible-collections/community.routeros/pull/463).
+  - api_info, api_modify - add ``comment``, ``disabled``, ``independent-learning``, ``qos-group``, ``svl``, and ``switch`` parameters to the ``interface ethernet switch vlan`` path for RouterOS >= 7.15 (CRS1xx/2xx variant) (https://github.com/ansible-collections/community.routeros/pull/463).
