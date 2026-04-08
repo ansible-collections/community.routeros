@@ -1,4 +1,0 @@
-minor_changes:
-  - api_info, api_modify - add ``current-defaults`` parameter to the ``ip dns`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
-  - api_info, api_modify - add ``mld-datapath`` parameter to the ``interface wifi cap`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
-  - api_info, api_modify - add ``color`` parameter to the ``zerotier interface`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).

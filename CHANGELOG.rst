@@ -4,6 +4,61 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.19.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_info - add missing ``numbers`` parameter across numerous existing paths for RouterOS >= 7.15.2 (https://github.com/ansible-collections/community.routeros/pull/458).
+- api_info - add support for the ``interface dot1x server active``, ``ip hotspot active``, ``ip ipsec active-peers``, ``ip proxy cache-contents``, ``ip socks connections``, ``user active``, and ``user-manager session`` paths as info-only (read-only) paths (https://github.com/ansible-collections/community.routeros/pull/458).
+- api_info - adds support for additional read-only parameters in the ``app`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - add ``color`` parameter to the ``zerotier interface`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - add ``current-defaults`` parameter to the ``ip dns`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - add ``mld-datapath`` parameter to the ``interface wifi cap`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - adds support for multiple ``healthcheck-*`` parameters in the ``container`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for new ``input.add-path`` and ``output.add-path`` parameters replacing ``add-path-out`` in BGP-related paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``add-topics-string`` and ``script`` parameters in the ``system logging action`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``app-store-urls`` parameter in the ``app settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``chain``, ``realm``, and ``vrf`` parameters in the ``routing rule`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``channel.preamble-puncturing`` parameter in the ``interface wifi configuration`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``channel.preamble-puncturing``, ``mld-interface``, and ``mld-name`` parameters in the ``interface wifi`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``system logging`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``ddos-cookie-threshold`` parameter in the ``ip ipsec settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``dhcp6-pd-preferred`` parameter in the ``ipv6 nd prefix`` and ``ipv6 nd prefix default`` paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``from-pool`` parameter in the ``ipv6 pool`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``interface wifi network`` and ``interface wifi network radio`` paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``interframe-gap`` parameter in the ``iot modbus`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``ip reverse-proxy`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``mlag-heartbeat``, ``mlag-peer-port``, ``mlag-priority``, and ``ra-guard`` parameters in the ``interface bridge`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``mld-static`` parameter in the ``interface wifi cap`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``multi-link-mode`` and ``supported-hw-caps`` parameters in the ``interface wifi provisioning`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``multipath`` parameter in the ``routing bgp instance`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``name`` parameter in the ``ip dhcp-client`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``otp-secret`` parameter in the ``ip hotspot user`` path for RouterOS >= 7.21.3 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``password`` parameter in the ``system package local-update update-package-source`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``policy-rules`` parameter in the ``routing settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``preamble-puncturing`` parameter in the ``interface wifi channel`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``preferred-architecture`` parameter in the ``system routerboard settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``pvid``, ``use-https``, and ``yaml`` parameters in the ``app`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``request-interval`` parameter in the ``interface detect-internet`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``trusted-ra`` parameter in the ``interface bridge port`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adjusts handling of required parameters in the ``interface wifi`` path by removing ``default-name`` from ``required_one_of`` for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - removed support for the ``add-path-out`` parameter in BGP-related paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - removed support for the ``system package local-update`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_modify, api_info - sort versioned buckets numerically so tighter bounds match before broader ones (https://github.com/ansible-collections/community.routeros/pull/456).
+
+Deprecated Features
+-------------------
+
+- api_modify - all existing ``numbers`` fields are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+- api_modify - in ``routing bfd configuration``, the fields ``copy-from`` and ``place-before`` are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+
 v3.18.0
 =======
 
