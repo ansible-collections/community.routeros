@@ -6,6 +6,9 @@
 # The data inside here is private to this collection. If you use this from outside the collection,
 # you are on your own. There can be random changes to its format even in bugfix releases!
 
+from __future__ import absolute_import, division, print_function
+__metaclass__ = type
+
 """Hardware detection functions for community.routeros.
 
 Each function takes an API connection object, queries the device,
