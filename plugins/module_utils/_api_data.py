@@ -105,9 +105,9 @@ class APIData(object):
                 raise ValueError('hardware_detect required when hardware_variants is set')
             for key, variant in hardware_variants.items():
                 if not isinstance(variant, APIData):
-                    raise ValueError(f'hardware_variants[{key!r}] must be an APIData instance')
+                    raise ValueError('hardware_variants[{key!r}] must be an APIData instance'.format(key=key))
                 if variant.hardware_variants is not None:
-                    raise ValueError(f'hardware_variants[{key!r}] must not itself have hardware_variants')
+                    raise ValueError('hardware_variants[{key!r}] must not itself have hardware_variants'.format(key=key))
         elif hardware_detect is not None:
             raise ValueError('hardware_detect requires hardware_variants')
         else:
@@ -194,30 +194,7 @@ class APIData(object):
             raise ValueError('either provide_version() was not called or it returned False')
         return self._current
 
-    def resolve(self, ros_version, hardware_variant_key=None):
-        if self.hardware_variants is not None:
-            if hardware_variant_key is None:
-                raise ValueError(
-                    'This path requires hardware detection but no variant key was provided'
-                )
-            inner = self.hardware_variants[hardware_variant_key]
-            # inner is a regular APIData — use its existing resolution logic
-            return inner.resolve(ros_version)
-        else:
-            # Existing version resolution logic, unchanged
-            return self._resolve_version(ros_version)
 
-    @staticmethod
-    def _resolve_version(ros_version, unversioned=None, versioned=None):
-        """Pick the right VersionedAPIData from unversioned or versioned list."""
-        if unversioned is not None:
-            return unversioned
-        # Existing version-matching logic that walks the versioned list
-        # and finds the matching (version, op, VersionedAPIData) entry
-        for version_str, op, versioned_data in versioned:
-            if _version_matches(ros_version, version_str, op):
-                return versioned_data
-        raise ValueError(f'No matching version data for RouterOS {ros_version}')
 
 class VersionedAPIData(object):
     def __init__(self,
@@ -2527,42 +2504,42 @@ PATHS = {
         hardware_detect='switch_chip_type',
         hardware_variants={
             'single_entry_switch': APIData(
-                    versioned=[
-                        ('7.15', '>=', VersionedAPIData(
-                            fixed_entries=True,
-                            fully_understood=True,
-                            single_value=True,
-                            fields={
-                                'bridge-type': KeyInfo(),
-                                'bypass-ingress-port-policing-for': KeyInfo(),
-                                'bypass-l2-security-check-filter-for': KeyInfo(),
-                                'bypass-vlan-ingress-filter-for': KeyInfo(),
-                                'drop-if-invalid-or-src-port-not-member-of-vlan-on-ports': KeyInfo(),
-                                'drop-if-no-vlan-assignment-on-ports': KeyInfo(),
-                                'egress-mirror-ratio': KeyInfo(),
-                                'egress-mirror0': KeyInfo(),
-                                'egress-mirror1': KeyInfo(),
-                                'fdb-uses': KeyInfo(),
-                                'forward-unknown-vlan': KeyInfo(),
-                                'ingress-mirror-ratio': KeyInfo(),
-                                'ingress-mirror0': KeyInfo(),
-                                'ingress-mirror1': KeyInfo(),
-                                'mac-level-isolation': KeyInfo(),
-                                'mirror-egress-if-ingress-mirrored': KeyInfo(),
-                                'mirror-tx-on-mirror-port': KeyInfo(),
-                                'mirrored-packet-drop-precedence': KeyInfo(),
-                                'mirrored-packet-qos-priority': KeyInfo(),
-                                'multicast-lookup-mode': KeyInfo(),
-                                'name': KeyInfo(),
-                                'override-existing-when-ufdb-full': KeyInfo(),
-                                'unicast-fdb-timeout': KeyInfo(),
-                                'unknown-vlan-lookup-mode': KeyInfo(),
-                                'use-cvid-in-one2one-vlan-lookup': KeyInfo(),
-                                'use-svid-in-one2one-vlan-lookup': KeyInfo(),
-                                'vlan-uses': KeyInfo(),
-                            },
-                        )),
-                    ],
+                versioned=[
+                    ('7.15', '>=', VersionedAPIData(
+                        fixed_entries=True,
+                        fully_understood=True,
+                        single_value=True,
+                        fields={
+                            'bridge-type': KeyInfo(),
+                            'bypass-ingress-port-policing-for': KeyInfo(),
+                            'bypass-l2-security-check-filter-for': KeyInfo(),
+                            'bypass-vlan-ingress-filter-for': KeyInfo(),
+                            'drop-if-invalid-or-src-port-not-member-of-vlan-on-ports': KeyInfo(),
+                            'drop-if-no-vlan-assignment-on-ports': KeyInfo(),
+                            'egress-mirror-ratio': KeyInfo(),
+                            'egress-mirror0': KeyInfo(),
+                            'egress-mirror1': KeyInfo(),
+                            'fdb-uses': KeyInfo(),
+                            'forward-unknown-vlan': KeyInfo(),
+                            'ingress-mirror-ratio': KeyInfo(),
+                            'ingress-mirror0': KeyInfo(),
+                            'ingress-mirror1': KeyInfo(),
+                            'mac-level-isolation': KeyInfo(),
+                            'mirror-egress-if-ingress-mirrored': KeyInfo(),
+                            'mirror-tx-on-mirror-port': KeyInfo(),
+                            'mirrored-packet-drop-precedence': KeyInfo(),
+                            'mirrored-packet-qos-priority': KeyInfo(),
+                            'multicast-lookup-mode': KeyInfo(),
+                            'name': KeyInfo(),
+                            'override-existing-when-ufdb-full': KeyInfo(),
+                            'unicast-fdb-timeout': KeyInfo(),
+                            'unknown-vlan-lookup-mode': KeyInfo(),
+                            'use-cvid-in-one2one-vlan-lookup': KeyInfo(),
+                            'use-svid-in-one2one-vlan-lookup': KeyInfo(),
+                            'vlan-uses': KeyInfo(),
+                        },
+                    )),
+                ],
             ),
             'multi_entry_switch': APIData(
                 unversioned=VersionedAPIData(
@@ -3313,7 +3290,7 @@ PATHS = {
         ],
     ),
 
-   ('interface', 'ethernet', 'switch', 'qos-group'): APIData(
+    ('interface', 'ethernet', 'switch', 'qos-group'): APIData(
         versioned=[
             ('7.15', '>=', VersionedAPIData(
                 fully_understood=True,

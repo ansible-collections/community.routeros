@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2026, Felix Ricke (@FelixRicke)
+# GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# The data inside here is private to this collection. If you use this from outside the collection,
+# you are on your own. There can be random changes to its format even in bugfix releases!
+
 """Hardware detection functions for community.routeros.
 
 Each function takes an API connection object, queries the device,
