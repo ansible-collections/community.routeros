@@ -195,7 +195,6 @@ class APIData(object):
         return self._current
 
 
-
 class VersionedAPIData(object):
     def __init__(self,
                  primary_keys=None,
