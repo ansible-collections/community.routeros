@@ -64,6 +64,8 @@ regex = "\\x09"
 [sessions.build_import_check]
 run_galaxy_importer = true
 
+[sessions.ansible_lint]
+
 [sessions.ansible_test_sanity]
 include_devel = true
 

@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 - name: "Test split filter"
-  assert:
+  ansible.builtin.assert:
     that:
       - "'' | community.routeros.split == []"
       - "'foo bar' | community.routeros.split == ['foo', 'bar']"
@@ -12,20 +12,20 @@
         'foo bar="a b c"' | community.routeros.split == ['foo', 'bar=a b c']
 
 - name: "Test split filter error handling"
-  set_fact:
+  ansible.builtin.set_fact:
     test: >-
       {{ 'a="' | community.routeros.split }}
   ignore_errors: true
   register: result
 
 - name: "Verify split filter error handling"
-  assert:
+  ansible.builtin.assert:
     that:
       - >-
         "Unexpected end of string during escaped parameter" in result.msg
 
 - name: "Test quote_argument filter"
-  assert:
+  ansible.builtin.assert:
     that:
       - >
         'a=' | community.routeros.quote_argument == 'a=""'
@@ -37,7 +37,7 @@
         'a=""' | community.routeros.quote_argument == 'a="\\"\\""'
 
 - name: "Test quote_argument_value filter"
-  assert:
+  ansible.builtin.assert:
     that:
       - >
         '' | community.routeros.quote_argument_value == '""'
@@ -47,13 +47,13 @@
         '"foo bar"' | community.routeros.quote_argument_value == '"\\"foo\\_bar\\""'
 
 - name: "Test join filter"
-  assert:
+  ansible.builtin.assert:
     that:
       - >
         ['a=', 'b=c d'] | community.routeros.join == 'a="" b="c\\_d"'
 
 - name: "Test list_to_dict filter"
-  assert:
+  ansible.builtin.assert:
     that:
       - >
         ['a=', 'b=c'] | community.routeros.list_to_dict == {'a': '', 'b': 'c'}

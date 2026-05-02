@@ -13,7 +13,7 @@
   register: result
 
 - name: Validate result
-  assert:
+  ansible.builtin.assert:
     that:
       - result is failed
       - result.msg in potential_errors
@@ -37,7 +37,7 @@
   register: result
 
 - name: Validate result
-  assert:
+  ansible.builtin.assert:
     that:
       - result is failed
       - "'Unable to connect to port 12349 ' in result.msg or 'ssh connect failed: Connection refused' in result.msg"
