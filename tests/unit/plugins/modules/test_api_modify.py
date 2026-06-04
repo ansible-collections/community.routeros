@@ -101,6 +101,29 @@ START_IP_ADDRESS = [
 
 START_IP_ADDRESS_OLD_DATA = massage_expected_result_data(START_IP_ADDRESS, ('ip', 'address'))
 
+START_IPV6_ND = [
+    {
+        '.id': '*1',
+        'interface': 'bridge-yes',
+        'advertise-dns': 'yes',
+        'disabled': False,
+    },
+    {
+        '.id': '*2',
+        'interface': 'bridge-no',
+        'advertise-dns': 'no',
+        'disabled': False,
+    },
+    {
+        '.id': '*3',
+        'interface': 'bridge-self',
+        'advertise-dns': 'self',
+        'disabled': False,
+    },
+]
+
+START_IPV6_ND_OLD_DATA = massage_expected_result_data(START_IPV6_ND, ('ipv6', 'nd'))
+
 START_IP_DHCP_CLIENT = [
     {
         "!comment": None,
@@ -590,6 +613,36 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_IP_DNS_STATIC_OLD_DATA)
         self.assertEqual(result['new_data'], START_IP_DNS_STATIC_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_path(('ipv6', 'nd'), START_IPV6_ND, read_only=True))
+    def test_ipv6_nd_advertise_dns_enum_values_idempotent(self):
+        with self.assertRaises(AnsibleExitJson) as exc:
+            args = self.config_module_args.copy()
+            args.update({
+                'path': 'ipv6 nd',
+                'data': [
+                    {
+                        'interface': 'bridge-yes',
+                        'advertise-dns': 'yes',
+                    },
+                    {
+                        'interface': 'bridge-no',
+                        'advertise-dns': 'no',
+                    },
+                    {
+                        'interface': 'bridge-self',
+                        'advertise-dns': 'self',
+                    },
+                ],
+            })
+            with set_module_args(args):
+                self.module.main()
+
+        result = exc.exception.args[0]
+        self.assertEqual(result['changed'], False)
+        self.assertEqual(result['old_data'], START_IPV6_ND_OLD_DATA)
+        self.assertEqual(result['new_data'], START_IPV6_ND_OLD_DATA)
 
     @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
            new=create_fake_path(('ip', 'dns', 'static'), START_IP_DNS_STATIC))

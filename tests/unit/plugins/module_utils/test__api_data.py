@@ -124,6 +124,25 @@ def test_key_info_errors():
     assert exc.value.args[0] == 'read_only can not be combined with can_disable, remove_value, absent_value, default, or required'
 
 
+def test_ipv6_nd_advertise_dns_is_boolean_before_routeros_7_21():
+    versioned_path_info = PATHS[('ipv6', 'nd')]
+    versioned_path_info.provide_version('7.20.0')
+    path_info = versioned_path_info.get_data()
+
+    field = path_info.fields['advertise-dns']
+    assert field.default is True
+
+
+def test_ipv6_nd_advertise_dns_accepts_routeros_enum_values_from_7_21():
+    versioned_path_info = PATHS[('ipv6', 'nd')]
+    versioned_path_info.provide_version('7.21.0')
+    path_info = versioned_path_info.get_data()
+
+    field = path_info.fields['advertise-dns']
+    assert field.default == 'yes'
+    assert {field.default, 'no', 'self'} == {'yes', 'no', 'self'}
+
+
 SPLIT_PATHS = [
     ('', [], ''),
     ('  ip  ', ['ip'], 'ip'),

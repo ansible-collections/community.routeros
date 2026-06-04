@@ -9385,10 +9385,11 @@ PATHS = {
                 ([('7.15', '>=')], 'comment', KeyInfo()),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.15', '>=')], 'numbers', KeyInfo(read_only=True)),
+                ([('7.21', '<')], 'advertise-dns', KeyInfo(default=True)),
+                ([('7.21', '>=')], 'advertise-dns', KeyInfo(default='yes')),
                 ([('7.15', '>=')], 'pref64', KeyInfo()),
             ],
             fields={
-                'advertise-dns': KeyInfo(default=True),
                 'advertise-mac-address': KeyInfo(default=True),
                 'disabled': KeyInfo(default=False),
                 'dns': KeyInfo(default=''),
