@@ -8867,6 +8867,7 @@ PATHS = {
             versioned_fields=[
                 ([('7.18', '>=')], 'auto-link-local', KeyInfo()),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
+                ([('7.23', '>=')], 'from-pool-policy', KeyInfo(default='recommended')),
                 ([('7.15', '>=')], 'numbers', KeyInfo(read_only=True)),
             ],
             fields={
