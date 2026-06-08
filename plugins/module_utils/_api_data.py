@@ -1779,8 +1779,13 @@ PATHS = {
             fully_understood=True,
             primary_keys=('name',),
             versioned_fields=[
-                ([('7.20', '>=')], 'add-dhcp-option82', KeyInfo(default=False)),
+                ([('7.20', '>='), ('7.23', '<')], 'add-dhcp-option82', KeyInfo(default=False)),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
+                ([('7.23', '>=')], 'dhcp-agent-circuit-id', KeyInfo(can_disable=True)),
+                ([('7.23', '>=')], 'dhcp-agent-remote-id', KeyInfo(can_disable=True)),
+                ([('7.23', '>=')], 'dhcpv6-agent-circuit-id', KeyInfo(can_disable=True)),
+                ([('7.23', '>=')], 'dhcpv6-agent-remote-id', KeyInfo(can_disable=True)),
+                ([('7.23', '>=')], 'dhcpv6-snooping', KeyInfo(default=False)),
                 ([('7.16', '>=')], 'forward-reserved-addresses', KeyInfo(default=False)),
                 ([('7.20', '>=')], 'igmp-version', KeyInfo(default=2)),
                 ([('7.0', '<')], 'ingress-filtering', KeyInfo(default=False)),
@@ -2138,6 +2143,7 @@ PATHS = {
                 ([('7.13', '<')], 'path-cost', KeyInfo(default=10)),
                 ([('7.13', '>=')], 'path-cost', KeyInfo(can_disable=True)),
                 # ([('7.15', '>=')], 'place-before', KeyInfo(write_only=True)),
+                ([('7.23', '>=')], 'trusted-dhcpv6', KeyInfo(default=False)),
                 ([('7.22', '>=')], 'trusted-ra', KeyInfo()),
             ],
             fields={
