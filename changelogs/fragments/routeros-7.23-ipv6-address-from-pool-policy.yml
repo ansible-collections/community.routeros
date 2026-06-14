@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add the ``from-pool-policy`` field to the ``ipv6 address`` path for RouterOS 7.23 and newer (https://github.com/ansible-collections/community.routeros/pull/469).
