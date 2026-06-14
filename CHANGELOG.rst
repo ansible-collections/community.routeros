@@ -4,6 +4,22 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.21.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - add support for the ``dhcp-agent-circuit-id``, ``dhcp-agent-remote-id``, ``dhcpv6-agent-circuit-id``, ``dhcpv6-agent-remote-id``, and ``dhcpv6-snooping`` parameters in the ``interface bridge`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+- api_info, api_modify - add support for the ``trusted-dhcpv6`` parameter in the ``interface bridge port`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+- api_info, api_modify - add the ``from-pool-policy`` field to the ``ipv6 address`` path for RouterOS 7.23 and newer (https://github.com/ansible-collections/community.routeros/pull/469).
+- api_info, api_modify - remove support for the deprecated ``add-dhcp-option82`` parameter in the ``interface bridge`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+
 v3.20.0
 =======
 
