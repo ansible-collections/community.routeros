@@ -1,0 +1,10 @@
+minor_changes:
+  - api_info, api_modify - add support for the ``dhcp-agent-circuit-id``,
+    ``dhcp-agent-remote-id``, ``dhcpv6-agent-circuit-id``,
+    ``dhcpv6-agent-remote-id``, and ``dhcpv6-snooping`` parameters in the
+    ``interface bridge`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+  - api_info, api_modify - add support for the ``trusted-dhcpv6`` parameter in
+    the ``interface bridge port`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+  - api_info, api_modify - remove support for the deprecated
+    ``add-dhcp-option82`` parameter in the ``interface bridge`` path for
+    RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
