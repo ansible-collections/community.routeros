@@ -1041,9 +1041,9 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Adjust NAT</span>
 <span class="w">  </span><span class="nt">community.routeros.api_modify</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">hostname</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">password</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">&quot;</span>
+<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">hostname</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">password</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">"</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip firewall nat</span>
 <span class="w">    </span><span class="nt">data</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">masquerade</span>
@@ -1052,17 +1052,17 @@ see <a class="reference internal" href="#ansible-collections-community-routeros-
 <span class="w">        </span><span class="nt">out-interface-list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WAN</span>
 <span class="w">        </span><span class="c1"># Three ways to unset values:</span>
 <span class="w">        </span><span class="c1">#   - nothing after `:`</span>
-<span class="w">        </span><span class="c1">#   - &quot;empty&quot; value (null/~/None)</span>
-<span class="w">        </span><span class="c1">#   - prepend &#39;!&#39;</span>
+<span class="w">        </span><span class="c1">#   - "empty" value (null/~/None)</span>
+<span class="w">        </span><span class="c1">#   - prepend '!'</span>
 <span class="w">        </span><span class="nt">out-interface</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">to-addresses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~</span>
-<span class="w">        </span><span class="s">&#39;!to-ports&#39;</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="s">'!to-ports'</span><span class="p p-Indicator">:</span>
 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Block all incoming connections</span>
 <span class="w">  </span><span class="nt">community.routeros.api_modify</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">hostname</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">password</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">&quot;</span>
+<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">hostname</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">password</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">"</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip firewall filter</span>
 <span class="w">    </span><span class="nt">handle_absent_entries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remove</span>
 <span class="w">    </span><span class="nt">handle_entries_content</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remove_as_much_as_possible</span>

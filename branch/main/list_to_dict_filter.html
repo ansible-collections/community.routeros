@@ -229,8 +229,8 @@ example: <code class="docutils literal notranslate"><span class="pre">input</spa
 <div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Convert a list to a dictionary</span>
 <span class="w">  </span><span class="nt">ansible.builtin.set_fact</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">dictionary</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="o">[</span><span class="s1">&#39;foo=bar&#39;</span><span class="o">,</span> <span class="s1">&#39;comment=foo is bar&#39;</span><span class="o">]</span> <span class="o">|</span> <span class="nf">community</span><span class="nv">.routeros.list_to_dict</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">    </span><span class="c1"># dictionary == {&#39;foo&#39;: &#39;bar&#39;, &#39;comment&#39;: &#39;foo is bar&#39;}</span>
+<span class="w">    </span><span class="nt">dictionary</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="o">[</span><span class="s1">'foo=bar'</span><span class="o">,</span> <span class="s1">'comment=foo is bar'</span><span class="o">]</span> <span class="o">|</span> <span class="nf">community</span><span class="nv">.routeros.list_to_dict</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="c1"># dictionary == {'foo': 'bar', 'comment': 'foo is bar'}</span>
 </pre></div>
 </div>
 </section>

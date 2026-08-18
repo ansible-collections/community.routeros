@@ -147,12 +147,12 @@
 <span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
 <span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1234</span>
 <span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get &quot;ip address print&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get "ip address print"</span>
 <span class="w">      </span><span class="nt">community.routeros.api</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">hostname</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">password</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ip</span><span class="nv"> </span><span class="s">address&quot;</span>
+<span class="w">        </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">hostname</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">password</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">username</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">"ip</span><span class="nv"> </span><span class="s">address"</span>
 <span class="w">        </span><span class="c1"># The following options configure TLS/SSL.</span>
 <span class="w">        </span><span class="c1"># Depending on your setup, these options need different values:</span>
 <span class="w">        </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -164,18 +164,18 @@
 
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Show IP address of first interface</span>
 <span class="w">      </span><span class="nt">ansible.builtin.debug</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">print_path.msg</span><span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="nv">.address</span> <span class="cp">}}</span><span class="s">&quot;</span>
+<span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">print_path.msg</span><span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="nv">.address</span> <span class="cp">}}</span><span class="s">"</span>
 </pre></div>
 </div>
 <p>This results in the following output:</p>
 <div class="highlight-ansible-output notranslate"><div class="highlight"><pre><span></span><span class="k">PLAY</span> <span class="p">[</span><span class="l">RouterOS test</span><span class="p">]</span> <span class="nv">*********************************************************************************************</span>
 
-<span class="k">TASK</span> <span class="p">[</span><span class="l">Get &quot;ip address print&quot;</span><span class="p">]</span> <span class="nv">************************************************************************************</span>
+<span class="k">TASK</span> <span class="p">[</span><span class="l">Get "ip address print"</span><span class="p">]</span> <span class="nv">************************************************************************************</span>
 <span class="k">ok</span><span class="p">:</span> <span class="p">[</span><span class="nv">localhost</span><span class="p">]</span>
 
 <span class="k">TASK</span> <span class="p">[</span><span class="l">Show IP address of first interface</span><span class="p">]</span> <span class="nv">************************************************************************</span>
 <span class="k">ok</span><span class="p">:</span> <span class="p">[</span><span class="nv">localhost</span><span class="p">]</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nt">&quot;msg&quot;</span><span class="p">:</span> <span class="s">&quot;192.168.2.1/24&quot;</span>
+    <span class="nt">"msg"</span><span class="p">:</span> <span class="s">"192.168.2.1/24"</span>
 <span class="p">}</span>
 
 <span class="k">PLAY RECAP</span> <span class="nv">*******************************************************************************************************</span>
@@ -206,9 +206,9 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gather facts</span>
 <span class="w">      </span><span class="nt">community.routeros.api_facts</span><span class="p">:</span>
 
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get &quot;ip address print&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get "ip address print"</span>
 <span class="w">      </span><span class="nt">community.routeros.api</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ip</span><span class="nv"> </span><span class="s">address&quot;</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">"ip</span><span class="nv"> </span><span class="s">address"</span>
 
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Change IP address to 192.168.1.1 for interface bridge</span>
 <span class="w">      </span><span class="nt">community.routeros.api_find_and_modify</span><span class="p">:</span>
@@ -216,7 +216,7 @@
 <span class="w">        </span><span class="nt">find</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
 <span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.168.1.1/24&quot;</span>
+<span class="w">          </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.1/24"</span>
 </pre></div>
 </div>
 <p>Here all three tasks will use the options set for the module defaults group.</p>
@@ -254,29 +254,29 @@
 <span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">block</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">set_fact</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">random_password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">lookup</span><span class="o">(</span><span class="s1">&#39;community.general.random_string&#39;</span><span class="o">,</span> <span class="nv">length</span><span class="o">=</span><span class="m">32</span><span class="o">,</span> <span class="nv">override_all</span><span class="o">=</span><span class="s1">&#39;0123456789abcdefghijklmnopqrstuvwxyz&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="s">&quot;</span>
+<span class="w">            </span><span class="nt">random_password</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">lookup</span><span class="o">(</span><span class="s1">'community.general.random_string'</span><span class="o">,</span> <span class="nv">length</span><span class="o">=</span><span class="m">32</span><span class="o">,</span> <span class="nv">override_all</span><span class="o">=</span><span class="s1">'0123456789abcdefghijklmnopqrstuvwxyz'</span><span class="o">)</span> <span class="cp">}}</span><span class="s">"</span>
 
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create PKCS#12 bundle</span>
 <span class="w">          </span><span class="nt">openssl_pkcs12</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keys/</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">.p12</span>
 <span class="w">            </span><span class="nt">certificate_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keys/</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">.pem</span>
 <span class="w">            </span><span class="nt">privatekey_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keys/</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">.key</span>
-<span class="w">            </span><span class="nt">friendly_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="s">&#39;</span>
-<span class="w">            </span><span class="nt">passphrase</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">random_password</span> <span class="cp">}}</span><span class="s">&quot;</span>
-<span class="w">            </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0600&quot;</span>
+<span class="w">            </span><span class="nt">friendly_name</span><span class="p">:</span><span class="w"> </span><span class="s">'</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="s">'</span>
+<span class="w">            </span><span class="nt">passphrase</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">random_password</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">            </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">"0600"</span>
 <span class="w">          </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">          </span><span class="nt">delegate_to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
 
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Copy router certificate onto router</span>
 <span class="w">          </span><span class="nt">ansible.netcommon.net_put</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;keys/</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="s">.p12&#39;</span>
-<span class="w">            </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="s">.p12&#39;</span>
+<span class="w">            </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">'keys/</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="s">.p12'</span>
+<span class="w">            </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="s">'</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="s">.p12'</span>
 
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install router certificate and clean up</span>
 <span class="w">          </span><span class="nt">community.routeros.command</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">commands</span><span class="p">:</span>
 <span class="w">              </span><span class="c1"># Import certificate:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/certificate import name=</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain"> file-name=</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">.p12 passphrase=&quot;</span><span class="cp">{{</span> <span class="nv">random_password</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">&quot;</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/certificate import name=</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain"> file-name=</span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">.p12 passphrase="</span><span class="cp">{{</span> <span class="nv">random_password</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">"</span>
 <span class="w">              </span><span class="c1"># Remove PKCS12 bundle:</span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/file remove </span><span class="cp">{{</span> <span class="nv">inventory_hostname</span> <span class="cp">}}</span><span class="l l-Scalar l-Scalar-Plain">.p12</span>
 <span class="w">              </span><span class="c1"># Show certificates</span>
