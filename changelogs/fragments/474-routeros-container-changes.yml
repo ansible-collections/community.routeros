@@ -1,4 +1,4 @@
 minor_changes:
   - api_info, api_modify - adds support for multiple ``restart-*`` and ``stop-on-unhealthy`` parameters in the ``container`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/474).
-  - api_info, api_modify - removed support for the ``auto-restart-interval`` parameter in the ``container`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/474).  
+  - api_info, api_modify - removed support for the ``auto-restart-interval`` parameter in the ``container`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/474).
   - api_info, api_modify - adds support for the ``privileged`` parameter in the ``container`` path for RouterOS >= 7.24 (https://github.com/ansible-collections/community.routeros/pull/474).
