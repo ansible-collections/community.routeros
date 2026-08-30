@@ -19,6 +19,7 @@ import nox
 # error message to the user.
 try:
     import antsibull_nox
+    from antsibull_nox.sessions import install_packages, prepare_collections
 except ImportError:
     print("You need to install antsibull-nox in the same Python environment as nox.")
     sys.exit(1)
@@ -31,12 +32,12 @@ antsibull_nox.load_antsibull_nox_toml()
 
 
 @nox.session(name="update-docs", default=True)
+@install_packages(packages=["ansible-core"])
 def update_docs_fragments(session: nox.Session) -> None:
     """
     Update/check auto-generated parts of docs fragments.
     """
-    session.install("ansible-core")
-    prepare = antsibull_nox.sessions.prepare_collections(
+    prepare = prepare_collections(
         session, install_in_site_packages=True
     )
     if not prepare:
