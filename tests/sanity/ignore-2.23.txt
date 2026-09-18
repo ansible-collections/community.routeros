@@ -1,0 +1,1 @@
+tests/update-docs.py shebang

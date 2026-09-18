@@ -94,6 +94,7 @@ controller_python_versions_only = true
 "2.19" = ["3.11"]
 "2.20" = ["3.12"]
 "2.21" = ["3.13"]
+"2.22" = ["3.14"]
 
 [[sessions.ee_check.execution_environments]]
 name = "devel-ubi-10"
