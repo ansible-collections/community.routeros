@@ -1116,6 +1116,10 @@ PATHS = {
             ('7.22', '>=', VersionedAPIData(
                 fully_understood=True,
                 primary_keys=('dst', 'list'),
+                versioned_fields=[
+                    ([('7.23', '>=')], 'mode', KeyInfo()),
+                    ([('7.22', '>='), ('7.23', '<')], 'read-only', KeyInfo()),
+                ],
                 fields={
                     'comment': KeyInfo(can_disable=True, remove_value=''),
                     # 'copy-from': KeyInfo(write_only=True),
@@ -1123,7 +1127,6 @@ PATHS = {
                     'dst': KeyInfo(value_sanitizer=_sanitize_ensure_leading_slash),
                     'list': KeyInfo(),
                     'numbers': KeyInfo(read_only=True),
-                    'read-only': KeyInfo(default=False),
                     'src': KeyInfo(default='/', value_sanitizer=_sanitize_ensure_leading_slash),
                 },
             )),
