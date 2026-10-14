@@ -2,6 +2,8 @@
 # GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+version = 1
+
 [collection_sources]
 "ansible.netcommon" = "git+https://github.com/ansible-collections/ansible.netcommon.git,main"
 "ansible.utils" = "git+https://github.com/ansible-collections/ansible.utils.git,main"
