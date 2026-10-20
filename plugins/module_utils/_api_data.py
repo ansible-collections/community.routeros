@@ -1118,7 +1118,7 @@ PATHS = {
                 primary_keys=('dst', 'list'),
                 versioned_fields=[
                     ([('7.23', '>=')], 'mode', KeyInfo()),
-                    ([('7.22', '>='), ('7.23', '<')], 'read-only', KeyInfo()),
+                    ([('7.23', '<')], 'read-only', KeyInfo()),
                 ],
                 fields={
                     'comment': KeyInfo(can_disable=True, remove_value=''),
