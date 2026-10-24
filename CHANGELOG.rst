@@ -4,6 +4,20 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.23.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - adds support for the ``mode`` parameter in the ``container mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+- api_info, api_modify - removed support for the ``read-only`` parameter in the ``container mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+
 v3.22.0
 =======
 

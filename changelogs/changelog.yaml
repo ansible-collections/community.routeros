@@ -2495,3 +2495,15 @@ releases:
       - 474-routeros-container-changes.yml
       - ip-service-available-from.yml
     release_date: '2026-09-06'
+  3.23.0:
+    changes:
+      minor_changes:
+        - api_info, api_modify - adds support for the ``mode`` parameter in the ``container
+          mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+        - api_info, api_modify - removed support for the ``read-only`` parameter in
+          the ``container mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+      release_summary: Feature release.
+    fragments:
+      - 3.23.0.yml
+      - 477-routeros-container-mounts-changes.yml
+    release_date: '2026-10-24'
