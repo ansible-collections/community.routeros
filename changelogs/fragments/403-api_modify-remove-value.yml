@@ -1,0 +1,3 @@
+bugfixes:
+  - "api_modify - do not try to remove a field when the device already reports the field's remove value, for example ``fec-mode=auto`` for ``interface ethernet``.
+     Before, this resulted in a wrong diff in check mode and an unneeded change otherwise (https://github.com/ansible-collections/community.routeros/issues/403)."
