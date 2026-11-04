@@ -6834,7 +6834,7 @@ PATHS = {
                 ([('7.21', '>=')], 'support-broadband-tr101', KeyInfo()),
                 ([('7.19', '>=')], 'use-reconfigure', KeyInfo()),
                 ([('7.24', '>=')], 'add-dns-entries', KeyInfo()),
-                ([('7.24', '>=')], 'add-dns-entries-suffix', KeyInfo()),
+                ([('7.24', '>=')], 'add-dns-entries-suffix', KeyInfo(default='lan')),
             ],
             fields={
                 'address-pool': KeyInfo(default='static-only'),
