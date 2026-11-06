@@ -1,0 +1,2 @@
+minor_changes:
+  - api_info, api_modify - add support for >= 7.25 options 'mlag-init-delay' and 'mlag-lacp-fallback' in the interface bridge path
