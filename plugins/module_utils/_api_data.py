@@ -1804,6 +1804,8 @@ PATHS = {
                 ([('7.16', '>=')], 'max-learned-entries', KeyInfo(default='auto')),
                 ([('7.20', '>=')], 'membership-interval', KeyInfo(default='4m20s')),
                 ([('7.22', '>=')], 'mlag-heartbeat', KeyInfo()),
+                ([('7.25', '>=')], 'mlag-init-delay', KeyInfo(default='1m')),
+                ([('7.25', '>=')], 'mlag-lacp-fallback', KeyInfo(default=True)),
                 ([('7.22', '>=')], 'mlag-peer-port', KeyInfo()),
                 ([('7.22', '>=')], 'mlag-priority', KeyInfo()),
                 ([('7.20', '>=')], 'multicast-router', KeyInfo(default='temporary-query')),
