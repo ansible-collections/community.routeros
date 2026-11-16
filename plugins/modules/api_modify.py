@@ -764,8 +764,12 @@ def find_modifications(old_entry, new_entry, path_info, module, for_text='', ret
             disabled_k = k
         if disabled_k is not None:
             if disabled_k in old_entry:
-                if path_info.fields[disabled_k].remove_value is not None:
-                    modifications[disabled_k] = path_info.fields[disabled_k].remove_value
+                remove_value = path_info.fields[disabled_k].remove_value
+                if remove_value is not None and value_to_str(old_entry[disabled_k]) == value_to_str(remove_value):
+                    # The device already reports the remove value, so nothing has to be changed
+                    continue
+                if remove_value is not None:
+                    modifications[disabled_k] = remove_value
                 else:
                     modifications['!%s' % disabled_k] = ''
                 del updated_entry[disabled_k]
@@ -831,7 +835,9 @@ def essentially_same_weight(old_entry, new_entry, path_info, module):
             disabled_k = k
         if disabled_k is not None:
             if disabled_k in old_entry:
-                return None
+                remove_value = path_info.fields[disabled_k].remove_value
+                if remove_value is None or value_to_str(old_entry[disabled_k]) != value_to_str(remove_value):
+                    return None
             continue
         if k not in old_entry and value_to_str(path_info.fields[k].default) == value_to_str(v):
             continue
