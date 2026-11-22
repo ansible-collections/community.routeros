@@ -2387,6 +2387,7 @@ PATHS = {
             fully_understood=True,
             primary_keys=('name',),
             versioned_fields=[
+                ([('7.25', '>=')], 'arp-accept', KeyInfo(default=False)),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.15', '>=')], 'numbers', KeyInfo(read_only=True)),
             ],
@@ -2452,6 +2453,7 @@ PATHS = {
             fully_understood=True,
             primary_keys=('default-name',),
             versioned_fields=[
+                ([('7.25', '>=')], 'arp-accept', KeyInfo(default=False)),
                 ([('7.15.3', '>=')], 'cable-settings', KeyInfo()),
                 ([('7.15.3', '>=')], 'disable-running-check', KeyInfo()),
                 ([('7.15', '<')], 'full-duplex', KeyInfo(default=True)),
@@ -5741,6 +5743,7 @@ PATHS = {
                 ([('7.15', '>=')], 'client-endpoint', KeyInfo()),
                 ([('7.15', '>=')], 'client-keepalive', KeyInfo()),
                 ([('7.15', '>=')], 'client-listen-port', KeyInfo()),
+                ([('7.25', '>=')], 'client-mtu', KeyInfo()),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.17', '<'), ('7.15', '>=')], 'is-responder', KeyInfo()),
                 ([('7.15', '>=')], 'name', KeyInfo()),
@@ -6832,6 +6835,7 @@ PATHS = {
                 ([('7.17', '>=')], 'address-lists', KeyInfo()),
                 # ([('7.15', '>=')], 'copy-from', KeyInfo(write_only=True)),
                 ([('7.21', '>=')], 'dynamic-lease-identifiers', KeyInfo()),
+                ([('7.25', '>=')], 'ipv6-only-preferred', KeyInfo()),
                 ([('7.15', '>=')], 'numbers', KeyInfo(read_only=True)),
                 ([('7.21', '>=')], 'support-broadband-tr101', KeyInfo()),
                 ([('7.19', '>=')], 'use-reconfigure', KeyInfo()),
