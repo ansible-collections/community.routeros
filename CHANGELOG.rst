@@ -4,6 +4,23 @@ Community RouterOS Release Notes
 
 .. contents:: Topics
 
+v3.24.0
+=======
+
+Release Summary
+---------------
+
+Feature release.
+
+Minor Changes
+-------------
+
+- api_info, api_modify - add support for RouterOS >= 7.25 option ``arp-accept`` in the ``interface ethernet`` and ``interface eoip`` paths (https://github.com/ansible-collections/community.routeros/pull/483).
+- api_info, api_modify - add support for RouterOS >= 7.25 option ``client-mtu`` in the ``interface wireguard peers`` path (https://github.com/ansible-collections/community.routeros/pull/483).
+- api_info, api_modify - add support for RouterOS >= 7.25 option ``ipv6-only-preferred`` in the ``ip dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/483).
+- api_info, api_modify - add support for RouterOS >= 7.25 options ``mlag-init-delay`` and ``mlag-lacp-fallback`` in the ``interface bridge`` path (https://github.com/ansible-collections/community.routeros/pull/482).
+- api_info, api_modify - adds support for the ``add-dns-entries`` and ``add-dns-entries-suffix`` parameter in the ``ip dhcp-server`` path for RouterOS >= 7.24 (https://github.com/ansible-collections/community.routeros/pull/481).
+
 v3.23.0
 =======
 
