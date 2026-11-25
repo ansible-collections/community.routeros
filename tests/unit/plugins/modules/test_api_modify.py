@@ -10,7 +10,7 @@ from ansible_collections.community.internal_test_tools.tests.unit.compat.mock im
 from ansible_collections.community.internal_test_tools.tests.unit.plugins.modules.utils import set_module_args, AnsibleExitJson, AnsibleFailJson, ModuleTestCase
 
 from ansible_collections.community.routeros.tests.unit.plugins.modules.fake_api import (
-    FAKE_ROS_VERSION, FakeLibRouterosError, fake_ros_api, massage_expected_result_data, create_fake_path,
+    FAKE_ROS_VERSION, FakeLibRouterosError, fake_ros_api, massage_expected_result_data, create_fake_path, Path,
 )
 from ansible_collections.community.routeros.plugins.modules import api_modify
 
@@ -300,6 +300,32 @@ START_INTERFACE_GRE = [
 ]
 
 START_INTERFACE_GRE_OLD_DATA = massage_expected_result_data(START_INTERFACE_GRE, ('interface', 'gre'))
+
+START_INTERFACE_ETHERNET = [
+    {
+        '.id': '*1',
+        'default-name': 'sfp28-1',
+        'name': 'sfp28-1',
+        'l2mtu': 1584,
+        'mac-address': '00:11:22:33:44:55',
+        'orig-mac-address': '00:11:22:33:44:55',
+    },
+]
+
+
+def create_fake_ethernet_path_with_fec_mode():
+    # RouterOS explicitly reports fec-mode=auto (the remove value) on FEC capable ports,
+    # while the fake API normally drops keys that have the remove value.
+    def create(api, called_path):
+        called_path = tuple(called_path)
+        if called_path != ('interface', 'ethernet'):
+            raise AssertionError('Expected interface ethernet, got {0}'.format(called_path))
+        path = Path(called_path, START_INTERFACE_ETHERNET, read_only=True)
+        for entry in path._values:
+            entry['fec-mode'] = 'auto'
+        return path
+
+    return create
 
 
 class TestRouterosApiModifyModule(ModuleTestCase):
@@ -2134,3 +2160,29 @@ class TestRouterosApiModifyModule(ModuleTestCase):
         self.assertEqual(result['changed'], False)
         self.assertEqual(result['old_data'], START_INTERFACE_GRE_OLD_DATA)
         self.assertEqual(result['new_data'], START_INTERFACE_GRE_OLD_DATA)
+
+    @patch('ansible_collections.community.routeros.plugins.modules.api_modify.compose_api_path',
+           new=create_fake_ethernet_path_with_fec_mode())
+    def test_idempotent_remove_value_reported(self):
+        for check_mode in (False, True):
+            for fec_mode in ({'fec-mode': 'auto'}, {'!fec-mode': None}):
+                with self.assertRaises(AnsibleExitJson) as exc:
+                    args = self.config_module_args.copy()
+                    entry = {
+                        'default-name': 'sfp28-1',
+                        'name': 'sfp28-1',
+                    }
+                    entry.update(fec_mode)
+                    args.update({
+                        'path': 'interface ethernet',
+                        'data': [entry],
+                        '_ansible_check_mode': check_mode,
+                        '_ansible_diff': True,
+                    })
+                    with set_module_args(args):
+                        self.module.main()
+
+                result = exc.exception.args[0]
+                self.assertEqual(result['changed'], False)
+                self.assertEqual(result['old_data'][0]['fec-mode'], 'auto')
+                self.assertEqual(result['new_data'], result['old_data'])
